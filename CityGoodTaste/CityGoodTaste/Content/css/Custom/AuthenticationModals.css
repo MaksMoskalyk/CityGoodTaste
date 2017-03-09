@@ -1,0 +1,41 @@
+﻿.modal-content {
+    background-color: white;
+    color: black;
+    width: 70%;
+    margin: auto;
+}
+
+    .modal-content input:focus {
+        border-color: #507299;
+        box-shadow: 0 0 1px #6688AF;
+    }
+
+.specialTitle {
+    /*font-family: !important;
+    color: ;*/
+}
+
+button.modalButton {
+    width: 100%;
+}
+
+.modalInput {
+    min-width: 100%
+}
+
+.modal button.modalButton:hover {
+    /*background-color: ;
+    border-color: ;*/
+}
+
+.modal span {
+    color: black;
+}
+
+.modal div.form-group {
+    /*font-size: 18px;*/
+}
+
+.authenticationButton {
+    width: 100%;
+}

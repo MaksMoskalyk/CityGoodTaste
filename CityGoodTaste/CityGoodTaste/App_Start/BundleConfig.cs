@@ -8,24 +8,46 @@ namespace CityGoodTaste
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            #region Script
+            //Default
+            bundles.Add(new ScriptBundle("~/bundles/defaultScript").Include(
+                      "~/Scripts/Default/jquery-{version}.js",
+                      "~/Scripts/Default/jquery.validate*",
+                      "~/Scripts/Default/modernizr-*",
+                      "~/Scripts/Default/bootstrap.js",
+                      "~/Scripts/Default/jquery.bootstrap-touchspin.js",
+                      "~/Scripts/Default/clockpicker.js",
+                      "~/Scripts/Default/datetimepicker.js",
+                      "~/Scripts/Default/respond.js",
+                      "~/Scripts/Default/moment-with-locales.min.js"));
+            //Custom  
+            bundles.Add(new ScriptBundle("~/bundles/customScript").Include(
+                     "~/Scripts/Custom/MainPage.js",
+                     "~/Scripts/Custom/Restaurant.js"));
+            #endregion
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
-
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
-
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
-
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+            #region Style
+            //Default
+            bundles.Add(new StyleBundle("~/bundles/defaultStyle").Include(
+                    "~/Content/css/Default/bootstrap.css",
+                    "~/Content/icons/open-iconic/font/css/open-iconic.css",
+                    "~/Content/css/Default/bootstrap-datetimepicker.css",
+                    "~/Content/css/Default/clockpicker.css",
+                    "~/Content/css/Default/jquery.bootstrap-touchspin.css",
+                    "~/Content/css/Default/Site.css",
+                    "~/Content/css/Default/bootstrap.css",
+                    "~/Content/icons/open-iconic/font/css/open-iconic.css",
+                    "~/Content/css/Default/bootstrap-datetimepicker.css",
+                    "~/Content/css/Default/clockpicker.css",
+                    "~/Content/css/Default/jquery.bootstrap-touchspin.css",
+                    "~/Content/css/Default/Site.css"));
+            //Custom          
+            bundles.Add(new StyleBundle("~/bundles/customStyle").Include(
+                    "~/Content/css/Custom/Restaurant.css",
+                    "~/Content/css/Custom/AuthenticationModals.css",
+                    "~/Content/css/Custom/ModalFix.css",
+                    "~/Content/css/Custom/MainPage.css"));
+            #endregion
         }
     }
 }

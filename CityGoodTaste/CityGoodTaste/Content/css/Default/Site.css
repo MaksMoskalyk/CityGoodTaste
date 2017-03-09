@@ -1,0 +1,42 @@
+﻿.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container-full {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+.no-indents {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+ .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+.NoMargin{
+    margin:0px !important;
+}
+    .NoPadding{
+    padding:0px !important;
+}
+/*footer {
+    background-color: #333333;
+    color: #f5f5f5;
+    padding: 32px;
+}*/
