@@ -4,41 +4,83 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @*Custom Scripts*@
+    @Scripts.Render("~/bundles/defaultScript")
+    @Scripts.Render("~/bundles/customScript")
 
+    @*Default Styles*@
+    @Styles.Render("~/bundles/defaultStyle")
+    @Styles.Render("~/bundles/customStyle")
+
+    <script src="~/Scripts/Custom/MainPage.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <nav id="navPanel" class="navbar navbar-inverse" style="margin-bottom:0px;">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a class="navbar-brand" href="#">CGT</a>
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li><a href="#">Рестораны</a></li>
+                    <li><a href="#">Афиша</a></li>
+                    <li><a href="#">Умный помощник</a></li>
+                    <li><a href="#">Контакты</a></li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>Account</a></li>
+                    <li>
+                        <a id="authenticationBlock" href="#" data-toggle="modal" data-target="#modalLogIn">
+                            <i id="registrationIcon" class="oi" data-glyph="account-login"></i><span>Log In</span>
+                        </a>
+                    </li>
+                    <li><a href="#"><span class="glyphicon glyphicon-map-marker"></span>Map</a></li>
+                </ul>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+    </nav>
+
+    <div class="container-fluid ">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    </div>
+    <br />
+    <footer class="text-center">
+        <a class="up-arrow" href="#navPanel" data-toggle="tooltip" title="TO TOP">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a><br><br>
+        <div>
+            @using (Html.BeginForm("ChangeCulture", "Home"))
+            {
+                <div style="float:right">
+                    <select name="lang">
+                        <option disabled selected>@CityGoodTaste.Resources.Resource.ChooseLang</option>
+                        <option value="en-US">English</option>
+                        <option value="ru-RU">Русский</option>
+                        <option value="uk-UA">Українська</option>
+                    </select>
+                    <button type="submit" name="submit" class="btn-success" value="@CityGoodTaste.Resources.Resource.ChooseLang">@CityGoodTaste.Resources.Resource.ChooseLang</button>
+                </div>
+            }
+        </div>
+    </footer>
+
+    <!-- Modal Log In -->
+    <div id="modalLogIn" class="modal fade" role="dialog">
+        @Html.Action("LogIn", "Home")
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+
+    <!-- Modal Sign Up -->
+    <div id="modalSignUp" class="modal fade" role="dialog">
+        @Html.Action("SignUp", "Home")
+    </div>
+
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

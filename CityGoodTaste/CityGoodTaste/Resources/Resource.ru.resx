@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AverageCheck" xml:space="preserve">
+    <value>Средний чек</value>
+  </data>
+  <data name="ButtonBack" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="ButtonCreate" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="ButtonDelete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="ButtonEdit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="ButtonSave" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="ChooseLang" xml:space="preserve">
+    <value>Выберите язык</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="CityName" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="CloseHourName" xml:space="preserve">
+    <value>Открыто до</value>
+  </data>
+  <data name="CountryName" xml:space="preserve">
+    <value>Страна</value>
+  </data>
+  <data name="CousineName" xml:space="preserve">
+    <value>Кухня</value>
+  </data>
+  <data name="Cuisine" xml:space="preserve">
+    <value>Кухня</value>
+  </data>
+  <data name="Cuisines" xml:space="preserve">
+    <value>Кухни</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Электронная почта</value>
+  </data>
+  <data name="EventDescription" xml:space="preserve">
+    <value>Информация о событии</value>
+  </data>
+  <data name="EventEndDate" xml:space="preserve">
+    <value>Дата конца события</value>
+  </data>
+  <data name="EventName" xml:space="preserve">
+    <value>Название события</value>
+  </data>
+  <data name="EventStartDate" xml:space="preserve">
+    <value>Дата начала события</value>
+  </data>
+  <data name="Floors" xml:space="preserve">
+    <value>Этажи</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>Иконка</value>
+  </data>
+  <data name="InDoor" xml:space="preserve">
+    <value>Помещение</value>
+  </data>
+  <data name="IsShowMenu" xml:space="preserve">
+    <value>Показывать меню?</value>
+  </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Широта</value>
+  </data>
+  <data name="Likes" xml:space="preserve">
+    <value>Лайки</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="Longitude" xml:space="preserve">
+    <value>Долгота</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Карта</value>
+  </data>
+  <data name="Meal" xml:space="preserve">
+    <value>Еда</value>
+  </data>
+  <data name="MealDescription" xml:space="preserve">
+    <value>Состав блюда</value>
+  </data>
+  <data name="MealGroup" xml:space="preserve">
+    <value>?? в ресурсах отредактировать</value>
+  </data>
+  <data name="MealGroupName" xml:space="preserve">
+    <value>?? в ресурсах отредактировать</value>
+  </data>
+  <data name="MealGroups" xml:space="preserve">
+    <value>?? в ресурсах отредактировать</value>
+  </data>
+  <data name="MealName" xml:space="preserve">
+    <value>Название блюда</value>
+  </data>
+  <data name="MealPrice" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="Meals" xml:space="preserve">
+    <value>Еда</value>
+  </data>
+  <data name="MealsMenu" xml:space="preserve">
+    <value>Меню</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Меню</value>
+  </data>
+  <data name="OpenHourName" xml:space="preserve">
+    <value>Открыто с</value>
+  </data>
+  <data name="OrderDate" xml:space="preserve">
+    <value>Дата заказа</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Заказы</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="PhoneName" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="Phones" xml:space="preserve">
+    <value>Телефоны</value>
+  </data>
+  <data name="PhotoPath" xml:space="preserve">
+    <value>?? в ресурсах отредактировать</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Фотографии</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="PriceEntries" xml:space="preserve">
+    <value>Чек</value>
+  </data>
+  <data name="RestarauntGroupName" xml:space="preserve">
+    <value>Сеть ресторанов</value>
+  </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Ресторан</value>
+  </data>
+  <data name="RestaurantAddress" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="RestaurantEvent" xml:space="preserve">
+    <value>Событие</value>
+  </data>
+  <data name="RestaurantFeatureName" xml:space="preserve">
+    <value>Комфорт</value>
+  </data>
+  <data name="RestaurantFeatures" xml:space="preserve">
+    <value>Комфорт</value>
+  </data>
+  <data name="RestaurantName" xml:space="preserve">
+    <value>Название Ресторана</value>
+  </data>
+  <data name="Restaurants" xml:space="preserve">
+    <value>Рестораны</value>
+  </data>
+  <data name="RestaurantSchema" xml:space="preserve">
+    <value>Схема заведения</value>
+  </data>
+  <data name="RestaurantSchemaName" xml:space="preserve">
+    <value>?? в ресурсах отредактировать</value>
+  </data>
+  <data name="RestaurantSchemas" xml:space="preserve">
+    <value>Схемы заведения</value>
+  </data>
+  <data name="RestaurantsGroup" xml:space="preserve">
+    <value>Сеть ресторанов</value>
+  </data>
+  <data name="ReviewDate" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="Reviews" xml:space="preserve">
+    <value>Отзывы</value>
+  </data>
+  <data name="ReviewText" xml:space="preserve">
+    <value>Отзыв</value>
+  </data>
+  <data name="SmokingZone" xml:space="preserve">
+    <value>Курящая зона</value>
+  </data>
+  <data name="SpecialWorkHours" xml:space="preserve">
+    <value>Время работы</value>
+  </data>
+  <data name="SubMenuName" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="Tables" xml:space="preserve">
+    <value>Стол</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Клиент</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Клиенты</value>
+  </data>
+  <data name="UserSurname" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="WorkDate" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="WorkHours" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Индекс</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Увеличение</value>
+  </data>
+  <data name="Сurrency" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+</root>

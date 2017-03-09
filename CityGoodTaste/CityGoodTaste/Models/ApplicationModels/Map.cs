@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+
+namespace CityGoodTaste
+{
+    public class Map
+    {
+        [Key]
+        public int id { get; set; }
+
+        [Display(Name = "Latitude", ResourceType = typeof(Resources.Resource))]
+        public double Latitude { get; set; }
+
+        [Display(Name = "Longitude", ResourceType = typeof(Resources.Resource))]
+        public double Longitude { get; set; }
+
+        [Display(Name = "Zoom", ResourceType = typeof(Resources.Resource))]
+        public int Zoom { get; set; }
+    }
+}
