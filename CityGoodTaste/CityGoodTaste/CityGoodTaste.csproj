@@ -170,13 +170,54 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="CustomFilters\AjaxOnlyAttribute.cs" />
+    <Compile Include="CustomFilters\CultureAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationModels\City.cs" />
+    <Compile Include="Models\ApplicationModels\Country.cs" />
+    <Compile Include="Models\ApplicationModels\Cuisine.cs" />
+    <Compile Include="Models\ApplicationModels\Like.cs" />
+    <Compile Include="Models\ApplicationModels\Map.cs" />
+    <Compile Include="Models\ApplicationModels\Meal.cs" />
+    <Compile Include="Models\ApplicationModels\MealGroup.cs" />
+    <Compile Include="Models\ApplicationModels\Menu.cs" />
+    <Compile Include="Models\ApplicationModels\Order.cs" />
+    <Compile Include="Models\ApplicationModels\Phone.cs" />
+    <Compile Include="Models\ApplicationModels\Photo.cs" />
+    <Compile Include="Models\ApplicationModels\PriceEntry.cs" />
+    <Compile Include="Models\ApplicationModels\Restaurant.cs" />
+    <Compile Include="Models\ApplicationModels\RestaurantEvent.cs" />
+    <Compile Include="Models\ApplicationModels\RestaurantFeature.cs" />
+    <Compile Include="Models\ApplicationModels\RestaurantReview.cs" />
+    <Compile Include="Models\ApplicationModels\RestaurantSchema.cs" />
+    <Compile Include="Models\ApplicationModels\RestaurantsGroup.cs" />
+    <Compile Include="Models\ApplicationModels\SpecialWorkHour.cs" />
+    <Compile Include="Models\ApplicationModels\Table.cs" />
+    <Compile Include="Models\ApplicationModels\User.cs" />
+    <Compile Include="Models\ApplicationModels\WorkHour.cs" />
+    <Compile Include="Models\Context\GoodTasteContext.cs" />
+    <Compile Include="Models\Context\GoodTasteDBInitializer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Resource.ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Resource.uk.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.uk.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -234,9 +275,14 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\Authentication\_LogInModal.cshtml" />
+    <Content Include="Views\Home\Authentication\_SignUpModal.cshtml" />
+    <Content Include="Views\Restaurant\Index.cshtml" />
+    <Content Include="Views\Restaurant\Index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="BusinessLayer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -245,6 +291,20 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource.ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource.uk.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.uk.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

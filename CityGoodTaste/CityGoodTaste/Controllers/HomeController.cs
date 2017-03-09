@@ -3,11 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CityGoodTaste.CustomFilters;
 
 namespace CityGoodTaste.Controllers
 {
+    [Culture]
     public class HomeController : Controller
     {
+        [AllowAnonymous]
+        public ActionResult ChangeCulture(string lang)
+        {
+            string returnUrl = Request.UrlReferrer.AbsolutePath;
+
+            List<string> cultures = new List<string>() { "en-US", "ru-RU", "uk-UA" };
+            if (!cultures.Contains(lang))
+            {
+                lang = "en-US";
+            }
+            HttpCookie cookie = Request.Cookies["lang"];
+            if (cookie != null)
+                cookie.Value = lang;
+            else
+            {
+                cookie = new HttpCookie("lang");
+                cookie.Value = lang;
+                cookie.Expires = DateTime.Now.AddYears(1);
+            }
+            Response.Cookies.Add(cookie);
+            return Redirect(returnUrl);
+        }
         public ActionResult Index()
         {
             return View();
@@ -25,6 +49,25 @@ namespace CityGoodTaste.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult LogIn()
+        {
+            ViewBag.Message = "LogIn";
+            User user = new User();
+
+            return PartialView("~/Views/Home/Authentication/_LogInModal.cshtml", user);
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult SignUp()
+        {
+            ViewBag.Message = "SignUp";
+            User user = new User();
+
+            return PartialView("~/Views/Home/Authentication/_SignUpModal.cshtml", user);
         }
     }
 }
