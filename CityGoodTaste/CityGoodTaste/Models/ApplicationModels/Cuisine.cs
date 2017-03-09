@@ -17,6 +17,6 @@ namespace CityGoodTaste
         public virtual ICollection<Restaurant> Restaurants { get; set; }
 
         [Display(Name = "Users", ResourceType = typeof(Resources.Resource))]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<ApplicationUser> Users { get; set; }
     }
 }

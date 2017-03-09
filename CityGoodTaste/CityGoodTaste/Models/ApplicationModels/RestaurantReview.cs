@@ -18,7 +18,7 @@ namespace CityGoodTaste
         public string Text { get; set; }
 
         [Display(Name = "User", ResourceType = typeof(Resources.Resource))]
-        public virtual User User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         [Display(Name = "Restaurant", ResourceType = typeof(Resources.Resource))]
         public virtual Restaurant Restaurant { get; set; }

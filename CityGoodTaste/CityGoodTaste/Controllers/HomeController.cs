@@ -55,7 +55,7 @@ namespace CityGoodTaste.Controllers
         public ActionResult LogIn()
         {
             ViewBag.Message = "LogIn";
-            User user = new User();
+            ApplicationUser user = new ApplicationUser();
 
             return PartialView("~/Views/Home/Authentication/_LogInModal.cshtml", user);
         }
@@ -65,7 +65,7 @@ namespace CityGoodTaste.Controllers
         public ActionResult SignUp()
         {
             ViewBag.Message = "SignUp";
-            User user = new User();
+            ApplicationUser user = new ApplicationUser();
 
             return PartialView("~/Views/Home/Authentication/_SignUpModal.cshtml", user);
         }
