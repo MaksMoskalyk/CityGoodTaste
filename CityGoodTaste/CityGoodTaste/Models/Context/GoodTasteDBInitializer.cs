@@ -25,7 +25,7 @@ namespace CityGoodTaste
             roleManager.Create(role4);
 
             // создаем пользователей
-            var admin = new ApplicationUser { Login = "admin", Email = "somemail@mail.ru", UserName = "admin" };
+            var admin = new ApplicationUser {Email = "somemail@mail.ru", UserName = "admin" };
             string password = "Password!2";
             var result = userManager.Create(admin, password);
 
