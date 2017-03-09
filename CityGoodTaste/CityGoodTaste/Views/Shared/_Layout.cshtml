@@ -32,7 +32,8 @@
                     <li><a href="#">Умный помощник</a></li>
                     <li><a href="#">Контакты</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                @Html.Partial("_LoginPartial")
+                @*<ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><span class="glyphicon glyphicon-user"></span>Account</a></li>
                     <li>
                         <a id="authenticationBlock" href="#" data-toggle="modal" data-target="#modalLogIn">
@@ -40,7 +41,7 @@
                         </a>
                     </li>
                     <li><a href="#"><span class="glyphicon glyphicon-map-marker"></span>Map</a></li>
-                </ul>
+                </ul>*@
             </div>
         </div>
     </nav>
@@ -69,7 +70,7 @@
         </div>
     </footer>
 
-    <!-- Modal Log In -->
+    @*<!-- Modal Log In -->
     <div id="modalLogIn" class="modal fade" role="dialog">
         @Html.Action("LogIn", "Home")
     </div>
@@ -78,7 +79,7 @@
     <!-- Modal Sign Up -->
     <div id="modalSignUp" class="modal fade" role="dialog">
         @Html.Action("SignUp", "Home")
-    </div>
+    </div>*@
 
 
     @RenderSection("scripts", required: false)
