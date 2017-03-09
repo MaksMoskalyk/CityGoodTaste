@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CityGoodTaste
 {
-    public class GoodTasteContext :  IdentityDbContext<User>
+    public class GoodTasteContext : IdentityDbContext<ApplicationUser>
     {
         public GoodTasteContext() : base("GoodTasteContext", throwIfV1Schema: false)
         {
