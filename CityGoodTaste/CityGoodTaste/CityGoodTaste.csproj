@@ -3169,21 +3169,25 @@
     <Content Include="Content\icons\open-iconic\webp\zoom-out-6x.webp" />
     <Content Include="Content\icons\open-iconic\webp\zoom-out-8x.webp" />
     <Content Include="Content\icons\open-iconic\webp\zoom-out.webp" />
+    <Content Include="Scripts\Default\Angular\angular-mocks.js" />
+    <Content Include="Scripts\Default\Angular\angular.js" />
+    <Content Include="Scripts\Default\Angular\angular.min.js" />
     <Content Include="Scripts\Custom\MainPage.js" />
     <Content Include="Scripts\Custom\Restaurant.js" />
     <Content Include="Scripts\Default\bootstrap.js" />
     <Content Include="Scripts\Default\bootstrap.min.js" />
     <Content Include="Scripts\Default\clockpicker.js" />
     <Content Include="Scripts\Default\datetimepicker.js" />
-    <None Include="Scripts\Default\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\Default\jquery-1.10.2.js" />
-    <Content Include="Scripts\Default\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\Default\jquery.bootstrap-touchspin.js" />
-    <None Include="Scripts\Default\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\Default\jquery.validate.js" />
-    <Content Include="Scripts\Default\jquery.validate.min.js" />
-    <Content Include="Scripts\Default\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\Default\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Default\Angular\angular.min.js.map" />
+    <None Include="Scripts\Default\jQuery\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Default\jQuery\jquery-1.10.2.js" />
+    <Content Include="Scripts\Default\jQuery\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\Default\jQuery\jquery.bootstrap-touchspin.js" />
+    <None Include="Scripts\Default\jQuery\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\Default\jQuery\jquery.validate.js" />
+    <Content Include="Scripts\Default\jQuery\jquery.validate.min.js" />
+    <Content Include="Scripts\Default\jQuery\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\Default\jQuery\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\Default\modernizr-2.6.2.js" />
     <Content Include="Scripts\Default\moment-with-locales.min.js" />
     <Content Include="Scripts\Default\respond.js" />
@@ -3235,7 +3239,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\Default\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\Default\jQuery\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Resource.resx">
