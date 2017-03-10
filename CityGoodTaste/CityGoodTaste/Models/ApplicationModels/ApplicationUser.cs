@@ -17,11 +17,6 @@ namespace CityGoodTaste
             return userIdentity;
         }
 
-        [Display(Name = "Login", ResourceType = typeof(Resources.Resource))]
-        [MaxLength(50)]
-        [Required]
-        public string Login { get; set; }
-
         [Display(Name = "UserName", ResourceType = typeof(Resources.Resource))]
         [MaxLength(50)]
         public string Name { get; set; }
