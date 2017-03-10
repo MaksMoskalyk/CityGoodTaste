@@ -167,6 +167,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="BusinessLayer\RestaurantDataManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -3225,12 +3226,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Authentication\_LogInModal.cshtml" />
     <Content Include="Views\Home\Authentication\_SignUpModal.cshtml" />
-    <Content Include="Views\Restaurant\Index.cshtml" />
-    <Content Include="Views\Restaurant\Index1.cshtml" />
+    <Content Include="Views\Restaurant\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="BusinessLayer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CityGoodTaste.CustomFilters;
+using CityGoodTaste.Models;
 
 namespace CityGoodTaste.Controllers
 {

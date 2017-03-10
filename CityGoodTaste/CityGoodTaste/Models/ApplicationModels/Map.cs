@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace CityGoodTaste
+namespace CityGoodTaste.Models
 {
     public class Map
     {

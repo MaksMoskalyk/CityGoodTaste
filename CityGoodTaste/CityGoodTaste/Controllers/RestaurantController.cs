@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CityGoodTaste.BusinessLayer;
 
 namespace CityGoodTaste.Controllers
 {
@@ -17,7 +18,9 @@ namespace CityGoodTaste.Controllers
         // GET: Restaurant/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();   
+            IRestaurantDataManager manager = factory.GetManager();
+            return View(manager.GetRestaurant(id));
         }
 
         // GET: Restaurant/Create

@@ -1,12 +1,41 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using CityGoodTaste.Models;
 
 namespace CityGoodTaste
 {
     public class GoodTasteDBInitializer : DropCreateDatabaseAlways<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
+        {
+            InitializeAdminUserAndRoles(context);
+            InitializeRestaurant(context);
+            base.Seed(context);
+        }
+
+
+
+        private void InitializeRestaurant(GoodTasteContext context)
+        {
+            Country c = new Country { Name = "Украина" };
+            City ct = new City { Name = "Одесса", Country = c };
+            Restaurant r = new Restaurant
+            {
+                Name = "Три Резвых Коня",
+                Address = "ул. Победы 6",
+                ZipCode = 95009,
+                AverageCheck = 305,
+                Floors = 2,
+                City=ct
+            };
+            context.Countries.Add(c);
+            context.Cities.Add(ct);
+            context.Restaurants.Add(r);
+            context.SaveChanges();
+        }
+
+        private void InitializeAdminUserAndRoles(GoodTasteContext context)
         {
             var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
 
@@ -25,7 +54,7 @@ namespace CityGoodTaste
             roleManager.Create(role4);
 
             // создаем пользователей
-            var admin = new ApplicationUser {Email = "somemail@mail.ru", UserName = "admin" };
+            var admin = new ApplicationUser { Email = "somemail@mail.ru", UserName = "admin" };
             string password = "Password!2";
             var result = userManager.Create(admin, password);
 
@@ -36,8 +65,6 @@ namespace CityGoodTaste
                 userManager.AddToRole(admin.Id, role1.Name);
                 userManager.AddToRole(admin.Id, role2.Name);
             }
-
-            base.Seed(context);
         }
     }
 }

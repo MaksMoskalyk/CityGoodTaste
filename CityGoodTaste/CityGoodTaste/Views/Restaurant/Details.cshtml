@@ -1,12 +1,15 @@
-﻿
+﻿@model CityGoodTaste.Models.Restaurant
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Restaurant";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @Styles.Render("~/Content/css/Default/jquery.bootstrap-touchspin.css")
 @Styles.Render("~/Content/css/Default/bootstrap-datetimepicker.css")
 @Styles.Render("~/Content/css/Default/clockpicker.css")
 
+<h2>@ViewBag.Title.</h2>
 
 
 
@@ -17,7 +20,11 @@
                     <img src="https://placehold.it/2000x400?text=IMAGE" alt="img" class="img-responsive" />
                 </div>
                 <div class="row">
-                    <div class="col-sm-6">Название заведения</div>
+                    
+                    <div class="col-sm-6">
+                        @Html.LabelFor(model => model.Name)
+                        @Html.DisplayFor(model => model.Name)
+                    </div>
                     <div class="col-sm-4"><a href="#">Рейтинг <span class="badge">5</span></a><br></div>
                 </div> 
                 <div>Адрес</div>
