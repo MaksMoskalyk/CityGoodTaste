@@ -20,6 +20,9 @@ namespace CityGoodTaste
         {
             Country c = new Country { Name = "Украина" };
             City ct = new City { Name = "Одесса", Country = c };
+            var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+            var user = new ApplicationUser { Email = "somemail2@mail.ru", UserName = "user" };
+            var result = userManager.Create(user, "Password!2");
             Restaurant r = new Restaurant
             {
                 Name = "Три Резвых Коня",
@@ -29,6 +32,8 @@ namespace CityGoodTaste
                 Floors = 2,
                 City=ct
             };
+            Like like = new Like { User = user, Restaurant = r };
+            context.Likes.Add(like);
             context.Countries.Add(c);
             context.Cities.Add(ct);
             context.Restaurants.Add(r);

@@ -20,24 +20,21 @@ namespace CityGoodTaste.BusinessLayer
 
     public interface IRestaurantDataManager
     {
-        Restaurant GetRestaurant(int id);
+        Restaurant GetRestaurant(int id, GoodTasteContext context);
     }
 
     public class RestaurantDataManager: IRestaurantDataManager
     {
-        public Restaurant GetRestaurant(int id)
+        public Restaurant GetRestaurant(int id, GoodTasteContext context)
         {
-            using (var context = new GoodTasteContext())
+            try
             {
-                try
-                {
-                    Restaurant r = (from x in context.Restaurants select x).Single();
-                    return context.Restaurants.Find(id);
-                }
-                catch
-                {
-                    throw new Exception("Restaurant not found");
-                }
+                Restaurant r = (from x in context.Restaurants select x).Single();
+                return context.Restaurants.Find(id);
+            }
+            catch
+            {
+                throw new Exception("Restaurant not found");
             }
         }
     }

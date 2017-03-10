@@ -25,7 +25,10 @@
                         @Html.LabelFor(model => model.Name)
                         @Html.DisplayFor(model => model.Name)
                     </div>
-                    <div class="col-sm-4"><a href="#">Рейтинг <span class="badge">5</span></a><br></div>
+                    <div class="col-sm-4">
+                        @Html.LabelFor(model => model.Likes)
+                        <span class="badge">@Html.DisplayFor(model => model.Likes)</span>
+                    </div>
                 </div> 
                 <div>Адрес</div>
                 <div>Средний чек</div>
