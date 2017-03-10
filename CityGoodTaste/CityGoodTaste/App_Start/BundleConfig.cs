@@ -11,15 +11,17 @@ namespace CityGoodTaste
             #region Script
             //Default
             bundles.Add(new ScriptBundle("~/bundles/defaultScript").Include(
-                      "~/Scripts/Default/jquery-{version}.js",
-                      "~/Scripts/Default/jquery.validate*",
+                      "~/Scripts/Default/jQuery/jquery-{version}.js",
+                      "~/Scripts/Default/jQuery/jquery.validate*",
+                      "~/Scripts/Default/jQuery/jquery.bootstrap-touchspin.js",
+                      "~/Scripts/Default/Angular/angular.js",
                       "~/Scripts/Default/modernizr-*",
-                      "~/Scripts/Default/bootstrap.js",
-                      "~/Scripts/Default/jquery.bootstrap-touchspin.js",
+                      "~/Scripts/Default/bootstrap.js",                      
                       "~/Scripts/Default/clockpicker.js",
                       "~/Scripts/Default/datetimepicker.js",
                       "~/Scripts/Default/respond.js",
                       "~/Scripts/Default/moment-with-locales.min.js"));
+
             //Custom  
             bundles.Add(new ScriptBundle("~/bundles/customScript").Include(
                      "~/Scripts/Custom/MainPage.js",
@@ -41,6 +43,7 @@ namespace CityGoodTaste
                     "~/Content/css/Default/clockpicker.css",
                     "~/Content/css/Default/jquery.bootstrap-touchspin.css",
                     "~/Content/css/Default/Site.css"));
+
             //Custom          
             bundles.Add(new StyleBundle("~/bundles/customStyle").Include(
                     "~/Content/css/Custom/Restaurant.css",
