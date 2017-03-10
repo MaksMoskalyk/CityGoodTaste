@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using CityGoodTaste.BusinessLayer;
+using CityGoodTaste.Models;
 
 namespace CityGoodTaste.Controllers
 {
@@ -17,11 +21,18 @@ namespace CityGoodTaste.Controllers
         }
 
         // GET: Restaurant/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int? id)
         {
-            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();   
-            IRestaurantDataManager manager = factory.GetManager();
-            return View(manager.GetRestaurant(id, context));
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Restaurant Rest = context.Restaurants.Include(t => t.Likes).FirstOrDefault(t => t.Id == id);
+            if (Rest == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Rest);
         }
 
         // GET: Restaurant/Create

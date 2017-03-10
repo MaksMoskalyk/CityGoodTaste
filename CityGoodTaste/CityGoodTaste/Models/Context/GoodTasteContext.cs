@@ -6,7 +6,7 @@ namespace CityGoodTaste
 {
     public class GoodTasteContext : IdentityDbContext<ApplicationUser>
     {
-        public GoodTasteContext() : base("GoodTasteContext", throwIfV1Schema: false)
+        public GoodTasteContext() : base("GoodTasteContext")
         {
             Database.SetInitializer(new GoodTasteDBInitializer());
         }
