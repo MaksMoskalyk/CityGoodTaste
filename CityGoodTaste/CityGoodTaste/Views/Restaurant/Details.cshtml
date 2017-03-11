@@ -117,8 +117,24 @@
                                 <p>текст описания</p>
                             </div>
                             <div id="menu4" class="tab-pane fade">
-                                <h2>Отзовы</h2>
-                                <p>I mean, sometimes I enjoy the show, but other times I enjoy other things.</p>
+                                <h2>@Html.LabelFor(model => model.Reviews)</h2>
+
+                                @foreach (var item in Model.Reviews)
+                                {
+                                    <div class="row justify-content-around">
+                                        <div class="media" style="padding-left:50px">
+                                            <div class="media-left">
+                                                <img src="https://placehold.it/90x90?text=Аватар" class="media-object" style="width:90px">
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">@item.Date.ToString()</h4>
+                                                <h4 class="media-heading">@item.User.Name</h4>
+                                                <p>@item.Text</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
                             </div>
                             <div id="menu5" class="tab-pane fade">
                                 <h2>Карта</h2>

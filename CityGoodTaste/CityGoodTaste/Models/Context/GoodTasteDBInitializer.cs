@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using CityGoodTaste.Models;
 using System.Collections.Generic;
+using System;
 
 namespace CityGoodTaste
 {
@@ -22,8 +23,12 @@ namespace CityGoodTaste
             Country c = new Country { Name = "Украина" };
             City ct = new City { Name = "Одесса", Country = c };
             var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
-            var user = new ApplicationUser { Email = "somemail2@mail.ru", UserName = "user" };
+            var user = new ApplicationUser { Email = "somemail2@mail.ru", UserName = "user", Name="Егор" };
             var result = userManager.Create(user, "Password!2");
+            var user2 = new ApplicationUser { Email = "somemail22@mail.ru", UserName = "user2", Name = "Виктор" };
+            var result2 = userManager.Create(user2, "Password!2");
+            var user3 = new ApplicationUser { Email = "somemail3@mail.ru", UserName = "user3", Name = "Светлана" };
+            var result3 = userManager.Create(user3, "Password!2");
             Restaurant r = new Restaurant
             {
                 Name = "Три Резвых Коня",
@@ -55,6 +60,15 @@ namespace CityGoodTaste
             RestaurantFeature f9 = new RestaurantFeature { Name = "Детский стульчик" };
             RestaurantFeature f10 = new RestaurantFeature { Name = "Оплата кредитной картой" };
 
+            RestaurantReview rr1 = new RestaurantReview { Text= "все понравилось. Сервис и еда вкусно", Restaurant=r, Date= DateTime.Now, User=user };
+            RestaurantReview rr2 = new RestaurantReview { Text = "Очень мило и приятно проведен и отмечен праздник. Все на высоком уровне и очень культурно.", Restaurant = r, Date = DateTime.Now, User = user2 };
+            RestaurantReview rr3 = new RestaurantReview { Text = "Кушал карбонару.Ничего осебенного но и цены тоже не кусаются. сервис хороший."+
+                                                                 " скидку получили. У вас мало заведений на оболони, но проект очень нравится,"+
+                                                                 " развивайтесь быстрее", Restaurant = r, Date = DateTime.Now, User = user3 };
+            context.RestaurantReviews.Add(rr1);
+            context.RestaurantReviews.Add(rr2);
+            context.RestaurantReviews.Add(rr3);
+
             r.RestaurantFeatures = new List<RestaurantFeature>();
             r.RestaurantFeatures.Add(f1);
             r.RestaurantFeatures.Add(f2);
@@ -67,7 +81,6 @@ namespace CityGoodTaste
             r.RestaurantFeatures.Add(f9);
             r.RestaurantFeatures.Add(f10);
 
-
             r.WorkHours = new List<WorkHour>();
             for (int i = 0; i < 7; i++)
             {
@@ -77,18 +90,10 @@ namespace CityGoodTaste
             }
 
             Like like = new Like { User = user, Restaurant = r };
+
             context.Likes.Add(like);
             context.Countries.Add(c);
             context.Cities.Add(ct);
-            //context.RestaurantFeatures.Add(f1);
-            //context.RestaurantFeatures.Add(f2);
-            //context.RestaurantFeatures.Add(f3);
-            //context.RestaurantFeatures.Add(f4);
-            //context.RestaurantFeatures.Add(f5);
-            //context.RestaurantFeatures.Add(f6);
-            //context.RestaurantFeatures.Add(f7);
-            //context.RestaurantFeatures.Add(f8);
-            //context.RestaurantFeatures.Add(f10);
             context.Restaurants.Add(r);
             context.SaveChanges();
         }
