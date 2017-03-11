@@ -574,6 +574,15 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RestaurantPhoneNumber.
+        /// </summary>
+        public static string RestaurantPhoneNumber {
+            get {
+                return ResourceManager.GetString("RestaurantPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restaurants.
         /// </summary>
         public static string Restaurants {

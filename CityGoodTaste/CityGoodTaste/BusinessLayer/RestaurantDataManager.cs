@@ -36,6 +36,7 @@ namespace CityGoodTaste.BusinessLayer
                     Rest = context.Restaurants.Include(t => t.City).FirstOrDefault(t => t.Id == id);
                     Rest.City = context.Cities.Include(t => t.Country).FirstOrDefault(t => t.Country.Id == Rest.City.Country.Id);
                     Rest = context.Restaurants.Include(t => t.RestaurantFeatures).FirstOrDefault(t => t.Id == id);
+                    Rest = context.Restaurants.Include(t => t.WorkHours).FirstOrDefault(t => t.Id == id);
                     return Rest;
                 }
                 catch

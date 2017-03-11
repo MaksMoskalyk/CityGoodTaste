@@ -351,4 +351,7 @@
   <data name="InformationAboutRestaurant" xml:space="preserve">
     <value>InformationAboutRestaurant</value>
   </data>
+  <data name="RestaurantPhoneNumber" xml:space="preserve">
+    <value />
+  </data>
 </root>

@@ -32,6 +32,7 @@ namespace CityGoodTaste
                 AverageCheck = 305,
                 Floors = 2,
                 City=ct, 
+                PhoneNumber="+380 97 725 83 65",
                 InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r"+ 
                                     " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную"+
                                     " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе,"+ 
@@ -67,7 +68,13 @@ namespace CityGoodTaste
             r.RestaurantFeatures.Add(f10);
 
 
-
+            r.WorkHours = new List<WorkHour>();
+            for (int i = 0; i < 7; i++)
+            {
+                WorkHour wh = new WorkHour { OpenHour = new System.TimeSpan(10, 0, 0), CloseHour = new System.TimeSpan(22, 0, 0) };
+                r.WorkHours.Add(wh);
+                context.WorkHours.Add(wh);
+            }
 
             Like like = new Like { User = user, Restaurant = r };
             context.Likes.Add(like);

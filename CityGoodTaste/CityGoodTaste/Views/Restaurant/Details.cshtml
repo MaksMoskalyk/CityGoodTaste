@@ -22,7 +22,7 @@
                         <div>@Html.LabelFor(model => model.Name)
                         @Html.DisplayFor(model => model.Name)</div>
                         <div>@Html.LabelFor(model => model.Address)
-                        @Html.DisplayFor(model => model.Address) @Html.DisplayFor(model => model.City.Name) @Html.DisplayFor(model => model.City.Country.Name) @Html.DisplayFor(model => model.ZipCode)</div>
+                        @Html.DisplayFor(model => model.Address) @Html.DisplayFor(model => model.City.Name) @Html.DisplayFor(model => model.City.Country.Name)</div>
                     </div>
                     <div class="col-sm-4">
                         <div>@Html.LabelFor(model => model.Likes)
@@ -43,11 +43,12 @@
 
                         <div class="tab-content">
                             <div id="menu1" class="tab-pane fade in active">
-                                <h2>Обзор</h2>
-                                <p>@Html.LabelFor(model => model.InformationAbout)</p>
-                                <p>@Html.DisplayFor(model => model.InformationAbout)</p>
-                                <h2>@Html.LabelFor(model => model.RestaurantFeatures)</h2>
                                 <div>
+                                    <h2>@Html.LabelFor(model => model.InformationAbout)</h2>
+                                    <p>@Html.DisplayFor(model => model.InformationAbout)</p>
+                                </div>
+                                <div>
+                                    <h2>@Html.LabelFor(model => model.RestaurantFeatures)</h2>
                                     <div class="row">
                                         @for (int i = 0; i < Model.RestaurantFeatures.Count; i++)
                                         {
@@ -55,14 +56,38 @@
                                         }
                                     </div>
                                 </div>
-
-                                <p>список</p>
-                                <h2>Открытие</h2>
-                                <p>время</p>
-                                <h2>Адресс</h2>
-                                <p>полный адресс</p>
-                                <h2>Телефон</h2>
-                                <p>+300000000</p>
+                                <div>
+                                    <h2>@Html.LabelFor(model => model.WorkHours)</h2>
+                                    <table class="table table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th>ПН</th>
+                                                <th>ВТ</th>
+                                                <th>СР</th>
+                                                <th>ЧТ</th>
+                                                <th>ПТ</th>
+                                                <th>СБ</th>
+                                                <th>ВС</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                @for (int i = 0; i < Model.WorkHours.Count; i++)
+                                                {
+                                                    <th>@Model.WorkHours.ElementAt(i).OpenHour.Hours - @Model.WorkHours.ElementAt(i).CloseHour.Hours</th>
+                                                }
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <h2>@Html.LabelFor(model => model.Address)</h2>
+                                    @Html.DisplayFor(model => model.Address) @Html.DisplayFor(model => model.City.Name) @Html.DisplayFor(model => model.City.Country.Name) @Html.DisplayFor(model => model.ZipCode)
+                                </div>
+                                <div>
+                                    <h2>@Html.LabelFor(model => model.PhoneNumber)</h2>
+                                    @Html.DisplayFor(model => model.PhoneNumber)
+                                </div>
                             </div>
                             <div id="menu2" class="tab-pane fade">
                                 <h2>Меню</h2>

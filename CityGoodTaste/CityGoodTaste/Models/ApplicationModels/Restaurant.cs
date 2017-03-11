@@ -23,6 +23,10 @@ namespace CityGoodTaste.Models
         [Display(Name = "ZipCode", ResourceType = typeof(Resources.Resource))]
         public int ZipCode { get; set; }
 
+        [Display(Name = "RestaurantPhoneNumber", ResourceType = typeof(Resources.Resource))]
+        [MaxLength(25)]
+        public string PhoneNumber { get; set; }
+
         [Display(Name = "AverageCheck", ResourceType = typeof(Resources.Resource))]
         public int AverageCheck { get; set; }
 
