@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CityGoodTaste.Models
 {
@@ -24,6 +25,10 @@ namespace CityGoodTaste.Models
 
         [Display(Name = "AverageCheck", ResourceType = typeof(Resources.Resource))]
         public int AverageCheck { get; set; }
+
+        [Display(Name = "InformationAboutRestaurant", ResourceType = typeof(Resources.Resource))]
+        [Column(TypeName = "ntext")]
+        public string InformationAbout { get; set; }
 
         [Display(Name = "WorkHours", ResourceType = typeof(Resources.Resource))]
         public ICollection<WorkHour> WorkHours { get; set; }

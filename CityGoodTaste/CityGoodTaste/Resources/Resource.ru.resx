@@ -348,4 +348,7 @@
   <data name="Сurrency" xml:space="preserve">
     <value>Валюта</value>
   </data>
+  <data name="InformationAboutRestaurant" xml:space="preserve">
+    <value>InformationAboutRestaurant</value>
+  </data>
 </root>

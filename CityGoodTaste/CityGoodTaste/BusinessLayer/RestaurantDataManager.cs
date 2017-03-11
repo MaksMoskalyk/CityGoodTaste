@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CityGoodTaste.Models;
+using System.Data.Entity;
 
 namespace CityGoodTaste.BusinessLayer
 {
@@ -20,22 +21,29 @@ namespace CityGoodTaste.BusinessLayer
 
     public interface IRestaurantDataManager
     {
-        Restaurant GetRestaurant(int id, GoodTasteContext context);
+        Restaurant GetRestaurant(int? id);
     }
 
     public class RestaurantDataManager: IRestaurantDataManager
     {
-        public Restaurant GetRestaurant(int id, GoodTasteContext context)
+        public Restaurant GetRestaurant(int? id)
         {
-            try
+            using (GoodTasteContext context = new GoodTasteContext())
             {
-                Restaurant r = (from x in context.Restaurants select x).Single();
-                return context.Restaurants.Find(id);
+                try
+                {
+                    Restaurant Rest = context.Restaurants.Include(t => t.Likes).FirstOrDefault(t => t.Id == id);
+                    Rest = context.Restaurants.Include(t => t.City).FirstOrDefault(t => t.Id == id);
+                    Rest.City = context.Cities.Include(t => t.Country).FirstOrDefault(t => t.Country.Id == Rest.City.Country.Id);
+                    Rest = context.Restaurants.Include(t => t.RestaurantFeatures).FirstOrDefault(t => t.Id == id);
+                    return Rest;
+                }
+                catch
+                {
+                    throw new Exception("Restaurant not found");
+                }
             }
-            catch
-            {
-                throw new Exception("Restaurant not found");
-            }
+
         }
     }
 }

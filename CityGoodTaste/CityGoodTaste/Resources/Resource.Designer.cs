@@ -268,6 +268,15 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to InformationAboutRestaurant.
+        /// </summary>
+        public static string InformationAboutRestaurant {
+            get {
+                return ResourceManager.GetString("InformationAboutRestaurant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IsShowMenu.
         /// </summary>
         public static string IsShowMenu {

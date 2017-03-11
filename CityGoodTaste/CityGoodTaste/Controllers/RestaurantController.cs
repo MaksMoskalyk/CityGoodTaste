@@ -13,7 +13,6 @@ namespace CityGoodTaste.Controllers
 {
     public class RestaurantController : Controller
     {
-        GoodTasteContext context = new GoodTasteContext();
         // GET: Restaurant
         public ActionResult Index()
         {
@@ -27,12 +26,16 @@ namespace CityGoodTaste.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurant Rest = context.Restaurants.Include(t => t.Likes).FirstOrDefault(t => t.Id == id);
+            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+            IRestaurantDataManager manager = factory.GetManager();
+            Restaurant Rest =  manager.GetRestaurant(id);
+
             if (Rest == null)
             {
                 return HttpNotFound();
             }
             return View(Rest);
+
         }
 
         // GET: Restaurant/Create
@@ -99,14 +102,6 @@ namespace CityGoodTaste.Controllers
             {
                 return View();
             }
-        }
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                context.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

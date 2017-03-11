@@ -11,8 +11,6 @@
 
 <h2>@ViewBag.Title.</h2>
 
-
-
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-9">
@@ -20,18 +18,19 @@
                     <img src="https://placehold.it/2000x400?text=IMAGE" alt="img" class="img-responsive" />
                 </div>
                 <div class="row">
-                    
                     <div class="col-sm-6">
-                        @Html.LabelFor(model => model.Name)
-                        @Html.DisplayFor(model => model.Name)
+                        <div>@Html.LabelFor(model => model.Name)
+                        @Html.DisplayFor(model => model.Name)</div>
+                        <div>@Html.LabelFor(model => model.Address)
+                        @Html.DisplayFor(model => model.Address) @Html.DisplayFor(model => model.City.Name) @Html.DisplayFor(model => model.City.Country.Name) @Html.DisplayFor(model => model.ZipCode)</div>
                     </div>
                     <div class="col-sm-4">
-                        @Html.LabelFor(model => model.Likes)
-                        <span class="badge">@Html.DisplayFor(model => model.Likes.Count)</span>
+                        <div>@Html.LabelFor(model => model.Likes)
+                        <span class="badge">@Html.DisplayFor(model => model.Likes.Count)</span></div>
+                        <div>@Html.LabelFor(model => model.AverageCheck)
+                        <span class="badge">@Html.DisplayFor(model => model.AverageCheck)</span></div>
                     </div>
                 </div> 
-                <div>Адрес</div>
-                <div>Средний чек</div>
                 <div>
                     <div>
                         <ul class="nav nav-tabs">
@@ -45,8 +44,18 @@
                         <div class="tab-content">
                             <div id="menu1" class="tab-pane fade in active">
                                 <h2>Обзор</h2>
-                                <p>Информация о ресторане</p>
-                                <h2>Фичи</h2>
+                                <p>@Html.LabelFor(model => model.InformationAbout)</p>
+                                <p>@Html.DisplayFor(model => model.InformationAbout)</p>
+                                <h2>@Html.LabelFor(model => model.RestaurantFeatures)</h2>
+                                <div>
+                                    <div class="row">
+                                        @for (int i = 0; i < Model.RestaurantFeatures.Count; i++)
+                                        {
+                                            <div class="col-sm-4">@Model.RestaurantFeatures.ElementAt(i).Name</div>
+                                        }
+                                    </div>
+                                </div>
+
                                 <p>список</p>
                                 <h2>Открытие</h2>
                                 <p>время</p>

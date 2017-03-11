@@ -13,7 +13,6 @@ namespace CityGoodTaste.Models
         [Required]
         public string Name { get; set; }
 
-        [Required]
         [Display(Name = "Icon", ResourceType = typeof(Resources.Resource))]
         public byte[] Icon { get; set; }
 

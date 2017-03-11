@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using CityGoodTaste.Models;
+using System.Collections.Generic;
 
 namespace CityGoodTaste
 {
@@ -30,12 +31,57 @@ namespace CityGoodTaste
                 ZipCode = 95009,
                 AverageCheck = 305,
                 Floors = 2,
-                City=ct
+                City=ct, 
+                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r"+ 
+                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную"+
+                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе,"+ 
+                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской,"+
+                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
+                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам,"+
+                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!"+
+                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!"+
+                                    "У нас как в театре: хотите на класс – покупайте билет!"
             };
+
+            RestaurantFeature f1 = new RestaurantFeature { Name = "WiFi" };
+            RestaurantFeature f2 = new RestaurantFeature { Name = "Завтраки" };
+            RestaurantFeature f3 = new RestaurantFeature { Name = "Живая Музыки" };
+            RestaurantFeature f4 = new RestaurantFeature { Name = "Летняя площадка" };
+            RestaurantFeature f5 = new RestaurantFeature { Name = "С животными" };
+            RestaurantFeature f6 = new RestaurantFeature { Name = "Детское меню" };
+            RestaurantFeature f7 = new RestaurantFeature { Name = "Бизнес ланч" };
+            RestaurantFeature f8 = new RestaurantFeature { Name = "Детская площадка" };
+            RestaurantFeature f9 = new RestaurantFeature { Name = "Детский стульчик" };
+            RestaurantFeature f10 = new RestaurantFeature { Name = "Оплата кредитной картой" };
+
+            r.RestaurantFeatures = new List<RestaurantFeature>();
+            r.RestaurantFeatures.Add(f1);
+            r.RestaurantFeatures.Add(f2);
+            r.RestaurantFeatures.Add(f3);
+            r.RestaurantFeatures.Add(f4);
+            r.RestaurantFeatures.Add(f5);
+            r.RestaurantFeatures.Add(f6);
+            r.RestaurantFeatures.Add(f7);
+            r.RestaurantFeatures.Add(f8);
+            r.RestaurantFeatures.Add(f9);
+            r.RestaurantFeatures.Add(f10);
+
+
+
+
             Like like = new Like { User = user, Restaurant = r };
             context.Likes.Add(like);
             context.Countries.Add(c);
             context.Cities.Add(ct);
+            //context.RestaurantFeatures.Add(f1);
+            //context.RestaurantFeatures.Add(f2);
+            //context.RestaurantFeatures.Add(f3);
+            //context.RestaurantFeatures.Add(f4);
+            //context.RestaurantFeatures.Add(f5);
+            //context.RestaurantFeatures.Add(f6);
+            //context.RestaurantFeatures.Add(f7);
+            //context.RestaurantFeatures.Add(f8);
+            //context.RestaurantFeatures.Add(f10);
             context.Restaurants.Add(r);
             context.SaveChanges();
         }
