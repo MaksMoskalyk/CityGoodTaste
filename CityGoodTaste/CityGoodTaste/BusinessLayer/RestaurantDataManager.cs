@@ -22,6 +22,7 @@ namespace CityGoodTaste.BusinessLayer
     public interface IRestaurantDataManager
     {
         Restaurant GetRestaurant(int? id);
+        RestaurantSchema GetRestaurantSchema(int? id);
     }
 
     public class RestaurantDataManager: IRestaurantDataManager
@@ -48,5 +49,13 @@ namespace CityGoodTaste.BusinessLayer
             }
 
         }
+
+        public RestaurantSchema GetRestaurantSchema(int? id)
+        {
+            Restaurant r = this.GetRestaurant(id);
+            return r.RestaurantSchemas.FirstOrDefault();
+        }
     }
+
+
 }
