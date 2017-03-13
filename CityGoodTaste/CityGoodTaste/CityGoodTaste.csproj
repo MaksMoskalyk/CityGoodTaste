@@ -178,6 +178,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationModels\City.cs" />
     <Compile Include="Models\ApplicationModels\Country.cs" />
@@ -3233,10 +3234,10 @@
     <Content Include="Views\Home\Authentication\_SignUpModal.cshtml" />
     <Content Include="Views\Restaurant\Details.cshtml" />
     <Content Include="Views\Temp\Index.cshtml" />
+    <Content Include="Views\Restaurant\Schema.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

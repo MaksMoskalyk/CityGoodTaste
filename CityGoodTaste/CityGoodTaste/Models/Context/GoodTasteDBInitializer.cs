@@ -7,7 +7,7 @@ using System;
 
 namespace CityGoodTaste
 {
-    public class GoodTasteDBInitializer : DropCreateDatabaseIfModelChanges<GoodTasteContext>
+    public class GoodTasteDBInitializer : DropCreateDatabaseAlways<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {
@@ -90,6 +90,26 @@ namespace CityGoodTaste
             }
 
             Like like = new Like { User = user, Restaurant = r };
+
+            RestaurantSchema schema = new RestaurantSchema { Name = "1th Foor", InDoor = true, Restaurant = r, SmokingZone = false, XLength = 30, YLength = 50 };
+            Table t1 = new Table { Seats = 4, X = 1, Y = 1 };
+            Table t2 = new Table { Seats = 2, X = 5, Y = 2 };
+            Table t3 = new Table { Seats = 6, X = 6, Y = 7 };
+            Table t4 = new Table { Seats = 8, X = 10, Y = 3 };
+            Table t5 = new Table { Seats = 4, X = 10, Y = 20 };
+            schema.Tables = new List<Table>();
+            schema.Tables.Add(t1);
+            schema.Tables.Add(t2);
+            schema.Tables.Add(t3);
+            schema.Tables.Add(t4);
+            schema.Tables.Add(t5);
+            context.Tables.Add(t1);
+            context.Tables.Add(t2);
+            context.Tables.Add(t3);
+            context.Tables.Add(t4);
+            context.Tables.Add(t5);
+
+            context.RestaurantSchemas.Add(schema);
 
             context.Likes.Add(like);
             context.Countries.Add(c);

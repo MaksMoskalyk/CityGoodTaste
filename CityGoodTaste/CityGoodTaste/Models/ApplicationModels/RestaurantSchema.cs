@@ -24,5 +24,8 @@ namespace CityGoodTaste.Models
 
         [Display(Name = "InDoor", ResourceType = typeof(Resources.Resource))]
         public bool InDoor { get; set; }
+
+        public int XLength { get; set; }
+        public int YLength { get; set; }
     }
 }
