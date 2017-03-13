@@ -8,7 +8,6 @@
 @Styles.Render("~/Content/css/Default/jquery.bootstrap-touchspin.css")
 @Styles.Render("~/Content/css/Default/bootstrap-datetimepicker.css")
 @Styles.Render("~/Content/css/Default/clockpicker.css")
-
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-9">
@@ -36,7 +35,7 @@
                             <li><a data-toggle="tab" href="#menuRest">Меню</a></li>
                             <li><a data-toggle="tab" href="#notice">Афиша</a></li>
                             <li><a data-toggle="tab" href="#reviews">Отзовы</a></li>
-                            <li><a data-toggle="tab" href="#map">Карта</a></li>
+                            <li id="tabMap"><a data-toggle="tab" href="#map">Карта</a></li>
                         </ul>
 
                         <div class="tab-content">
@@ -81,6 +80,11 @@
                                 <div>
                                     <h2>@Html.LabelFor(model => model.Address)</h2>
                                     @Html.DisplayFor(model => model.Address) @Html.DisplayFor(model => model.City.Name) @Html.DisplayFor(model => model.City.Country.Name) @Html.DisplayFor(model => model.ZipCode)
+                                    <div id="googleMap" style="height:400px;width:100%;"></div>
+                                    <script>
+
+                                    </script>
+                                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRO1uVeSSy5wTZOpDY0kGJR2347oaWJQ4&callback=myMap"></script>
                                 </div>
                                 <div>
                                     <h2>@Html.LabelFor(model => model.PhoneNumber)</h2>
@@ -162,22 +166,9 @@
                                 }
 
                             </div>
-                            <div id="map" class="tab-pane fade">
-                                <!-- Add Google Maps -->
-                                <div style="height:100px; width:100px" id="map2"></div>
-                                <script>
-                                    var map;
-                                    function initMap() {
-                                        map = new google.maps.Map(document.getElementById('map2'), {
-                                            center: { lat: -34.397, lng: 150.644 },
-                                            zoom: 8
-                                        });
-                                    }
-                                </script>
-                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRO1uVeSSy5wTZOpDY0kGJR2347oaWJQ4&callback=initMap"
-                                        async defer></script>
-                            </div>
+                           <div id="map" class="tab-pane fade">
 
+                            </div>
                         </div>
                     </div>
                 </div>
