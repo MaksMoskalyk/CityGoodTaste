@@ -164,18 +164,20 @@
                             </div>
                             <div id="map" class="tab-pane fade">
                                 <!-- Add Google Maps -->
-                                <div id="googleMap" style="height:400px;width:100%;"></div>
+                                <div style="height:100px; width:100px" id="map2"></div>
                                 <script>
-                                    function myMap() {
-                                    var myCenter = new google.maps.LatLng(41.878114, -87.629798);
-                                    var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
-                                    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                                    var marker = new google.maps.Marker({position:myCenter});
-                                    marker.setMap(map);
+                                    var map;
+                                    function initMap() {
+                                        map = new google.maps.Map(document.getElementById('map2'), {
+                                            center: { lat: -34.397, lng: 150.644 },
+                                            zoom: 8
+                                        });
                                     }
                                 </script>
-                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRO1uVeSSy5wTZOpDY0kGJR2347oaWJQ4&callback=initMap"
+                                        async defer></script>
                             </div>
+
                         </div>
                     </div>
                 </div>

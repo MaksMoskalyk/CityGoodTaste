@@ -46,13 +46,13 @@ namespace CityGoodTaste.Controllers
             }
             RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
             IRestaurantDataManager manager = factory.GetManager();
-            Restaurant Rest = manager.GetRestaurant(id);
+            RestaurantSchema Schema = manager.GetRestaurantSchema(id);
 
-            if (Rest == null)
+            if (Schema == null)
             {
                 return HttpNotFound();
             }
-            return View(Rest);
+            return View(Schema);
 
         }
 

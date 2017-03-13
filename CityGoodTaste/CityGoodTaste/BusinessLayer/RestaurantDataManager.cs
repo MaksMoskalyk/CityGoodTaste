@@ -52,8 +52,21 @@ namespace CityGoodTaste.BusinessLayer
 
         public RestaurantSchema GetRestaurantSchema(int? id)
         {
-            Restaurant r = this.GetRestaurant(id);
-            return r.RestaurantSchemas.FirstOrDefault();
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    Restaurant Rest = context.Restaurants.Find(id);
+                    RestaurantSchema Schema = Rest.RestaurantSchemas.FirstOrDefault();
+                    Schema = context.RestaurantSchemas.Include(t => t.Restaurant).FirstOrDefault(t => t.Id == id);
+                    Schema = context.RestaurantSchemas.Include(t => t.Tables).FirstOrDefault();
+                    return Schema;
+                }
+                catch
+                {
+                    throw new Exception("Restaurant not found");
+                }
+            }
         }
     }
 
