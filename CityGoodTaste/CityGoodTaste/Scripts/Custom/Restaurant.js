@@ -18,12 +18,6 @@
     
     $('.clockpicker').clockpicker({ donetext: 'Done' });
 
-
-    $('#tabMap').click(function () {
-        setTimeout(myMap, 250);
-    });
-
-
     function myMap() {      
         var myCenter = new google.maps.LatLng(41.878114, -87.629798);
         var mapProp = { center: myCenter, zoom: 12, scrollwheel: false, draggable: false, mapTypeId: google.maps.MapTypeId.ROADMAP };
