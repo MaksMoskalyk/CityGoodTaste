@@ -5,6 +5,15 @@ namespace CityGoodTaste.Models
 {
     public class Menu
     {
+
+        public Menu(string name,  Restaurant restaurant, ICollection<MealGroup> mealGroups=null, bool isShow=false)
+        {
+            Name = name;
+            MealGroups = mealGroups;
+            Restaurant = restaurant;
+            IsShow = isShow;
+        }
+
         [Key]
         public int Id { get; set; }
 

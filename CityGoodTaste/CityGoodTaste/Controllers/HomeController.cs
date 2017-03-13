@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using CityGoodTaste.CustomFilters;
 using CityGoodTaste.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CityGoodTaste.Controllers
 {
@@ -37,7 +39,6 @@ namespace CityGoodTaste.Controllers
         {
             return View();
         }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

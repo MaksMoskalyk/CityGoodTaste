@@ -23,3 +23,9 @@
         height: auto;
     }
 }
+.WordBreak{
+    word-break: break-all;
+}
+.MenuHeadText{
+    padding:10px;
+}

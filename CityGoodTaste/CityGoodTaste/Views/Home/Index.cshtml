@@ -38,7 +38,16 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <div class="text-center restSearch">
+    <form style="background-color:#333333;padding-left:1%; padding-right:1%">
+        <div class="input-group" style="padding-bottom:10px; padding-top:10px;">
+            <input type="text" class="form-control" placeholder="название ресторана, кухня, пункты меню" required>
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-danger">Поиск ресторана</button>
+            </div>
+        </div>
+    </form>
+
+    @*<div class="text-center restSearch">
         <form class="form-inline" role="form">
             <div class="form-group col-md-2 ">
                 <div class="input-group ">
@@ -59,7 +68,16 @@
             <div class="form-group col-md-2 ">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="oi" data-glyph="calendar"></i></span>
-                    <input class="calendar" id="idCalendar" name="date" value="" type="text">
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                            &nbsp;
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><div id="dp6" style="color:gray; background-color:white" data-date="12-02-2012" data-date-format="dd-mm-yyyy"></div></li>
+                        </ul>
+                    </div>
+                   
                 </div>
             </div>
             <div class="form-group col-md-2">
@@ -80,7 +98,7 @@
                 </div>
             </div>
         </form>
-    </div><br>
+    </div><br>*@
     <div class="container-fluid bg-3 text-center">
         <h3>Рестораны вашего города:</h3><br>
 

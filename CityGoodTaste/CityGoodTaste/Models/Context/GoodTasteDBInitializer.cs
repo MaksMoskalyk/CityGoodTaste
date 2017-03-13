@@ -7,7 +7,7 @@ using System;
 
 namespace CityGoodTaste
 {
-    public class GoodTasteDBInitializer : DropCreateDatabaseAlways<GoodTasteContext>
+    public class GoodTasteDBInitializer : DropCreateDatabaseIfModelChanges<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {

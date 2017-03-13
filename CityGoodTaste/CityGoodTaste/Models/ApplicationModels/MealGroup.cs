@@ -5,6 +5,11 @@ namespace CityGoodTaste.Models
 {
     public class MealGroup
     {
+        public MealGroup(string name)
+        {
+            Name = name;
+        }
+
         [Key]
         public int Id { get; set; }
 
