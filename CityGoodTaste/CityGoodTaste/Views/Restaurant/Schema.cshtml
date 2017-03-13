@@ -1,0 +1,27 @@
+﻿@model CityGoodTaste.Models.RestaurantSchema
+
+@{
+    ViewBag.Title = "Schema";
+}
+
+<h2>Schema</h2>
+
+<div class="container-fluid">
+    @for (int y = 0; y < Model.YLength; y++)
+    {
+        <div class="row">
+            @for (int x = 0; x < Model.XLength; x++)
+            {
+                <div class="col-md-1">
+                    @foreach (var table in Model.Tables)
+                    {
+                        if (table.X == x && table.Y == y)
+                        {
+                            <p>T</p>
+                        }
+                    }
+                </div>
+            }
+        </div>
+    }
+</div>
