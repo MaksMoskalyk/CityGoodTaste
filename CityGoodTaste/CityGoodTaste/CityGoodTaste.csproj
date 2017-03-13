@@ -3234,6 +3234,7 @@
     <Content Include="Views\Home\Authentication\_SignUpModal.cshtml" />
     <Content Include="Views\Restaurant\Details.cshtml" />
     <Content Include="Views\Temp\Index.cshtml" />
+    <Content Include="Views\Restaurant\Schema.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

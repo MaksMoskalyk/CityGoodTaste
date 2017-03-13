@@ -38,6 +38,24 @@ namespace CityGoodTaste.Controllers
 
         }
 
+        public async Task<ActionResult> Schema(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+            IRestaurantDataManager manager = factory.GetManager();
+            RestaurantSchema Schema = manager.GetRestaurantSchema(id);
+
+            if (Schema == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Schema);
+
+        }
+
         // GET: Restaurant/Create
         public ActionResult Create()
         {

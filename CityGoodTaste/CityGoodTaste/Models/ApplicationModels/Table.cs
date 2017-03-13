@@ -15,5 +15,8 @@ namespace CityGoodTaste.Models
 
         [Display(Name = "Orders", ResourceType = typeof(Resources.Resource))]
         public virtual ICollection<Order> Orders { get; set; }
+
+        public int X { get; set; }
+        public int Y { get; set; }
     }
 }

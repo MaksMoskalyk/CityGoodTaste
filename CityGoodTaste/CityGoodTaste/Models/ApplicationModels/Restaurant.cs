@@ -75,8 +75,5 @@ namespace CityGoodTaste.Models
 
         [Display(Name = "RestaurantEvent", ResourceType = typeof(Resources.Resource))]
         public virtual ICollection<RestaurantEvent> RestaurantEvent { get; set; }
-
-        public int XLength { get; set; }
-        public int YLength { get; set; }
     }
 }
