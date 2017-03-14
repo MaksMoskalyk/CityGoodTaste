@@ -9,6 +9,7 @@ namespace CityGoodTaste
         public GoodTasteContext() : base("GoodTasteContext")
         {
             Database.SetInitializer(new GoodTasteDBInitializer());
+            
         }
 
         public static GoodTasteContext Create()
