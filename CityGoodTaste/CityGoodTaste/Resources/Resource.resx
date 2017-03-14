@@ -354,4 +354,10 @@
   <data name="RestaurantPhoneNumber" xml:space="preserve">
     <value>RestaurantPhoneNumber</value>
   </data>
+  <data name="Events" xml:space="preserve">
+    <value>Events</value>
+  </data>
+  <data name="SmartAssistant" xml:space="preserve">
+    <value>Smart Assistant</value>
+  </data>
 </root>

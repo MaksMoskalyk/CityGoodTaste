@@ -232,6 +232,15 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Events.
+        /// </summary>
+        public static string Events {
+            get {
+                return ResourceManager.GetString("Events", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EventStartDate.
         /// </summary>
         public static string EventStartDate {
@@ -651,6 +660,15 @@ namespace CityGoodTaste.Resources {
         public static string ReviewText {
             get {
                 return ResourceManager.GetString("ReviewText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smart Assistant.
+        /// </summary>
+        public static string SmartAssistant {
+            get {
+                return ResourceManager.GetString("SmartAssistant", resourceCulture);
             }
         }
         

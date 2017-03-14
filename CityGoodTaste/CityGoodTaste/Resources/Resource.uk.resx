@@ -286,7 +286,7 @@
     <value />
   </data>
   <data name="Restaurants" xml:space="preserve">
-    <value />
+    <value>Ресторани</value>
   </data>
   <data name="RestaurantSchema" xml:space="preserve">
     <value />
@@ -353,5 +353,11 @@
   </data>
   <data name="RestaurantPhoneNumber" xml:space="preserve">
     <value />
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Афіша</value>
+  </data>
+  <data name="SmartAssistant" xml:space="preserve">
+    <value>Розумний помічник</value>
   </data>
 </root>

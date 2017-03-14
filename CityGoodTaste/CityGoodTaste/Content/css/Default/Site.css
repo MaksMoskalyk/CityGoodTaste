@@ -37,7 +37,7 @@
 }*/
 
 html {
-  /*position: relative;*/
+  position: relative;
   min-height: 100%;
 }
 
@@ -46,7 +46,7 @@ html {
 }*/
 
 footer {
-  /*position: absolute;*/
+  position: absolute;
   bottom: 0;
   width: 100%;
 

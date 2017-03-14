@@ -354,4 +354,10 @@
   <data name="RestaurantPhoneNumber" xml:space="preserve">
     <value />
   </data>
+  <data name="Events" xml:space="preserve">
+    <value>Афиша</value>
+  </data>
+  <data name="SmartAssistant" xml:space="preserve">
+    <value>Умный помощник</value>
+  </data>
 </root>
