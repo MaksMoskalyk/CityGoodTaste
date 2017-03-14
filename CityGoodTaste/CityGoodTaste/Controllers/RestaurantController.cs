@@ -40,20 +40,10 @@ namespace CityGoodTaste.Controllers
         // GET: Restaurant/Create
         public ActionResult Events()
         {
-            using (GoodTasteContext context = new GoodTasteContext())
-            {
-                try
-                {
-                    RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
-                    IRestaurantDataManager manager = factory.GetManager();
-                    var RestaurantEvent = manager.GetListRestaurantEvents();
-                    return View(RestaurantEvent);
-                }
-                catch
-                {
-                    throw new Exception("Events not found");
-                }
-            }
+            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+            IRestaurantDataManager manager = factory.GetManager();
+            var RestaurantEvent = manager.GetListRestaurantEvents();
+            return View(RestaurantEvent);
             return View();
         }
 

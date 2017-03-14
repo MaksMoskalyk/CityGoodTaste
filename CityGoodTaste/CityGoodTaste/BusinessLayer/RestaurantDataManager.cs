@@ -74,12 +74,12 @@ namespace CityGoodTaste.BusinessLayer
             {
                 try
                 {
-                    List<RestaurantEvent> result = context.RestaurantEvent.Include(t =>t.Restaurant).ToList();
+                    List<RestaurantEvent> result = context.RestaurantEvent.ToList();
                     return result;
                 }
                 catch
                 {
-                    throw new Exception("Restaurants not found");
+                    throw new Exception("Events not found");
                 }
             }
 
