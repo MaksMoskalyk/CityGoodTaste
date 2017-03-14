@@ -30,23 +30,23 @@
     .NoPadding{
     padding:0px !important;
 }
-/*footer {
+footer {
     background-color: #333333;
     color: #f5f5f5;
     padding: 32px;
-}*/
+}
 
 html {
   position: relative;
   min-height: 100%;
 }
 
-/*#mainContent {
+#mainContent {
   margin-bottom: 60px;
-}*/
+}
 
 footer {
-  position: absolute;
+  /*position: absolute;*/
   bottom: 0;
   width: 100%;
 
