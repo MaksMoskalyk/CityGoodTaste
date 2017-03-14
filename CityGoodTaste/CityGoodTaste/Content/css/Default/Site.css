@@ -30,20 +30,20 @@
     .NoPadding{
     padding:0px !important;
 }
-/*footer {
+footer {
     background-color: #333333;
     color: #f5f5f5;
     padding: 32px;
-}*/
+}
 
 html {
-  /*position: relative;*/
+  position: relative;
   min-height: 100%;
 }
 
-/*#mainContent {
+#mainContent {
   margin-bottom: 60px;
-}*/
+}
 
 footer {
   /*position: absolute;*/
@@ -52,4 +52,10 @@ footer {
 
   height: 60px;
   background-color: red;
+}
+
+.languageForm {
+    margin: 0px; 
+    padding: 0px; 
+    background-color:crimson;
 }

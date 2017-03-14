@@ -172,7 +172,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
-    <Compile Include="Controllers\TempController.cs" />
     <Compile Include="CustomFilters\AjaxOnlyAttribute.cs" />
     <Compile Include="CustomFilters\CultureAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -3172,6 +3171,7 @@
     <Content Include="Content\icons\open-iconic\webp\zoom-out-6x.webp" />
     <Content Include="Content\icons\open-iconic\webp\zoom-out-8x.webp" />
     <Content Include="Content\icons\open-iconic\webp\zoom-out.webp" />
+    <Content Include="Scripts\Custom\_Layout.js" />
     <Content Include="Scripts\Default\Angular\angular-mocks.js" />
     <Content Include="Scripts\Default\Angular\angular.js" />
     <Content Include="Scripts\Default\Angular\angular.min.js" />
@@ -3233,8 +3233,10 @@
     <Content Include="Views\Home\Authentication\_LogInModal.cshtml" />
     <Content Include="Views\Home\Authentication\_SignUpModal.cshtml" />
     <Content Include="Views\Restaurant\Details.cshtml" />
-    <Content Include="Views\Temp\Index.cshtml" />
     <Content Include="Views\Restaurant\Schema.cshtml" />
+    <Content Include="Views\Restaurant\Index.cshtml" />
+    <Content Include="Views\Home\SmartAssistant.cshtml" />
+    <Content Include="Views\Restaurant\Events.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

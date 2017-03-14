@@ -13,6 +13,31 @@
     @Styles.Render("~/bundles/customStyle")
 
     <script src="~/Scripts/Custom/MainPage.js"></script>
+
+      <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+  </style>
 </head>
 <body>
     <nav id="navPanel" class="navbar navbar-inverse" style="margin-bottom:0px;">
@@ -23,65 +48,75 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">CGT</a>
+                <a class="navbar-brand" href='@Url.Action("Index", "Home")'>CGT</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Рестораны</a></li>
-                    <li><a href="#">Афиша</a></li>
-                    <li><a href="#">Умный помощник</a></li>
-                    <li><a href="#">Контакты</a></li>
+                    <li>@Html.ActionLink(CityGoodTaste.Resources.Resource.Restaurants, "Index", "Restaurant")</li>
+                    <li>@Html.ActionLink(CityGoodTaste.Resources.Resource.Events, "Events", "Restaurant")</li>
+                    <li><a data-toggle="modal" data-target="#BotModal" href="#">@CityGoodTaste.Resources.Resource.SmartAssistant</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
-                @*<ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>Account</a></li>
-                    <li>
-                        <a id="authenticationBlock" href="#" data-toggle="modal" data-target="#modalLogIn">
-                            <i id="registrationIcon" class="oi" data-glyph="account-login"></i><span>Log In</span>
-                        </a>
-                    </li>
-                    <li><a href="#"><span class="glyphicon glyphicon-map-marker"></span>Map</a></li>
-                </ul>*@
             </div>
         </div>
     </nav>
 
-    <div class="container body-content NoMargin NoPadding" 
-         style="max-width:none">
+    <div class="container body-content NoMargin NoPadding" style="max-width:none">
         @RenderBody()
-        <hr />
     </div>
 
-    <footer class="container-fluid text-center">
+
+    <footer class="container-fluid text-center"  style="margin: 0px; padding: 0px; background-color:crimson">
         <a class="up-arrow" href="#navPanel" data-toggle="tooltip" title="TO TOP">
             <span class="glyphicon glyphicon-chevron-up"></span>
-        </a><br><br>
-        <div>
-            @using (Html.BeginForm("ChangeCulture", "Home"))
+        </a>
+
+        <div  style="margin: 10px; padding: 0px; background-color:crimson">
+            @using (Html.BeginForm("ChangeCulture", "Home", new { htmlAttributes = new { @class = "languageForm", style = "margin:0px;padding:0px;background-color:crimson;" } }, FormMethod.Post))
             {
-                <div style="float:right">
-                    <select name="lang">
-                        <option disabled selected>@CityGoodTaste.Resources.Resource.ChooseLang</option>
-                        <option value="en-US">English</option>
-                        <option value="ru-RU">Русский</option>
-                        <option value="uk-UA">Українська</option>
-                    </select>
-                    <button type="submit" name="submit" class="btn-success" value="@CityGoodTaste.Resources.Resource.ChooseLang">@CityGoodTaste.Resources.Resource.ChooseLang</button>
+                <div class="pull-right">
+                    <div style="margin: 0px; padding: 0px; background-color:crimson">
+
+                            <select name="lang">
+                                <option disabled selected>@CityGoodTaste.Resources.Resource.ChooseLang</option>
+                                <option value="en-US">English</option>
+                                <option value="ru-RU">Русский</option>
+                                <option value="uk-UA">Українська</option>
+                            </select>
+                        <button  type="submit" name="submit" class="btn-success" value="@CityGoodTaste.Resources.Resource.ChooseLang">@CityGoodTaste.Resources.Resource.ChooseLang</button>
+                    </div>
                 </div>
             }
-        </div>
+        </div>       
     </footer>
 
-    @*<!-- Modal Log In -->
-    <div id="modalLogIn" class="modal fade" role="dialog">
-        @Html.Action("LogIn", "Home")
-    </div>
 
-    <!-- Modal Sign Up -->
-    <div id="modalSignUp" class="modal fade" role="dialog">
-        @Html.Action("SignUp", "Home")
-    </div>*@
 
+    <div class="modal fade" id="BotModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#333333; color:white">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><span class="glyphicon glyphicon-user"></span> @CityGoodTaste.Resources.Resource.SmartAssistant</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <p>В разработке</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-ok"></span>
+                     Ok</button>
+                    <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div> 
     @RenderSection("scripts", required: false)
 </body>
 </html>

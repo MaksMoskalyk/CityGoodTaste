@@ -22,7 +22,9 @@ namespace CityGoodTaste.BusinessLayer
     public interface IRestaurantDataManager
     {
         Restaurant GetRestaurant(int? id);
+        List<Restaurant> GetListRestaurants();
         RestaurantSchema GetRestaurantSchema(int? id);
+        List<RestaurantEvent> GetListRestaurantEvents();
     }
 
     public class RestaurantDataManager: IRestaurantDataManager
@@ -49,7 +51,39 @@ namespace CityGoodTaste.BusinessLayer
             }
 
         }
+        public List<Restaurant> GetListRestaurants()
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<Restaurant> result = context.Restaurants.Include(t => t.Likes).Include(t => t.City).Include(t => t.RestaurantFeatures)
+                        .Include(t => t.Reviews).Include(t => t.WorkHours).ToList();
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Restaurants not found");
+                }
+            }
 
+        }
+        public List<RestaurantEvent> GetListRestaurantEvents()
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<RestaurantEvent> result = context.RestaurantEvent.ToList();
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Events not found");
+                }
+            }
+
+        }
         public RestaurantSchema GetRestaurantSchema(int? id)
         {
             using (GoodTasteContext context = new GoodTasteContext())
