@@ -12,8 +12,8 @@ namespace CityGoodTaste
         protected override void Seed(GoodTasteContext context)
         {
 
-            //InitializeAdminUserAndRoles(context);
-            //InitializeRestaurant(context);
+            InitializeAdminUserAndRoles(context);
+            InitializeRestaurant(context);
             base.Seed(context);
         }
 

@@ -37,7 +37,7 @@ namespace CityGoodTaste.Controllers
         }
         public ActionResult Index()
         {
-            Initializer init = new Initializer();
+            //Initializer init = new Initializer();
             return View();
         }
         
