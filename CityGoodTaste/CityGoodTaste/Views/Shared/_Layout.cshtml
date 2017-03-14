@@ -71,7 +71,7 @@
         </div>
     </nav>
 
-    <div class="container body-content NoMargin NoPadding" 
+    <div id="mainContent" class="container body-content NoMargin NoPadding" 
          style="max-width:none">
         @RenderBody()
         <hr />
@@ -89,21 +89,19 @@
     <footer class="container-fluid text-center"  style="margin: 0px; padding: 0px; background-color:crimson">
         <a class="up-arrow" href="#navPanel" data-toggle="tooltip" title="TO TOP">
             <span class="glyphicon glyphicon-chevron-up"></span>
-        </a>
+        </a><br />
 
         <div class="pull-right">
             @using (Html.BeginForm("ChangeCulture", "Home", new { htmlAttributes = new { @class = "languageForm", style = "margin:0px;padding:0px;background-color:crimson;" } }, FormMethod.Post))
             {
                 <div>
                     <div style="margin: 0px; padding: 0px; background-color:crimson">
-                        <div class="form-group">
-                            <select name="lang">
-                                <option disabled selected>@CityGoodTaste.Resources.Resource.ChooseLang</option>
-                                <option value="en-US">English</option>
-                                <option value="ru-RU">Русский</option>
-                                <option value="uk-UA">Українська</option>
-                            </select>
-                        </div>
+                        <select name="lang">
+                            <option disabled selected>@CityGoodTaste.Resources.Resource.ChooseLang</option>
+                            <option value="en-US">English</option>
+                            <option value="ru-RU">Русский</option>
+                            <option value="uk-UA">Українська</option>
+                        </select>
                         <button type="submit" name="submit" class="btn-success" value="@CityGoodTaste.Resources.Resource.ChooseLang">@CityGoodTaste.Resources.Resource.ChooseLang</button>
                     </div>
                 </div>

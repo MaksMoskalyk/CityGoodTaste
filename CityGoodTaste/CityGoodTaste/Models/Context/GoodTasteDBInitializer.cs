@@ -7,7 +7,7 @@ using System;
 
 namespace CityGoodTaste
 {
-    public class GoodTasteDBInitializer : DropCreateDatabaseAlways<GoodTasteContext>
+    public class GoodTasteDBInitializer : CreateDatabaseIfNotExists<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {
@@ -15,7 +15,6 @@ namespace CityGoodTaste
             InitializeRestaurant(context);
             base.Seed(context);
         }
-
 
 
         private void InitializeRestaurant(GoodTasteContext context)
@@ -115,6 +114,8 @@ namespace CityGoodTaste
             context.Countries.Add(c);
             context.Cities.Add(ct);
             context.Restaurants.Add(r);
+            //RestaurantEvent ev = new RestaurantEvent("event1", "text", new DateTime(), r);
+            //context.RestaurantEvent.Add(ev);
             context.SaveChanges();
         }
 
