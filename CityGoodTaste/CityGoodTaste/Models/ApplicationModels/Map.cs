@@ -8,6 +8,16 @@ namespace CityGoodTaste.Models
 {
     public class Map
     {
+        public Map()
+        {
+        }
+        public Map(double latitude, double longitude, int zoom)
+        {
+            Latitude = latitude;
+            Longitude = longitude;
+            Zoom = zoom;
+        }
+
         [Key]
         public int id { get; set; }
 

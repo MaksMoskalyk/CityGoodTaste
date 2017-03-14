@@ -44,7 +44,6 @@ namespace CityGoodTaste.Controllers
             IRestaurantDataManager manager = factory.GetManager();
             var RestaurantEvent = manager.GetListRestaurantEvents();
             return View(RestaurantEvent);
-            return View();
         }
 
         // POST: Restaurant/Events

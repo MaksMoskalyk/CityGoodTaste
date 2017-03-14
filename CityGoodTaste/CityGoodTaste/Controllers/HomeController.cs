@@ -37,8 +37,10 @@ namespace CityGoodTaste.Controllers
         }
         public ActionResult Index()
         {
+            Initializer init = new Initializer();
             return View();
         }
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

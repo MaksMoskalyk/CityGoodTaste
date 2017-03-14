@@ -6,6 +6,10 @@ namespace CityGoodTaste.Models
 {
     public class RestaurantEvent
     {
+        public RestaurantEvent()
+        {
+
+        }
         public RestaurantEvent(string name, string description, DateTime startDate, DateTime endDate, Restaurant restaurant)
         {
             Name = name;
