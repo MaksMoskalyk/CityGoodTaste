@@ -6,11 +6,10 @@ namespace CityGoodTaste.Models
 {
     public class RestaurantEvent
     {
-        private string v1;
-        private string v2;
-        private DateTime dateTime;
-        private Restaurant r;
+        public RestaurantEvent()
+        {
 
+        }
         public RestaurantEvent(string name, string description, DateTime startDate, DateTime endDate, Restaurant restaurant)
         {
             Name = name;
@@ -18,14 +17,6 @@ namespace CityGoodTaste.Models
             StartDate = startDate;
             EndDate = endDate;
             Restaurant = restaurant;
-        }
-
-        public RestaurantEvent(string v1, string v2, DateTime dateTime, Restaurant r)
-        {
-            this.v1 = v1;
-            this.v2 = v2;
-            this.dateTime = dateTime;
-            this.r = r;
         }
 
         [Key]

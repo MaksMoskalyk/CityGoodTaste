@@ -1,27 +1,82 @@
 ﻿@model CityGoodTaste.Models.RestaurantSchema
 
-@{
-    ViewBag.Title = "Schema";
-}
-
-<h2>Schema</h2>
-
-<div class="container-fluid">
-    @for (int y = 0; y < Model.YLength; y++)
-    {
-        <div class="row">
-            @for (int x = 0; x < Model.XLength; x++)
-            {
-                <div class="col-md-1">
-                    @foreach (var table in Model.Tables)
-                    {
-                        if (table.X == x && table.Y == y)
-                        {
-                            <p>T</p>
-                        }
-                    }
-                </div>
-            }
-        </div>
+    @{
+        ViewBag.Title = "Schema";
     }
+
+
+    <h2>Schema</h2>
+
+
+    <div class="container-fluid" style="margin-bottom:50px;">
+    <div class="row-fluid">
+        <div class="col-sm-10">
+            <table style="border-left:3px solid black; border-right:3px solid black; border-bottom:3px solid black">
+                @for (int y = 0; y <Model.YLength; y++)
+            {
+                    <tr>
+                        @for (int x = 0; x < Model.XLength; x++)
+                        {
+                             <td id=@x@y style="width:98px;height:81px; text-align: center; border:solid 1px black">
+
+                                @foreach (var table in Model.Tables)
+                                {
+                                    if (table.X == x && table.Y == y)
+                                    {
+                                        <div style="top:10px; position:relative"><p style="font-weight:bold">@table.Seats <img style="width:15px; height:15px" src="@Url.Content("~/Content/icons/SchemaIcons/Person.png")" alt="loading" /></p></div>
+                                        <div style="top:-10px; position:relative"><img style="width:48px; height:48px" src="@Url.Content("~/Content/icons/SchemaIcons/Table.png")" alt="loading" /></div>
+                                    }
+                                }
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
 </div>
+<script>
+    $('#03').css('border-bottom', '3px solid black');
+    $('#13').css('border-bottom', '3px solid black');
+    $('#23').css('border-bottom', '3px solid black');
+    $('#33').css('border-bottom', '3px solid black');
+
+    $('#72').css('border-bottom', '3px solid black');
+    $('#82').css('border-bottom', '3px solid black');
+    $('#92').css('border-bottom', '3px solid black');
+
+
+    $('#75').css('border-bottom', '3px solid black');
+    $('#85').css('border-bottom', '3px solid black');
+    $('#95').css('border-bottom', '3px solid black');
+
+    $('#60').css('border-right', '3px solid black');
+    $('#62').css('border-right', '3px solid black');
+
+    $('#63').css('border-right', '3px solid black');
+    $('#65').css('border-right', '3px solid black');
+
+    $('#66').css('border-right', '3px solid black');
+    $('#68').css('border-right', '3px solid black');
+    $('#69').css('border-right', '3px solid black');
+
+    $('#34').css('border-right', '3px solid black');
+    $('#36').css('border-right', '3px solid black');
+    $('#37').css('border-right', '3px solid black');
+    $('#38').css('border-right', '3px solid black');
+    $('#39').css('border-right', '3px solid black');
+
+    $('#00').css('border-top', '3px solid black');
+    $('#10').css('border-top', '3px solid black');
+    $('#30').css('border-top', '3px solid black');
+    $('#40').css('border-top', '3px solid black');
+    $('#50').css('border-top', '3px solid black');
+    $('#60').css('border-top', '3px solid black');
+    $('#70').css('border-top', '3px solid black');
+    $('#80').css('border-top', '3px solid black');
+    $('#90').css('border-top', '3px solid black');
+
+
+</script>
+
+

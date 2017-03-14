@@ -16,9 +16,51 @@ namespace CityGoodTaste.Controllers
         // GET: Restaurant
         public ActionResult Index()
         {
-            return View();
+
+            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+            IRestaurantDataManager manager = factory.GetManager();
+            List<Restaurant> Restaurants = manager.GetListRestaurants();
+            return View(Restaurants);
+        }
+        // POST: Restaurant/Events
+        [HttpPost]
+        public ActionResult Index(int? id)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        // GET: Restaurant/Create
+        public ActionResult Events()
+        {
+            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+            IRestaurantDataManager manager = factory.GetManager();
+            var RestaurantEvent = manager.GetListRestaurantEvents();
+            return View(RestaurantEvent);
         }
 
+        // POST: Restaurant/Events
+        [HttpPost]
+        public ActionResult Events(int? id)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
         // GET: Restaurant/Details/5
         public async Task<ActionResult> Details(int? id)
         {
