@@ -24,7 +24,7 @@ namespace CityGoodTaste.Models
         [Display(Name = "ZipCode", ResourceType = typeof(Resources.Resource))]
         public int ZipCode { get; set; }
 
-        [DisplayName(" ")]
+        [Display(Name = "PhoneNumber", ResourceType = typeof(Resources.Resource))]
         [MaxLength(25)]
         public string PhoneNumber { get; set; }
 
