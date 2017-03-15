@@ -360,4 +360,10 @@
   <data name="SmartAssistant" xml:space="preserve">
     <value>Розумний помічник</value>
   </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>PhoneNumber</value>
+  </data>
+  <data name="TableReserved" xml:space="preserve">
+    <value>TableReserved</value>
+  </data>
 </root>
