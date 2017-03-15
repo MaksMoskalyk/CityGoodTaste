@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
-using CityGoodTaste.Models;
 using System.Collections.Generic;
 using System;
 
@@ -11,7 +10,6 @@ namespace CityGoodTaste
     {
         protected override void Seed(GoodTasteContext context)
         {
-
             InitializeAdminUserAndRoles(context);
             InitializeRestaurant(context);
             base.Seed(context);
@@ -129,12 +127,6 @@ namespace CityGoodTaste
             schema.Tables.Add(t16);
             schema.Tables.Add(t17);
             schema.Tables.Add(t18);
-            //context.Tables.Add(t1);
-            //context.Tables.Add(t2);
-            //context.Tables.Add(t3);
-            //context.Tables.Add(t4);
-            //context.Tables.Add(t5);
-            //context.Tables.Add(t6);
 
             context.RestaurantSchemas.Add(schema);
 
@@ -142,8 +134,11 @@ namespace CityGoodTaste
             context.Countries.Add(c);
             context.Cities.Add(ct);
             context.Restaurants.Add(r);
-            //RestaurantEvent ev = new RestaurantEvent("event1", "text", new DateTime(), r);
-            //context.RestaurantEvent.Add(ev);
+            context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 1", "Restaurant Event 1 Description",  DateTime.Now, DateTime.Now.AddHours(4), r));
+            context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 2", "Restaurant Event 2 Description", DateTime.Now, DateTime.Now.AddHours(4), r));
+            context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 3", "Restaurant Event 3 Description", DateTime.Now, DateTime.Now.AddHours(4), r));
+            context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 4", "Restaurant Event 4 Description", DateTime.Now, DateTime.Now.AddHours(4), r));
+            context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 5", "Restaurant Event 5 Description", DateTime.Now, DateTime.Now.AddHours(4), r));
             context.SaveChanges();
         }
 

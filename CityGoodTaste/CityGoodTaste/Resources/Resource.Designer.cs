@@ -475,6 +475,15 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PhoneNumber.
+        /// </summary>
+        public static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phones.
         /// </summary>
         public static string Phones {
@@ -696,6 +705,15 @@ namespace CityGoodTaste.Resources {
         public static string SubMenuName {
             get {
                 return ResourceManager.GetString("SubMenuName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TableReserved.
+        /// </summary>
+        public static string TableReserved {
+            get {
+                return ResourceManager.GetString("TableReserved", resourceCulture);
             }
         }
         
