@@ -58,7 +58,8 @@
       "height": 32,
       "columns": 16,
       "margin": 16,
-      "autoHost": false
+      "autoHost": false,
+      "overrideSize": "true"
     },
     "historySize": 100,
     "showCodes": true,
