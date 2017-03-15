@@ -306,6 +306,16 @@ namespace CityGoodTaste.Migrations
                 .Index(t => t.Restaurant_Id);
             
             CreateTable(
+                "dbo.EventTypes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 50),
+                        Icon = c.Binary(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.RestaurantFeatures",
                 c => new
                     {
@@ -401,6 +411,19 @@ namespace CityGoodTaste.Migrations
                 .Index(t => t.Order_Id);
             
             CreateTable(
+                "dbo.EventTypeRestaurantEvents",
+                c => new
+                    {
+                        EventType_Id = c.Int(nullable: false),
+                        RestaurantEvent_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.EventType_Id, t.RestaurantEvent_Id })
+                .ForeignKey("dbo.EventTypes", t => t.EventType_Id, cascadeDelete: true)
+                .ForeignKey("dbo.RestaurantEvents", t => t.RestaurantEvent_Id, cascadeDelete: true)
+                .Index(t => t.EventType_Id)
+                .Index(t => t.RestaurantEvent_Id);
+            
+            CreateTable(
                 "dbo.RestaurantFeatureRestaurants",
                 c => new
                     {
@@ -424,6 +447,8 @@ namespace CityGoodTaste.Migrations
             DropForeignKey("dbo.RestaurantFeatureRestaurants", "Restaurant_Id", "dbo.Restaurants");
             DropForeignKey("dbo.RestaurantFeatureRestaurants", "RestaurantFeature_Id", "dbo.RestaurantFeatures");
             DropForeignKey("dbo.RestaurantEvents", "Restaurant_Id", "dbo.Restaurants");
+            DropForeignKey("dbo.EventTypeRestaurantEvents", "RestaurantEvent_Id", "dbo.RestaurantEvents");
+            DropForeignKey("dbo.EventTypeRestaurantEvents", "EventType_Id", "dbo.EventTypes");
             DropForeignKey("dbo.Photos", "Restaurant_Id", "dbo.Restaurants");
             DropForeignKey("dbo.Restaurants", "Map_id", "dbo.Maps");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
@@ -454,6 +479,8 @@ namespace CityGoodTaste.Migrations
             DropForeignKey("dbo.Cities", "Country_Id", "dbo.Countries");
             DropIndex("dbo.RestaurantFeatureRestaurants", new[] { "Restaurant_Id" });
             DropIndex("dbo.RestaurantFeatureRestaurants", new[] { "RestaurantFeature_Id" });
+            DropIndex("dbo.EventTypeRestaurantEvents", new[] { "RestaurantEvent_Id" });
+            DropIndex("dbo.EventTypeRestaurantEvents", new[] { "EventType_Id" });
             DropIndex("dbo.TableOrders", new[] { "Order_Id" });
             DropIndex("dbo.TableOrders", new[] { "Table_Id" });
             DropIndex("dbo.ApplicationUserCuisines", new[] { "Cuisine_Id" });
@@ -490,6 +517,7 @@ namespace CityGoodTaste.Migrations
             DropIndex("dbo.Restaurants", new[] { "City_Id" });
             DropIndex("dbo.Cities", new[] { "Country_Id" });
             DropTable("dbo.RestaurantFeatureRestaurants");
+            DropTable("dbo.EventTypeRestaurantEvents");
             DropTable("dbo.TableOrders");
             DropTable("dbo.ApplicationUserCuisines");
             DropTable("dbo.RestaurantCuisines");
@@ -498,6 +526,7 @@ namespace CityGoodTaste.Migrations
             DropTable("dbo.SpecialWorkHours");
             DropTable("dbo.RestaurantsGroups");
             DropTable("dbo.RestaurantFeatures");
+            DropTable("dbo.EventTypes");
             DropTable("dbo.RestaurantEvents");
             DropTable("dbo.Photos");
             DropTable("dbo.Maps");
