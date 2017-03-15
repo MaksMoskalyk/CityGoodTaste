@@ -57,8 +57,9 @@ namespace CityGoodTaste.BusinessLayer
             {
                 try
                 {
-                    List<Restaurant> result = context.Restaurants.Include(t => t.Likes).Include(t => t.City).Include(t => t.RestaurantFeatures)
-                        .Include(t => t.Reviews).Include(t => t.WorkHours).ToList();
+                    List<Restaurant> result = context.Restaurants.Include(t => t.Likes).Include(t => t.City).
+                        Include(t => t.RestaurantFeatures).Include(t => t.Reviews).Include(t => t.WorkHours).
+                        Include(t => t.Cuisines).Include(t => t.Likes).Include(t => t.RestaurantFeatures).Include(t => t.RestaurantGroup).ToList();
                     return result;
                 }
                 catch
