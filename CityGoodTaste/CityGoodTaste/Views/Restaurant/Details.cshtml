@@ -8,7 +8,7 @@
 <link href="~/Content/icons/SchemaIcons/Table/style.css" rel="stylesheet" />
 <script src="~/Content/icons/SchemaIcons/Table/svgxuse.js"></script>
 
-<svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg style="position: absolute; width: 0; height: 0; overflow: hidden" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
         <symbol id="icon-table" viewBox="0 0 32 32">
             <title>table</title>
@@ -17,13 +17,11 @@
     </defs>
 </svg>
 
-<img src="/open-iconic/svg/person.svg">
 <svg class="icon icon-table table"><use xlink:href="#icon-table"></use></svg>
 
 <div class="container-fluid NoPadding" style="margin-left: auto; margin-right: auto">
-    <div class="row content NoPadding" style="margin-left: auto; margin-right: auto">
         <div class="col-sm-9">
-            <div class="jumbotron" style="padding:0;">
+            <div class="jumbotron" style="padding:0">
                 <img src="https://placehold.it/2000x400?text=IMAGE" alt="img" class="img-responsive" />
             </div>
             <div class="row">
@@ -99,7 +97,7 @@
                             <div>
                                 <h2>@Html.LabelFor(model => model.Address)</h2>
                                 @Html.DisplayFor(model => model.Address) @Html.DisplayFor(model => model.City.Name) @Html.DisplayFor(model => model.City.Country.Name) @Html.DisplayFor(model => model.ZipCode)
-                                <div id="googleMap" style="height:400px; width:100%"></div>
+                                <div id="googleMap" style="height:400px;width:100%"></div>
                                 <script>
 
                                 </script>
@@ -189,7 +187,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-3 sidenav text-center">
+        <div class="col-sm-3 text-center">
             <div class="panel panel-default ">
                 <div class="panel-heading">
                     НАЧАТЬ РЕЗЕРВ
@@ -254,4 +252,3 @@
             </div>
         </div>
     </div>
-</div>

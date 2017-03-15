@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     SetAjaxForAuthenticationModals();
-});
+})
 
 
 function SetAjaxForAuthenticationModals() {
