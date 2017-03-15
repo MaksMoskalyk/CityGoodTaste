@@ -16,7 +16,6 @@ namespace CityGoodTaste.Controllers
         // GET: Restaurant
         public ActionResult Index()
         {
-
             RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
             IRestaurantDataManager manager = factory.GetManager();
             List<Restaurant> Restaurants = manager.GetListRestaurants();
