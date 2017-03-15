@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace CityGoodTaste.Models
@@ -18,5 +19,7 @@ namespace CityGoodTaste.Models
 
         public int X { get; set; }
         public int Y { get; set; }
+        [Display(Name = "TableReserved", ResourceType = typeof(Resources.Resource))]
+        public bool Reserved { get; set; }
     }
 }
