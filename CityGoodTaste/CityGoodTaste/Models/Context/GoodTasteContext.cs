@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace CityGoodTaste
+namespace CityGoodTaste.Models
 {
     public class GoodTasteContext : IdentityDbContext<ApplicationUser>
     {

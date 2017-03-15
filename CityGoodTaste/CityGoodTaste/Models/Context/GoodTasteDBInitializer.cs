@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Collections.Generic;
 using System;
 
-namespace CityGoodTaste
+namespace CityGoodTaste.Models
 {
     public class GoodTasteDBInitializer : DropCreateDatabaseAlways<GoodTasteContext>
     {

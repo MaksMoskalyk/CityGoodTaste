@@ -5,14 +5,14 @@ namespace CityGoodTaste.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<CityGoodTaste.GoodTasteContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CityGoodTaste.Models.GoodTasteContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(CityGoodTaste.GoodTasteContext context)
+        protected override void Seed(CityGoodTaste.Models.GoodTasteContext context)
         {
             //  This method will be called after migrating to the latest version.
 

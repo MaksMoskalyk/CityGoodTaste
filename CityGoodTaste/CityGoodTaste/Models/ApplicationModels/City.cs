@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CityGoodTaste
+namespace CityGoodTaste.Models
 {
     public class City
     {

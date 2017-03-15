@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CityGoodTaste
+namespace CityGoodTaste.Models
 {
     public class SpecialWorkHour
     {
