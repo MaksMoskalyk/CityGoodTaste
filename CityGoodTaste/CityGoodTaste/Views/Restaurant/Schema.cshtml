@@ -17,16 +17,25 @@
                     <tr>
                         @for (int x = 0; x < Model.XLength; x++)
                         {
-                             <td id="@x@y" style="width:98px;height:81px; text-align: center; border:solid 1px black;" reserved="false">
-                                @foreach (var table in Model.Tables)
+                            bool tdCreated = false;
+                            foreach (var table in Model.Tables)
+                            {
+                                if (table.X == x && table.Y == y)
                                 {
-                                    if (table.X == x && table.Y == y)
-                                    {
+                                    <td id="@x@y" style="width:98px;height:81px; text-align: center; border:solid 1px black;" reserved="false" tableId="@table.Id">
                                         <div id="divP.@x@y" style="top:10px; position:relative"><p id="P.@x@y" style="font-weight:bold">@table.Seats <img id="imgP.@x@y" style="width:15px; height:15px" src="/Content/icons/SchemaIcons/Person.png" alt="loading" /></p></div>
                                         <div id="divT.@x@y" style="top:-10px; position:relative"><img id="imgT.@x@y" style="width:48px; height:48px" src="/Content/icons/SchemaIcons/Table.png" alt="loading" /></div>
-                                    }
+                                    </td>
+                                    tdCreated = true;
+                                    break;
                                 }
-                            </td>
+                            }
+                            if (!tdCreated)
+                            {
+                                <td id="@x@y" style="width:98px;height:81px; text-align: center; border:solid 1px black;" reserved="false">
+                                </td>
+                            }
+
                         }
                     </tr>
                 }
