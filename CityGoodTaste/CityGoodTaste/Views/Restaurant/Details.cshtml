@@ -222,7 +222,7 @@
 
                 <div class="panel-footer">
                     ВЫБРАТЬ СТОЛИК
-                    @Html.ActionLink("Schema", "Schema", "Restaurant", routeValues: Model.Id, htmlAttributes: new { title = "Schema" })
+                    @Html.ActionLink("Schema", "Schema", "Restaurant", new { id = Model.Id }, htmlAttributes: new { title = "Schema" })
                     <div class="center-block row">
                         <img src="https://placehold.it/250x150?text=IMAGE" alt="img" class="img-responsive col-sm-12" />
                     </div>
