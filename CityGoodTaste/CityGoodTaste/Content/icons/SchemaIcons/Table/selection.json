@@ -1,0 +1,72 @@
+{
+  "IcoMoonType": "selection",
+  "icons": [
+    {
+      "icon": {
+        "paths": [
+          "M32 348v36h213.6l-46.4 157.6c-25.6 87.2-47.2 160.8-47.2 164 0 4 35.2 6.4 78.4 6.4h77.6l24-84 23.2-84h305.6l23.2 84 24 84h77.6c43.2 0 78.4-2.4 78.4-6.4 0-3.2-20.8-76-46.4-161.6l-46.4-156 220.8-4.8v-71.2h-960v36zM976 348v20h-928v-40h928v20zM384 392.8c0 4.8-4 15.2-8 24-8 14.4-4.8 15.2 132 15.2s140-0.8 132-15.2c-16-30.4-10.4-33.6 52.8-31.2l60.8 2.4 46.4 153.6 45.6 154.4h-123.2l-25.6-86.4-26.4-85.6h-324.8l-26.4 85.6-25.6 86.4h-123.2l43.2-146.4c24-80 44.8-150.4 46.4-156 4.8-12 124-13.6 124-0.8zM618.4 400c4 15.2 0 16-110.4 16s-114.4-0.8-110.4-16c4-15.2 11.2-16 110.4-16s106.4 0.8 110.4 16z"
+        ],
+        "attrs": [
+          {}
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": [
+          "table"
+        ]
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "order": 17,
+        "id": 4,
+        "name": "table",
+        "prevSize": 32
+      },
+      "setIdx": 1,
+      "setId": 3,
+      "iconIdx": 0
+    }
+  ],
+  "height": 1024,
+  "preferences": {
+    "showGlyphs": true,
+    "showQuickUse": true,
+    "showQuickUse2": true,
+    "showSVGs": true,
+    "fontPref": {
+      "prefix": "icon-",
+      "metadata": {
+        "fontFamily": "icomoon"
+      },
+      "metrics": {
+        "emSize": 1024,
+        "baseline": 6.25,
+        "whitespace": 50
+      },
+      "embed": false
+    },
+    "imagePref": {
+      "prefix": "icon-",
+      "png": true,
+      "useClassSelector": true,
+      "color": 0,
+      "bgColor": 16777215,
+      "classSelector": ".icon",
+      "height": 32,
+      "columns": 16,
+      "margin": 16,
+      "autoHost": false
+    },
+    "historySize": 100,
+    "showCodes": true,
+    "gridSize": 16,
+    "showGrid": false,
+    "showLiga": false,
+    "quickUsageToken": {
+      "UntitledProject": "ZGNhMWU0MzY2OThjNGYxZTIxNjBmZDM5YjUxMmQ3NzUjMSMxNDg5NTgzNDA2IyMj"
+    }
+  }
+}
