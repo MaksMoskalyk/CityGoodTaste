@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CityGoodTaste.Models
 {
-
     public class Restaurant
     {
         [Key]

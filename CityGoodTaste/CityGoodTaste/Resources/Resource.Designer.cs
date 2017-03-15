@@ -709,6 +709,15 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TableReserved.
+        /// </summary>
+        public static string TableReserved {
+            get {
+                return ResourceManager.GetString("TableReserved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tables.
         /// </summary>
         public static string Tables {

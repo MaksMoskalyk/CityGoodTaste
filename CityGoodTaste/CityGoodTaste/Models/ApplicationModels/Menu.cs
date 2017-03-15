@@ -5,8 +5,6 @@ namespace CityGoodTaste.Models
 {
     public class Menu
     {
-
-
         [Key]
         public int Id { get; set; }
 

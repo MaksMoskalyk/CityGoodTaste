@@ -185,9 +185,13 @@
     <Compile Include="Migrations\201703142143143_2.Designer.cs">
       <DependentUpon>201703142143143_2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703151740039_reserved .cs" />
-    <Compile Include="Migrations\201703151740039_reserved .Designer.cs">
-      <DependentUpon>201703151740039_reserved .cs</DependentUpon>
+    <Compile Include="Migrations\201703151714314_tablereserved.cs" />
+    <Compile Include="Migrations\201703151714314_tablereserved.Designer.cs">
+      <DependentUpon>201703151714314_tablereserved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703151715508_bool.cs" />
+    <Compile Include="Migrations\201703151715508_bool.Designer.cs">
+      <DependentUpon>201703151715508_bool.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3279,9 +3283,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703142143143_2.resx">
       <DependentUpon>201703142143143_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703151740039_reserved .resx">
-      <DependentUpon>201703151740039_reserved .cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

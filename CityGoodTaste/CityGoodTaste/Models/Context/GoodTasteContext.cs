@@ -1,15 +1,13 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using CityGoodTaste.Models;
 
-namespace CityGoodTaste
+namespace CityGoodTaste.Models
 {
     public class GoodTasteContext : IdentityDbContext<ApplicationUser>
     {
         public GoodTasteContext() : base("GoodTasteContext")
         {
-            Database.SetInitializer(new GoodTasteDBInitializer());
-            
+            Database.SetInitializer(new GoodTasteDBInitializer());           
         }
 
         public static GoodTasteContext Create()
