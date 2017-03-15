@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CityGoodTaste.Models
+namespace CityGoodTaste
 {
     public class RestaurantReview
     {
