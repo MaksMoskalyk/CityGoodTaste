@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace CityGoodTaste.Models
+namespace CityGoodTaste
 {
     public class Menu
     {
-
-
         [Key]
         public int Id { get; set; }
 

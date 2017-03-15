@@ -9,6 +9,9 @@
 
 
     <div class="container-fluid" style="margin-bottom:50px;">
+        <div class="panel-heading">          
+            <button type="button" class="btn btn-default btn-block">Выбрать</button>
+        </div>
     <div class="row-fluid">
         <div class="col-sm-10">
             <table style="border-left:3px solid black; border-right:3px solid black; border-bottom:3px solid black">
@@ -32,7 +35,7 @@
                             }
                             if (!tdCreated)
                             {
-                                <td id="@x@y" style="width:98px;height:81px; text-align: center; border:solid 1px black;" reserved="false">
+                                <td id="@x@y" style="width:98px;height:81px; text-align: center; border:solid 1px black;">
                                 </td>
                             }
 
@@ -46,21 +49,30 @@
 <script>
 
     $('td').click(function (event) {
+
         event.stopPropagation();
         var tdId = event.target.id;;
         var id = event.target.id;
-        var reserved = (document.getElementById(tdId).getAttribute('reserved') == true);
+        var reserved = (document.getElementById(tdId).getAttribute('reserved') == "true");
         if (id.indexOf('.') > 0)
             id = id.substring(id.indexOf('.') + 1);
-        document.getElementById('imgP.' + id).src = "/Content/icons/SchemaIcons/ActivePerson.png";
-        document.getElementById('imgT.' + id).src = "/Content/icons/SchemaIcons/ActiveTable.png";
-        document.getElementById(tdId).setAttribute('reserved', !reserved);
+
+        if (reserved == false) {
+            document.getElementById('imgP.' + id).src = "/Content/icons/SchemaIcons/ActivePerson.png";
+            document.getElementById('imgT.' + id).src = "/Content/icons/SchemaIcons/ActiveTable.png";
+            document.getElementById('P.' + id).style.color = "green";
+            document.getElementById(tdId).setAttribute('reserved', !reserved);
+        } else {
+
+            document.getElementById('imgP.' + id).src = "/Content/icons/SchemaIcons/Person.png";
+            document.getElementById('imgT.' + id).src = "/Content/icons/SchemaIcons/Table.png";
+            document.getElementById('P.' + id).style.color = "black";
+            document.getElementById(tdId).setAttribute('reserved', !reserved);
+        }
+
     });
 
     $('document').ready(createBorders());
-
-
-
     function createBorders() {
         $('#03').css('border-bottom', '3px solid black');
         $('#13').css('border-bottom', '3px solid black');
@@ -101,9 +113,7 @@
         $('#70').css('border-top', '3px solid black');
         $('#80').css('border-top', '3px solid black');
         $('#90').css('border-top', '3px solid black');
-
     }
-
 </script>
 
 

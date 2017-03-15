@@ -17,7 +17,9 @@
     </defs>
 </svg>
 
-<svg class="icon icon-table table"><use xlink:href="#icon-table"></use></svg>
+<div class="form-group">
+    <svg class="icon icon-table table"><use xlink:href="#icon-table"></use></svg>
+</div>
 
 <div class="container-fluid NoPadding" style="margin-left: auto; margin-right: auto">
         <div class="col-sm-9">
@@ -222,7 +224,7 @@
 
                 <div class="panel-footer">
                     ВЫБРАТЬ СТОЛИК
-                    @Html.ActionLink("Schema", "Schema", "Restaurant", routeValues: Model.Id, htmlAttributes: new { title = "Schema" })
+                    @Html.ActionLink("Schema", "Schema", "Restaurant", new { id = Model.Id }, htmlAttributes: new { title = "Schema" })
                     <div class="center-block row">
                         <img src="https://placehold.it/250x150?text=IMAGE" alt="img" class="img-responsive col-sm-12" />
                     </div>

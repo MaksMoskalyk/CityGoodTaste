@@ -10,6 +10,9 @@
 svg.table {
     color: black;
     font-size: 300px;
+    margin: 0px;
+    padding: 0px;
+    background-color: aqua;
 }
 
 /* ==========================================
