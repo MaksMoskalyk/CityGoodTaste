@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
-using CityGoodTaste.Models;
 using System.Collections.Generic;
 using System;
 
@@ -11,7 +10,6 @@ namespace CityGoodTaste
     {
         protected override void Seed(GoodTasteContext context)
         {
-
             InitializeAdminUserAndRoles(context);
             InitializeRestaurant(context);
             base.Seed(context);
