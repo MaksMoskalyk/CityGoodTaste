@@ -15,30 +15,37 @@
     <script src="~/Scripts/Custom/MainPage.js"></script>
 </head>
 <body>
-    <nav id="navPanel" class="navbar navbar-inverse" style="margin-bottom:0px">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href='@Url.Action("Index", "Home")'>CGT</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink(CityGoodTaste.Resources.Resource.Restaurants, "Index", "Restaurant")</li>
-                    <li>@Html.ActionLink(CityGoodTaste.Resources.Resource.Events, "Events", "Restaurant")</li>
-                    <li><a data-toggle="modal" data-target="#BotModal" href="#">@CityGoodTaste.Resources.Resource.SmartAssistant</a></li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </nav>
 
-    <div class="container body-content NoMargin NoPadding" style="max-width:none">
-        @RenderBody()
+    <div class="contentWithoutFooterWrapper">
+        <nav id="navPanel" class="navbar navbar-inverse" style="margin-bottom:0px">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href='@Url.Action("Index", "Home")'>CGT</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink(CityGoodTaste.Resources.Resource.Restaurants, "Index", "Restaurant")</li>
+                        <li>@Html.ActionLink(CityGoodTaste.Resources.Resource.Events, "Events", "Restaurant")</li>
+                        <li><a data-toggle="modal" data-target="#BotModal" href="#">@CityGoodTaste.Resources.Resource.SmartAssistant</a></li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </nav>
+
+        <div class="container body-content NoMargin NoPadding" style="max-width:none">
+            @RenderBody()
+        </div>
+
+        <div class="empty"></div>
     </div>
+
+    
 
     <footer class="container-fluid text-center"  style="margin: 0px; padding: 0px; background-color:crimson">
         <a class="up-arrow" href="#navPanel" data-toggle="tooltip" title="TO TOP">
