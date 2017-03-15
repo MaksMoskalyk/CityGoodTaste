@@ -199,6 +199,7 @@
     <Compile Include="Models\ApplicationModels\SpecialWorkHour.cs" />
     <Compile Include="Models\ApplicationModels\Table.cs" />
     <Compile Include="Models\ApplicationModels\ApplicationUser.cs" />
+    <Compile Include="Models\ApplicationModels\TableReservation.cs" />
     <Compile Include="Models\ApplicationModels\WorkHour.cs" />
     <Compile Include="Models\Context\GoodTasteContext.cs" />
     <Compile Include="Models\Context\GoodTasteDBInitializer.cs" />

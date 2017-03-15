@@ -41,7 +41,7 @@ namespace CityGoodTaste.Models
         public virtual ICollection<RestaurantReview> Reviews { get; set; }
 
         [Display(Name = "Reservations", ResourceType = typeof(Resources.Resource))]
-        public virtual ICollection<Reservation> Reservations { get; set; }
+        public virtual ICollection<TableReservation> TableReservation { get; set; }
 
     }
 }
