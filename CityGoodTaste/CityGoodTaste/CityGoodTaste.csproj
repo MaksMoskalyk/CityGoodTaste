@@ -181,6 +181,7 @@
     <Compile Include="Models\ApplicationModels\City.cs" />
     <Compile Include="Models\ApplicationModels\Country.cs" />
     <Compile Include="Models\ApplicationModels\Cuisine.cs" />
+    <Compile Include="Models\ApplicationModels\EventType.cs" />
     <Compile Include="Models\ApplicationModels\Like.cs" />
     <Compile Include="Models\ApplicationModels\Map.cs" />
     <Compile Include="Models\ApplicationModels\Meal.cs" />

@@ -9,7 +9,9 @@ namespace CityGoodTaste.Models
         {
             Name = name;
         }
-
+        public MealGroup()
+        {
+        }
         [Key]
         public int Id { get; set; }
 

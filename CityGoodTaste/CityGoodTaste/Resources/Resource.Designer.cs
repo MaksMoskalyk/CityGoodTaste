@@ -250,6 +250,24 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EventType.
+        /// </summary>
+        public static string EventType {
+            get {
+                return ResourceManager.GetString("EventType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EventTypeName.
+        /// </summary>
+        public static string EventTypeName {
+            get {
+                return ResourceManager.GetString("EventTypeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Floors.
         /// </summary>
         public static string Floors {

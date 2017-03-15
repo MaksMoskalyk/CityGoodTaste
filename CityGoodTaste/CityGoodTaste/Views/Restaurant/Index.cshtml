@@ -13,14 +13,51 @@
     </div>
 </form>
 <div>
-    <div class="col-sm-3">
+    <div class="col-sm-2">
     <h4>категории</h4> 
+        <p>@CityGoodTaste.Resources.Resource.Cuisine:</p>
+        @{
+            CityGoodTaste.BusinessLayer.RestaurantDataManager manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
+            var EventTypes = manager.GetAllCuisines();
+        }
+        @foreach (var item in EventTypes)
+        {
+            <div class="checkbox">
+                <label><input id="EventTypesCheck" type="checkbox" value="">@item.Name</label>
+            </div>
+        }
+
+        <p>@CityGoodTaste.Resources.Resource.RestaurantFeatures:</p>
+        @{
+            manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
+            var RestaurantFeatures = manager.GetAllRestaurantFeatures();
+        }
+
+        @foreach (var item in RestaurantFeatures)
+        {
+            <div class="checkbox">
+                <label><input id="EventTypesCheck" type="checkbox" value="">@item.Name</label>
+            </div>
+        }
+        <p>@CityGoodTaste.Resources.Resource.MealGroups:</p>
+        @{
+            manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
+            var MealGroups = manager.GetAllMealGroups();
+        }
+
+        @foreach (var item in MealGroups)
+        {
+            <div class="checkbox">
+                <label><input id="EventTypesCheck" type="checkbox" value="">@item.Name</label>
+            </div>
+        }
+        
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-10">
         <div class="row NoMargin">
             @foreach (var item in Model)
             {
-                <div class="col-sm-3" style="text-align:left;">
+                <div class="col-sm-4" style="text-align:left;">
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <a href='@Url.Action("Details", "Restaurant", new { id = item.Id })' style="color:black; text-decoration:none">

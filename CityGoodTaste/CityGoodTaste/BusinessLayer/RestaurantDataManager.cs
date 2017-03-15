@@ -25,6 +25,10 @@ namespace CityGoodTaste.BusinessLayer
         List<Restaurant> GetListRestaurants();
         RestaurantSchema GetRestaurantSchema(int? id);
         List<RestaurantEvent> GetListRestaurantEvents();
+        List<EventType> GetAllEventTypes();
+        List<Cuisine> GetAllCuisines();
+        List<RestaurantFeature> GetAllRestaurantFeatures();
+        List<MealGroup> GetAllMealGroups();
     }
 
     public class RestaurantDataManager: IRestaurantDataManager
@@ -84,6 +88,68 @@ namespace CityGoodTaste.BusinessLayer
                 }
             }
 
+        }
+        public List<EventType> GetAllEventTypes()
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<EventType> result = context.EventTypes.ToList();
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Event types not found");
+                }
+            }
+
+        }
+        public List<Cuisine> GetAllCuisines()
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<Cuisine> result = context.Cuisines.ToList();
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Cuisines not found");
+                }
+            }
+
+        }
+        public List<RestaurantFeature> GetAllRestaurantFeatures()
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<RestaurantFeature> result = context.RestaurantFeatures.ToList();
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Restaurant features not found");
+                }
+            }
+        }
+        public List<MealGroup> GetAllMealGroups()
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<MealGroup> result = context.MealGroups.ToList();
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Restaurant features not found");
+                }
+            }
         }
         public RestaurantSchema GetRestaurantSchema(int? id)
         {

@@ -27,6 +27,7 @@ namespace CityGoodTaste.Models
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<RestaurantEvent> RestaurantEvent { get; set; }
+        public DbSet<EventType> EventTypes { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<RestaurantFeature> RestaurantFeatures { get; set; }
         public DbSet<RestaurantReview> RestaurantReviews { get; set; }

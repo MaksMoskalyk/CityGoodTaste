@@ -211,7 +211,7 @@
     <value>Состав блюда</value>
   </data>
   <data name="MealGroup" xml:space="preserve">
-    <value>?? в ресурсах отредактировать</value>
+    <value>категории меню</value>
   </data>
   <data name="MealGroupName" xml:space="preserve">
     <value>?? в ресурсах отредактировать</value>
@@ -365,5 +365,11 @@
   </data>
   <data name="TableReserved" xml:space="preserve">
     <value>TableReserved</value>
+  </data>
+  <data name="EventTypeName" xml:space="preserve">
+    <value>EventTypeName</value>
+  </data>
+  <data name="EventType" xml:space="preserve">
+    <value>EventType</value>
   </data>
 </root>
