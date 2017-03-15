@@ -3,7 +3,7 @@ namespace CityGoodTaste.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _1 : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -203,6 +203,7 @@ namespace CityGoodTaste.Migrations
                         Seats = c.Int(nullable: false),
                         X = c.Int(nullable: false),
                         Y = c.Int(nullable: false),
+                        Reserved = c.Boolean(nullable: false),
                         RestaurantSchema_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)

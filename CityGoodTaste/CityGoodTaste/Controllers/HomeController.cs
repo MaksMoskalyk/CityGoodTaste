@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CityGoodTaste.BusinessLayer;
 using CityGoodTaste.CustomFilters;
 using CityGoodTaste.Models;
 using Microsoft.AspNet.Identity;
@@ -35,10 +36,13 @@ namespace CityGoodTaste.Controllers
             Response.Cookies.Add(cookie);
             return Redirect(returnUrl);
         }
+
         public ActionResult Index()
         {
-            //Initializer init = new Initializer();
-            return View();
+            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+            IRestaurantDataManager manager = factory.GetManager();
+            List<Restaurant> Restaurants = manager.GetListRestaurants();
+            return View(Restaurants);
         }
         
         public ActionResult About()

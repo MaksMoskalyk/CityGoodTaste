@@ -7,13 +7,13 @@ namespace CityGoodTaste.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class _bool : IMigrationMetadata
+    public sealed partial class DB2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_bool));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DB2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201703151715508_bool"; }
+            get { return "201703151836550_DB2"; }
         }
         
         string IMigrationMetadata.Source

@@ -177,23 +177,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703142141454_1.cs" />
-    <Compile Include="Migrations\201703142141454_1.Designer.cs">
-      <DependentUpon>201703142141454_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703142143143_2.cs" />
-    <Compile Include="Migrations\201703142143143_2.Designer.cs">
-      <DependentUpon>201703142143143_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703151714314_tablereserved.cs" />
-    <Compile Include="Migrations\201703151714314_tablereserved.Designer.cs">
-      <DependentUpon>201703151714314_tablereserved.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703151715508_bool.cs" />
-    <Compile Include="Migrations\201703151715508_bool.Designer.cs">
-      <DependentUpon>201703151715508_bool.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationModels\City.cs" />
     <Compile Include="Models\ApplicationModels\Country.cs" />
@@ -216,6 +199,7 @@
     <Compile Include="Models\ApplicationModels\SpecialWorkHour.cs" />
     <Compile Include="Models\ApplicationModels\Table.cs" />
     <Compile Include="Models\ApplicationModels\ApplicationUser.cs" />
+    <Compile Include="Models\ApplicationModels\TableReservation.cs" />
     <Compile Include="Models\ApplicationModels\WorkHour.cs" />
     <Compile Include="Models\Context\GoodTasteContext.cs" />
     <Compile Include="Models\Context\GoodTasteDBInitializer.cs" />
@@ -3278,18 +3262,6 @@
     <Content Include="Scripts\Default\jQuery\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703142141454_1.resx">
-      <DependentUpon>201703142141454_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703142143143_2.resx">
-      <DependentUpon>201703142143143_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703151714314_tablereserved.resx">
-      <DependentUpon>201703151714314_tablereserved.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703151715508_bool.resx">
-      <DependentUpon>201703151715508_bool.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
