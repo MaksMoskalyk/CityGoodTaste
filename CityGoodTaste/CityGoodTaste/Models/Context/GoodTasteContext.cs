@@ -36,5 +36,6 @@ namespace CityGoodTaste.Models
         public DbSet<SpecialWorkHour> SpecialWorkHours { get; set; }
         public DbSet<Table> Tables { get; set; }
         public DbSet<WorkHour> WorkHours { get; set; }
+        public DbSet<TableReservation> TableReservations { get; set; }
     }
 }
