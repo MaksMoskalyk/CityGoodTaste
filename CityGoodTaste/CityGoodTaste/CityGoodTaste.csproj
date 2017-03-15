@@ -1817,6 +1817,18 @@
     <Content Include="Content\icons\open-iconic\svg\yen.svg" />
     <Content Include="Content\icons\open-iconic\svg\zoom-in.svg" />
     <Content Include="Content\icons\open-iconic\svg\zoom-out.svg" />
+    <Content Include="Content\icons\SchemaIcons\Person.png" />
+    <Content Include="Content\icons\SchemaIcons\Schema.png" />
+    <Content Include="Content\icons\SchemaIcons\Table.png" />
+    <Content Include="Content\icons\SchemaIcons\Table\demo-external-svg.html" />
+    <Content Include="Content\icons\SchemaIcons\Table\demo-files\demo.css" />
+    <Content Include="Content\icons\SchemaIcons\Table\demo.html" />
+    <Content Include="Content\icons\SchemaIcons\Table\PNG\table.png" />
+    <Content Include="Content\icons\SchemaIcons\Table\Read Me.txt" />
+    <Content Include="Content\icons\SchemaIcons\Table\style.css" />
+    <Content Include="Content\icons\SchemaIcons\Table\svgxuse.js" />
+    <Content Include="Content\icons\SchemaIcons\Table\SVG\table.svg" />
+    <Content Include="Content\icons\SchemaIcons\Table\symbol-defs.svg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\Default\Site.css" />
@@ -3191,6 +3203,7 @@
     <Content Include="Scripts\Default\clockpicker.js" />
     <Content Include="Scripts\Default\datetimepicker.js" />
     <Content Include="Scripts\Default\Angular\angular.min.js.map" />
+    <Content Include="Content\icons\SchemaIcons\Table\selection.json" />
     <None Include="Scripts\Default\jQuery\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Default\jQuery\jquery-1.10.2.js" />
     <Content Include="Scripts\Default\jQuery\jquery-1.10.2.min.js" />
@@ -3205,7 +3218,9 @@
     <Content Include="Scripts\Default\respond.js" />
     <Content Include="Scripts\Default\respond.min.js" />
     <None Include="Scripts\Default\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
