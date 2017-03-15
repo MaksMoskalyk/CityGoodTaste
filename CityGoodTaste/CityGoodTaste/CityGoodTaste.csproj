@@ -177,15 +177,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703151754569_InitialCreate.cs" />
-    <Compile Include="Migrations\201703151754569_InitialCreate.Designer.cs">
-      <DependentUpon>201703151754569_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703151836550_DB2.cs" />
-    <Compile Include="Migrations\201703151836550_DB2.Designer.cs">
-      <DependentUpon>201703151836550_DB2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationModels\City.cs" />
     <Compile Include="Models\ApplicationModels\Country.cs" />
@@ -199,7 +190,6 @@
     <Compile Include="Models\ApplicationModels\Phone.cs" />
     <Compile Include="Models\ApplicationModels\Photo.cs" />
     <Compile Include="Models\ApplicationModels\PriceEntry.cs" />
-    <Compile Include="Models\ApplicationModels\Reservation.cs" />
     <Compile Include="Models\ApplicationModels\Restaurant.cs" />
     <Compile Include="Models\ApplicationModels\RestaurantEvent.cs" />
     <Compile Include="Models\ApplicationModels\RestaurantFeature.cs" />
@@ -3271,12 +3261,6 @@
     <Content Include="Scripts\Default\jQuery\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703151754569_InitialCreate.resx">
-      <DependentUpon>201703151754569_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703151836550_DB2.resx">
-      <DependentUpon>201703151836550_DB2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
