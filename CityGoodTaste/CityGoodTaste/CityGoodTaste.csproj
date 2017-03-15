@@ -3284,12 +3284,6 @@
     <EmbeddedResource Include="Migrations\201703142143143_2.resx">
       <DependentUpon>201703142143143_2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703151714314_tablereserved.resx">
-      <DependentUpon>201703151714314_tablereserved.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703151715508_bool.resx">
-      <DependentUpon>201703151715508_bool.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
