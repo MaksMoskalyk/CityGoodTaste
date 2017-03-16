@@ -29,3 +29,7 @@
 .MenuHeadText{
     padding:10px;
 }
+.tableReviews{
+    border-spacing: 5px!important;
+    border-collapse:unset !important;
+}
