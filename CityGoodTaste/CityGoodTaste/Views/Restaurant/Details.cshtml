@@ -124,7 +124,7 @@
                                                 <table>
                                                     <tr>
                                                         <td>
-                                                            <img src="https://placehold.it/100x100?text=Пицца" alt="Image">
+                                                            <img class="img-thumbnail" src="https://placehold.it/100x100?text=Пицца" alt="Image">
                                                         </td>
                                                         <td>
                                                             <h3 class="MenuHeadText">Паста</h3>
@@ -132,31 +132,10 @@
                                                         </td>
                                                     </tr>
                                                 </table>
-
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div id="menu2" class="tab-pane fade">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="well">
-                                                <table>
-                                                    <tr>
-                                                        <td>
-                                                            <img src="https://placehold.it/100x100?text=Пицца" alt="Image">
-                                                        </td>
-                                                        <td>
-                                                            <h3 class="MenuHeadText">Вино</h3>
-                                                            <p>описание</p>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div>   
                             </div>
                         </div>
                         <div id="notice" class="tab-pane fade">
@@ -167,23 +146,28 @@
                         </div>
                         <div id="reviews" class="tab-pane fade">
                             <h2>@Html.LabelFor(model => model.Reviews)</h2>
-
                             @foreach (var item in Model.Reviews)
                             {
-                                <div class="row justify-content-around">
-                                    <div class="media" style="padding-left:50px">
-                                        <div class="media-left">
-                                            <img src="https://placehold.it/90x90?text=Аватар" class="media-object" style="width:90px">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">@item.Date.ToString()</h4>
-                                            <h4 class="media-heading">@item.User.Name</h4>
-                                            <p>@item.Text</p>
+                                <div class="row ">
+                                    <div class="col-sm-12">
+                                        <div >
+                                            <table style="border-spacing: 5px 5px; border-collapse:unset">
+                                                <tr>
+                                                    <td class="well" style="border-radius:20px; padding:10px;">
+                                                        <img src="https://placehold.it/90x90?text=Аватар" class="img-circle" width="90" height="90" alt="Avatar">
+                                                        <br />
+                                                        <h4 style="text-align:center" >@item.User.Name</h4>
+                                                    </td>
+                                                    <td class="well" style="width:100%; border-radius:20px;padding:10px; vertical-align:top">
+                                                        <p><span class="glyphicon glyphicon-time"> @item.Date.ToString()</span></p>
+                                                        <p>@item.Text</p>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             }
-
                         </div>
                     </div>
                 </div>
