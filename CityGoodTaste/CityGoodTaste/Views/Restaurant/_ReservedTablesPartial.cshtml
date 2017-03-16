@@ -1,0 +1,15 @@
+﻿@using CityGoodTaste.Models;
+@model CityGoodTaste.Models.Restaurant
+
+
+@foreach (var item in Model.RestaurantSchemas.FirstOrDefault().Tables)
+{
+    TableReservation reserv = item.TableReservation.Where(x => x.Date.Date == DateTime.Now).FirstOrDefault();
+
+    if (reserv == null)
+    {
+        continue;
+    }
+
+
+}

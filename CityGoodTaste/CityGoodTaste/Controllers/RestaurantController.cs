@@ -88,8 +88,10 @@ namespace CityGoodTaste.Controllers
         public ActionResult Schema(Models.ViewModels.RestaurantShemaViewModel model)
         {
 
-
-            return View();
+            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+            IRestaurantDataManager manager = factory.GetManager();
+            manager.ReservTables(model.Tables);
+            return null;
         }
 
         // GET: Restaurant/Create

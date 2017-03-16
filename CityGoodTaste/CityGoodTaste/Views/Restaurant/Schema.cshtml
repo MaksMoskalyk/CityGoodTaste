@@ -11,7 +11,7 @@
 {
 <div class="container-fluid" style="margin-bottom:50px;">
     <div class="panel-heading">
-        <button id="bt" type="submit" class="btn btn-default btn-block">Выбрать</button>
+        <button id="bt" type="submit" class="btn btn-default btn-block">Подтвердить</button>
     </div>
     @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
     @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
@@ -29,10 +29,30 @@
                             {
                                 if (Model.Tables[i].X == x && Model.Tables[i].Y == y)
                                 {
-                                    @Html.HiddenFor(m=>Model.Tables[i].Id, new { @class = "form-control" })
-                                    <td id="@x@y" style="width:98px;height:81px; text-align: center; border:solid 1px black;" reserved="false" tableId="@Model.Tables[i].Id">
-                                        <div id="divP.@x@y" style="top:10px; position:relative"><p id="P.@x@y" style="font-weight:bold">@Model.Tables[i].Seats <img id="imgP.@x@y" style="width:15px; height:15px" src="/Content/icons/SchemaIcons/Person.png" alt="loading" /></p></div>
-                                        <div id="divT.@x@y" style="top:-10px; position:relative"><img id="imgT.@x@y" style="width:48px; height:48px" src="/Content/icons/SchemaIcons/Table.png" alt="loading" /></div>
+                                    @Html.HiddenFor(m=>Model.Tables[i].Id)
+                                    @Html.HiddenFor(m => Model.Tables[i].Reserved, new {id="reserved."+ Model.Tables[i].Id })
+                                    string personPath = string.Empty;
+                                    string tablePath = string.Empty;
+
+                                    if (Model.Tables[i].ReservedAndConfirmed==true)
+                                    {
+                                        personPath = "/Content/icons/SchemaIcons/InactivePerson.png";
+                                        tablePath = "/Content/icons/SchemaIcons/InactiveTable.png";
+                                    }
+                                    else
+                                    {
+                                        personPath = "/Content/icons/SchemaIcons/Person.png";
+                                        tablePath = "/Content/icons/SchemaIcons/Table.png";
+                                    }
+                                    <td id="@x@y" style="width:98px;height:81px; text-align: center; border:solid 1px black;" tableId="@Model.Tables[i].Id" reserved="@Model.Tables[i].Reserved.ToString()" reservedandconfirmed="@Model.Tables[i].ReservedAndConfirmed.ToString()">
+                                        <div id="divP.@x@y" style="top:10px; position:relative" tableId="@Model.Tables[i].Id" >
+                                            <p id="P.@x@y" style="font-weight:bold" tableId="@Model.Tables[i].Id">@Model.Tables[i].Seats 
+                                            <img id="imgP.@x@y" style="width:15px; height:15px" src="@(personPath)" tableId="@Model.Tables[i].Id" />
+                                            </p>
+                                        </div>
+                                        <div id="divT.@x@y" style="top:-10px; position:relative" tableId="@Model.Tables[i].Id" >
+                                            <img id="imgT.@x@y" style="width:48px; height:48px" src="@(tablePath)" alt="loading" tableId="@Model.Tables[i].Id"/>
+                                        </div>
                                     </td>
                                     tdCreated = true;
                                     break;
@@ -56,23 +76,30 @@
 
     $('td').click(function (event) {
         event.stopPropagation();
-        var tdId = event.target.id;;
         var id = event.target.id;
-        var reserved = (document.getElementById(tdId).getAttribute('reserved') == "true");
+
+
         if (id.indexOf('.') > 0)
             id = id.substring(id.indexOf('.') + 1);
 
+        var reserved = document.getElementById(id).getAttribute('reserved');
+        if (document.getElementById(id).getAttribute('reservedandconfirmed') == "True")
+            return;
 
-        if (reserved == false) {
-            document.getElementById('imgP.' + id).src = "/Content/icons/SchemaIcons/ActivePerson.png";
-            document.getElementById('imgT.' + id).src = "/Content/icons/SchemaIcons/ActiveTable.png";
-            document.getElementById('P.' + id).style.color = "green";
-            document.getElementById(tdId).setAttribute('reserved', !reserved);
-        } else {
+        var tableId = document.getElementById('imgP.' + id).getAttribute('tableId');
+        document.getElementById('reserved.' + tableId).value = true;
+
+        if (reserved == "True") {
             document.getElementById('imgP.' + id).src = "/Content/icons/SchemaIcons/Person.png";
             document.getElementById('imgT.' + id).src = "/Content/icons/SchemaIcons/Table.png";
             document.getElementById('P.' + id).style.color = "black";
-            document.getElementById(tdId).setAttribute('reserved', !reserved);
+            document.getElementById(id).setAttribute('reserved', 'False');
+        } else {
+
+            document.getElementById('imgP.' + id).src = "/Content/icons/SchemaIcons/ActivePerson.png";
+            document.getElementById('imgT.' + id).src = "/Content/icons/SchemaIcons/ActiveTable.png";
+            document.getElementById('P.' + id).style.color = "green";
+            document.getElementById(id).setAttribute('reserved', 'True');
         }
     });
 
