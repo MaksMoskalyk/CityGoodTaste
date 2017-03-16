@@ -53,12 +53,26 @@
         </a>
 
         <div  style="margin: 10px; padding: 0px; background-color:crimson">
-            @using (Html.BeginForm("ChangeCulture", "Home", new { htmlAttributes = new { @class = "languageForm", style = "margin:0px;padding:0px;background-color:crimson;" } }, FormMethod.Post))
+            @*@using (Html.BeginForm("ChangeCulture", "Home", new { htmlAttributes = new { @class = "languageForm", style = "margin:0px;padding:0px;background-color:crimson;" } }, FormMethod.Post))
             {
                 <div class="pull-right">
                     <div style="margin: 0px; padding: 0px; background-color:crimson">
+                            <select name="lang" onchange="this.form.submit()">
+                                <option disabled selected>@CityGoodTaste.Resources.Resource.ChooseLang</option>
+                                <option value="en-US">English</option>
+                                <option value="ru-RU">Русский</option>
+                                <option value="uk-UA">Українська</option>
+                            </select>
+                        <button  type="submit" name="submit" class="btn-success" value="@CityGoodTaste.Resources.Resource.ChooseLang">@CityGoodTaste.Resources.Resource.ChooseLang</button>
+                    </div>
+                </div>
+            }*@
 
-                            <select name="lang">
+             @using (Html.BeginForm("ChangeCulture", "Home", new { htmlAttributes = new { @class = "languageForm", style = "margin:0px;padding:0px;background-color:crimson;" } }, FormMethod.Post))
+            {
+                <div class="pull-right">
+                    <div style="margin: 0px; padding: 0px; background-color:crimson">
+                            <select name="lang" onchange="this.form.submit()">
                                 <option disabled selected>@CityGoodTaste.Resources.Resource.ChooseLang</option>
                                 <option value="en-US">English</option>
                                 <option value="ru-RU">Русский</option>
