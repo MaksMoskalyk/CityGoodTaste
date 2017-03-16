@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using CityGoodTaste.Models;
 using System.Data.Entity;
+using CityGoodTaste.Models.ViewModels;
 
 namespace CityGoodTaste.BusinessLayer
 {
@@ -25,6 +26,7 @@ namespace CityGoodTaste.BusinessLayer
         List<Restaurant> GetListRestaurants();
         RestaurantSchema GetRestaurantSchema(int? id);
         List<RestaurantEvent> GetListRestaurantEvents();
+        RestaurantShemaViewModel GetRestaurantViewModelSchema(int? id);
         List<EventType> GetAllEventTypes();
         List<Cuisine> GetAllCuisines();
         List<RestaurantFeature> GetAllRestaurantFeatures();
@@ -162,6 +164,31 @@ namespace CityGoodTaste.BusinessLayer
                     Schema = context.RestaurantSchemas.Include(t => t.Restaurant).FirstOrDefault(t => t.Id == id);
                     Schema = context.RestaurantSchemas.Include(t => t.Tables).FirstOrDefault();
                     return Schema;
+                }
+                catch
+                {
+                    throw new Exception("Restaurant not found");
+                }
+            }
+        }
+
+        public RestaurantShemaViewModel GetRestaurantViewModelSchema(int? id)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    Restaurant Rest = context.Restaurants.Find(id);
+                    RestaurantSchema Schema = Rest.RestaurantSchemas.FirstOrDefault();
+                    Schema = context.RestaurantSchemas.Include(t => t.Restaurant).FirstOrDefault(t => t.Id == id);
+                    Schema = context.RestaurantSchemas.Include(t => t.Tables).FirstOrDefault();
+                    RestaurantShemaViewModel vmSchema = new RestaurantShemaViewModel();
+                    vmSchema.Id = Schema.Id;
+                    vmSchema.Name = Schema.Name;
+                    vmSchema.Tables = Schema.Tables.ToList();
+                    vmSchema.XLength = Schema.XLength;
+                    vmSchema.YLength = Schema.YLength;
+                    return vmSchema;
                 }
                 catch
                 {

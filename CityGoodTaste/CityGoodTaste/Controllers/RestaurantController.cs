@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CityGoodTaste.BusinessLayer;
 using CityGoodTaste.Models;
+using CityGoodTaste.Models.ViewModels;
 
 namespace CityGoodTaste.Controllers
 {
@@ -88,13 +89,22 @@ namespace CityGoodTaste.Controllers
             RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
             IRestaurantDataManager manager = factory.GetManager();
             RestaurantSchema Schema = manager.GetRestaurantSchema(id);
+            RestaurantShemaViewModel schema = manager.GetRestaurantViewModelSchema(id);
 
             if (Schema == null)
             {
                 return HttpNotFound();
             }
-            return View(Schema);
+            return View(schema);
+        }
 
+
+        [HttpPost]
+        public ActionResult Schema(Models.ViewModels.RestaurantShemaViewModel model)
+        {
+
+
+            return View();
         }
 
         // GET: Restaurant/Create
