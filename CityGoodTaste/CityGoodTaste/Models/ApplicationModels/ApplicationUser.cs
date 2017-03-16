@@ -25,6 +25,9 @@ namespace CityGoodTaste.Models
         [MaxLength(50)]
         public string Surname { get; set; }
 
+        [Display(Name = "UserPhoto", ResourceType = typeof(Resources.Resource))]
+        public byte[] Photo { get; set; }
+
         [Display(Name = "Phones", ResourceType = typeof(Resources.Resource))]
         public virtual ICollection<Phone> Phones { get; set; }
 
