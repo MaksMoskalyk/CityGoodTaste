@@ -46,21 +46,6 @@ namespace CityGoodTaste.Controllers
             return View(RestaurantEvent);
         }
 
-        // POST: Restaurant/Events
-        [HttpPost]
-        public ActionResult Events(int? id)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
         // GET: Restaurant/Details/5
         public async Task<ActionResult> Details(int? id)
         {
