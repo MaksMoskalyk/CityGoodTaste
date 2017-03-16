@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Good Taste City</title>
     @*Custom Scripts*@
     @Scripts.Render("~/bundles/defaultScript")
     @Scripts.Render("~/bundles/customScript")
@@ -25,7 +25,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href='@Url.Action("Index", "Home")'>CGT</a>
+                    <a class="navbar-brand" href='@Url.Action("Index", "Home")'><span class="glyphicon glyphicon-home"></span> GTC</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
@@ -51,30 +51,18 @@
         <a class="up-arrow" href="#navPanel" data-toggle="tooltip" title="TO TOP">
             <span class="glyphicon glyphicon-chevron-up"></span>
         </a>
-
-        <div  style="margin: 10px; padding: 0px; background-color:crimson">
-            @using (Html.BeginForm("ChangeCulture", "Home", new { htmlAttributes = new { @class = "languageForm", style = "margin:0px;padding:0px;background-color:crimson;" } }, FormMethod.Post))
-            {
-                <div class="pull-right">
-                    <div style="margin: 0px; padding: 0px; background-color:crimson">
-
-                            <select name="lang">
-                                <option disabled selected>@CityGoodTaste.Resources.Resource.ChooseLang</option>
-                                <option value="en-US">English</option>
-                                <option value="ru-RU">Русский</option>
-                                <option value="uk-UA">Українська</option>
-                            </select>
-                        <button  type="submit" name="submit" class="btn-success" value="@CityGoodTaste.Resources.Resource.ChooseLang">@CityGoodTaste.Resources.Resource.ChooseLang</button>
-                    </div>
-                </div>
-            }
-        </div>       
+        <div>
+            <div style="float:right; margin-right:10px;">
+                <a class="btn btn-default CountryIcon" style="background-image:url('Content/icons/flags/en.png');" href="@Url.Action("ChangeCulture", "Home", new { lang = "en-US" })" data-toggle="tooltip" title="English">&nbsp;</a>
+                <a class="btn btn-default CountryIcon" style="background-image:url('Content/icons/flags/ruRU.png');" href="@Url.Action("ChangeCulture", "Home", new { lang = "ru-RU" })" data-toggle="tooltip" title="Русский">&nbsp;</a>
+                <a class="btn btn-default CountryIcon" style="background-image:url('Content/icons/flags/ukUA.png');" href="@Url.Action("ChangeCulture", "Home", new { lang = "uk-UA" })" data-toggle="tooltip" title="Українська">&nbsp;</a>
+            </div>
+        </div>      
     </footer>
 
 
     <div class="modal fade" id="BotModal" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header" style="background-color:#333333; color:white">
@@ -94,7 +82,6 @@
                     </button>
                 </div>
             </div>
-
         </div>
     </div> 
     @RenderSection("scripts", required: false)
