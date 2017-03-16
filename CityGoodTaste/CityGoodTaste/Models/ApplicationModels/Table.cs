@@ -22,6 +22,5 @@ namespace CityGoodTaste.Models
 
         [Display(Name = "Reservations", ResourceType = typeof(Resources.Resource))]
         public virtual ICollection<TableReservation> TableReservation { get; set; }
-
     }
 }

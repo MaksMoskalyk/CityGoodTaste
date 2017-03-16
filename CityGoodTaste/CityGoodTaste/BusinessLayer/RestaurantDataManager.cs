@@ -5,6 +5,9 @@ using System.Web;
 using CityGoodTaste.Models;
 using System.Data.Entity;
 using CityGoodTaste.Models.ViewModels;
+using Microsoft.AspNet.Identity;
+
+
 
 namespace CityGoodTaste.BusinessLayer
 {
@@ -31,6 +34,7 @@ namespace CityGoodTaste.BusinessLayer
         List<Cuisine> GetAllCuisines();
         List<RestaurantFeature> GetAllRestaurantFeatures();
         List<MealGroup> GetAllMealGroups();
+        void ReservTables(List<TableViewModel> tables);
     }
 
     public class RestaurantDataManager: IRestaurantDataManager
@@ -48,6 +52,12 @@ namespace CityGoodTaste.BusinessLayer
                     Rest = context.Restaurants.Include(t => t.WorkHours).FirstOrDefault(t => t.Id == id);
                     Rest = context.Restaurants.Include(t => t.Reviews).FirstOrDefault(t => t.Id == id);
                     Rest.Reviews = context.RestaurantReviews.Include(t => t.User).ToList();
+                    Rest = context.Restaurants.Include(t => t.RestaurantSchemas).FirstOrDefault(t=>t.Id==id);
+                    var tables = context.Tables.Include(t => t.TableReservation);
+                    Rest.RestaurantSchemas = context.RestaurantSchemas.Include(t => t.Tables = tables.ToList()).ToList();
+
+                    
+
                     return Rest;
                 }
                 catch
@@ -185,7 +195,23 @@ namespace CityGoodTaste.BusinessLayer
                     RestaurantShemaViewModel vmSchema = new RestaurantShemaViewModel();
                     vmSchema.Id = Schema.Id;
                     vmSchema.Name = Schema.Name;
-                    vmSchema.Tables = Schema.Tables.ToList();
+                    List<TableViewModel> vmTables = new List<TableViewModel>();
+
+                    foreach (var table in Schema.Tables)
+                    {
+                        TableViewModel vmTable = new TableViewModel { Id = table.Id, X = table.X, Y = table.Y, Seats = table.Seats, ReservedAndConfirmed = false, Reserved = false };
+                        foreach (var reserv in table.TableReservation)
+                        {
+                            if (reserv.Date.Date == DateTime.Now.Date)
+                            {
+                                vmTable.ReservedAndConfirmed = true;
+                                break;
+                            }
+                        }
+                        vmTables.Add(vmTable);
+                    }
+
+                    vmSchema.Tables = vmTables;
                     vmSchema.XLength = Schema.XLength;
                     vmSchema.YLength = Schema.YLength;
                     return vmSchema;
@@ -193,6 +219,25 @@ namespace CityGoodTaste.BusinessLayer
                 catch
                 {
                     throw new Exception("Restaurant not found");
+                }
+            }
+        }
+
+        public void ReservTables(List<TableViewModel> tables)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                foreach (var item in tables)
+                {
+                    if (item.Reserved == true)
+                    {                        
+                        //ApplicationUser currentUser = context.Users.FirstOrDefault(x => x.Id == HttpContext.Current.User.Identity.GetUserId());
+                        ApplicationUser currentUser = context.Users.FirstOrDefault();
+                        Table table = context.Tables.Find(item.Id);
+                        TableReservation reserv = new TableReservation { Date = DateTime.Now, Table = table, User = currentUser, Reserved = true, ReservedAndConfirmed=false };
+                        context.TableReservations.Add(reserv);
+                        context.SaveChanges();
+                    }
                 }
             }
         }

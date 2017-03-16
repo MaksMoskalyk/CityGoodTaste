@@ -6,7 +6,7 @@ using System;
 
 namespace CityGoodTaste.Models
 {
-    public class GoodTasteDBInitializer : CreateDatabaseIfNotExists<GoodTasteContext>
+    public class GoodTasteDBInitializer :CreateDatabaseIfNotExists<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {
@@ -90,24 +90,25 @@ namespace CityGoodTaste.Models
             Like like = new Like { User = user, Restaurant = r };
 
             RestaurantSchema schema = new RestaurantSchema { Name = "1th Foor", InDoor = true, Restaurant = r, SmokingZone = false, XLength = 10, YLength = 10 };
-            Table t1 = new Table { Seats = 4, X = 1, Y = 1 };
-            Table t2 = new Table { Seats = 4, X = 3, Y = 1 };
-            Table t3 = new Table { Seats = 4, X = 5, Y = 1 };
-            Table t4 = new Table { Seats = 4, X = 1, Y = 3 };
-            Table t5 = new Table { Seats = 4, X = 3, Y = 3 };
-            Table t6 = new Table { Seats = 4, X = 5, Y = 3 };
-            Table t7 = new Table { Seats = 4, X = 9, Y = 1 };
-            Table t8 = new Table { Seats = 4, X = 9, Y = 3 };
-            Table t9 = new Table { Seats = 4, X = 0, Y = 4 };
-            Table t10 = new Table { Seats = 4, X = 0, Y = 6 };
-            Table t11 = new Table { Seats = 4, X = 0, Y = 8 };
-            Table t12 = new Table { Seats = 4, X = 3, Y = 4 };
-            Table t13 = new Table { Seats = 4, X = 3, Y = 7 };
-            Table t14 = new Table { Seats = 4, X = 3, Y = 9 };
-            Table t15 = new Table { Seats = 4, X = 9, Y = 4 };
-            Table t16 = new Table { Seats = 4, X = 9, Y = 5 };
-            Table t17 = new Table { Seats = 4, X = 9, Y = 7 };
-            Table t18 = new Table { Seats = 4, X = 9, Y = 9 };
+            Table t1 = new Table { Seats = 4, X = 1, Y = 1};
+            Table t2 = new Table { Seats = 4, X = 3, Y = 1};
+            Table t3 = new Table { Seats = 4, X = 5, Y = 1};
+            Table t4 = new Table { Seats = 4, X = 1, Y = 3};
+            Table t5 = new Table { Seats = 4, X = 3, Y = 3};
+            Table t6 = new Table { Seats = 4, X = 5, Y = 3};
+            Table t7 = new Table { Seats = 4, X = 9, Y = 1};
+            Table t8 = new Table { Seats = 4, X = 9, Y = 3};
+            Table t9 = new Table { Seats = 4, X = 0, Y = 4};
+            Table t10 = new Table { Seats = 4, X = 0, Y = 6};
+            Table t11 = new Table { Seats = 4, X = 0, Y = 8};
+            Table t12 = new Table { Seats = 4, X = 3, Y = 4};
+            Table t13 = new Table { Seats = 4, X = 3, Y = 7};
+            Table t14 = new Table { Seats = 4, X = 3, Y = 9};
+            Table t15 = new Table { Seats = 4, X = 9, Y = 4};
+            Table t16 = new Table { Seats = 4, X = 9, Y = 5};
+            Table t17 = new Table { Seats = 4, X = 9, Y = 7};
+            Table t18 = new Table { Seats = 4, X = 9, Y = 9};
+
             schema.Tables = new List<Table>();
             schema.Tables.Add(t1);
             schema.Tables.Add(t2);
