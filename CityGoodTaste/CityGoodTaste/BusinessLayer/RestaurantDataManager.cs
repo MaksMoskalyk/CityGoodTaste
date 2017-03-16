@@ -53,11 +53,7 @@ namespace CityGoodTaste.BusinessLayer
                     Rest = context.Restaurants.Include(t => t.Reviews).FirstOrDefault(t => t.Id == id);
                     Rest.Reviews = context.RestaurantReviews.Include(t => t.User).ToList();
                     Rest = context.Restaurants.Include(t => t.RestaurantSchemas).FirstOrDefault(t=>t.Id==id);
-                    var tables = context.Tables.Include(t => t.TableReservation);
-                    Rest.RestaurantSchemas = context.RestaurantSchemas.Include(t => t.Tables = tables.ToList()).ToList();
-
-                    
-
+                    Rest.RestaurantSchemas = context.RestaurantSchemas.Include(t => t.Tables.Select(r => r.TableReservation)).ToList();
                     return Rest;
                 }
                 catch
