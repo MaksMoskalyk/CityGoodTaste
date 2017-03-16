@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace CityGoodTaste.Models
 {
@@ -42,5 +44,8 @@ namespace CityGoodTaste.Models
 
         [Display(Name = "Restaurant", ResourceType = typeof(Resources.Resource))]
         public virtual Restaurant Restaurant { get; set; }
+
+        [Display(Name = "EventType", ResourceType = typeof(Resources.Resource))]
+        public virtual ICollection<EventType> EventTypes { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace CityGoodTaste.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201703151754569_InitialCreate"; }
+            get { return "201703152053572_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

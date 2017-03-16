@@ -366,4 +366,10 @@
   <data name="TableReserved" xml:space="preserve">
     <value>TableReserved</value>
   </data>
+  <data name="EventTypeName" xml:space="preserve">
+    <value>EventTypeName</value>
+  </data>
+  <data name="EventType" xml:space="preserve">
+    <value>EventType</value>
+  </data>
 </root>

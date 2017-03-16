@@ -6,7 +6,7 @@ using System;
 
 namespace CityGoodTaste.Models
 {
-    public class GoodTasteDBInitializer : DropCreateDatabaseAlways<GoodTasteContext>
+    public class GoodTasteDBInitializer : CreateDatabaseIfNotExists<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {
@@ -134,6 +134,21 @@ namespace CityGoodTaste.Models
             context.Countries.Add(c);
             context.Cities.Add(ct);
             context.Restaurants.Add(r);
+            context.EventTypes.Add(new Models.EventType() { Name = "EventTypes 1"});
+            context.EventTypes.Add(new Models.EventType() { Name = "EventTypes 2" });
+            context.EventTypes.Add(new Models.EventType() { Name = "EventTypes 3" });
+            context.EventTypes.Add(new Models.EventType() { Name = "EventTypes 4" });
+            context.Cuisines.Add(new Cuisine() { Name = "Cuisine 1" });
+            context.Cuisines.Add(new Cuisine() { Name = "Cuisine 2" });
+            context.Cuisines.Add(new Cuisine() { Name = "Cuisine 3" });
+            context.Cuisines.Add(new Cuisine() { Name = "Cuisine 4" });
+            context.Cuisines.Add(new Cuisine() { Name = "Cuisine 5" });
+            context.Cuisines.Add(new Cuisine() { Name = "Cuisine 6" });
+            context.MealGroups.Add(new MealGroup() { Name = "MealGroup 1" });
+            context.MealGroups.Add(new MealGroup() { Name = "MealGroup 2" });
+            context.MealGroups.Add(new MealGroup() { Name = "MealGroup 3" });
+            context.MealGroups.Add(new MealGroup() { Name = "MealGroup 4" });
+            context.MealGroups.Add(new MealGroup() { Name = "MealGroup 5" });
             context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 1", "Restaurant Event 1 Description",  DateTime.Now, DateTime.Now.AddHours(4), r));
             context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 2", "Restaurant Event 2 Description", DateTime.Now, DateTime.Now.AddHours(4), r));
             context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 3", "Restaurant Event 3 Description", DateTime.Now, DateTime.Now.AddHours(4), r));

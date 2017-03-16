@@ -37,11 +37,16 @@ namespace CityGoodTaste.Controllers
             return Redirect(returnUrl);
         }
 
+        // GET: Restaurants
         public ActionResult Index()
         {
             RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
             IRestaurantDataManager manager = factory.GetManager();
             List<Restaurant> Restaurants = manager.GetListRestaurants();
+            if(Restaurants.Count>8)
+            {
+                Restaurants.RemoveRange(8, Restaurants.Count - 7);
+            }
             return View(Restaurants);
         }
         

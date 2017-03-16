@@ -18,5 +18,7 @@ namespace CityGoodTaste.Models
 
         [Display(Name = "Restaurants", ResourceType = typeof(Resources.Resource))]
         public virtual ICollection<Restaurant> Restaurants { get; set; }
+
+        
     }
 }
