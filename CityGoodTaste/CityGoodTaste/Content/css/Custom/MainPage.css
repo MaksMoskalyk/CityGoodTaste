@@ -14,3 +14,8 @@
     margin: auto;
     min-height: 200px;
 }
+.searchForm{
+    background-color:#333333;
+    padding-left:1%; 
+    padding-right:1%;
+}
