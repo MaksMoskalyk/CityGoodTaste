@@ -37,7 +37,7 @@ namespace CityGoodTaste.BusinessLayer
         List<MealGroup> GetAllMealGroups();
         void ReservTables(List<TableViewModel> tables);
         string GetCurrectUserId();
-        List<RestaurantEvent> SearchEvents(string searchText);
+        List<RestaurantEvent> SearchEvents(string searchText, string CheckEl);
     }
 
     public class RestaurantDataManager: IRestaurantDataManager
@@ -92,7 +92,8 @@ namespace CityGoodTaste.BusinessLayer
             {
                 try
                 {
-                    List<RestaurantEvent> result = context.RestaurantEvent.Include(t => t.Restaurant).ToList();
+                    List<RestaurantEvent> result = context.RestaurantEvent.Include(t => t.Restaurant)
+                        .Include(t => t.EventTypes).ToList();
                     return result;
                 }
                 catch
@@ -103,13 +104,21 @@ namespace CityGoodTaste.BusinessLayer
 
         }
         
-            public List<RestaurantEvent> SearchEvents(string searchText)
+            public List<RestaurantEvent> SearchEvents(string searchText, string CheckEl)
         {
             using (GoodTasteContext context = new GoodTasteContext())
             {
                 try
                 {
-                    List<RestaurantEvent> result = context.RestaurantEvent.Include(t => t.Restaurant).Where(t => t.Name.Contains(searchText)).ToList();
+                    string[] el = CheckEl.Split(',');
+                    List<int> idEl = new List<int>();
+                    for (int i = 0; i < el.Count(); i++)
+                    {
+                        idEl.Add(int.Parse(el[i].Trim()));
+                    }
+
+                    List<RestaurantEvent> result = context.RestaurantEvent.Include(t => t.Restaurant).Include(t => t.EventTypes)
+                        .Where(t => t.Name.Contains(searchText)).Where(t => t.EventTypes.Select(x=> x.Id="list<int>")).ToList();
                     if (result.Count > 10)
                         result.RemoveRange(10, result.Count - 9);
                     return result;

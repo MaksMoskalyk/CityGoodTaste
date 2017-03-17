@@ -387,4 +387,7 @@
   <data name="SearchRestmMess" xml:space="preserve">
     <value>restaurant name, kitchen, menu item</value>
   </data>
+  <data name="EventTypes" xml:space="preserve">
+    <value>Event types</value>
+  </data>
 </root>

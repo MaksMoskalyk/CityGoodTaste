@@ -387,4 +387,7 @@
   <data name="SearchRestmMess" xml:space="preserve">
     <value>название ресторана, кухня, пункты меню</value>
   </data>
+  <data name="EventTypes" xml:space="preserve">
+    <value>Типы ивентов</value>
+  </data>
 </root>
