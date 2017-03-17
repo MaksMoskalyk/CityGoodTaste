@@ -217,7 +217,10 @@
                     @Html.Partial("_ReservedTablesPartial")
                     @Html.ActionLink("Schema", "Schema", "Restaurant", new { id = Model.Id }, htmlAttributes: new { title = "Schema" })
                     <div class="center-block row">
-                        <img src="https://placehold.it/250x150?text=IMAGE" alt="img" class="img-responsive col-sm-12" />
+                        <a data-toggle="modal" data-target="#SchemaModal" href="#">
+                            <img src="https://placehold.it/250x150?text=Schema" alt="img" class="img-responsive col-sm-12" />
+                        </a>
+                        
                     </div>
                 </div>
 
@@ -245,3 +248,10 @@
             </div>
         </div>
     </div>
+
+<div class="modal fade" id="SchemaModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        @Html.Action("SchemaReservedTables", "Restaurant", new { id =Model.Id })
+    </div>
+</div> 

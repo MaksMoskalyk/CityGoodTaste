@@ -159,5 +159,25 @@ namespace CityGoodTaste.Controllers
                 return View();
             }
         }
+
+        // GET: Restaurant/SchemaReservedTables
+        public ActionResult SchemaReservedTables(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+            IRestaurantDataManager manager = factory.GetManager();
+            RestaurantSchema Schema = manager.GetRestaurantSchema(id);
+            RestaurantShemaViewModel schema = manager.GetRestaurantViewModelSchema(id);
+
+            if (Schema == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(schema);
+        }
+
     }
 }
