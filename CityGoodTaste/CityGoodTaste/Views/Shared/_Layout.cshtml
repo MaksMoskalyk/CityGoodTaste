@@ -34,6 +34,32 @@
                         <li><a data-toggle="modal" data-target="#BotModal" href="#">@CityGoodTaste.Resources.Resource.SmartAssistant</a></li>
                     </ul>
                     @Html.Partial("_LoginPartial")
+                    <div class="dropdown " style="float:right; margin-top: 10px;">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                            <span class="glyphicon glyphicon-globe"></span> @CityGoodTaste.Controllers.HomeController.getCulture()
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu langDropdown" style="left:-50px" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation">
+                                <a class="langHref" role="menuitem" tabindex="-1" href="@Url.Action("ChangeCulture", "Home", new { lang = "en-GB" })" data-toggle="tooltip" title="English">
+                                    <img src="../../Content/icons/flags/enGB.png" class="img-rounded langImg" alt="flag" />
+                                    English
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a class="langHref" role="menuitem" tabindex="-1" href="@Url.Action("ChangeCulture", "Home", new { lang = "ru-RU" })" data-toggle="tooltip" title="Русский">
+                                    <img src="../../Content/icons/flags/ruRU.png" class="img-rounded langImg" alt="flag" />
+                                    Русский
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a class="langHref" role="menuitem" tabindex="-1" href="@Url.Action("ChangeCulture", "Home", new { lang = "uk-UA" })" data-toggle="tooltip" title="Українська">
+                                    <img src="../../Content/icons/flags/ukUA.png" class="img-rounded langImg" alt="flag" />
+                                    Українська
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -53,9 +79,9 @@
         </a>
         <div>
             <div style="float:right; margin-right:10px;">
-                <a class="btn btn-default CountryIcon" style="background-image:url('Content/icons/flags/en.png');" href="@Url.Action("ChangeCulture", "Home", new { lang = "en-US" })" data-toggle="tooltip" title="English">&nbsp;</a>
-                <a class="btn btn-default CountryIcon" style="background-image:url('Content/icons/flags/ruRU.png');" href="@Url.Action("ChangeCulture", "Home", new { lang = "ru-RU" })" data-toggle="tooltip" title="Русский">&nbsp;</a>
-                <a class="btn btn-default CountryIcon" style="background-image:url('Content/icons/flags/ukUA.png');" href="@Url.Action("ChangeCulture", "Home", new { lang = "uk-UA" })" data-toggle="tooltip" title="Українська">&nbsp;</a>
+                <a class="btn btn-default CountryIcon" style="background-image:url('../../Content/icons/flags/en.png');" href="@Url.Action("ChangeCulture", "Home", new { lang = "en-US" })" data-toggle="tooltip" title="English">&nbsp;</a>
+                <a class="btn btn-default CountryIcon" style="background-image:url('../../Content/icons/flags/ruRU.png');" href="@Url.Action("ChangeCulture", "Home", new { lang = "ru-RU" })" data-toggle="tooltip" title="Русский">&nbsp;</a>
+                <a class="btn btn-default CountryIcon" style="background-image:url('../../Content/icons/flags/ukUA.png');" href="@Url.Action("ChangeCulture", "Home", new { lang = "uk-UA" })" data-toggle="tooltip" title="Українська">&nbsp;</a>
             </div>
         </div>      
     </footer>

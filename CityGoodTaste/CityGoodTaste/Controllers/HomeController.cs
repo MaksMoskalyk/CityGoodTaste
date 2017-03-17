@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using CityGoodTaste.BusinessLayer;
@@ -19,10 +20,10 @@ namespace CityGoodTaste.Controllers
         {
             string returnUrl = Request.UrlReferrer.AbsolutePath;
 
-            List<string> cultures = new List<string>() { "en-US", "ru-RU", "uk-UA" };
+            List<string> cultures = new List<string>() { "en-GB", "ru-RU", "uk-UA" };
             if (!cultures.Contains(lang))
             {
-                lang = "en-US";
+                lang = "en-GB";
             }
             HttpCookie cookie = Request.Cookies["lang"];
             if (cookie != null)
@@ -36,7 +37,11 @@ namespace CityGoodTaste.Controllers
             Response.Cookies.Add(cookie);
             return Redirect(returnUrl);
         }
+        public static string getCulture()
+        {
 
+            return Thread.CurrentThread.CurrentCulture.ThreeLetterWindowsLanguageName;
+        }
         // GET: Restaurants
         public ActionResult Index()
         {

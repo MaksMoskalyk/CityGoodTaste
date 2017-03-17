@@ -17,33 +17,33 @@ namespace CityGoodTaste.Models
             return userIdentity;
         }
 
-        [Display(Name = "UserName", ResourceType = typeof(Resources.Resource))]
+        
         [MaxLength(50)]
         public string Name { get; set; }
 
-        [Display(Name = "UserSurname", ResourceType = typeof(Resources.Resource))]
+       
         [MaxLength(50)]
         public string Surname { get; set; }
 
-        [Display(Name = "UserPhoto", ResourceType = typeof(Resources.Resource))]
+        
         public byte[] Photo { get; set; }
 
-        [Display(Name = "Phones", ResourceType = typeof(Resources.Resource))]
+        
         public virtual ICollection<Phone> Phones { get; set; }
 
-        [Display(Name = "Cuisines", ResourceType = typeof(Resources.Resource))]
+       
         public virtual ICollection<Cuisine> Cuisines { get; set; }
 
-        [Display(Name = "Orders", ResourceType = typeof(Resources.Resource))]
+        
         public virtual ICollection<Order> Orders { get; set; }
 
-        [Display(Name = "Likes", ResourceType = typeof(Resources.Resource))]
+
         public virtual ICollection<Like> Likes { get; set; }
 
-        [Display(Name = "Reviews", ResourceType = typeof(Resources.Resource))]
+     
         public virtual ICollection<RestaurantReview> Reviews { get; set; }
 
-        [Display(Name = "Reservations", ResourceType = typeof(Resources.Resource))]
+       
         public virtual ICollection<TableReservation> TableReservation { get; set; }
 
     }
