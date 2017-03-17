@@ -116,11 +116,25 @@ namespace CityGoodTaste.BusinessLayer
                     {
                         idEl.Add(int.Parse(el[i].Trim()));
                     }
+                    List<EventType> EventTypes = context.EventTypes.Include(t =>t.RestaurantEvents).Where(x => idEl.Contains(x.Id)).ToList();
+                    var re = EventTypes.Select(t => t.RestaurantEvents).ToList();
+                    List<int> id = new List<int>();
+                    for (int i = 0; i < re[0].ToList().Count(); i++)
+                    {
+                        id.Add(re[0].ToList()[i].Id);
+                    }
+                    List<RestaurantEvent> result;
+                    if (searchText == null)
+                    {
+                        result = context.RestaurantEvent.Include(t => t.Restaurant)
+                          .Include(t => t.EventTypes).Where(t => id.Contains(t.Id)).ToList();
+                    }
+                    else
+                    {
+                        result = context.RestaurantEvent.Include(t => t.Restaurant)
+                         .Include(t => t.EventTypes).Where(t => id.Contains(t.Id)).Where(t => t.Name.Contains(searchText)).ToList();
+                    }
 
-                    List<RestaurantEvent> result = context.RestaurantEvent.Include(t => t.Restaurant).Include(t => t.EventTypes)
-                        .Where(t => t.Name.Contains(searchText)).Where(t => t.EventTypes.Select(x=> x.Id="list<int>")).ToList();
-                    if (result.Count > 10)
-                        result.RemoveRange(10, result.Count - 9);
                     return result;
                 }
                 catch
