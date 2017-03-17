@@ -23,12 +23,12 @@ namespace CityGoodTaste.CustomFilters
             if (cultureCookie != null)
                 cultureName = cultureCookie.Value;
             else
-                cultureName = "en-US";
+                cultureName = "en-GB";
 
-            List<string> cultures = new List<string>() { "en-US","ru-RU", "uk-UA" };
+            List<string> cultures = new List<string>() { "en-GB", "ru-RU", "uk-UA" };
             if (!cultures.Contains(cultureName))
             {
-                cultureName = "en-US";
+                cultureName = "en-GB";
             }
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cultureName);
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(cultureName);

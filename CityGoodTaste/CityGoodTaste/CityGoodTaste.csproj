@@ -237,7 +237,7 @@
     <Content Include="Content\css\Default\clockpicker.css" />
     <Content Include="Content\css\Default\jquery.bootstrap-touchspin.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\icons\flags\en.png" />
+    <Content Include="Content\icons\flags\enGB.png" />
     <Content Include="Content\icons\flags\ruRU.png" />
     <Content Include="Content\icons\flags\ukUA.png" />
     <Content Include="Content\icons\open-iconic\font\css\open-iconic-bootstrap.css" />
