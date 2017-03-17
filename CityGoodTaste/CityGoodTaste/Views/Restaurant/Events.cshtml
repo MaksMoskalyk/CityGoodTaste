@@ -3,15 +3,18 @@
 @{
     ViewBag.Title = "Events";
 }
-
-<form style="background-color:#333333;padding-left:1%; padding-right:1%">
-    <div class="input-group" style="padding-bottom:10px; padding-top:10px;">
-        <input type="text" class="form-control" placeholder="название ресторана, кухня, пункты меню" required>
+@using (Ajax.BeginForm("EventsSearch", new AjaxOptions
+{
+    UpdateTargetId = "EventsList"
+}))
+{
+    <div class="input-group">
+        <input type="text" class="form-control" name="searchText">
         <div class="input-group-btn">
-            <button type="button" class="btn btn-danger">Поиск ресторана</button>
+            <button type="submit" class="btn btn-danger">@CityGoodTaste.Resources.Resource.Search</button>
         </div>
     </div>
-</form>
+}
 <div>
     <div class="col-sm-2">
         <h4>категории</h4>
@@ -28,6 +31,7 @@
         }
     </div>
     <div class="col-sm-10">
+        <div class="container text-center" id="EventsList">
             <div class="row">
                 @foreach (var item in Model)
                 {
@@ -48,6 +52,10 @@
                         </div>
                     </div>
                 }
+            </div>
         </div>
     </div>
 </div>
+
+
+

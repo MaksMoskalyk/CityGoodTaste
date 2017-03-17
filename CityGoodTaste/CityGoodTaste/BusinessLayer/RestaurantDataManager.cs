@@ -37,6 +37,7 @@ namespace CityGoodTaste.BusinessLayer
         List<MealGroup> GetAllMealGroups();
         void ReservTables(List<TableViewModel> tables);
         string GetCurrectUserId();
+        List<RestaurantEvent> SearchEvents(string searchText);
     }
 
     public class RestaurantDataManager: IRestaurantDataManager
@@ -100,6 +101,24 @@ namespace CityGoodTaste.BusinessLayer
                 }
             }
 
+        }
+        
+            public List<RestaurantEvent> SearchEvents(string searchText)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<RestaurantEvent> result = context.RestaurantEvent.Include(t => t.Restaurant).Where(t => t.Name.Contains(searchText)).ToList();
+                    if (result.Count > 10)
+                        result.RemoveRange(10, result.Count - 9);
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Events not found");
+                }
+            }
         }
         public List<RestaurantEvent> GetTopListRestaurantEvents()
         {
