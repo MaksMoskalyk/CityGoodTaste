@@ -3261,6 +3261,9 @@
     <Content Include="Views\Restaurant\Events.cshtml" />
     <Content Include="Views\Restaurant\_ReservedTablesPartial.cshtml" />
     <Content Include="Views\Restaurant\SchemaReservedTables.cshtml" />
+    <Content Include="Views\ForBetterTimes.cshtml" />
+    <Content Include="Views\Restaurant\RestaurantsList.cshtml" />
+    <Content Include="Views\Restaurant\EventsSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

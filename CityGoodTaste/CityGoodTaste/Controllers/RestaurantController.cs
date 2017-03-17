@@ -15,7 +15,7 @@ namespace CityGoodTaste.Controllers
     public class RestaurantController : Controller
     {
         // GET: Restaurant
-        public ActionResult Index()
+        public ActionResult Index(string searchText)
         {
             RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
             IRestaurantDataManager manager = factory.GetManager();
@@ -194,6 +194,33 @@ namespace CityGoodTaste.Controllers
             }
             return PartialView(schema);
         }
+        
+        public async Task<ActionResult> EventsSearch(string searchText)
+        {
+            if (searchText == null)
+            {
+                RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+                IRestaurantDataManager manager = factory.GetManager();
+                var RestaurantEvent = manager.GetListRestaurantEvents();
+                return View(RestaurantEvent);
+            }
+            else
+            {
+                RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+                IRestaurantDataManager manager = factory.GetManager();
+                var RestaurantEvent = manager.SearchEvents(searchText);
 
+                if (RestaurantEvent.Count > 0)
+                {
+                    RestaurantEvent.Union(RestaurantEvent.ToList());
+                    return PartialView(RestaurantEvent);
+                }
+
+                else
+                {
+                    return PartialView(RestaurantEvent);
+                }
+            }
+        }
     }
 }

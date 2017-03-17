@@ -1,0 +1,23 @@
+﻿@model IEnumerable<CityGoodTaste.Models.RestaurantEvent>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-4" style="text-align:left;">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <a href='@Url.Action("Details", "Restaurant", new { id = item.Restaurant.Id })' style="color:black; text-decoration:none">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </a>
+                </div>
+                <a href='@Url.Action("Details", "Restaurant", new { id = item.Restaurant.Id })'>
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%; height:200px" alt="Image" />
+                </a>
+                <div class="panel-footer">
+                    <span class="oi oi-timer"></span> @Html.DisplayFor(modelItem => item.StartDate)<br />
+                    <span class="oi oi-timer"></span> @Html.DisplayFor(modelItem => item.EndDate)<br />
+                </div>
+            </div>
+        </div>
+    }
+</div>

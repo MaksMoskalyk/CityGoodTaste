@@ -448,6 +448,15 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OpenHourName.
         /// </summary>
         public static string OpenHourName {
@@ -529,6 +538,15 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Previous.
+        /// </summary>
+        public static string Previous {
+            get {
+                return ResourceManager.GetString("Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Price.
         /// </summary>
         public static string Price {
@@ -543,6 +561,15 @@ namespace CityGoodTaste.Resources {
         public static string PriceEntries {
             get {
                 return ResourceManager.GetString("PriceEntries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recommended restaurants.
+        /// </summary>
+        public static string RecommendedRestaurants {
+            get {
+                return ResourceManager.GetString("RecommendedRestaurants", resourceCulture);
             }
         }
         
@@ -687,6 +714,24 @@ namespace CityGoodTaste.Resources {
         public static string ReviewText {
             get {
                 return ResourceManager.GetString("ReviewText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to restaurant name, kitchen, menu item.
+        /// </summary>
+        public static string SearchRestmMess {
+            get {
+                return ResourceManager.GetString("SearchRestmMess", resourceCulture);
             }
         }
         

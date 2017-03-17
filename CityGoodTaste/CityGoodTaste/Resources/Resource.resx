@@ -372,4 +372,19 @@
   <data name="EventType" xml:space="preserve">
     <value>EventType</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="RecommendedRestaurants" xml:space="preserve">
+    <value>Recommended restaurants</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchRestmMess" xml:space="preserve">
+    <value>restaurant name, kitchen, menu item</value>
+  </data>
 </root>

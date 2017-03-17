@@ -372,4 +372,19 @@
   <data name="EventType" xml:space="preserve">
     <value>EventType</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>Следующий(ая)</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Предыдущий(ая)</value>
+  </data>
+  <data name="RecommendedRestaurants" xml:space="preserve">
+    <value>Рекомендуемые рестораны</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="SearchRestmMess" xml:space="preserve">
+    <value>название ресторана, кухня, пункты меню</value>
+  </data>
 </root>
