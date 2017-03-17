@@ -98,24 +98,30 @@
                                 </table>
                             </div>
                             <div>
+                                <h2>@Html.LabelFor(model => model.PhoneNumber)</h2>
+                                @Html.DisplayFor(model => model.PhoneNumber)
+                            </div>
+                            <div>
                                 <h2>@Html.LabelFor(model => model.Address)</h2>
                                 @Html.DisplayFor(model => model.Address) @Html.DisplayFor(model => model.City.Name) @Html.DisplayFor(model => model.City.Country.Name) @Html.DisplayFor(model => model.ZipCode)
                                 <div id="googleMap" style="height:400px;width:100%"></div>
                                 <script>
-
+                                    function myMap() {
+                                        var myCenter = new google.maps.LatLng(46.477416, 30.746928);
+                                        var mapProp = { center: myCenter, zoom: 18, scrollwheel: false, draggable: false, mapTypeId: google.maps.MapTypeId.ROADMAP };
+                                        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                                        var marker = new google.maps.Marker({ position: myCenter });
+                                        marker.setMap(map);
+                                    }
                                 </script>
-                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRO1uVeSSy5wTZOpDY0kGJR2347oaWJQ4&callback=myMap"></script>
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRO1uVeSSy5wTZOpDY0kGJR2347oaWJQ4&callback=myMap" async defer></script>
                             </div>
-                            <div>
-                                <h2>@Html.LabelFor(model => model.PhoneNumber)</h2>
-                                @Html.DisplayFor(model => model.PhoneNumber)
-                            </div>
+                           <br />
                         </div>
                         <div id="menuRest" class="tab-pane fade">
                             <h2>Меню</h2>
                             <ul class="nav nav-tabs">
                                 <li class="active"><a data-toggle="tab" href="#menu1">menu1</a></li>
-                                <li><a data-toggle="tab" href="#menu2">menu2</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div id="menu1" class="tab-pane fade in active">

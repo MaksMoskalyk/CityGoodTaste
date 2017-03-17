@@ -6,7 +6,7 @@ using System;
 
 namespace CityGoodTaste.Models
 {
-    public class GoodTasteDBInitializer :CreateDatabaseIfNotExists<GoodTasteContext>
+    public class GoodTasteDBInitializer : DropCreateDatabaseAlways<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {
@@ -134,27 +134,120 @@ namespace CityGoodTaste.Models
             context.Likes.Add(like);
             context.Countries.Add(c);
             context.Cities.Add(ct);
-            context.Restaurants.Add(r);
+            
             context.EventTypes.Add(new Models.EventType() { Name = "EventTypes 1"});
             context.EventTypes.Add(new Models.EventType() { Name = "EventTypes 2" });
             context.EventTypes.Add(new Models.EventType() { Name = "EventTypes 3" });
             context.EventTypes.Add(new Models.EventType() { Name = "EventTypes 4" });
-            context.Cuisines.Add(new Cuisine() { Name = "Cuisine 1" });
-            context.Cuisines.Add(new Cuisine() { Name = "Cuisine 2" });
-            context.Cuisines.Add(new Cuisine() { Name = "Cuisine 3" });
-            context.Cuisines.Add(new Cuisine() { Name = "Cuisine 4" });
-            context.Cuisines.Add(new Cuisine() { Name = "Cuisine 5" });
-            context.Cuisines.Add(new Cuisine() { Name = "Cuisine 6" });
-            context.MealGroups.Add(new MealGroup() { Name = "MealGroup 1" });
-            context.MealGroups.Add(new MealGroup() { Name = "MealGroup 2" });
-            context.MealGroups.Add(new MealGroup() { Name = "MealGroup 3" });
-            context.MealGroups.Add(new MealGroup() { Name = "MealGroup 4" });
-            context.MealGroups.Add(new MealGroup() { Name = "MealGroup 5" });
+            Cuisine cuisine1 = new Cuisine() { Name = "Cuisine 1" };
+            Cuisine cuisine2 = new Cuisine() { Name = "Cuisine 2" };
+            Cuisine cuisine3 = new Cuisine() { Name = "Cuisine 3" };
+            Cuisine cuisine4 = new Cuisine() { Name = "Cuisine 4" };
+            Cuisine cuisine5 = new Cuisine() { Name = "Cuisine 5" };
+            Cuisine cuisine6 = new Cuisine() { Name = "Cuisine 6" };
+            Cuisine cuisine7 = new Cuisine() { Name = "Cuisine 7" };
+            context.Cuisines.Add(cuisine1);
+            context.Cuisines.Add(cuisine2);
+            context.Cuisines.Add(cuisine3);
+            context.Cuisines.Add(cuisine4);
+            context.Cuisines.Add(cuisine5);
+            context.Cuisines.Add(cuisine6);
+            context.Cuisines.Add(cuisine7);
+
             context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 1", "Restaurant Event 1 Description",  DateTime.Now, DateTime.Now.AddHours(4), r));
             context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 2", "Restaurant Event 2 Description", DateTime.Now, DateTime.Now.AddHours(4), r));
             context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 3", "Restaurant Event 3 Description", DateTime.Now, DateTime.Now.AddHours(4), r));
             context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 4", "Restaurant Event 4 Description", DateTime.Now, DateTime.Now.AddHours(4), r));
             context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 5", "Restaurant Event 5 Description", DateTime.Now, DateTime.Now.AddHours(4), r));
+
+            Meal ml1 = new Meal() { Name = "Meal 1", Description = "Meal 1 description", Price = 10, Cuisine = cuisine1 };
+            Meal ml2 = new Meal() { Name = "Meal 2", Description = "Meal 2 description", Price = 10, Cuisine = cuisine2 };
+            Meal ml3 = new Meal() { Name = "Meal 3", Description = "Meal 3 description", Price = 10, Cuisine = cuisine3 };
+            Meal ml4 = new Meal() { Name = "Meal 4", Description = "Meal 4 description", Price = 10, Cuisine = cuisine4 };
+            Meal ml5 = new Meal() { Name = "Meal 5", Description = "Meal 5 description", Price = 10, Cuisine = cuisine5 };
+            Meal ml6 = new Meal() { Name = "Meal 6", Description = "Meal 6 description", Price = 10, Cuisine = cuisine6 };
+            Meal ml7 = new Meal() { Name = "Meal 7", Description = "Meal 7 description", Price = 10, Cuisine = cuisine7 };
+
+            Meal ml8 = new Meal() { Name = "Meal 8", Description = "Meal 8 description", Price = 10, Cuisine = cuisine1 };
+            Meal ml9 = new Meal() { Name = "Meal 9", Description = "Meal 9 description", Price = 10, Cuisine = cuisine2 };
+            Meal ml10 = new Meal() { Name = "Meal 10", Description = "Meal 10 description", Price = 10, Cuisine = cuisine3 };
+            Meal ml11 = new Meal() { Name = "Meal 11", Description = "Meal 11 description", Price = 10, Cuisine = cuisine4 };
+            Meal ml12 = new Meal() { Name = "Meal 12", Description = "Meal 12 description", Price = 10, Cuisine = cuisine5 };
+            Meal ml13 = new Meal() { Name = "Meal 13", Description = "Meal 13 description", Price = 10, Cuisine = cuisine6 };
+            Meal ml14 = new Meal() { Name = "Meal 14", Description = "Meal 14 description", Price = 10, Cuisine = cuisine7 };
+
+            context.Meals.Add(ml1);
+            context.Meals.Add(ml2);
+            context.Meals.Add(ml3);
+            context.Meals.Add(ml4);
+            context.Meals.Add(ml5);
+            context.Meals.Add(ml6);
+            context.Meals.Add(ml7);
+            context.Meals.Add(ml8);
+            context.Meals.Add(ml9);
+            context.Meals.Add(ml10);
+            context.Meals.Add(ml11);
+            context.Meals.Add(ml12);
+            context.Meals.Add(ml13);
+            context.Meals.Add(ml14);
+
+            List<Meal> LML1 = new List<Meal>();
+            LML1.Add(ml1);
+            LML1.Add(ml7);
+            LML1.Add(ml8);
+            LML1.Add(ml14);
+
+            List<Meal> LML2 = new List<Meal>();
+            LML1.Add(ml2);
+            LML1.Add(ml9);
+
+            List<Meal> LML3 = new List<Meal>();
+            LML1.Add(ml3);
+            LML1.Add(ml10);
+
+            List<Meal> LML4 = new List<Meal>();
+            LML1.Add(ml4);
+            LML1.Add(ml11);
+
+            List<Meal> LML5 = new List<Meal>();
+            LML1.Add(ml5);
+            LML1.Add(ml12);
+
+            List<Meal> LML6 = new List<Meal>();
+            LML1.Add(ml6);
+            LML1.Add(ml13);
+
+            MealGroup mg1 = new MealGroup() { Name = "MealGroup 1", Meals = LML1 };
+            MealGroup mg2 = new MealGroup() { Name = "MealGroup 2", Meals = LML2 };
+            MealGroup mg3 = new MealGroup() { Name = "MealGroup 3", Meals = LML3 };
+            MealGroup mg4 = new MealGroup() { Name = "MealGroup 4", Meals = LML4 };
+            MealGroup mg5 = new MealGroup() { Name = "MealGroup 5", Meals = LML5 };
+            MealGroup mg6 = new MealGroup() { Name = "MealGroup 6", Meals = LML6 };
+
+            context.MealGroups.Add(mg1);
+            context.MealGroups.Add(mg2);
+            context.MealGroups.Add(mg3);
+            context.MealGroups.Add(mg4);
+            context.MealGroups.Add(mg5);
+            context.MealGroups.Add(mg6);
+
+            List<MealGroup> lgm1 = new List<MealGroup>();
+            lgm1.Add(mg1);
+            lgm1.Add(mg2);
+            lgm1.Add(mg3);
+            lgm1.Add(mg4);
+
+            List<MealGroup> lgm2 = new List<MealGroup>();
+            lgm2.Add(mg5);
+            lgm2.Add(mg6);
+
+            Menu M1 = new Menu() { Name = "Menu 1", MealGroups = lgm1, IsShow = true, Restaurant = r };
+            Menu M2 = new Menu() { Name = "Menu 2", MealGroups = lgm2, IsShow = true, Restaurant = r };
+
+            context.Menus.Add(M1);
+            context.Menus.Add(M2);
+
+            context.Restaurants.Add(r);
             context.SaveChanges();
         }
 
@@ -164,7 +257,7 @@ namespace CityGoodTaste.Models
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-            // создаем две роли
+            // создаем роли
             var role1 = new IdentityRole { Name = "admin" };
             var role2 = new IdentityRole { Name = "moderator" };
             var role3 = new IdentityRole { Name = "user" };
