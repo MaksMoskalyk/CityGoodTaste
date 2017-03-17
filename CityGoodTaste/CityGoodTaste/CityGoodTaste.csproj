@@ -3215,6 +3215,8 @@
     <Content Include="Scripts\Default\respond.js" />
     <Content Include="Scripts\Default\respond.min.js" />
     <None Include="Scripts\Default\_references.js" />
+    <Content Include="Scripts\Default\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\Default\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -20,7 +20,9 @@ namespace CityGoodTaste
                       "~/Scripts/Default/clockpicker.js",
                       "~/Scripts/Default/datetimepicker.js",
                       "~/Scripts/Default/respond.js",
-                      "~/Scripts/Default/moment-with-locales.min.js"));
+                      "~/Scripts/Default/moment-with-locales.min.js",
+                      "~/Scripts/Default/jquery.unobtrusive-ajax.js"
+                      ));
 
             //Custom  
             bundles.Add(new ScriptBundle("~/bundles/customScript").Include(
