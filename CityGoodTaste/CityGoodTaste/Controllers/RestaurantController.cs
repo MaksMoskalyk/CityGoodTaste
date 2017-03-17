@@ -65,14 +65,14 @@ namespace CityGoodTaste.Controllers
 
         }
 
-        public ActionResult GGG(Models.ViewModels.RestaurantShemaViewModel model)
+        public ActionResult _ReservedTablesPartial(Models.ViewModels.RestaurantShemaViewModel model)
         {
             RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
             IRestaurantDataManager manager = factory.GetManager();
             //manager.ReservTables(model.Tables);
             Restaurant Rest = manager.GetRestaurant(1);
             ViewBag.UserId = manager.GetCurrectUserId();
-            return PartialView();
+            return PartialView("~/Views/Restaurant/_ReservedTablesPartial.cshtml", Rest);
 
         }
 
