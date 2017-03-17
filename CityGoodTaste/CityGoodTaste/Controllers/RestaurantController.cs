@@ -65,6 +65,17 @@ namespace CityGoodTaste.Controllers
 
         }
 
+        public ActionResult GGG(Models.ViewModels.RestaurantShemaViewModel model)
+        {
+            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+            IRestaurantDataManager manager = factory.GetManager();
+            //manager.ReservTables(model.Tables);
+            Restaurant Rest = manager.GetRestaurant(1);
+            ViewBag.UserId = manager.GetCurrectUserId();
+            return PartialView();
+
+        }
+
         public async Task<ActionResult> Schema(int? id)
         {
             if (id == null)
@@ -85,16 +96,18 @@ namespace CityGoodTaste.Controllers
         }
 
 
+
         [HttpPost]
         public ActionResult Schema(Models.ViewModels.RestaurantShemaViewModel model)
         {
-
             RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
             IRestaurantDataManager manager = factory.GetManager();
-            manager.ReservTables(model.Tables);
+            //manager.ReservTables(model.Tables);
             Restaurant Rest = manager.GetRestaurant(1);
             ViewBag.UserId = manager.GetCurrectUserId();
-            return RedirectToAction("Details", new { id = 1 });
+
+            return View();
+            //return PartialView("~/Views/Restaurant/_ReservedTablesPartial.cshtml", Rest);
         }
 
         // GET: Restaurant/Create
