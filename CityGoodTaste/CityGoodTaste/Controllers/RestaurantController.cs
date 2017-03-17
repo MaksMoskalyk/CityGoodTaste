@@ -71,7 +71,7 @@ namespace CityGoodTaste.Controllers
             RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
             IRestaurantDataManager manager = factory.GetManager();
             Restaurant Rest =  manager.GetRestaurant(id);
-
+            ViewBag.UserId = manager.GetCurrectUserId();
             if (Rest == null)
             {
                 return HttpNotFound();
@@ -95,6 +95,7 @@ namespace CityGoodTaste.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(schema);
         }
 
@@ -106,7 +107,9 @@ namespace CityGoodTaste.Controllers
             RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
             IRestaurantDataManager manager = factory.GetManager();
             manager.ReservTables(model.Tables);
-            return null;
+            Restaurant Rest = manager.GetRestaurant(1);
+            ViewBag.UserId = manager.GetCurrectUserId();
+            return RedirectToAction("Details", new { id = 1 });
         }
 
         // GET: Restaurant/Create

@@ -11,11 +11,11 @@ using Microsoft.AspNet.Identity;
 
 namespace CityGoodTaste.BusinessLayer
 {
-    abstract class RestaurantDataManagerCreator
+    public abstract class RestaurantDataManagerCreator
     {
         public abstract IRestaurantDataManager GetManager();
     }
-    class DefaultRestaurantDataManagerCreator : RestaurantDataManagerCreator
+    public class DefaultRestaurantDataManagerCreator : RestaurantDataManagerCreator
     {
         public override IRestaurantDataManager GetManager()
         {
@@ -35,6 +35,7 @@ namespace CityGoodTaste.BusinessLayer
         List<RestaurantFeature> GetAllRestaurantFeatures();
         List<MealGroup> GetAllMealGroups();
         void ReservTables(List<TableViewModel> tables);
+        string GetCurrectUserId();
     }
 
     public class RestaurantDataManager: IRestaurantDataManager
@@ -53,10 +54,8 @@ namespace CityGoodTaste.BusinessLayer
                     Rest = context.Restaurants.Include(t => t.Reviews).FirstOrDefault(t => t.Id == id);
                     Rest.Reviews = context.RestaurantReviews.Include(t => t.User).ToList();
                     Rest = context.Restaurants.Include(t => t.RestaurantSchemas).FirstOrDefault(t=>t.Id==id);
-                    var tables = context.Tables.Include(t => t.TableReservation);
-                    Rest.RestaurantSchemas = context.RestaurantSchemas.Include(t => t.Tables = tables.ToList()).ToList();
+                    Rest.RestaurantSchemas = context.RestaurantSchemas.Include(t => t.Tables.Select(r => r.TableReservation.Select(u=>u.User))).ToList();
 
-                    
 
                     return Rest;
                 }
@@ -202,9 +201,13 @@ namespace CityGoodTaste.BusinessLayer
                         TableViewModel vmTable = new TableViewModel { Id = table.Id, X = table.X, Y = table.Y, Seats = table.Seats, ReservedAndConfirmed = false, Reserved = false };
                         foreach (var reserv in table.TableReservation)
                         {
-                            if (reserv.Date.Date == DateTime.Now.Date)
+                            if (reserv.Date.Date == DateTime.Now.Date && reserv.ReservedAndConfirmed==true)
                             {
                                 vmTable.ReservedAndConfirmed = true;
+                                break;
+                            }else if (reserv.Date.Date == DateTime.Now.Date && reserv.Reserved == true)
+                            {
+                                vmTable.Reserved = true;
                                 break;
                             }
                         }
@@ -227,18 +230,33 @@ namespace CityGoodTaste.BusinessLayer
         {
             using (GoodTasteContext context = new GoodTasteContext())
             {
+                ApplicationUser currentUser = context.Users.FirstOrDefault();
                 foreach (var item in tables)
                 {
-                    if (item.Reserved == true)
-                    {                        
-                        //ApplicationUser currentUser = context.Users.FirstOrDefault(x => x.Id == HttpContext.Current.User.Identity.GetUserId());
-                        ApplicationUser currentUser = context.Users.FirstOrDefault();
-                        Table table = context.Tables.Find(item.Id);
-                        TableReservation reserv = new TableReservation { Date = DateTime.Now, Table = table, User = currentUser, Reserved = true, ReservedAndConfirmed=false };
+                    Table table = context.Tables.Find(item.Id);
+                    TableReservation dbTableReservation = (table.TableReservation.Where(x => x.Date.Date == DateTime.Now.Date).Where(x => x.User == currentUser).Where(x => x.Table == table)).FirstOrDefault();
+
+                    if (dbTableReservation != null)
+                    {
+                        dbTableReservation.Reserved = item.Reserved;
+                    }
+                    else
+                    {
+                        TableReservation reserv = new TableReservation { Date = DateTime.Now, Table = table, User = currentUser, Reserved = item.Reserved, ReservedAndConfirmed = false };
                         context.TableReservations.Add(reserv);
-                        context.SaveChanges();
                     }
                 }
+                context.SaveChanges();
+            }
+        }
+
+        public string GetCurrectUserId()
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                //ApplicationUser currentUser = context.Users.FirstOrDefault(x => x.Id == HttpContext.Current.User.Identity.GetUserId());
+                ApplicationUser user = context.Users.FirstOrDefault();
+                return user.Id;
             }
         }
     }
