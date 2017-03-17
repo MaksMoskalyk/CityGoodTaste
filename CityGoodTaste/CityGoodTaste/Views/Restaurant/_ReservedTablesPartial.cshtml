@@ -4,12 +4,19 @@
 
 @foreach (var item in Model.RestaurantSchemas.FirstOrDefault().Tables)
 {
-    TableReservation reserv = item.TableReservation.Where(x => x.Date.Date == DateTime.Now).FirstOrDefault();
+    CityGoodTaste.Models.TableReservation reserv = item.TableReservation.Where(x => x.Date.Date == DateTime.Now.Date).FirstOrDefault();
 
     if (reserv == null)
     {
         continue;
     }
+
+    if (reserv.Reserved==true&&reserv.User.Id == ViewBag.UserId)
+    {
+        <p>@reserv.Table.Id</p>
+    }
+
+
 
 
 }
