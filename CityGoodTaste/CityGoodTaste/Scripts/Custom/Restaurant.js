@@ -33,14 +33,6 @@
 
 
 
-
-
-
-$(document).ready(function () {
-
-})
-
-
 function SetAjaxForShemaModals() {
     $('#startModalSchema').click(function () {
         var restId = document.getElementById('modalSchema').getAttribute('restId');
