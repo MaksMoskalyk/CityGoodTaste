@@ -21,7 +21,7 @@
         <svg class="icon icon-table table"><use xlink:href="#icon-table"></use></svg>
     </div>*@
 
-<div id="results"></div>
+
 <div class="container-fluid NoPadding" style="margin-left: auto; margin-right: auto">
     <div class="col-sm-9">
         <div class="jumbotron" style="padding:0">
@@ -215,6 +215,7 @@
 
                 <div class="panel-footer">
                     ВЫБРАТЬ СТОЛИК
+                    <div id="reseredTables"></div>
                     @Html.Partial("_ReservedTablesPartial")
                     @Html.ActionLink("Schema", "Schema", "Restaurant", new { id = Model.Id }, htmlAttributes: new { title = "Schema" })
                     <div class="center-block row">
