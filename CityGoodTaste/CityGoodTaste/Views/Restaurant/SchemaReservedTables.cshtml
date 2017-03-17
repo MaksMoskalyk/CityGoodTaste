@@ -7,26 +7,28 @@
         <div style="text-align:center"><h2 style="display:inline-block">@Html.DisplayFor(m => m.Name, new { @class = "form-control" })</h2></div>
     </div>
     <div class="modal-body" style="padding:40px 50px;">
-@*@using (Html.BeginForm("Schema", "Restaurant", null, FormMethod.Post))
-{*@
-    <div class="container-fluid" style="margin-bottom:50px;">
-        <div class="panel-heading">
 
-            <button id="submitBt" type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal">
+@using (Ajax.BeginForm("GGG", new AjaxOptions { UpdateTargetId = "results" }))
+{            <button type="submit" class="btn btn-success btn-default pull-left"/>
+        <div class="container-fluid" style="margin-bottom:50px;">
+            <div class="panel-heading">
 
-                <span class="glyphicon glyphicon-ok"></span>
-                Ok
-            </button>
-            <button  class="btn btn-danger btn-default pull-right" data-dismiss="modal">
-                <span class="glyphicon glyphicon-remove"></span>
-                Cancel
-            </button>
-        </div>
-                <table style="border-left:3px solid black; border-right:3px solid black; border-bottom:3px solid black">
-                    @for (int y = 0; y < Model.YLength; y++)
+
+                <button id="submitBt" type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal">
+
+                    <span class="glyphicon glyphicon-ok"></span>
+                    Ok
+                </button>
+                <button class="btn btn-danger btn-default pull-right" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Cancel
+                </button>
+            </div>
+            <table style="border-left:3px solid black; border-right:3px solid black; border-bottom:3px solid black">
+                @for (int y = 0; y < Model.YLength; y++)
                 {
-                        <tr>
-                            @for (int x = 0; x < Model.XLength; x++)
+                    <tr>
+                        @for (int x = 0; x < Model.XLength; x++)
                             {
                                 bool tdCreated = false;
 
@@ -54,15 +56,15 @@
                                             personPath = "/Content/icons/SchemaIcons/Person.png";
                                             tablePath = "/Content/icons/SchemaIcons/Table.png";
                                         }
-                                        <td id="@x@y" style="width:98px;height:81px; text-align: center; border:solid 1px black;" tableId="@Model.Tables[i].Id" reserved="@Model.Tables[i].Reserved.ToString()" reservedandconfirmed="@Model.Tables[i].ReservedAndConfirmed.ToString()">
-                                            <div id="divP.@x@y" style="top:10px; position:relative" tableId="@Model.Tables[i].Id">
-                                                <p id="P.@x@y" style="font-weight:bold" tableId="@Model.Tables[i].Id">
+                                        <td id="@x@y" style="width:98px;height:81px; text-align: center; border:solid 1px black;" tableid="@Model.Tables[i].Id" reserved="@Model.Tables[i].Reserved.ToString()" reservedandconfirmed="@Model.Tables[i].ReservedAndConfirmed.ToString()">
+                                            <div id="divP.@x@y" style="top:10px; position:relative" tableid="@Model.Tables[i].Id">
+                                                <p id="P.@x@y" style="font-weight:bold" tableid="@Model.Tables[i].Id">
                                                     @Model.Tables[i].Seats
-                                                    <img id="imgP.@x@y" style="width:15px; height:15px" src="@(personPath)" tableId="@Model.Tables[i].Id" />
+                                                    <img id="imgP.@x@y" style="width:15px; height:15px" src="@(personPath)" tableid="@Model.Tables[i].Id" />
                                                 </p>
                                             </div>
-                                            <div id="divT.@x@y" style="top:-10px; position:relative" tableId="@Model.Tables[i].Id">
-                                                <img id="imgT.@x@y" style="width:48px; height:48px" src="@(tablePath)" alt="loading" tableId="@Model.Tables[i].Id" />
+                                            <div id="divT.@x@y" style="top:-10px; position:relative" tableid="@Model.Tables[i].Id">
+                                                <img id="imgT.@x@y" style="width:48px; height:48px" src="@(tablePath)" alt="loading" tableid="@Model.Tables[i].Id" />
                                             </div>
                                         </td>
                                         tdCreated = true;
@@ -74,13 +76,13 @@
                                     <td id="@x@y" style="width:98px;height:81px; text-align: center; border:solid 1px black;"></td>
                                 }
                             }
-                        </tr>
+                    </tr>
                     }
-                </table>
+            </table>
 
-            </div>
-@*}*@
-    </div>
+        </div>
+        }
+</div>
 </div>
 
 
@@ -90,41 +92,22 @@
 
 
 <script>
-
-
-    $('#submitBt').click(function () {
-
-
-        var data = {
-            Id:"@Model.Id",
-            Name: "@Model.Name",
-            Tables: []
-        };
-
-        var table = {
-            Id:1
-        }
-        alert(data.Tables.length);
-        data.Tables.push(table);
-        alert(data.Tables.length);
-
+    @*$('#submitBt').click(function () {
+        var model = @Html.Raw(Json.Encode(@Model));
         $.ajax({
-            url: '/Restaurant/Schema',
+            url: '/Restaurant/Schemaa',
             type: 'POST',
-            data: JSON.stringify(data),
+            data: JSON.stringify(model),
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
-
+                alert('da');
             },
             error: function (xhr, status, p3) {
-
+                
             }
         });
-    });
-
-
-
+    });*@
                 $('td').click(function (event) {
                     event.stopPropagation();
                     var id = event.target.id;
