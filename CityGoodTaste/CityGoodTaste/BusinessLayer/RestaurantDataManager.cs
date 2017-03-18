@@ -204,6 +204,7 @@ namespace CityGoodTaste.BusinessLayer
         {
             using (GoodTasteContext context = new GoodTasteContext())
             {
+
                 List<int> id = new List<int>();
                 var rest = context.RestaurantFeatures.Include(t => t.Restaurants)
                            .Where(x => idEl.Contains(x.Id)).Select(t => t.Restaurants).ToList();
@@ -223,15 +224,30 @@ namespace CityGoodTaste.BusinessLayer
                 return id;
             }
         }
-        private List<Restaurant> GetMealGroupsRest(List<int> idEl)
+        private List<int> GetRestaurantsByMealGroups(List<int> idEl)
         {
             using (GoodTasteContext context = new GoodTasteContext())
             {
-                List<MealGroup> MealGroups = new List<MealGroup>();
-                List<Restaurant> Restaurant = new List<Restaurant>();
-                //MealGroups = context.MealGroups.Include(t => t.)
-                //           .Where(x => idEl.Contains(x.Id)).ToList();
-                return Restaurant;
+                List<int> id = new List<int>();
+                List<Restaurant> Restaurants = context.Restaurants.Include(t=>t.Menu
+                    .Select(m=>m.MealGroups)).ToList();
+                foreach (var Restaurant in Restaurants)
+                {
+                    foreach (var menu in Restaurant.Menu)
+                    {
+                        List<int> temp = new List<int>();
+                        foreach (var mg in menu.MealGroups)
+                        {
+                            if(idEl.Contains(mg.Id))
+                            {
+                                temp.Add(Restaurant.Id);
+                            }   
+                        }
+                        if(temp.Count== idEl.Count)
+                            id.Add(Restaurant.Id);
+                    }
+                }
+                return id;
             }
         }
         public List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups)
@@ -272,11 +288,7 @@ namespace CityGoodTaste.BusinessLayer
                         {
                             idEl.Add(int.Parse(el[i].Trim()));
                         }
-                        var re = GetMealGroupsRest(idEl);
-                        for (int i = 0; i < re.Count(); i++)
-                        {
-                            idRC.Add(re[i].Id);
-                        }
+                        idRMG = GetRestaurantsByMealGroups(idEl);
                     }
                     if (idRC.Count>0|| idRF.Count > 0 || idRMG.Count > 0)
                     {
