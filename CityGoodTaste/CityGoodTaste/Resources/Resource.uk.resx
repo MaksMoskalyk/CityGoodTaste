@@ -387,4 +387,13 @@
   <data name="SearchRestmMess" xml:space="preserve">
     <value>назва ресторану, кухня, пункт меню</value>
   </data>
+  <data name="Table" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SeatsCount" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableNumber" xml:space="preserve">
+    <value />
+  </data>
 </root>

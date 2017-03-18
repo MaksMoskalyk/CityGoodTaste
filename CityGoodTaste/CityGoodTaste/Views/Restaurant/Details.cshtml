@@ -184,24 +184,14 @@
         <div class="panel panel-default ">
             <div class="panel-heading">
                 <p>НАЧАТЬ РЕЗЕРВ</p>
-                <button type="button" class="btn btn-danger btn-block">Зарезервировать</button>
             </div>
 
-            <div class="panel-body">
-                <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <p>КОЛИЧЕСТВО МЕСТ</p>
-                        <input id="demo2" type="text" value="0" name="demo2" class="col-md-8 form-control">
-                    </div>
-                </form>
-            </div>
-
-            <div class="panel-footer text-center center-block">
+            <div class="panel-body text-center center-block">
                 <p>ДАТА</p>
                 <div class="center-block" id="dp6" data-date="12-02-2012" data-date-format="dd-mm-yyyy"></div>
             </div>
 
-            <div class="panel-body">
+            <div class="panel-footer">
                 <p>ВРЕМЯ</p>
                 <div class="form-group center-block">
                     <div class="input-group clockpicker ">
@@ -213,40 +203,37 @@
                 </div>
             </div>
 
-                <div class="panel-footer">
-                    ВЫБРАТЬ СТОЛИК
-                    <div id="reseredTables"></div>
-                    @Html.Partial("_ReservedTablesPartial")
-                    @Html.ActionLink("Schema", "Schema", "Restaurant", new { id = Model.Id }, htmlAttributes: new { title = "Schema" })
-                    <div class="center-block row">
-                        <a data-toggle="modal" data-target="#SchemaModal" href="#">
-                            <img src="https://placehold.it/250x150?text=Schema" alt="img" class="img-responsive col-sm-12" />
-                        </a>
-                        
-                    </div>
+            <div class="panel-body">
+                ВЫБРАТЬ СТОЛИК
+                <div class="center-block row">
+                    <a data-toggle="modal" data-target="#SchemaModal" href="#">
+                        <img src="https://placehold.it/250x150?text=Schema" alt="img" class="img-responsive col-sm-12" />
+                    </a>
                 </div>
+                <div id="reseredTables">@Html.Partial("_ReservedTablesPartial")</div>
+            </div>
 
-                <div class="panel-body">
-                    КОНТАКТНАЯ ИНФОРМАЦИЯ
-                    <div class="form-group">
-                        <div class="input-group col-sm-12">
-                            <input id="name" type="text" class="form-control input-sm" name="name" placeholder="Имя">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group col-sm-12">
-                            <input id="surname" type="text" class="form-control input-sm" name="phone" placeholder="Телефон">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group col-sm-12">
-                            <input id="surname" type="text" class="form-control input-sm" name="email" placeholder="E-mail адрес">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="button" class="btn btn-danger btn-block">Зарезервировать</button>
+            <div class="panel-footer">
+                КОНТАКТНАЯ ИНФОРМАЦИЯ
+                <div class="form-group">
+                    <div class="input-group col-sm-12">
+                        <input id="name" type="text" class="form-control input-sm" name="name" placeholder="Имя">
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="input-group col-sm-12">
+                        <input id="surname" type="text" class="form-control input-sm" name="phone" placeholder="Телефон">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group col-sm-12">
+                        <input id="surname" type="text" class="form-control input-sm" name="email" placeholder="E-mail адрес">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger btn-block">Зарезервировать</button>
+                </div>
+            </div>
             </div>
         </div>
     </div>

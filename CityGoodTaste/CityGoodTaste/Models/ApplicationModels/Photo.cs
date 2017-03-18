@@ -7,11 +7,9 @@ namespace CityGoodTaste.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
-  
+        [Required]  
         public string Path { get; set; }
-
-      
+  
         public virtual Restaurant Restaurant { get; set; }
     }
 }
