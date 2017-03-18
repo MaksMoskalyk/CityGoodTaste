@@ -215,25 +215,28 @@ namespace CityGoodTaste.BusinessLayer
                         //     .Include(t => t.EventTypes).Where(t => id.Contains(t.Id))
                         //     .Where(t => t.Name.Contains(searchText)).ToList();
                         //}
-                    }
-                    else if (searchText.Length > 0)
-                    {
-                        //result = context.RestaurantEvent.Include(t => t.Restaurant)
-                        //     .Include(t => t.EventTypes).Where(t => t.Name.Contains(searchText)).ToList();
-                    }
-                    else
-                    {
-                        result = context.Restaurants.Include(r => r.City).Include(r=>r.Cuisines).
-                            Include(r=>r.Likes).Include(r=>r.Map).Include(r=>r.Menu).Include(r=>r.Photos).
-                            Include(r=>r.RestaurantEvent).Include(r=>r.RestaurantFeatures).Include(r=>r.RestaurantGroup).
-                            Include(r=>r.RestaurantSchemas).Include(r=>r.Reviews).Include(r=>r.SpecialWorkHours).
-                            Include(r=>r.WorkHours).ToList();
-                    }
-                    result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
+                        result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
                             Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).Include(r => r.Photos).
                             Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
                             Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
                             Include(r => r.WorkHours).ToList();
+                    }
+                    else if (searchText.Length > 0)
+                    {
+                        result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
+                            Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).Include(r => r.Photos).
+                            Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
+                            Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
+                            Include(r => r.WorkHours).Where(t => t.Name.Contains(searchText)).ToList();
+                    }
+                    else
+                    {
+                        result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
+                            Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).Include(r => r.Photos).
+                            Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
+                            Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
+                            Include(r => r.WorkHours).ToList();
+                    }
                     return result;
                 }
                 catch
