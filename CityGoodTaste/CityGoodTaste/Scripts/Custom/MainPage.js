@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     SetAjaxForAuthenticationModals();
+    $('.datepicker').datepicker();
 })
 
 

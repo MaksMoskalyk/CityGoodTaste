@@ -11,7 +11,6 @@
 }
 
 /*Vertical central allignment of modal - short animation*/
-
 .modal {
     text-align: center;
     padding: 0 !important;
@@ -22,7 +21,6 @@
         display: inline-block;
         height: 100%;
         vertical-align: middle;
-        /*margin-right: -4px;*/
     }
 
 .modal-dialog {

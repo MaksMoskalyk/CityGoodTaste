@@ -10,8 +10,6 @@
     height: 100%;
 }
 
-
-
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
     .sidenav {
@@ -23,12 +21,15 @@
         height: auto;
     }
 }
+
 .WordBreak{
     word-break: break-all;
 }
+
 .MenuHeadText{
     padding:10px;
 }
+
 .tableReviews{
     border-spacing: 5px!important;
     border-collapse:unset !important;

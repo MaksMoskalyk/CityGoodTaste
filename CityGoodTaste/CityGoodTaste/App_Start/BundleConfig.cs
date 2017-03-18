@@ -14,14 +14,14 @@ namespace CityGoodTaste
                       "~/Scripts/Default/jQuery/jquery-{version}.js",
                       "~/Scripts/Default/jQuery/jquery.validate*",
                       "~/Scripts/Default/jQuery/jquery.bootstrap-touchspin.js",
+                      "~/Scripts/Default/jQuery/jquery.unobtrusive-ajax.js",
                       "~/Scripts/Default/Angular/angular.js",
                       "~/Scripts/Default/modernizr-*",
                       "~/Scripts/Default/bootstrap.js",                      
                       "~/Scripts/Default/clockpicker.js",
                       "~/Scripts/Default/datetimepicker.js",
                       "~/Scripts/Default/respond.js",
-                      "~/Scripts/Default/moment-with-locales.min.js",
-                      "~/Scripts/Default/jquery.unobtrusive-ajax.js"
+                      "~/Scripts/Default/moment-with-locales.min.js"                      
                       ));
 
             //Custom  

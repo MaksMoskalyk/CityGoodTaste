@@ -229,6 +229,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\Custom\AuthenticationModals.css" />
+    <Content Include="Content\css\Custom\AuthenticationPages.css" />
     <Content Include="Content\css\Custom\MainPage.css" />
     <Content Include="Content\css\Custom\ModalFix.css" />
     <Content Include="Content\css\Custom\Restaurant.css" />
@@ -3216,8 +3217,8 @@
     <Content Include="Scripts\Default\respond.js" />
     <Content Include="Scripts\Default\respond.min.js" />
     <None Include="Scripts\Default\_references.js" />
-    <Content Include="Scripts\Default\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\Default\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\Default\jQuery\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\Default\jQuery\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
