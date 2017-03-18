@@ -2,15 +2,12 @@
 @{
     ViewBag.Title = "Events";
 }
-@using (Ajax.BeginForm("EventsSearch", new AjaxOptions
-{
-    UpdateTargetId = "EventsList"
-}))
+@using (Ajax.BeginForm("EventsSearch", new { id = "EventsForm" }, new AjaxOptions { UpdateTargetId = "EventsList", InsertionMode= InsertionMode.Replace, HttpMethod = "POST" }))
 {
     <div class="input-group">
         <input type="text" class="form-control" name="searchText">
         <div class="input-group-btn">
-            <button type="submit" class="btn btn-danger">@CityGoodTaste.Resources.Resource.Search</button>
+            <button type="submit" id="sendData" class="btn btn-danger">@CityGoodTaste.Resources.Resource.Search</button>
         </div>
     </div>
 
@@ -23,8 +20,9 @@
         }
         @foreach (var item in EventTypes)
         {
+
             <div class="checkbox">
-                <label><input id="EventTypesCheck" name="EventTypesCheck" type="checkbox" value=@item.Id >@item.Name</label>
+                <label><input class="EventTypesCheck" id="EventTypesCheck"  name="EventTypesCheck" type="checkbox" value=@item.Id>  @item.Name </label>
             </div>
         }
     </div>
@@ -57,3 +55,9 @@
             }
 
 
+<script>
+    $('.EventTypesCheck').click(function () {
+        var t = document.getElementById("sendData");
+        t.click();
+    });
+</script>

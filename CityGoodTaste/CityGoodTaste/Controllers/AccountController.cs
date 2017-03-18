@@ -9,9 +9,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CityGoodTaste.Models;
+using CityGoodTaste.CustomFilters;
 
 namespace CityGoodTaste.Controllers
 {
+    [Culture]
     [Authorize]
     public class AccountController : Controller
     {

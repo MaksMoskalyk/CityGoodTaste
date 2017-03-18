@@ -1,0 +1,98 @@
+﻿@model IEnumerable<CityGoodTaste.Models.Restaurant>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Ajax.BeginForm("RestaurantsSearch", new { id = "RestaurantsForm" }, new AjaxOptions { UpdateTargetId = "RestaurantsList", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }))
+{
+    <div class="input-group">
+        <input type="text" class="form-control" name="searchText">
+        <div class="input-group-btn">
+            <button type="submit" id="sendData" class="btn btn-danger">@CityGoodTaste.Resources.Resource.Search</button>
+        </div>
+    </div>
+    
+    <div>
+        <div class="col-sm-2">
+            
+                <h4>категории</h4>
+                <p>@CityGoodTaste.Resources.Resource.Cuisine:</p>
+                @{
+                    CityGoodTaste.BusinessLayer.RestaurantDataManager manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
+                    var Cuisines = manager.GetAllCuisines();
+                }
+                @foreach (var item in Cuisines)
+                {
+                    <div class="checkbox">
+                        <label><input id="CuisinesCheck" name="CuisinesCheck" class="CuisinesCheck" type="checkbox" value="">@item.Name</label>
+                    </div>
+                }
+
+                <p>@CityGoodTaste.Resources.Resource.RestaurantFeatures:</p>
+                @{
+                    manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
+                    var Features = manager.GetAllRestaurantFeatures();
+                }
+
+                @foreach (var item in Features)
+                {
+                    <div class="checkbox">
+                        <label><input id="FeaturesCheck" name="FeaturesCheck" class="FeaturesCheck" type="checkbox" value="">@item.Name</label>
+                    </div>
+                }
+                <p>@CityGoodTaste.Resources.Resource.MealGroups:</p>
+                @{
+                    manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
+                    var MealGroups = manager.GetAllMealGroups();
+                }
+
+                @foreach (var item in MealGroups)
+                {
+                    <div class="checkbox">
+                        <label><input id="MealGroupsCheck"  name="MealGroups" class="MealGroups" type="checkbox" value="">@item.Name</label>
+                    </div>
+                }
+
+            </div>
+        <div class="col-sm-10">
+            <div class="container text-center" id="RestaurantsList">
+                <div class="row NoMargin">
+                    @foreach (var item in Model)
+                {
+                        <div class="col-sm-4" style="text-align:left;">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <a href='@Url.Action("Details", "Restaurant", new { id = item.Id })' style="color:black; text-decoration:none">
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </a>
+                                </div>
+                                <a href='@Url.Action("Details", "Restaurant", new { id = item.Id })'>
+                                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%; height:200px" alt="Image" />
+                                </a>
+                                <div class="panel-footer">
+                                    <span class="oi oi-timer"></span> @Html.DisplayFor(modelItem => item.Address)<br />
+                                    <span class="oi oi-timer"></span> @Html.DisplayFor(modelItem => item.PhoneNumber)<br />
+                                </div>
+                            </div>
+                        </div>
+                }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    $('.CuisinesCheck').click(function () {
+        var t = document.getElementById("sendData");
+        t.click();
+    });
+    $('.FeaturesCheck').click(function () {
+        var t = document.getElementById("sendData");
+        t.click();
+    });
+    $('.MealGroups').click(function () {
+        var t = document.getElementById("sendData");
+        t.click();
+    });
+</script>

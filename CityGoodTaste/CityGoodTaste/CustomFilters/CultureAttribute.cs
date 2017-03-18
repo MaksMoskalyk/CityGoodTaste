@@ -30,8 +30,8 @@ namespace CityGoodTaste.CustomFilters
             {
                 cultureName = "en-GB";
             }
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cultureName);
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(cultureName);
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(cultureName); // de-DE
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(cultureName);
         }
     }
 }
