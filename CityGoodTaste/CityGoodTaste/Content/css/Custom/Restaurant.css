@@ -22,15 +22,19 @@
     }
 }
 
-.WordBreak{
+.WordBreak {
     word-break: break-all;
 }
 
-.MenuHeadText{
-    padding:10px;
+.MenuHeadText {
+    padding: 10px;
 }
 
-.tableReviews{
-    border-spacing: 5px!important;
-    border-collapse:unset !important;
+.tableReviews {
+    border-spacing: 5px !important;
+    border-collapse: unset !important;
+}
+
+div.ui-datepicker {
+    font-size: 19px;
 }

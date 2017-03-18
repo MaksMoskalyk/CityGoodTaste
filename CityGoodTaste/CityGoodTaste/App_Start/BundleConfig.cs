@@ -15,6 +15,7 @@ namespace CityGoodTaste
                       "~/Scripts/Default/jQuery/jquery.validate*",
                       "~/Scripts/Default/jQuery/jquery.bootstrap-touchspin.js",
                       "~/Scripts/Default/jQuery/jquery.unobtrusive-ajax.js",
+                      "~/Scripts/Default/jQuery/jquery-ui-{version}.js",
                       "~/Scripts/Default/Angular/angular.js",
                       "~/Scripts/Default/modernizr-*",
                       "~/Scripts/Default/bootstrap.js",                      
@@ -44,7 +45,9 @@ namespace CityGoodTaste
                     "~/Content/css/Default/bootstrap-datetimepicker.css",
                     "~/Content/css/Default/clockpicker.css",
                     "~/Content/css/Default/jquery.bootstrap-touchspin.css",
-                    "~/Content/css/Default/Site.css"));
+                    "~/Content/css/Default/Site.css",
+                     "~/Content/css/Default/themes/base/jquery-ui.css"
+                     ));
 
             //Custom          
             bundles.Add(new StyleBundle("~/bundles/customStyle").Include(

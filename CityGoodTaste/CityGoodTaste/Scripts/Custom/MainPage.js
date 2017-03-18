@@ -1,6 +1,13 @@
 ﻿$(document).ready(function () {
     SetAjaxForAuthenticationModals();
-    $('.datepicker').datepicker();
+
+    $('input[type=datetime]').datepicker({
+        dateFormat: "dd/M/yy",
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-60:+0"
+    });
+    $("#datepicker").datepicker();
 })
 
 
