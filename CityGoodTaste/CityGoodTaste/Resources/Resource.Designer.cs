@@ -745,6 +745,15 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Seats .
+        /// </summary>
+        public static string SeatsCount {
+            get {
+                return ResourceManager.GetString("SeatsCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Smart Assistant.
         /// </summary>
         public static string SmartAssistant {
@@ -777,6 +786,24 @@ namespace CityGoodTaste.Resources {
         public static string SubMenuName {
             get {
                 return ResourceManager.GetString("SubMenuName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table.
+        /// </summary>
+        public static string Table {
+            get {
+                return ResourceManager.GetString("Table", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table number.
+        /// </summary>
+        public static string TableNumber {
+            get {
+                return ResourceManager.GetString("TableNumber", resourceCulture);
             }
         }
         

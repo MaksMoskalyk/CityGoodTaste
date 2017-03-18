@@ -6,7 +6,7 @@ using System;
 
 namespace CityGoodTaste.Models
 {
-    public class GoodTasteDBInitializer : DropCreateDatabaseAlways<GoodTasteContext>
+    public class GoodTasteDBInitializer :CreateDatabaseIfNotExists<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {

@@ -319,7 +319,7 @@
     <value>Название</value>
   </data>
   <data name="Tables" xml:space="preserve">
-    <value>Стол</value>
+    <value>Столы</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>Клиент</value>
@@ -386,6 +386,15 @@
   </data>
   <data name="SearchRestmMess" xml:space="preserve">
     <value>название ресторана, кухня, пункты меню</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>Стол</value>
+  </data>
+  <data name="SeatsCount" xml:space="preserve">
+    <value>Количество мест</value>
+  </data>
+  <data name="TableNumber" xml:space="preserve">
+    <value>Номер столика</value>
   </data>
   <data name="EventTypes" xml:space="preserve">
     <value>Типы ивентов</value>

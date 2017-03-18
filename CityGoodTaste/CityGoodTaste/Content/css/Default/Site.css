@@ -65,6 +65,7 @@ footer {
     padding: 0px;
     background-color: crimson;
 }
+
 .CountryIcon{
      background-repeat:no-repeat !important;
      background-position:center !important;
@@ -74,11 +75,13 @@ footer {
 .langHref{
     padding:5px !important;
 }
+
 .langDropdown {
     background-color:lavender !important;
     padding:0px !important;
     min-width:unset !important;
 }
+
 .langHrefLi{
     padding-top:0px !important;
     padding-bottom:0px !important;

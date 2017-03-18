@@ -72,10 +72,12 @@ namespace CityGoodTaste.Controllers
         {
             RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
             IRestaurantDataManager manager = factory.GetManager();
-            //manager.ReservTables(model.Tables);
-            Restaurant Rest = manager.GetRestaurant(1);
+            manager.ReservTables(model.Tables);
+            Restaurant Rest = manager.GetRestaurant(model.RestaurantId);
             ViewBag.UserId = manager.GetCurrectUserId();
             return PartialView("~/Views/Restaurant/_ReservedTablesPartial.cshtml", Rest);
+
+
 
         }
 
@@ -100,18 +102,18 @@ namespace CityGoodTaste.Controllers
 
 
 
-        [HttpPost]
-        public ActionResult Schema(Models.ViewModels.RestaurantShemaViewModel model)
-        {
-            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
-            IRestaurantDataManager manager = factory.GetManager();
-            //manager.ReservTables(model.Tables);
-            Restaurant Rest = manager.GetRestaurant(1);
-            ViewBag.UserId = manager.GetCurrectUserId();
+        //[HttpPost]
+        //public ActionResult Schema(Models.ViewModels.RestaurantShemaViewModel model)
+        //{
+        //    RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+        //    IRestaurantDataManager manager = factory.GetManager();
+        //    //manager.ReservTables(model.Tables);
+        //    Restaurant Rest = manager.GetRestaurant(1);
+        //    ViewBag.UserId = manager.GetCurrectUserId();
 
-            return View();
-            //return PartialView("~/Views/Restaurant/_ReservedTablesPartial.cshtml", Rest);
-        }
+        //    return View();
+        //    //return PartialView("~/Views/Restaurant/_ReservedTablesPartial.cshtml", Rest);
+        //}
 
         // GET: Restaurant/Create
         public ActionResult Create()

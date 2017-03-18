@@ -8,6 +8,7 @@ namespace CityGoodTaste.Models.ViewModels
     public class RestaurantShemaViewModel
     {
         public int Id { get; set; }
+        public int RestaurantId { get; set; }
         public string Name { get; set; }
         public  List<TableViewModel> Tables { get; set; }
         public int XLength { get; set; }

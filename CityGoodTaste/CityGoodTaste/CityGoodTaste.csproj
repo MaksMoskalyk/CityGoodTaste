@@ -229,10 +229,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\Custom\AuthenticationModals.css" />
+    <Content Include="Content\css\Custom\AuthenticationPages.css" />
     <Content Include="Content\css\Custom\MainPage.css" />
     <Content Include="Content\css\Custom\ModalFix.css" />
     <Content Include="Content\css\Custom\Restaurant.css" />
-    <Content Include="Content\css\Default\bootstrap-datetimepicker.css" />
     <Content Include="Content\css\Default\bootstrap.css" />
     <Content Include="Content\css\Default\bootstrap.min.css" />
     <Content Include="Content\css\Default\clockpicker.css" />
@@ -1827,6 +1827,47 @@
     <Content Include="Content\icons\SchemaIcons\Table\svgxuse.js" />
     <Content Include="Content\icons\SchemaIcons\Table\SVG\table.svg" />
     <Content Include="Content\icons\SchemaIcons\Table\symbol-defs.svg" />
+    <Content Include="Content\css\Default\themes\base\accordion.css" />
+    <Content Include="Content\css\Default\themes\base\all.css" />
+    <Content Include="Content\css\Default\themes\base\autocomplete.css" />
+    <Content Include="Content\css\Default\themes\base\base.css" />
+    <Content Include="Content\css\Default\themes\base\button.css" />
+    <Content Include="Content\css\Default\themes\base\core.css" />
+    <Content Include="Content\css\Default\themes\base\datepicker.css" />
+    <Content Include="Content\css\Default\themes\base\dialog.css" />
+    <Content Include="Content\css\Default\themes\base\draggable.css" />
+    <Content Include="Content\css\Default\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\css\Default\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\css\Default\themes\base\jquery-ui.css" />
+    <Content Include="Content\css\Default\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\css\Default\themes\base\menu.css" />
+    <Content Include="Content\css\Default\themes\base\progressbar.css" />
+    <Content Include="Content\css\Default\themes\base\resizable.css" />
+    <Content Include="Content\css\Default\themes\base\selectable.css" />
+    <Content Include="Content\css\Default\themes\base\selectmenu.css" />
+    <Content Include="Content\css\Default\themes\base\slider.css" />
+    <Content Include="Content\css\Default\themes\base\sortable.css" />
+    <Content Include="Content\css\Default\themes\base\spinner.css" />
+    <Content Include="Content\css\Default\themes\base\tabs.css" />
+    <Content Include="Content\css\Default\themes\base\theme.css" />
+    <Content Include="Content\css\Default\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\Default\Site.css" />
@@ -3199,12 +3240,8 @@
     <Content Include="Scripts\Default\bootstrap.js" />
     <Content Include="Scripts\Default\bootstrap.min.js" />
     <Content Include="Scripts\Default\clockpicker.js" />
-    <Content Include="Scripts\Default\datetimepicker.js" />
     <Content Include="Scripts\Default\Angular\angular.min.js.map" />
     <Content Include="Content\icons\SchemaIcons\Table\selection.json" />
-    <None Include="Scripts\Default\jQuery\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\Default\jQuery\jquery-1.10.2.js" />
-    <Content Include="Scripts\Default\jQuery\jquery-1.10.2.min.js" />
     <Content Include="Scripts\Default\jQuery\jquery.bootstrap-touchspin.js" />
     <None Include="Scripts\Default\jQuery\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\Default\jQuery\jquery.validate.js" />
@@ -3216,8 +3253,13 @@
     <Content Include="Scripts\Default\respond.js" />
     <Content Include="Scripts\Default\respond.min.js" />
     <None Include="Scripts\Default\_references.js" />
-    <Content Include="Scripts\Default\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\Default\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\Default\jQuery\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\Default\jQuery\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\Default\jQuery\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\Default\jQuery\jquery-1.12.4.js" />
+    <Content Include="Scripts\Default\jQuery\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\Default\jQuery\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\Default\jQuery\jquery-ui-1.12.1.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3266,6 +3308,7 @@
     <Content Include="Views\ForBetterTimes.cshtml" />
     <Content Include="Views\Restaurant\EventsSearch.cshtml" />
     <Content Include="Views\Restaurant\RestaurantsSearch.cshtml" />
+    <Content Include="Scripts\Default\jQuery\jquery-1.12.4.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3274,7 +3317,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\Default\jQuery\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Resource.resx">
