@@ -29,11 +29,11 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink(CityGoodTaste.Resources.Resource.Restaurants, "Index", "Restaurant")</li>
+                        <li>@Html.ActionLink(CityGoodTaste.Resources.Resource.Restaurants, "Restaurants", "Restaurant")</li>
                         <li>@Html.ActionLink(CityGoodTaste.Resources.Resource.Events, "Events", "Restaurant")</li>
                         <li><a data-toggle="modal" data-target="#BotModal" href="#">@CityGoodTaste.Resources.Resource.SmartAssistant</a></li>
                     </ul>
-                    @Html.Partial("_LoginPartial")
+                   @Html.Partial("_LoginPartial")
                     <div class="dropdown " style="float:right; margin-top: 10px;">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                             <span class="glyphicon glyphicon-globe"></span> @CityGoodTaste.Controllers.HomeController.getCulture()
@@ -60,6 +60,7 @@
                             </li>
                         </ul>
                     </div>
+                    
                 </div>
             </div>
         </nav>

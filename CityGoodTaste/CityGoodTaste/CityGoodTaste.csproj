@@ -3258,14 +3258,14 @@
     <Content Include="Views\Home\Authentication\_SignUpModal.cshtml" />
     <Content Include="Views\Restaurant\Details.cshtml" />
     <Content Include="Views\Restaurant\Schema.cshtml" />
-    <Content Include="Views\Restaurant\Index.cshtml" />
+    <Content Include="Views\Restaurant\Restaurants.cshtml" />
     <Content Include="Views\Home\SmartAssistant.cshtml" />
     <Content Include="Views\Restaurant\Events.cshtml" />
     <Content Include="Views\Restaurant\_ReservedTablesPartial.cshtml" />
     <Content Include="Views\Restaurant\SchemaReservedTables.cshtml" />
     <Content Include="Views\ForBetterTimes.cshtml" />
-    <Content Include="Views\Restaurant\RestaurantsList.cshtml" />
     <Content Include="Views\Restaurant\EventsSearch.cshtml" />
+    <Content Include="Views\Restaurant\RestaurantsSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

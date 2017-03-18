@@ -38,9 +38,11 @@ namespace CityGoodTaste.BusinessLayer
         void ReservTables(List<TableViewModel> tables);
         string GetCurrectUserId();
         List<RestaurantEvent> SearchEvents(string searchText, string CheckEl);
+
+        List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups);
     }
 
-    public class RestaurantDataManager: IRestaurantDataManager
+    public class RestaurantDataManager : IRestaurantDataManager
     {
         public Restaurant GetRestaurant(int? id)
         {
@@ -55,8 +57,8 @@ namespace CityGoodTaste.BusinessLayer
                     Rest = context.Restaurants.Include(t => t.WorkHours).FirstOrDefault(t => t.Id == id);
                     Rest = context.Restaurants.Include(t => t.Reviews).FirstOrDefault(t => t.Id == id);
                     Rest.Reviews = context.RestaurantReviews.Include(t => t.User).ToList();
-                    Rest = context.Restaurants.Include(t => t.RestaurantSchemas).FirstOrDefault(t=>t.Id==id);
-                    Rest.RestaurantSchemas = context.RestaurantSchemas.Include(t => t.Tables.Select(r => r.TableReservation.Select(u=>u.User))).ToList();
+                    Rest = context.Restaurants.Include(t => t.RestaurantSchemas).FirstOrDefault(t => t.Id == id);
+                    Rest.RestaurantSchemas = context.RestaurantSchemas.Include(t => t.Tables.Select(r => r.TableReservation.Select(u => u.User))).ToList();
 
 
                     return Rest;
@@ -103,43 +105,141 @@ namespace CityGoodTaste.BusinessLayer
             }
 
         }
-        
-            public List<RestaurantEvent> SearchEvents(string searchText, string CheckEl)
+        private List<EventType> GetEventTypes(List<int> idEl)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                List<EventType> EventTypes = new List<EventType>();
+
+                EventTypes = context.EventTypes.Include(t => t.RestaurantEvents)
+                           .Where(x => idEl.Contains(x.Id)).ToList();
+
+                return EventTypes;
+            }
+        }
+        public List<RestaurantEvent> SearchEvents(string searchText, string CheckEl)
         {
             using (GoodTasteContext context = new GoodTasteContext())
             {
                 try
                 {
-                    string[] el = CheckEl.Split(',');
-                    List<int> idEl = new List<int>();
-                    for (int i = 0; i < el.Count(); i++)
-                    {
-                        idEl.Add(int.Parse(el[i].Trim()));
-                    }
-                    List<EventType> EventTypes = context.EventTypes.Include(t =>t.RestaurantEvents).Where(x => idEl.Contains(x.Id)).ToList();
-                    var re = EventTypes.Select(t => t.RestaurantEvents).ToList();
-                    List<int> id = new List<int>();
-                    for (int i = 0; i < re[0].ToList().Count(); i++)
-                    {
-                        id.Add(re[0].ToList()[i].Id);
-                    }
                     List<RestaurantEvent> result;
-                    if (searchText == null)
+                    if (CheckEl != null)
+                    {
+                        string[] el = CheckEl.Split(',');
+                        List<int> idEl = new List<int>();
+                        for (int i = 0; i < el.Count(); i++)
+                        {
+                            idEl.Add(int.Parse(el[i].Trim()));
+                        }
+
+                        var re = GetEventTypes(idEl).Select(t => t.RestaurantEvents).ToList();
+
+                        List<int> id = new List<int>();
+                        for (int i = 0; i < re.Count(); i++)
+                        {
+                            for (int j = 0; j < re[i].ToList().Count(); j++)
+                            {
+                                id.Add(re[i].ToList()[j].Id);
+                            }
+                        }
+                        id = id.Distinct().ToList();
+                        if (searchText == null)
+                        {
+                            result = context.RestaurantEvent.Include(t => t.Restaurant)
+                              .Include(t => t.EventTypes).Where(t => id.Contains(t.Id)).ToList();
+                        }
+                        else
+                        {
+                            result = context.RestaurantEvent.Include(t => t.Restaurant)
+                             .Include(t => t.EventTypes).Where(t => id.Contains(t.Id))
+                             .Where(t => t.Name.Contains(searchText)).ToList();
+                        }
+                    }
+                    else if (searchText.Length > 0)
                     {
                         result = context.RestaurantEvent.Include(t => t.Restaurant)
-                          .Include(t => t.EventTypes).Where(t => id.Contains(t.Id)).ToList();
+                             .Include(t => t.EventTypes).Where(t => t.Name.Contains(searchText)).ToList();
                     }
                     else
                     {
                         result = context.RestaurantEvent.Include(t => t.Restaurant)
-                         .Include(t => t.EventTypes).Where(t => id.Contains(t.Id)).Where(t => t.Name.Contains(searchText)).ToList();
+                             .Include(t => t.EventTypes).ToList();
                     }
 
                     return result;
                 }
                 catch
                 {
+
                     throw new Exception("Events not found");
+                }
+            }
+        }
+
+        public List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<Restaurant> result;
+                    if (true)
+                    {
+                        //string[] el = CheckEl.Split(',');
+                        //List<int> idEl = new List<int>();
+                        //for (int i = 0; i < el.Count(); i++)
+                        //{
+                        //    idEl.Add(int.Parse(el[i].Trim()));
+                        //}
+
+                        //var re = GetEventTypes(idEl).Select(t => t.RestaurantEvents).ToList();
+
+                        //List<int> id = new List<int>();
+                        //for (int i = 0; i < re.Count(); i++)
+                        //{
+                        //    for (int j = 0; j < re[i].ToList().Count(); j++)
+                        //    {
+                        //        id.Add(re[i].ToList()[j].Id);
+                        //    }
+                        //}
+                        //id = id.Distinct().ToList();
+                        //if (searchText == null)
+                        //{
+                        //    result = context.RestaurantEvent.Include(t => t.Restaurant)
+                        //      .Include(t => t.EventTypes).Where(t => id.Contains(t.Id)).ToList();
+                        //}
+                        //else
+                        //{
+                        //    result = context.RestaurantEvent.Include(t => t.Restaurant)
+                        //     .Include(t => t.EventTypes).Where(t => id.Contains(t.Id))
+                        //     .Where(t => t.Name.Contains(searchText)).ToList();
+                        //}
+                    }
+                    else if (searchText.Length > 0)
+                    {
+                        //result = context.RestaurantEvent.Include(t => t.Restaurant)
+                        //     .Include(t => t.EventTypes).Where(t => t.Name.Contains(searchText)).ToList();
+                    }
+                    else
+                    {
+                        result = context.Restaurants.Include(r => r.City).Include(r=>r.Cuisines).
+                            Include(r=>r.Likes).Include(r=>r.Map).Include(r=>r.Menu).Include(r=>r.Photos).
+                            Include(r=>r.RestaurantEvent).Include(r=>r.RestaurantFeatures).Include(r=>r.RestaurantGroup).
+                            Include(r=>r.RestaurantSchemas).Include(r=>r.Reviews).Include(r=>r.SpecialWorkHours).
+                            Include(r=>r.WorkHours).ToList();
+                    }
+                    result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
+                            Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).Include(r => r.Photos).
+                            Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
+                            Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
+                            Include(r => r.WorkHours).ToList();
+                    return result;
+                }
+                catch
+                {
+
+                    throw new Exception("Restaurants not found");
                 }
             }
         }
@@ -261,11 +361,12 @@ namespace CityGoodTaste.BusinessLayer
                         TableViewModel vmTable = new TableViewModel { Id = table.Id, X = table.X, Y = table.Y, Seats = table.Seats, ReservedAndConfirmed = false, Reserved = false };
                         foreach (var reserv in table.TableReservation)
                         {
-                            if (reserv.Date.Date == DateTime.Now.Date && reserv.ReservedAndConfirmed==true)
+                            if (reserv.Date.Date == DateTime.Now.Date && reserv.ReservedAndConfirmed == true)
                             {
                                 vmTable.ReservedAndConfirmed = true;
                                 break;
-                            }else if (reserv.Date.Date == DateTime.Now.Date && reserv.Reserved == true)
+                            }
+                            else if (reserv.Date.Date == DateTime.Now.Date && reserv.Reserved == true)
                             {
                                 vmTable.Reserved = true;
                                 break;

@@ -7,24 +7,27 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using CityGoodTaste.BusinessLayer;
+using CityGoodTaste.CustomFilters;
 using CityGoodTaste.Models;
 using CityGoodTaste.Models.ViewModels;
 
 namespace CityGoodTaste.Controllers
 {
+    [Culture]
     public class RestaurantController : Controller
     {
+
         // GET: Restaurant
-        public ActionResult Index(string searchText)
+        public ActionResult Restaurants(string searchText)
         {
             RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
             IRestaurantDataManager manager = factory.GetManager();
             List<Restaurant> Restaurants = manager.GetListRestaurants();
             return View(Restaurants);
         }
-        // POST: Restaurant/Events
+        // POST: Restaurant/Restaurants
         [HttpPost]
-        public ActionResult Index(int? id)
+        public ActionResult Restaurants(int? id)
         {
             try
             {
@@ -195,34 +198,53 @@ namespace CityGoodTaste.Controllers
             return PartialView(schema);
         }
         
+        [AjaxOnly]
         public async Task<ActionResult> EventsSearch(string searchText)
         {
             string CheckEl = Request.Form["EventTypesCheck"];
-            
-            if (searchText == null)
+            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+            IRestaurantDataManager manager = factory.GetManager();
+            try
             {
-                RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
-                IRestaurantDataManager manager = factory.GetManager();
-                var RestaurantEvent = manager.GetListRestaurantEvents();
-                return View(RestaurantEvent);
-            }
-            else
-            {
-                RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
-                IRestaurantDataManager manager = factory.GetManager();
                 var RestaurantEvent = manager.SearchEvents(searchText, CheckEl);
 
                 if (RestaurantEvent.Count > 0)
                 {
-                    RestaurantEvent.Union(RestaurantEvent.ToList());
-                    return PartialView(RestaurantEvent);
-                }
+                    RestaurantEvent = RestaurantEvent.Distinct().ToList();
 
-                else
-                {
-                    return PartialView(RestaurantEvent);
                 }
+                return PartialView(RestaurantEvent);
             }
+            catch
+            {
+                return PartialView(new List<RestaurantEvent>() );
+            }
+            
+        }
+        [AjaxOnly]
+        public async Task<ActionResult> RestaurantsSearch(string searchText)
+        {
+            string CuisinesCheck = Request.Form["CuisinesCheck"];
+            string FeaturesCheck = Request.Form["FeaturesCheck"];
+            string MealGroups = Request.Form["MealGroups"];
+            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+            IRestaurantDataManager manager = factory.GetManager();
+            try
+            {
+                var Restaurants = manager.SearchRestaurants(searchText, CuisinesCheck, FeaturesCheck, MealGroups);
+
+                if (Restaurants.Count > 0)
+                {
+                    Restaurants = Restaurants.Distinct().ToList();
+
+                }
+                return PartialView(Restaurants);
+            }
+            catch
+            {
+                return PartialView(new List<Restaurant>());
+            }
+
         }
     }
 }

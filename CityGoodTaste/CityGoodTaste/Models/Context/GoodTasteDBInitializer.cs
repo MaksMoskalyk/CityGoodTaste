@@ -27,6 +27,8 @@ namespace CityGoodTaste.Models
             var result2 = userManager.Create(user2, "Password!2");
             var user3 = new ApplicationUser { Email = "somemail3@mail.ru", UserName = "user3", Name = "Светлана" };
             var result3 = userManager.Create(user3, "Password!2");
+            Map map = new Map() { Latitude = 0, Longitude = 0, Zoom = 1 };
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Три Резвых Коня" };
             Restaurant r = new Restaurant
             {
                 Name = "Три Резвых Коня",
@@ -44,7 +46,9 @@ namespace CityGoodTaste.Models
                                     " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам,"+
                                     " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!"+
                                     "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!"+
-                                    "У нас как в театре: хотите на класс – покупайте билет!"
+                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                 Map= map,
+                 RestaurantGroup= restaurantsGroup
             };
 
             RestaurantFeature f1 = new RestaurantFeature { Name = "WiFi" };
@@ -275,7 +279,7 @@ namespace CityGoodTaste.Models
 
             context.Menus.Add(M1);
             context.Menus.Add(M2);
-
+            
             context.Restaurants.Add(r);
             context.SaveChanges();
         }
