@@ -200,15 +200,27 @@ namespace CityGoodTaste.BusinessLayer
                 return id;
             }
         }
-        private List<RestaurantFeature> GetFeatures(List<int> idEl)
+        private List<int> GetRestaurantsByFeatures(List<int> idEl)
         {
             using (GoodTasteContext context = new GoodTasteContext())
             {
-                List<RestaurantFeature> RestaurantFeature = new List<RestaurantFeature>();
+                List<int> id = new List<int>();
+                var rest = context.RestaurantFeatures.Include(t => t.Restaurants)
+                           .Where(x => idEl.Contains(x.Id)).Select(t => t.Restaurants).ToList();
 
-                RestaurantFeature = context.RestaurantFeatures.Include(t => t.Restaurants)
-                           .Where(x => idEl.Contains(x.Id)).ToList();
-                return RestaurantFeature;
+                for (int i = 0; i < rest.Count(); i++)
+                {
+                    List<int> temp = new List<int>();
+                    for (int j = 0; j < rest[i].ToList().Count(); j++)
+                    {
+                        temp.Add(rest[i].ToList()[j].Id);
+                    }
+                    if (id.Count > 0)
+                        id = id.Intersect(temp).ToList();
+                    else
+                        id = temp;
+                }
+                return id;
             }
         }
         private List<Restaurant> GetMealGroupsRest(List<int> idEl)
@@ -240,7 +252,6 @@ namespace CityGoodTaste.BusinessLayer
                         {
                             idEl.Add(int.Parse(el[i].Trim()));
                         }
-
                         idRC = GetRestaurantsByCuisines(idEl);
                     }
                     if (FeaturesCheck != null)
@@ -251,16 +262,7 @@ namespace CityGoodTaste.BusinessLayer
                         {
                             idEl.Add(int.Parse(el[i].Trim()));
                         }
-
-                        var re = GetFeatures(idEl).Select(t => t.Restaurants).ToList();
-
-                        for (int i = 0; i < re.Count(); i++)
-                        {
-                            for (int j = 0; j < re[i].ToList().Count(); j++)
-                            {
-                                idRC.Add(re[i].ToList()[j].Id);
-                            }
-                        }
+                        idRF = GetRestaurantsByFeatures(idEl);
                     }
                     if (MealGroups != null)
                     {
