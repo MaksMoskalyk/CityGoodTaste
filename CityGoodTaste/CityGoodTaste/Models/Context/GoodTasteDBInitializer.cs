@@ -134,11 +134,46 @@ namespace CityGoodTaste.Models
             context.Likes.Add(like);
             context.Countries.Add(c);
             context.Cities.Add(ct);
-            
-            context.EventTypes.Add(new Models.EventType() { Name = "EventTypes 1"});
-            context.EventTypes.Add(new Models.EventType() { Name = "EventTypes 2" });
-            context.EventTypes.Add(new Models.EventType() { Name = "EventTypes 3" });
-            context.EventTypes.Add(new Models.EventType() { Name = "EventTypes 4" });
+
+            EventType et1 =new EventType() { Name = "EventTypes 1" };
+            EventType et2 = new EventType() { Name = "EventTypes 2" };
+            EventType et3 = new EventType() { Name = "EventTypes 3" };
+            EventType et4 = new EventType() { Name = "EventTypes 4" };
+
+            context.EventTypes.Add(et1);
+            context.EventTypes.Add(et2);
+            context.EventTypes.Add(et3);
+            context.EventTypes.Add(et4);
+
+            List<EventType> let1 = new List<EventType>();
+            let1.Add(et1);
+            let1.Add(et3);
+
+            List<EventType> let2 = new List<EventType>();
+            let2.Add(et2);
+            let2.Add(et4);
+
+            List<EventType> let3 = new List<EventType>();
+            let3.Add(et2);
+            let3.Add(et3);
+
+            List<EventType> let4 = new List<EventType>();
+            let4.Add(et1);
+            let4.Add(et4);
+
+            RestaurantEvent re1 = new RestaurantEvent() { Name= "Restaurant Event 1",Description= "Restaurant Event 1 Description", StartDate= DateTime.Now , EndDate= DateTime.Now.AddHours(4) , Restaurant = r, EventTypes= let1 };
+            RestaurantEvent re2 = new RestaurantEvent() { Name = "Restaurant Event 2", Description = "Restaurant Event 2 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let2 };
+            RestaurantEvent re3 = new RestaurantEvent() { Name = "Restaurant Event 3", Description = "Restaurant Event 3 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let3 };
+            RestaurantEvent re4 = new RestaurantEvent() { Name = "Restaurant Event 4", Description = "Restaurant Event 4 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let4 };
+            RestaurantEvent re5 = new RestaurantEvent() { Name = "Restaurant Event 5", Description = "Restaurant Event 5 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let1 };
+
+
+            context.RestaurantEvent.Add(re1);
+            context.RestaurantEvent.Add(re2);
+            context.RestaurantEvent.Add(re3);
+            context.RestaurantEvent.Add(re4);
+            context.RestaurantEvent.Add(re5);
+
             Cuisine cuisine1 = new Cuisine() { Name = "Cuisine 1" };
             Cuisine cuisine2 = new Cuisine() { Name = "Cuisine 2" };
             Cuisine cuisine3 = new Cuisine() { Name = "Cuisine 3" };
@@ -154,13 +189,7 @@ namespace CityGoodTaste.Models
             context.Cuisines.Add(cuisine6);
             context.Cuisines.Add(cuisine7);
 
-            context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 1", "Restaurant Event 1 Description",  DateTime.Now, DateTime.Now.AddHours(4), r));
-            context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 2", "Restaurant Event 2 Description", DateTime.Now, DateTime.Now.AddHours(4), r));
-            context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 3", "Restaurant Event 3 Description", DateTime.Now, DateTime.Now.AddHours(4), r));
-            context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 4", "Restaurant Event 4 Description", DateTime.Now, DateTime.Now.AddHours(4), r));
-            context.RestaurantEvent.Add(new RestaurantEvent("Restaurant Event 5", "Restaurant Event 5 Description", DateTime.Now, DateTime.Now.AddHours(4), r));
-
-            Meal ml1 = new Meal() { Name = "Meal 1", Description = "Meal 1 description", Price = 10, Cuisine = cuisine1 };
+             Meal ml1 = new Meal() { Name = "Meal 1", Description = "Meal 1 description", Price = 10, Cuisine = cuisine1 };
             Meal ml2 = new Meal() { Name = "Meal 2", Description = "Meal 2 description", Price = 10, Cuisine = cuisine2 };
             Meal ml3 = new Meal() { Name = "Meal 3", Description = "Meal 3 description", Price = 10, Cuisine = cuisine3 };
             Meal ml4 = new Meal() { Name = "Meal 4", Description = "Meal 4 description", Price = 10, Cuisine = cuisine4 };

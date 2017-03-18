@@ -396,4 +396,7 @@
   <data name="TableNumber" xml:space="preserve">
     <value>Table number</value>
   </data>
+  <data name="EventTypes" xml:space="preserve">
+    <value>Event types</value>
+  </data>
 </root>

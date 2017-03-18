@@ -37,7 +37,7 @@ namespace CityGoodTaste.BusinessLayer
         List<MealGroup> GetAllMealGroups();
         void ReservTables(List<TableViewModel> tables);
         string GetCurrectUserId();
-        List<RestaurantEvent> SearchEvents(string searchText);
+        List<RestaurantEvent> SearchEvents(string searchText, string CheckEl);
     }
 
     public class RestaurantDataManager: IRestaurantDataManager
@@ -92,7 +92,8 @@ namespace CityGoodTaste.BusinessLayer
             {
                 try
                 {
-                    List<RestaurantEvent> result = context.RestaurantEvent.Include(t => t.Restaurant).ToList();
+                    List<RestaurantEvent> result = context.RestaurantEvent.Include(t => t.Restaurant)
+                        .Include(t => t.EventTypes).ToList();
                     return result;
                 }
                 catch
@@ -103,15 +104,37 @@ namespace CityGoodTaste.BusinessLayer
 
         }
         
-            public List<RestaurantEvent> SearchEvents(string searchText)
+            public List<RestaurantEvent> SearchEvents(string searchText, string CheckEl)
         {
             using (GoodTasteContext context = new GoodTasteContext())
             {
                 try
                 {
-                    List<RestaurantEvent> result = context.RestaurantEvent.Include(t => t.Restaurant).Where(t => t.Name.Contains(searchText)).ToList();
-                    if (result.Count > 10)
-                        result.RemoveRange(10, result.Count - 9);
+                    string[] el = CheckEl.Split(',');
+                    List<int> idEl = new List<int>();
+                    for (int i = 0; i < el.Count(); i++)
+                    {
+                        idEl.Add(int.Parse(el[i].Trim()));
+                    }
+                    List<EventType> EventTypes = context.EventTypes.Include(t =>t.RestaurantEvents).Where(x => idEl.Contains(x.Id)).ToList();
+                    var re = EventTypes.Select(t => t.RestaurantEvents).ToList();
+                    List<int> id = new List<int>();
+                    for (int i = 0; i < re[0].ToList().Count(); i++)
+                    {
+                        id.Add(re[0].ToList()[i].Id);
+                    }
+                    List<RestaurantEvent> result;
+                    if (searchText == null)
+                    {
+                        result = context.RestaurantEvent.Include(t => t.Restaurant)
+                          .Include(t => t.EventTypes).Where(t => id.Contains(t.Id)).ToList();
+                    }
+                    else
+                    {
+                        result = context.RestaurantEvent.Include(t => t.Restaurant)
+                         .Include(t => t.EventTypes).Where(t => id.Contains(t.Id)).Where(t => t.Name.Contains(searchText)).ToList();
+                    }
+
                     return result;
                 }
                 catch

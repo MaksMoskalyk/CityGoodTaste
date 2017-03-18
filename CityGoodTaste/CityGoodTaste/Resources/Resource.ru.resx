@@ -396,4 +396,7 @@
   <data name="TableNumber" xml:space="preserve">
     <value>Номер столика</value>
   </data>
+  <data name="EventTypes" xml:space="preserve">
+    <value>Типы ивентов</value>
+  </data>
 </root>

@@ -1,6 +1,4 @@
 ﻿@model IEnumerable<CityGoodTaste.Models.RestaurantEvent>
-<script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script>
-<script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script>
 @{
     ViewBag.Title = "Events";
 }
@@ -15,11 +13,10 @@
             <button type="submit" class="btn btn-danger">@CityGoodTaste.Resources.Resource.Search</button>
         </div>
     </div>
-}
+
 <div>
     <div class="col-sm-2">
-        <h4>категории</h4>
-        <p>@CityGoodTaste.Resources.Resource.EventType:</p>
+        <p>@CityGoodTaste.Resources.Resource.EventTypes:</p>
         @{ 
             CityGoodTaste.BusinessLayer.RestaurantDataManager manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager ();
             var EventTypes = manager.GetAllEventTypes();
@@ -27,7 +24,7 @@
         @foreach (var item in EventTypes)
         {
             <div class="checkbox">
-                <label><input id="EventTypesCheck" type="checkbox" value="">@item.Name</label>
+                <label><input id="EventTypesCheck" name="EventTypesCheck" type="checkbox" value=@item.Id >@item.Name</label>
             </div>
         }
     </div>
@@ -57,6 +54,6 @@
         </div>
     </div>
 </div>
-
+            }
 
 

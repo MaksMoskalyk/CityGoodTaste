@@ -199,6 +199,8 @@ namespace CityGoodTaste.Controllers
         
         public async Task<ActionResult> EventsSearch(string searchText)
         {
+            string CheckEl = Request.Form["EventTypesCheck"];
+            
             if (searchText == null)
             {
                 RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
@@ -210,7 +212,7 @@ namespace CityGoodTaste.Controllers
             {
                 RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
                 IRestaurantDataManager manager = factory.GetManager();
-                var RestaurantEvent = manager.SearchEvents(searchText);
+                var RestaurantEvent = manager.SearchEvents(searchText, CheckEl);
 
                 if (RestaurantEvent.Count > 0)
                 {
