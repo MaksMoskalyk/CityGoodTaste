@@ -9,21 +9,22 @@
     <div class="modal-body" style="padding:40px 50px;">
 
 @using (Ajax.BeginForm("_ReservedTablesPartial", new AjaxOptions { UpdateTargetId = "reseredTables" }))
-{            <button type="submit" class="btn btn-success btn-default pull-left"/>
+{
         <div class="container-fluid" style="margin-bottom:50px;">
             <div class="panel-heading">
-
-
-                <button id="submitBt" type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal">
-
+                <button id="submitBt" type="submit" class="btn btn-success btn-default pull-left">
                     <span class="glyphicon glyphicon-ok"></span>
                     Ok
                 </button>
-                <button class="btn btn-danger btn-default pull-right" data-dismiss="modal">
+                <button id="closeBt" class="btn btn-danger btn-default pull-right" data-dismiss="modal">
                     <span class="glyphicon glyphicon-remove"></span>
                     Cancel
                 </button>
             </div>
+            @Html.HiddenFor(m => Model.RestaurantId)
+            @Html.HiddenFor(m => Model.Id)
+            @Html.HiddenFor(m => Model.XLength)
+            @Html.HiddenFor(m => Model.YLength)
             <table style="border-left:3px solid black; border-right:3px solid black; border-bottom:3px solid black">
                 @for (int y = 0; y < Model.YLength; y++)
                 {
@@ -92,22 +93,11 @@
 
 
 <script>
-    @*$('#submitBt').click(function () {
-        var model = @Html.Raw(Json.Encode(@Model));
-        $.ajax({
-            url: '/Restaurant/Schemaa',
-            type: 'POST',
-            data: JSON.stringify(model),
-            dataType: "json",
-            contentType: "application/json",
-            success: function (result) {
-                alert('da');
-            },
-            error: function (xhr, status, p3) {
-                
-            }
-        });
-    });*@
+    $('#submitBt').click(function (event) {
+        $('#reseredTables').empty();
+        $('#closeBt').click();
+
+    });
                 $('td').click(function (event) {
                     event.stopPropagation();
                     var id = event.target.id;

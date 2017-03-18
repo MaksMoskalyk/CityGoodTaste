@@ -254,6 +254,7 @@ namespace CityGoodTaste.BusinessLayer
                     RestaurantShemaViewModel vmSchema = new RestaurantShemaViewModel();
                     vmSchema.Id = Schema.Id;
                     vmSchema.Name = Schema.Name;
+                    vmSchema.RestaurantId = Convert.ToInt32(id);
                     List<TableViewModel> vmTables = new List<TableViewModel>();
 
                     foreach (var table in Schema.Tables)
