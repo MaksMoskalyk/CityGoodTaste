@@ -25,8 +25,10 @@ namespace CityGoodTaste.Controllers
             List<Restaurant> Restaurants = manager.GetFoundRestaurants(searchText);
             if (Restaurants.Count > 1)
                 return View(Restaurants);
+            else if (Restaurants.Count == 1)
+                return View("~/Views/Restaurant/Details.cshtml", manager.GetRestaurant(Restaurants[0].Id));
             else
-                return View("~/Views/Restaurant/Details.cshtml", Restaurants[0]);
+                return View(manager.GetListRestaurants());
         }
 
         // POST: Restaurant/Restaurants
