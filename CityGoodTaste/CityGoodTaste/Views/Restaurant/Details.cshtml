@@ -140,11 +140,12 @@
                             @for (int i = 0; i < Model.Menu.Count; i++)
                             {
                                 var SubMenu = Model.Menu.ToList()[i];
-                                string isActiveM = "tab-pane fade";
+                                string isActiveM = "";
                                 if (SubMenu == Model.Menu.First())
-                                { isActiveM = "tab-pane&nbsp;fade&nbsp;in&nbsp;active"; }
+                                { isActiveM = "in active"; }
                                 string SubMenuID = "SubMenu" + @i;
-                                <div id=@SubMenuID class=@isActiveM>
+
+                                <div id=@SubMenuID class="tab-pane fade @isActiveM">
                                     <div class="panel-group" id="accordionMeal">
                                         @for (int j = 0; j < SubMenu.MealGroups.Count; j++)
                                         {
@@ -153,7 +154,7 @@
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title">
                                                         @{
-                                                            string colShID = "#collapseMealGroup" + @j;
+                                                            string colShID = "#collapseMealGroup" + @i + @j;
                                                         }
                                                         <a data-toggle="collapse" data-parent="#accordionMeal" href=@colShID>
                                                             <span>
@@ -163,14 +164,10 @@
                                                     </h4>
                                                 </div>
                                                 @{
-                                                    string isActivecoll = "";
-                                                    string colID = "collapseMealGroup" + @j;
+                                                    
+                                                    string colID = "collapseMealGroup" + @i + @j;
                                                 }
-                                                @if (j == 0)
-                                                {
-                                                    isActivecoll = "in";
-                                                }
-                                                <div id=@colID class="panel-collapse collapse @isActivecoll">
+                                                <div id=@colID class="panel-collapse collapse">
                                                     <div class="panel-bodycol-sm-12">
                                                         <div class="well">
                                                             <table class="table" >
