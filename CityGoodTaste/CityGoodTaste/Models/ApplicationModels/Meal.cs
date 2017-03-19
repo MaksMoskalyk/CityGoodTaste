@@ -24,6 +24,8 @@ namespace CityGoodTaste.Models
 
         public double Price { get; set; }
 
+        public virtual Currency Currency { get; set; }
+
 
         public virtual Cuisine Cuisine { get; set; }
     }
