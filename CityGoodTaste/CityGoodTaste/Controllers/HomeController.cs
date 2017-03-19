@@ -37,11 +37,12 @@ namespace CityGoodTaste.Controllers
             Response.Cookies.Add(cookie);
             return Redirect(returnUrl);
         }
+
         public static string getCulture()
         {
-
             return Thread.CurrentThread.CurrentCulture.ThreeLetterWindowsLanguageName;
         }
+
         // GET: Restaurants
         public ActionResult Index()
         {
@@ -68,24 +69,35 @@ namespace CityGoodTaste.Controllers
 
             return View();
         }
-        [HttpGet]
-        [AjaxOnly]
-        public ActionResult LogIn()
-        {
-            ViewBag.Message = "LogIn";
-            ApplicationUser user = new ApplicationUser();
 
-            return PartialView("~/Views/Home/Authentication/_LogInModal.cshtml", user);
+        [HttpPost]
+        [AjaxOnly]
+        public ActionResult GetSearch(string searchTerm)
+        {
+            List<Restaurant> restaurants;
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                if (string.IsNullOrEmpty(searchTerm))
+                {
+                    restaurants = context.Restaurants.ToList();
+                }
+                else
+                {
+                    restaurants = context.Restaurants.Where(r => r.Name.StartsWith(searchTerm)).ToList();
+                }
+            }
+
+            return View("~/Views/Restaurant/Details.cshtml", restaurants);
         }
 
-        [HttpGet]
-        [AjaxOnly]
-        public ActionResult SignUp()
+        public JsonResult GetSearchData(string term)
         {
-            ViewBag.Message = "SignUp";
-            ApplicationUser user = new ApplicationUser();
-
-            return PartialView("~/Views/Home/Authentication/_SignUpModal.cshtml", user);
+            List<string> restaurantNames;
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                restaurantNames = context.Restaurants.Where(r => r.Name.StartsWith(term)).Select(r => r.Name).ToList();
+            }
+            return Json(restaurantNames, JsonRequestBehavior.AllowGet);
         }
     }
 }
