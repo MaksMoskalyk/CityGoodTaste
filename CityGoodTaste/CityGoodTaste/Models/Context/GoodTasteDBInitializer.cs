@@ -193,21 +193,23 @@ namespace CityGoodTaste.Models
             context.Cuisines.Add(cuisine6);
             context.Cuisines.Add(cuisine7);
 
-             Meal ml1 = new Meal() { Name = "Meal 1", Description = "Meal 1 description", Price = 10, Cuisine = cuisine1 };
-            Meal ml2 = new Meal() { Name = "Meal 2", Description = "Meal 2 description", Price = 10, Cuisine = cuisine2 };
-            Meal ml3 = new Meal() { Name = "Meal 3", Description = "Meal 3 description", Price = 10, Cuisine = cuisine3 };
-            Meal ml4 = new Meal() { Name = "Meal 4", Description = "Meal 4 description", Price = 10, Cuisine = cuisine4 };
-            Meal ml5 = new Meal() { Name = "Meal 5", Description = "Meal 5 description", Price = 10, Cuisine = cuisine5 };
-            Meal ml6 = new Meal() { Name = "Meal 6", Description = "Meal 6 description", Price = 10, Cuisine = cuisine6 };
-            Meal ml7 = new Meal() { Name = "Meal 7", Description = "Meal 7 description", Price = 10, Cuisine = cuisine7 };
+            Currency crnc = new Currency() {Name= "Hryvnia", sing= "₴" };
 
-            Meal ml8 = new Meal() { Name = "Meal 8", Description = "Meal 8 description", Price = 10, Cuisine = cuisine1 };
-            Meal ml9 = new Meal() { Name = "Meal 9", Description = "Meal 9 description", Price = 10, Cuisine = cuisine2 };
-            Meal ml10 = new Meal() { Name = "Meal 10", Description = "Meal 10 description", Price = 10, Cuisine = cuisine3 };
-            Meal ml11 = new Meal() { Name = "Meal 11", Description = "Meal 11 description", Price = 10, Cuisine = cuisine4 };
-            Meal ml12 = new Meal() { Name = "Meal 12", Description = "Meal 12 description", Price = 10, Cuisine = cuisine5 };
-            Meal ml13 = new Meal() { Name = "Meal 13", Description = "Meal 13 description", Price = 10, Cuisine = cuisine6 };
-            Meal ml14 = new Meal() { Name = "Meal 14", Description = "Meal 14 description", Price = 10, Cuisine = cuisine7 };
+            Meal ml1 = new Meal() { Name = "Meal 1", Description = "Meal 1 description", Price = 10, Cuisine = cuisine1, Currency= crnc };
+            Meal ml2 = new Meal() { Name = "Meal 2", Description = "Meal 2 description", Price = 10, Cuisine = cuisine2, Currency = crnc };
+            Meal ml3 = new Meal() { Name = "Meal 3", Description = "Meal 3 description", Price = 10, Cuisine = cuisine3, Currency = crnc };
+            Meal ml4 = new Meal() { Name = "Meal 4", Description = "Meal 4 description", Price = 10, Cuisine = cuisine4, Currency = crnc };
+            Meal ml5 = new Meal() { Name = "Meal 5", Description = "Meal 5 description", Price = 10, Cuisine = cuisine5, Currency = crnc };
+            Meal ml6 = new Meal() { Name = "Meal 6", Description = "Meal 6 description", Price = 10, Cuisine = cuisine6, Currency = crnc };
+            Meal ml7 = new Meal() { Name = "Meal 7", Description = "Meal 7 description", Price = 10, Cuisine = cuisine7, Currency = crnc };
+
+            Meal ml8 = new Meal() { Name = "Meal 8", Description = "Meal 8 description", Price = 10, Cuisine = cuisine1, Currency = crnc };
+            Meal ml9 = new Meal() { Name = "Meal 9", Description = "Meal 9 description", Price = 10, Cuisine = cuisine2, Currency = crnc };
+            Meal ml10 = new Meal() { Name = "Meal 10", Description = "Meal 10 description", Price = 10, Cuisine = cuisine3, Currency = crnc };
+            Meal ml11 = new Meal() { Name = "Meal 11", Description = "Meal 11 description", Price = 10, Cuisine = cuisine4, Currency = crnc };
+            Meal ml12 = new Meal() { Name = "Meal 12", Description = "Meal 12 description", Price = 10, Cuisine = cuisine5, Currency = crnc };
+            Meal ml13 = new Meal() { Name = "Meal 13", Description = "Meal 13 description", Price = 10, Cuisine = cuisine6, Currency = crnc };
+            Meal ml14 = new Meal() { Name = "Meal 14", Description = "Meal 14 description", Price = 10, Cuisine = cuisine7, Currency = crnc };
 
             context.Meals.Add(ml1);
             context.Meals.Add(ml2);

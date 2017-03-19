@@ -67,7 +67,7 @@ namespace CityGoodTaste.BusinessLayer
                     result.City.Country = context.Countries.Where(t => t.Id == result.City.Country.Id).FirstOrDefault();
                     result.Reviews = context.RestaurantReviews.Include(t => t.User).ToList();
                     result.RestaurantEvent = context.RestaurantEvent.Include(t => t.EventTypes).ToList();
-                    result.Menu = context.Menus.Include(t => t.MealGroups.Select(m=>m.Meals)).ToList();
+                    result.Menu = context.Menus.Include(t => t.MealGroups.Select(m=>m.Meals.Select(c=>c.Currency))).ToList();
                     result.RestaurantSchemas = context.RestaurantSchemas.Include(t => t.Tables.Select(r => r.TableReservation.Select(u => u.User))).ToList();
                     return result;
                 }

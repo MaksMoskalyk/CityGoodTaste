@@ -169,31 +169,31 @@
                                                 }
                                                 <div id=@colID class="panel-collapse collapse">
                                                     <div class="panel-bodycol-sm-12">
-                                        <div class="well">
+                                                        <div class="well">
                                                             <table class="table" >
                                                                 @foreach (var Meal in MealGroup.Meals)
                                                                 {
-                                                <tr>
+                                                                    <tr>
                                                                         <td style="width:110px">
                                                                             <img class="img-thumbnail" src="https://placehold.it/100x100?text=@Meal.Name" alt="Image">
                                                                         </td>
                                                                         <td style="text-align:left">
                                                                             <p style="font-size:large; margin:0;">@Meal.Name</p>
                                                                             <p>@Meal.Description</p>
-                                                    </td>
+                                                                        </td>
                                                                         <td style="width:100px">
-                                                                            <p>@Meal.Price</p>
-                                                    </td>
-                                                </tr>
+                                                                            <p>@Meal.Price @Meal.Currency.sing</p>
+                                                                        </td>
+                                                                    </tr>
                                                                 }
-                                            </table>
-                                        </div>
-                                    </div>
+                                                            </table>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                                     }
+                                    </div>
                                 </div>
-                            </div>
 }
                         </div>
                     </div>
@@ -339,9 +339,9 @@
                     <button id="reservBt" type="button" class="btn btn-success btn-block">@CityGoodTaste.Resources.Resource.Reserv</button>
                 </div>
             </div>
-            </div>
         </div>
     </div>
+</div>
 
 <div class="modal fade" id="SchemaModal" role="dialog">
     <div class="modal-dialog">
