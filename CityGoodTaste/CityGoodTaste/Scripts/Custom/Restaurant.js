@@ -11,7 +11,6 @@
     //    inline: true
     //});
 
-
     $('#dp6').datepicker({
         todayBtn: 'linked'
     });
@@ -26,6 +25,7 @@
         changeYear: true,
         yearRange: "-60:+0"
     });
+
     $("#datepicker").datepicker();
 
     function myMap() {      
@@ -36,8 +36,6 @@
         marker.setMap(map);
     }
 })
-
-
 
 function SetAjaxForShemaModals() {
     $('#startModalSchema').click(function () {
@@ -53,7 +51,5 @@ function SetAjaxForShemaModals() {
 
             }
         });
-    });
-               
+    });              
 };
-

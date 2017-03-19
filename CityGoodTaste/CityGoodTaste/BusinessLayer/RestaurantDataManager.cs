@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using CityGoodTaste.Models;
 using System.Data.Entity;
 using CityGoodTaste.Models.ViewModels;
-using Microsoft.AspNet.Identity;
-
 
 
 namespace CityGoodTaste.BusinessLayer
@@ -15,6 +12,7 @@ namespace CityGoodTaste.BusinessLayer
     {
         public abstract IRestaurantDataManager GetManager();
     }
+
     public class DefaultRestaurantDataManagerCreator : RestaurantDataManagerCreator
     {
         public override IRestaurantDataManager GetManager()
@@ -38,7 +36,6 @@ namespace CityGoodTaste.BusinessLayer
         void ReservTables(List<TableViewModel> tables);
         string GetCurrectUserId();
         List<RestaurantEvent> SearchEvents(string searchText, string CheckEl);
-
         List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups);
     }
 
@@ -80,6 +77,7 @@ namespace CityGoodTaste.BusinessLayer
             }
 
         }
+
         public List<Restaurant> GetListRestaurants()
         {
             using (GoodTasteContext context = new GoodTasteContext())
@@ -115,6 +113,7 @@ namespace CityGoodTaste.BusinessLayer
             }
 
         }
+
         private List<EventType> GetEventTypes(List<int> idEl)
         {
             using (GoodTasteContext context = new GoodTasteContext())
@@ -127,6 +126,7 @@ namespace CityGoodTaste.BusinessLayer
                 return EventTypes;
             }
         }
+
         public List<RestaurantEvent> SearchEvents(string searchText, string CheckEl)
         {
             using (GoodTasteContext context = new GoodTasteContext())
@@ -385,6 +385,7 @@ namespace CityGoodTaste.BusinessLayer
             }
 
         }
+
         public List<Cuisine> GetAllCuisines()
         {
             using (GoodTasteContext context = new GoodTasteContext())
@@ -416,6 +417,7 @@ namespace CityGoodTaste.BusinessLayer
                 }
             }
         }
+
         public List<MealGroup> GetAllMealGroups()
         {
             using (GoodTasteContext context = new GoodTasteContext())
@@ -431,6 +433,7 @@ namespace CityGoodTaste.BusinessLayer
                 }
             }
         }
+
         public RestaurantSchema GetRestaurantSchema(int? id)
         {
             using (GoodTasteContext context = new GoodTasteContext())
@@ -531,6 +534,4 @@ namespace CityGoodTaste.BusinessLayer
             }
         }
     }
-
-
 }

@@ -25,7 +25,7 @@ namespace CityGoodTaste.Models
         [MaxLength(50)]
         public string Surname { get; set; }
 
-        
+
         public byte[] Photo { get; set; }
 
         
@@ -45,6 +45,5 @@ namespace CityGoodTaste.Models
 
        
         public virtual ICollection<TableReservation> TableReservation { get; set; }
-
     }
 }
