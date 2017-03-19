@@ -38,6 +38,8 @@ namespace CityGoodTaste.BusinessLayer
         string GetCurrectUserId();
         List<RestaurantEvent> SearchEvents(string searchText, string CheckEl);
         List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups);
+        void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds);
+        Menu GetRestMenu(int id);
     }
 
     public class RestaurantDataManager : IRestaurantDataManager
@@ -48,18 +50,28 @@ namespace CityGoodTaste.BusinessLayer
             {
                 try
                 {
-                    Restaurant Rest = context.Restaurants.Include(t => t.Likes).FirstOrDefault(t => t.Id == id);
-                    Rest = context.Restaurants.Include(t => t.City).FirstOrDefault(t => t.Id == id);
-                    Rest.City = context.Cities.Include(t => t.Country).FirstOrDefault(t => t.Country.Id == Rest.City.Country.Id);
-                    Rest = context.Restaurants.Include(t => t.RestaurantFeatures).FirstOrDefault(t => t.Id == id);
-                    Rest = context.Restaurants.Include(t => t.WorkHours).FirstOrDefault(t => t.Id == id);
-                    Rest = context.Restaurants.Include(t => t.Reviews).FirstOrDefault(t => t.Id == id);
-                    Rest.Reviews = context.RestaurantReviews.Include(t => t.User).ToList();
-                    Rest = context.Restaurants.Include(t => t.RestaurantSchemas).FirstOrDefault(t => t.Id == id);
-                    Rest.RestaurantSchemas = context.RestaurantSchemas.Include(t => t.Tables.Select(r => r.TableReservation.Select(u => u.User))).ToList();
-
-
-                    return Rest;
+                    //Restaurant Rest = context.Restaurants.Include(t => t.Likes).FirstOrDefault(t => t.Id == id);
+                    //Rest = context.Restaurants.Include(t => t.City).FirstOrDefault(t => t.Id == id);
+                    //Rest.City = context.Cities.Include(t => t.Country).FirstOrDefault(t => t.Country.Id == Rest.City.Country.Id);
+                    //Rest = context.Restaurants.Include(t => t.RestaurantFeatures).FirstOrDefault(t => t.Id == id);
+                    //Rest = context.Restaurants.Include(t => t.WorkHours).FirstOrDefault(t => t.Id == id);
+                    //Rest = context.Restaurants.Include(t => t.Reviews).FirstOrDefault(t => t.Id == id);
+                    //Rest.Reviews = context.RestaurantReviews.Include(t => t.User).ToList();
+                    //Rest = context.Restaurants.Include(t => t.RestaurantSchemas).FirstOrDefault(t => t.Id == id);
+                    //Rest.RestaurantSchemas = context.RestaurantSchemas.Include(t => t.Tables.Select(r => r.TableReservation.Select(u => u.User))).ToList();
+                    //return Rest;
+                    Restaurant result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
+                            Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).Include(r => r.Photos).
+                            Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
+                            Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
+                            Include(r => r.WorkHours).Where(r=>r.Id==id).FirstOrDefault();
+                    result.City= context.Cities.Where(t => t.Id == result.City.Id).FirstOrDefault();
+                    result.City.Country = context.Countries.Where(t => t.Id == result.City.Country.Id).FirstOrDefault();
+                    result.Reviews = context.RestaurantReviews.Include(t => t.User).ToList();
+                    result.RestaurantEvent = context.RestaurantEvent.Include(t => t.EventTypes).ToList();
+                    result.Menu = context.Menus.Include(t => t.MealGroups.Select(m=>m.Meals.Select(c=>c.Currency))).ToList();
+                    result.RestaurantSchemas = context.RestaurantSchemas.Include(t => t.Tables.Select(r => r.TableReservation.Select(u => u.User))).ToList();
+                    return result;
                 }
                 catch
                 {
@@ -542,6 +554,43 @@ namespace CityGoodTaste.BusinessLayer
                 //ApplicationUser currentUser = context.Users.FirstOrDefault(x => x.Id == HttpContext.Current.User.Identity.GetUserId());
                 ApplicationUser user = context.Users.FirstOrDefault();
                 return user.Id;
+            }
+        }
+
+        public Menu GetRestMenu(int id)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    Menu menu = context.Menus.Include(t => t.MealGroups.Select(m => m.Meals.Select(c => c.Currency))).Where(t=>t.Restaurant.Id==id).FirstOrDefault();
+                    return menu;
+                }
+                catch
+                {
+                    throw new Exception("Menu not found");
+                }
+            }
+
+        }
+
+        public void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                ApplicationUser currentUser = context.Users.FirstOrDefault();
+                var reservs = from x in currentUser.TableReservation 
+                                where tablesIds.Contains(x.Table.Id) 
+                                where x.Reserved==true
+                                where x.ReservedAndConfirmed==false
+                                select x;
+
+                foreach (var reserv in reservs)
+                {
+                    reserv.ReservedAndConfirmed = true;
+                    reserv.Reserved = false;
+                }
+                context.SaveChanges();
             }
         }
     }

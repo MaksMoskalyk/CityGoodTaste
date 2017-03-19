@@ -183,6 +183,7 @@
     <Compile Include="Models\ApplicationModels\City.cs" />
     <Compile Include="Models\ApplicationModels\Country.cs" />
     <Compile Include="Models\ApplicationModels\Cuisine.cs" />
+    <Compile Include="Models\ApplicationModels\Currency.cs" />
     <Compile Include="Models\ApplicationModels\EventType.cs" />
     <Compile Include="Models\ApplicationModels\Like.cs" />
     <Compile Include="Models\ApplicationModels\Map.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Models\Context\GoodTasteDBInitializer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\ConfirmReservViewModel.cs" />
     <Compile Include="Models\ViewModels\RestaurantShemaViewModel.cs" />
     <Compile Include="Models\ViewModels\TablesListViewModel.cs" />
     <Compile Include="Models\ViewModels\TableViewModel.cs" />
@@ -3314,6 +3316,7 @@
     <Content Include="Views\Restaurant\EventsSearch.cshtml" />
     <Content Include="Views\Restaurant\RestaurantsSearch.cshtml" />
     <Content Include="Scripts\Default\jQuery\jquery-1.12.4.min.map" />
+    <Content Include="Views\Restaurant\ConfirmReserv.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,9 +22,7 @@
     }
 }
 
-.WordBreak {
-    word-break: break-all;
-}
+
 
 .MenuHeadText {
     padding: 10px;
@@ -38,3 +36,4 @@
 div.ui-datepicker {
     font-size: 17px;
 }
+

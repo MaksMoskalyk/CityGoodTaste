@@ -360,9 +360,6 @@
   <data name="SmartAssistant" xml:space="preserve">
     <value>Smart Assistant</value>
   </data>
-  <data name="PhoneNumber" xml:space="preserve">
-    <value>PhoneNumber</value>
-  </data>
   <data name="TableReserved" xml:space="preserve">
     <value>TableReserved</value>
   </data>
@@ -398,5 +395,26 @@
   </data>
   <data name="EventTypes" xml:space="preserve">
     <value>Event types</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="ContactInfo" xml:space="preserve">
+    <value>CONTACT INFO</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>DATE</value>
+  </data>
+  <data name="MakeReserv" xml:space="preserve">
+    <value>MakeReserv</value>
+  </data>
+  <data name="Reserv" xml:space="preserve">
+    <value>Reserv</value>
+  </data>
+  <data name="SelectTable" xml:space="preserve">
+    <value>SELECT TABLE</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>TIME</value>
   </data>
 </root>
