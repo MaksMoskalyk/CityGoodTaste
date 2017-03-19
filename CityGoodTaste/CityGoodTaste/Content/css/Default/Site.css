@@ -12,13 +12,15 @@ body {
     height: 100%;
 }
 
-/*#navPanel {
-    background-color: #333333;
+#navPanel {
+    background-color: #333333 !important;
+    color:whitesmoke !important;
 }
 
 #footer {
-    background-color: #333333;
-}*/
+    background-color: #333333 !important;
+    color:whitesmoke !important;
+}
 
 .body-content {
     padding-left: 15px;
