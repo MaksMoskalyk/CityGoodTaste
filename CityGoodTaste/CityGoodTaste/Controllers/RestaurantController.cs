@@ -68,6 +68,7 @@ namespace CityGoodTaste.Controllers
 
         }
 
+        [AjaxOnly]
         public ActionResult _ReservedTablesPartial(Models.ViewModels.RestaurantShemaViewModel model)
         {
             RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
@@ -75,10 +76,26 @@ namespace CityGoodTaste.Controllers
             manager.ReservTables(model.Tables);
             Restaurant Rest = manager.GetRestaurant(model.RestaurantId);
             ViewBag.UserId = manager.GetCurrectUserId();
+            ViewBag.SchemaId = Rest.RestaurantSchemas.FirstOrDefault().Id;
             return PartialView("~/Views/Restaurant/_ReservedTablesPartial.cshtml", Rest);
+        }
+
+        [AjaxOnly]
+        public ActionResult ConfirmReservation(Restaurant model)
+        {
+            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+            IRestaurantDataManager manager = factory.GetManager();
+            string userId = manager.GetCurrectUserId();
+            var schemaId = Request.Form["item.Id"];
 
 
+            //RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+            //IRestaurantDataManager manager = factory.GetManager();
+            //manager.ReservTables(model.Tables);
+            //Restaurant Rest = manager.GetRestaurant(model.RestaurantId);
+            //ViewBag.UserId = manager.GetCurrectUserId();
 
+            return View();
         }
 
         public async Task<ActionResult> Schema(int? id)
@@ -179,6 +196,37 @@ namespace CityGoodTaste.Controllers
             {
                 return View();
             }
+        }
+
+        [AjaxOnly]
+        public ActionResult ConfirmReserv(string restId, string schemaId)
+        {
+            if (restId == null || schemaId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+            IRestaurantDataManager manager = factory.GetManager();
+            string userId =manager.GetCurrectUserId();
+
+            List<int> tablesIds = new List<int>();
+            foreach (string key in Request.Form.AllKeys)
+            {
+                if (key.StartsWith("tableId"))
+                {
+                    tablesIds.Add(Convert.ToInt32(Request.Form[key]));
+                }
+            }
+            manager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), userId, tablesIds);
+
+            //if (model == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return PartialView(model);
+            
+            return null;
         }
 
         // GET: Restaurant/SchemaReservedTables

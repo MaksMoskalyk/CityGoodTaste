@@ -1,21 +1,39 @@
 ﻿@using CityGoodTaste.Models;
 @model CityGoodTaste.Models.Restaurant
 
-<div style="float: left;">
-    @CityGoodTaste.Resources.Resource.Tables:
-@foreach (var item in Model.RestaurantSchemas.FirstOrDefault().Tables)
+
+@Html.HiddenFor(m => Model.Id)
+
+@for (int i = 0; i < Model.RestaurantSchemas.ToList().Count; i++)
 {
-    CityGoodTaste.Models.TableReservation reserv = item.TableReservation.Where(x => x.Date.Date == DateTime.Now.Date).FirstOrDefault();
-
-    if (reserv == null)
-    {
-        continue;
-    }
-
-    if (reserv.Reserved == true && reserv.User.Id == ViewBag.UserId)
-    {
-        <span style="margin-right:1em"> № @reserv.Table.Id (<span class="glyphicon glyphicon-user">@reserv.Table.Seats</span>)</span>
-    }
-
+    @Html.HiddenFor(m => Model.RestaurantSchemas.ToList()[i].Id, new { schemaId = Model.RestaurantSchemas.ToList()[i].Id })
 }
+
+@{bool flag = false;}
+<div style="float: left;">
+    @for (int i = 0; i < Model.RestaurantSchemas.FirstOrDefault().Tables.ToList().Count; i++)
+    {
+        CityGoodTaste.Models.TableReservation reserv = Model.RestaurantSchemas.FirstOrDefault().Tables.ToList()[i].TableReservation.Where(x => x.Date.Date == DateTime.Now.Date).FirstOrDefault();
+
+        if (reserv == null)
+        {
+            continue;
+        }
+
+        if (reserv.Reserved == true && reserv.User.Id == ViewBag.UserId)
+        {
+            if (flag == false)
+            {
+                <span>@CityGoodTaste.Resources.Resource.Tables:</span>
+                flag = true;
+            }
+
+            <span style="margin-right:1em"> @Html.HiddenFor(m => Model.RestaurantSchemas.FirstOrDefault().Tables.ToList()[i].Id, 
+                                            new { tableId = Model.RestaurantSchemas.FirstOrDefault().Tables.ToList()[i].Id,
+                                                  seats = Model.RestaurantSchemas.FirstOrDefault().Tables.ToList()[i].Seats
+                                            })
+                № @reserv.Table.Id (<span class="glyphicon glyphicon-user">@reserv.Table.Seats</span>)</span>
+        }
+    }
+
 </div>

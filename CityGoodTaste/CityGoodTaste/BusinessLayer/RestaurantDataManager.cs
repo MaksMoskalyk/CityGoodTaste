@@ -40,6 +40,7 @@ namespace CityGoodTaste.BusinessLayer
         List<RestaurantEvent> SearchEvents(string searchText, string CheckEl);
 
         List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups);
+        void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds);
     }
 
     public class RestaurantDataManager : IRestaurantDataManager
@@ -419,6 +420,26 @@ namespace CityGoodTaste.BusinessLayer
                 //ApplicationUser currentUser = context.Users.FirstOrDefault(x => x.Id == HttpContext.Current.User.Identity.GetUserId());
                 ApplicationUser user = context.Users.FirstOrDefault();
                 return user.Id;
+            }
+        }
+
+        public void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                ApplicationUser currentUser = context.Users.FirstOrDefault();
+                var reservs = from x in currentUser.TableReservation 
+                                where tablesIds.Contains(x.Table.Id) 
+                                where x.Reserved==true
+                                where x.ReservedAndConfirmed==false
+                                select x;
+
+                foreach (var reserv in reservs)
+                {
+                    reserv.ReservedAndConfirmed = true;
+                    reserv.Reserved = false;
+                }
+                context.SaveChanges();
             }
         }
     }

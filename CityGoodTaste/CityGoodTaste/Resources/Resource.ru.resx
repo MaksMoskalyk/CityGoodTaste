@@ -349,7 +349,7 @@
     <value>Валюта</value>
   </data>
   <data name="InformationAboutRestaurant" xml:space="preserve">
-    <value>InformationAboutRestaurant</value>
+    <value>Описание</value>
   </data>
   <data name="RestaurantPhoneNumber" xml:space="preserve">
     <value />
@@ -359,9 +359,6 @@
   </data>
   <data name="SmartAssistant" xml:space="preserve">
     <value>Умный помощник</value>
-  </data>
-  <data name="PhoneNumber" xml:space="preserve">
-    <value>PhoneNumber</value>
   </data>
   <data name="TableReserved" xml:space="preserve">
     <value>TableReserved</value>
@@ -398,5 +395,26 @@
   </data>
   <data name="EventTypes" xml:space="preserve">
     <value>Типы ивентов</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Обзор</value>
+  </data>
+  <data name="ContactInfo" xml:space="preserve">
+    <value>КОНТАКТНАЯ ИНФОРМАЦИЯ</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>ДАТА</value>
+  </data>
+  <data name="MakeReserv" xml:space="preserve">
+    <value>ЗАРЕЗЕРВИРОВАТЬ</value>
+  </data>
+  <data name="Reserv" xml:space="preserve">
+    <value>Зарезервировать</value>
+  </data>
+  <data name="SelectTable" xml:space="preserve">
+    <value>ВЫБРАТЬ СТОЛИК</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>ВРЕМЯ</value>
   </data>
 </root>
