@@ -22,9 +22,13 @@ namespace CityGoodTaste.Controllers
         {
             RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
             IRestaurantDataManager manager = factory.GetManager();
-            List<Restaurant> Restaurants = manager.GetListRestaurants();
-            return View(Restaurants);
+            List<Restaurant> Restaurants = manager.GetFoundRestaurants(searchText);
+            if (Restaurants.Count > 1)
+                return View(Restaurants);
+            else
+                return View("~/Views/Restaurant/Details.cshtml", Restaurants[0]);
         }
+
         // POST: Restaurant/Restaurants
         [HttpPost]
         public ActionResult Restaurants(int? id)
@@ -32,7 +36,6 @@ namespace CityGoodTaste.Controllers
             try
             {
                 // TODO: Add insert logic here
-
                 return RedirectToAction("Index");
             }
             catch
@@ -40,6 +43,7 @@ namespace CityGoodTaste.Controllers
                 return View();
             }
         }
+
         // GET: Restaurant/Create
         public ActionResult Events()
         {
@@ -268,8 +272,9 @@ namespace CityGoodTaste.Controllers
             catch
             {
                 return PartialView(new List<RestaurantEvent>() );
-            }
+            }            
         }
+
         [AjaxOnly]
         public async Task<ActionResult> RestaurantsSearch(string searchText)
         {
@@ -285,7 +290,6 @@ namespace CityGoodTaste.Controllers
                 if (Restaurants.Count > 0)
                 {
                     Restaurants = Restaurants.Distinct().ToList();
-
                 }
                 return PartialView(Restaurants);
             }
@@ -293,7 +297,6 @@ namespace CityGoodTaste.Controllers
             {
                 return PartialView(new List<Restaurant>());
             }
-
         }
     }
 }

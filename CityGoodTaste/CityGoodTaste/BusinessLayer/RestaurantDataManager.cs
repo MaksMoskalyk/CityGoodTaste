@@ -25,6 +25,7 @@ namespace CityGoodTaste.BusinessLayer
     {
         Restaurant GetRestaurant(int? id);
         List<Restaurant> GetListRestaurants();
+        List<Restaurant> GetFoundRestaurants(string searchTerm);
         RestaurantSchema GetRestaurantSchema(int? id);
         List<RestaurantEvent> GetListRestaurantEvents();
         List<RestaurantEvent> GetTopListRestaurantEvents();
@@ -98,6 +99,26 @@ namespace CityGoodTaste.BusinessLayer
             }
 
         }
+
+        public List<Restaurant> GetFoundRestaurants(string searchTerm)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<Restaurant> result = context.Restaurants.Include(t => t.Likes).Include(t => t.City).Include(t => t.City.Country).
+                        Include(t => t.RestaurantFeatures).Include(t => t.Reviews).Include(t => t.WorkHours).
+                        Include(t => t.Cuisines).Include(t => t.Likes).Include(t => t.RestaurantFeatures).Include(t => t.RestaurantGroup)
+                        .Where(r => r.Name.Contains(searchTerm)).ToList();
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Restaurants not found");
+                }
+            }
+        }
+
         public List<RestaurantEvent> GetListRestaurantEvents()
         {
             using (GoodTasteContext context = new GoodTasteContext())
