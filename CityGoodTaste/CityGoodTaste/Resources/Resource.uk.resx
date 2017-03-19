@@ -420,4 +420,28 @@
   <data name="RestaurantReview" xml:space="preserve">
     <value>Огляд</value>
   </data>
+  <data name="Friday" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value />
+  </data>
 </root>
