@@ -37,6 +37,7 @@ namespace CityGoodTaste.BusinessLayer
         string GetCurrectUserId();
         List<RestaurantEvent> SearchEvents(string searchText, string CheckEl);
         List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups);
+        void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds);
         Menu GetRestMenu(int id);
     }
 
@@ -550,6 +551,26 @@ namespace CityGoodTaste.BusinessLayer
                 }
             }
 
+        }
+
+        public void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                ApplicationUser currentUser = context.Users.FirstOrDefault();
+                var reservs = from x in currentUser.TableReservation 
+                                where tablesIds.Contains(x.Table.Id) 
+                                where x.Reserved==true
+                                where x.ReservedAndConfirmed==false
+                                select x;
+
+                foreach (var reserv in reservs)
+                {
+                    reserv.ReservedAndConfirmed = true;
+                    reserv.Reserved = false;
+                }
+                context.SaveChanges();
+            }
         }
     }
 }

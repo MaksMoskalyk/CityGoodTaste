@@ -11,11 +11,12 @@
     //    inline: true
     //});
 
-    $('#dp6').datepicker({
-        todayBtn: 'linked'
-    });
+
+    $("datepicker").datepicker({});
     
-    $('.clockpicker').clockpicker({ donetext: 'Done' });
+    $('#datepicker').datepicker('setDate', 'today');
+
+    $('.clockpicker').clockpicker({ donetext: 'Готово' });
 
     SetAjaxForShemaModals();
 
@@ -35,6 +36,14 @@
         var marker = new google.maps.Marker({ position: myCenter });
         marker.setMap(map);
     }
+
+    $('#sumbitReservBt').click(function (event) {
+        $('#closeModalReserv').click();
+        $('#successModalLink').click();
+        $('#name').val('');
+        $('#phone').val('');
+    });
+
 })
 
 function SetAjaxForShemaModals() {
@@ -51,5 +60,5 @@ function SetAjaxForShemaModals() {
 
             }
         });
-    });              
+    });
 };
