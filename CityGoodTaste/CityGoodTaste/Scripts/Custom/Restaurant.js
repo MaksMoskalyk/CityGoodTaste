@@ -11,8 +11,8 @@
     //    inline: true
     //});
 
-
-    $("datepicker").datepicker({});
+    
+    $("#datepicker").datepicker();
     
     $('#datepicker').datepicker('setDate', 'today');
 
