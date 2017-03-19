@@ -415,7 +415,7 @@
     <value>SELECT TABLE</value>
   </data>
   <data name="Time" xml:space="preserve">
-    <value>TIME</value>
+    <value>Time</value>
   </data>
   <data name="RestaurantReview" xml:space="preserve">
     <value>Review</value>

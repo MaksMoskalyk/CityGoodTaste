@@ -880,7 +880,7 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TIME.
+        ///   Looks up a localized string similar to Time.
         /// </summary>
         public static string Time {
             get {

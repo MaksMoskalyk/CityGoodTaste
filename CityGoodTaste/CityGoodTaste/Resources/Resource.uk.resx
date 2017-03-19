@@ -232,7 +232,7 @@
     <value />
   </data>
   <data name="Menu" xml:space="preserve">
-    <value />
+    <value>Меню</value>
   </data>
   <data name="OpenHourName" xml:space="preserve">
     <value />
@@ -304,7 +304,7 @@
     <value />
   </data>
   <data name="Reviews" xml:space="preserve">
-    <value />
+    <value>Огляди</value>
   </data>
   <data name="ReviewText" xml:space="preserve">
     <value />
