@@ -417,4 +417,7 @@
   <data name="Time" xml:space="preserve">
     <value />
   </data>
+  <data name="RestaurantReview" xml:space="preserve">
+    <value>Огляд</value>
+  </data>
 </root>
