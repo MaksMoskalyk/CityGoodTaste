@@ -37,6 +37,7 @@ namespace CityGoodTaste.BusinessLayer
         string GetCurrectUserId();
         List<RestaurantEvent> SearchEvents(string searchText, string CheckEl);
         List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups);
+        Menu GetRestMenu(int id);
     }
 
     public class RestaurantDataManager : IRestaurantDataManager
@@ -532,6 +533,23 @@ namespace CityGoodTaste.BusinessLayer
                 ApplicationUser user = context.Users.FirstOrDefault();
                 return user.Id;
             }
+        }
+
+        public Menu GetRestMenu(int id)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    Menu menu = context.Menus.Include(t => t.MealGroups.Select(m => m.Meals.Select(c => c.Currency))).Where(t=>t.Restaurant.Id==id).FirstOrDefault();
+                    return menu;
+                }
+                catch
+                {
+                    throw new Exception("Menu not found");
+                }
+            }
+
         }
     }
 }
