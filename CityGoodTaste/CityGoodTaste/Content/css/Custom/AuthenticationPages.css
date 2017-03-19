@@ -1,4 +1,25 @@
 ﻿.authenticationBlock {
-    width: 500px;
+    width: 25%;
     margin: auto;
+}
+
+.modalButton {
+    width: 100%;
+}
+
+.authenticationInput {
+    min-width: 100%;
+    font-size: 14px;
+}
+
+.oi {
+    font-size: 15px;
+}
+
+.centralHeader {
+    text-align:center;
+}
+
+#signUpButton {
+    margin-top: 15px;
 }
