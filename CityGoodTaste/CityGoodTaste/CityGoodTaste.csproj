@@ -167,7 +167,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="BusinessLayer\IUserDatabase.cs" />
     <Compile Include="BusinessLayer\RestaurantDataManager.cs" />
+    <Compile Include="BusinessLayer\UserDatabaseManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -3232,6 +3234,9 @@
     <Content Include="Content\icons\open-iconic\webp\zoom-out-6x.webp" />
     <Content Include="Content\icons\open-iconic\webp\zoom-out-8x.webp" />
     <Content Include="Content\icons\open-iconic\webp\zoom-out.webp" />
+    <Content Include="Scripts\Custom\Localization\datepicker-ENG.js" />
+    <Content Include="Scripts\Custom\Localization\datepicker-RUS.js" />
+    <Content Include="Scripts\Custom\Localization\datepicker-UKR.js" />
     <Content Include="Scripts\Custom\_Layout.js" />
     <Content Include="Scripts\Default\Angular\angular-mocks.js" />
     <Content Include="Scripts\Default\Angular\angular.js" />

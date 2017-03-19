@@ -269,7 +269,6 @@ namespace CityGoodTaste.Controllers
             {
                 return PartialView(new List<RestaurantEvent>() );
             }
-            
         }
         [AjaxOnly]
         public async Task<ActionResult> RestaurantsSearch(string searchText)

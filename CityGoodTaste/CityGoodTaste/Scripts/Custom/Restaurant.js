@@ -13,7 +13,7 @@
 
 
     $("datepicker").datepicker({});
-
+    
     $('#datepicker').datepicker('setDate', 'today');
 
     $('.clockpicker').clockpicker({ donetext: 'Готово' });
@@ -26,6 +26,7 @@
         changeYear: true,
         yearRange: "-60:+0"
     });
+
     $("#datepicker").datepicker();
 
     function myMap() {      
@@ -45,8 +46,6 @@
 
 })
 
-
-
 function SetAjaxForShemaModals() {
     $('#startModalSchema').click(function () {
         var restId = document.getElementById('modalSchema').getAttribute('restId');
@@ -62,6 +61,4 @@ function SetAjaxForShemaModals() {
             }
         });
     });
-               
 };
-

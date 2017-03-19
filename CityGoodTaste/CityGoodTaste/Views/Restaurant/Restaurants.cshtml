@@ -25,7 +25,7 @@
                 @foreach (var item in Cuisines)
                 {
                     <div class="checkbox">
-                        <label><input id="CuisinesCheck" name="CuisinesCheck" class="CuisinesCheck" type="checkbox" value="">@item.Name</label>
+                        <label><input id="CuisinesCheck" name="CuisinesCheck" class="CuisinesCheck" type="checkbox" value=@item.Id>@item.Name</label>
                     </div>
                 }
 
@@ -38,7 +38,7 @@
                 @foreach (var item in Features)
                 {
                     <div class="checkbox">
-                        <label><input id="FeaturesCheck" name="FeaturesCheck" class="FeaturesCheck" type="checkbox" value="">@item.Name</label>
+                        <label><input id="FeaturesCheck" name="FeaturesCheck" class="FeaturesCheck" type="checkbox" value=@item.Id>@item.Name</label>
                     </div>
                 }
                 <p>@CityGoodTaste.Resources.Resource.MealGroups:</p>
@@ -50,7 +50,7 @@
                 @foreach (var item in MealGroups)
                 {
                     <div class="checkbox">
-                        <label><input id="MealGroupsCheck"  name="MealGroups" class="MealGroups" type="checkbox" value="">@item.Name</label>
+                        <label><input id="MealGroupsCheck"  name="MealGroups" class="MealGroups" type="checkbox" value=@item.Id>@item.Name</label>
                     </div>
                 }
 
