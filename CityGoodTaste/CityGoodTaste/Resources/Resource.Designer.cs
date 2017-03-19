@@ -655,6 +655,15 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Review.
+        /// </summary>
+        public static string RestaurantReview {
+            get {
+                return ResourceManager.GetString("RestaurantReview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restaurants.
         /// </summary>
         public static string Restaurants {

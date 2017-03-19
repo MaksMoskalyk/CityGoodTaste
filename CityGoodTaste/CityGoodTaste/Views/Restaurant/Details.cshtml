@@ -31,7 +31,7 @@
 <div class="container-fluid NoPadding" style="margin-left: auto; margin-right: auto">
     <div class="col-sm-9">
         <div class="jumbotron" style="padding:0">
-            <img src="https://placehold.it/2000x400?text=IMAGE" alt="img" class="img-responsive" />
+            <img class="img-responsive Center-Image-Width" src="https://placehold.it/800x400?text=IMAGE" alt="img" />
         </div>
         <div class="row">
             <div class="col-sm-6">
@@ -58,10 +58,10 @@
         <div>
             <div>
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#review">Обзор</a></li>
-                    <li><a data-toggle="tab" href="#menuRest">Меню</a></li>
-                    <li><a data-toggle="tab" href="#notice">Афиша</a></li>
-                    <li><a data-toggle="tab" href="#reviews">Отзовы</a></li>
+                    <li class="active"><a data-toggle="tab" href="#review">@CityGoodTaste.Resources.Resource.RestaurantReview</a></li>
+                    <li><a data-toggle="tab" href="#menuRest">@CityGoodTaste.Resources.Resource.Menu</a></li>
+                    <li><a data-toggle="tab" href="#notice">@CityGoodTaste.Resources.Resource.Events</a></li>
+                    <li><a data-toggle="tab" href="#reviews">@CityGoodTaste.Resources.Resource.Reviews</a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -125,40 +125,137 @@
                         <br />
                     </div>
                     <div id="menuRest" class="tab-pane fade">
-                        <h2>Меню</h2>
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#menu1">menu1</a></li>
+                            @for (int i = 0; i < Model.Menu.Count; i++)
+                            {
+                                var SubMenu = Model.Menu.ToList()[i];
+                                string isActive = "";
+                                if (SubMenu == Model.Menu.First())
+                                { isActive = "active"; }
+                                string ShSubMenuID = "#SubMenu" + @i;
+                                <li class=@isActive><a data-toggle="tab" href=@ShSubMenuID>@SubMenu.Name</a></li>
+                            }
                         </ul>
                         <div class="tab-content">
-                            <div id="menu1" class="tab-pane fade in active">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="well">
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        <img class="img-thumbnail" src="https://placehold.it/100x100?text=Пицца" alt="Image">
-                                                    </td>
-                                                    <td>
-                                                        <h3 class="MenuHeadText">Паста</h3>
-                                                        <p>описание</p>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
+                            @for (int i = 0; i < Model.Menu.Count; i++)
+                            {
+                                var SubMenu = Model.Menu.ToList()[i];
+                                string isActiveM = "tab-pane fade";
+                                if (SubMenu == Model.Menu.First())
+                                { isActiveM = "tab-pane&nbsp;fade&nbsp;in&nbsp;active"; }
+                                string SubMenuID = "SubMenu" + @i;
+                                <div id=@SubMenuID class=@isActiveM>
+                                    <div class="panel-group" id="accordionMeal">
+                                        @for (int j = 0; j < SubMenu.MealGroups.Count; j++)
+                                        {
+                                            var MealGroup = SubMenu.MealGroups.ToList()[j];
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        @{
+                                                            string colShID = "#collapseMealGroup" + @j;
+                                                        }
+                                                        <a data-toggle="collapse" data-parent="#accordionMeal" href=@colShID>
+                                                            <span>
+                                                                @MealGroup.Name
+                                                            </span>
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                @{
+                                                    string isActivecoll = "";
+                                                    string colID = "collapseMealGroup" + @j;
+                                                }
+                                                @if (j == 0)
+                                                {
+                                                    isActivecoll = "in";
+                                                }
+                                                <div id=@colID class="panel-collapse collapse @isActivecoll">
+                                                    <div class="panel-bodycol-sm-12">
+                                                        <div class="well">
+                                                            <table class="table" >
+                                                                @foreach (var Meal in MealGroup.Meals)
+                                                                {
+                                                                    <tr>
+                                                                        <td style="width:110px">
+                                                                            <img class="img-thumbnail" src="https://placehold.it/100x100?text=@Meal.Name" alt="Image">
+                                                                        </td>
+                                                                        <td style="text-align:left">
+                                                                            <p style="font-size:large; margin:0;">@Meal.Name</p>
+                                                                            <p>@Meal.Description</p>
+                                                                        </td>
+                                                                        <td style="width:100px">
+                                                                            <p>@Meal.Price</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                    }
                                     </div>
                                 </div>
-                            </div>
+}
                         </div>
                     </div>
                     <div id="notice" class="tab-pane fade">
-                        <img src="https://placehold.it/1000x400?text=Событие" alt="Image">
-                        <h2>Живая джазовая музыка каждую неделю в ресторане "Три Резвых Коня"!</h2>
-                        <p class="WordBreak">Еженедельно в ресторане "Три Резвых Коня" играет живая джазовая музыка. Джаз - это не просто музыка, это сочетание прекрасного настроения и отдыха, получения приятных эмоций, а специфика звучания позволяет вкладывать всю душу и чувства в каждую ноту. Ждем вас! </p>
-                        <p class="WordBreak">Период действия: каждый четверг, пятницу и субботу, начало в 20:00.</p>
+                        <div class="panel-group" id="accordionEvent">
+                            @for (int i = 0; i < @Model.RestaurantEvent.Count; i++)
+                            {
+                                var Event = @Model.RestaurantEvent.ToList()[i];
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            @{
+                                                string colSID = "#collapseEvent" + @i;
+                                            }
+                                            <a data-toggle="collapse" data-parent="#accordionEvent" href=@colSID>
+                                                <span>
+                                                    @Event.Name
+                                                </span>
+                                                <span>
+                                                    (@Event.StartDate
+                                                    - @Event.EndDate)
+                                                </span>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    @{
+                                        string isActive = "";
+                                        string colID = "collapseEvent" + @i;
+                                    }
+                                    @if (i == 0)
+                                    {
+                                        isActive = "in";
+                                    }
+                                    <div id=@colID class="panel-collapse collapse @isActive">
+                                        <div class="panel-body">
+                                            <img class="img-responsive Center-Image-Width" src="https://placehold.it/800x400?text=@Event.Name" alt="Image">
+                                            <p class="WordBreak">
+                                                @CityGoodTaste.Resources.Resource.EventTypes:
+                                                @foreach (var EventType in @Event.EventTypes)
+                                                {
+                                                <span>@EventType.Icon</span>
+                                                <span>@EventType.Name</span>
+                                                    if (@EventType == @Event.EventTypes.Last())
+                                                    {<span>.</span> }
+                                                    else
+                                                    {<span>, </span> }
+                                                }
+                                            </p>
+                                            <p class="WordBreak">
+                                                @CityGoodTaste.Resources.Resource.EventDescription: <br />
+                                                @Event.Description
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                        }
+                        </div>
                     </div>
                     <div id="reviews" class="tab-pane fade">
-                        <h2>@Html.LabelFor(model => model.Reviews)</h2>
                         @foreach (var item in Model.Reviews)
                         {
                             <div class="row ">
@@ -241,13 +338,13 @@
                     <button type="button" class="btn btn-danger btn-block">Зарезервировать</button>
                 </div>
             </div>
-            </div>
         </div>
     </div>
+</div>
 
 <div class="modal fade" id="SchemaModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
-        @Html.Action("SchemaReservedTables", "Restaurant", new { id =Model.Id })
+        @Html.Action("SchemaReservedTables", "Restaurant", new { id = Model.Id })
     </div>
 </div> 

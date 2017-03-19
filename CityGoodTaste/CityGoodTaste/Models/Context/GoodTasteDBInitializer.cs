@@ -6,7 +6,7 @@ using System;
 
 namespace CityGoodTaste.Models
 {
-    public class GoodTasteDBInitializer :CreateDatabaseIfNotExists<GoodTasteContext>
+    public class GoodTasteDBInitializer :DropCreateDatabaseAlways<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {
@@ -231,24 +231,24 @@ namespace CityGoodTaste.Models
             LML1.Add(ml14);
 
             List<Meal> LML2 = new List<Meal>();
-            LML1.Add(ml2);
-            LML1.Add(ml9);
+            LML2.Add(ml2);
+            LML2.Add(ml9);
 
             List<Meal> LML3 = new List<Meal>();
-            LML1.Add(ml3);
-            LML1.Add(ml10);
+            LML3.Add(ml3);
+            LML3.Add(ml10);
 
             List<Meal> LML4 = new List<Meal>();
-            LML1.Add(ml4);
-            LML1.Add(ml11);
+            LML4.Add(ml4);
+            LML4.Add(ml11);
 
             List<Meal> LML5 = new List<Meal>();
-            LML1.Add(ml5);
-            LML1.Add(ml12);
+            LML5.Add(ml5);
+            LML5.Add(ml12);
 
             List<Meal> LML6 = new List<Meal>();
-            LML1.Add(ml6);
-            LML1.Add(ml13);
+            LML6.Add(ml6);
+            LML6.Add(ml13);
 
             MealGroup mg1 = new MealGroup() { Name = "MealGroup 1", Meals = LML1 };
             MealGroup mg2 = new MealGroup() { Name = "MealGroup 2", Meals = LML2 };

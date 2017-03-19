@@ -399,4 +399,7 @@
   <data name="EventTypes" xml:space="preserve">
     <value>Event types</value>
   </data>
+  <data name="RestaurantReview" xml:space="preserve">
+    <value>Review</value>
+  </data>
 </root>
