@@ -20,7 +20,6 @@
         showButtonPanel: true,
         minDate: 0,
         maxDate: "+1M +10D",
-        showWeek: true,
     });   
 
     $('.clockpicker').clockpicker({ donetext: '<span class="glyphicon glyphicon-ok"></span>' });

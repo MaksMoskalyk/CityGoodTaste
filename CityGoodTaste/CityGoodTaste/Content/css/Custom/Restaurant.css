@@ -22,8 +22,6 @@
     }
 }
 
-
-
 .MenuHeadText {
     padding: 10px;
 }
@@ -37,3 +35,14 @@ div.ui-datepicker {
     font-size: 17px;
 }
 
+button.ui-datepicker-close  { 
+    display: none; 
+}
+
+button.ui-datepicker-close  { 
+    display: none; 
+}
+
+button.ui-datepicker-current { 
+    width: 100%;
+}

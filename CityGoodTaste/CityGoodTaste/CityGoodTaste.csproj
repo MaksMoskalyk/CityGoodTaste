@@ -3305,8 +3305,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Authentication\_LogInModal.cshtml" />
-    <Content Include="Views\Home\Authentication\_SignUpModal.cshtml" />
     <Content Include="Views\Restaurant\Details.cshtml" />
     <Content Include="Views\Restaurant\Schema.cshtml" />
     <Content Include="Views\Restaurant\Restaurants.cshtml" />
