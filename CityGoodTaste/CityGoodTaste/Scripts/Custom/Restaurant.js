@@ -13,22 +13,19 @@
     //});
 
     
-    $("#datepicker").datepicker();
-    
-    $('#datepicker').datepicker('setDate', 'today');
+    $("#datepicker").datepicker({
+        showAnim: "slideDown",
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        showButtonPanel: true,
+        minDate: 0,
+        maxDate: "+1M +10D",
+        showWeek: true,
+    });   
 
     $('.clockpicker').clockpicker({ donetext: '<span class="glyphicon glyphicon-ok"></span>' });
 
     SetAjaxForShemaModals();
-
-    $('input[type=datetime]').datepicker({
-        dateFormat: "dd/M/yy",
-        changeMonth: true,
-        changeYear: true,
-        yearRange: "-60:+0"
-    });
-
-    $("#datepicker").datepicker();
 
     function myMap() {      
         var myCenter = new google.maps.LatLng(41.878114, -87.629798);
