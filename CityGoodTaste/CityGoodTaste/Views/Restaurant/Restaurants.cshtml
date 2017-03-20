@@ -7,7 +7,7 @@
 @using (Ajax.BeginForm("RestaurantsSearch", new { id = "RestaurantsForm" }, new AjaxOptions { UpdateTargetId = "RestaurantsList", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }))
 {
     <div class="input-group searchBlock">
-        <input type="text" class="form-control" id="searchTextRestaurants" name="searchText">
+        <input type="text" class="form-control" id="searchTextRestaurants" placeholder="Название ресторана" name="searchText">
         <div class="input-group-btn">
             <button type="submit" id="sendData" class="btn btn-danger">Поиск</button>
         </div>
@@ -15,8 +15,8 @@
     
     <div>
         <div class="col-sm-2">
-                <h4>категории</h4>
-                <p>@CityGoodTaste.Resources.Resource.Cuisine:</p>
+                <h4>Фильтры:</h4>
+                <p>Кухня:</p>
                 @{
                     CityGoodTaste.BusinessLayer.RestaurantDataManager manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
                     var Cuisines = manager.GetAllCuisines();
@@ -28,7 +28,7 @@
                     </div>
                 }
 
-                <p>@CityGoodTaste.Resources.Resource.RestaurantFeatures:</p>
+                <p>Особенности:</p>
                 @{
                     manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
                     var Features = manager.GetAllRestaurantFeatures();
@@ -40,7 +40,7 @@
                         <label><input id="FeaturesCheck" name="FeaturesCheck" class="FeaturesCheck" type="checkbox" value=@item.Id>@item.Name</label>
                     </div>
                 }
-                <p>@CityGoodTaste.Resources.Resource.MealGroups:</p>
+                <p>Категории меню:</p>
                 @{
                     manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
                     var MealGroups = manager.GetAllMealGroups();

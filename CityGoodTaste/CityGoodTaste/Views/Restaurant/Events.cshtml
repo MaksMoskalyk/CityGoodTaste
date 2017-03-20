@@ -5,7 +5,7 @@
 @using (Ajax.BeginForm("EventsSearch", new { id = "EventsForm" }, new AjaxOptions { UpdateTargetId = "EventsList", InsertionMode= InsertionMode.Replace, HttpMethod = "POST" }))
 {
     <div class="input-group searchBlock">
-        <input type="text" class="form-control" name="searchText" id="searchTextEvents">
+        <input type="text" class="form-control" name="searchText" placeholder="Название ивента" id="searchTextEvents">
         <div class="input-group-btn">
             <button type="submit" id="sendData" class="btn btn-danger">Поиск</button>
         </div>
@@ -13,7 +13,7 @@
 
 <div>
     <div class="col-sm-2">
-        <p>@CityGoodTaste.Resources.Resource.EventTypes:</p>
+        <p>Типы:</p>
         @{ 
             CityGoodTaste.BusinessLayer.RestaurantDataManager manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager ();
             var EventTypes = manager.GetAllEventTypes();
