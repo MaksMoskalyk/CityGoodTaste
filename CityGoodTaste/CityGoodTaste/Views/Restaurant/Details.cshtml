@@ -238,7 +238,7 @@
                                         <div class="panel-body">
                                             <img class="img-responsive Center-Image-Width" src="https://placehold.it/800x400?text=@Event.Name" alt="Image">
                                             <p class="WordBreak">
-                                                @CityGoodTaste.Resources.Resource.EventTypes:
+                                                Типы события:
                                                 @foreach (var EventType in @Event.EventTypes)
                                                 {
                                                     <span>@EventType.Icon</span>
@@ -250,7 +250,7 @@
                                                 }
                                             </p>
                                             <p class="WordBreak">
-                                                @CityGoodTaste.Resources.Resource.EventDescription: <br />
+                                                Описание: <br />
                                                 @Event.Description
                                             </p>
                                         </div>
@@ -452,7 +452,7 @@
 
         $('#confirmReservModalBody').empty();
         $('#confirmReservModalBody').append("<p><span style=\"font-weight:bold\">Дата: </span>"+date+" "+time+"</p>");
-        $('#confirmReservModalBody').append("<ul id=\"tablesUl\"><span style=\"font-weight:bold\">@CityGoodTaste.Resources.Resource.Tables:</span></ul>");
+        $('#confirmReservModalBody').append("<ul id=\"tablesUl\"><span style=\"font-weight:bold\">Столы:</span></ul>");
         for (i = 0; i < els.length; i++) {
             if (els[i].hasAttribute('tableid')) {
 
