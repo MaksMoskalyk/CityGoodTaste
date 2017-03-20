@@ -1,6 +1,11 @@
 ﻿@model CityGoodTaste.Models.ViewModels.RestaurantShemaViewModel
-
-<div class="modal-content" style="width:1000px">
+<style>
+    .modalFix {
+        position: relative !important;
+        right: 200px !important;
+    }
+</style>
+<div class="modal-content modalFix" style="width:1000px">
     <div class="modal-header" style="background-color:#333333; color:white">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4><span class="glyphicon glyphicon-user"></span> @CityGoodTaste.Resources.Resource.RestaurantSchema</h4>
