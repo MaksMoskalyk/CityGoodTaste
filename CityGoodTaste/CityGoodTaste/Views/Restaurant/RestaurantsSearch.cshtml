@@ -11,12 +11,18 @@
                             @Html.DisplayFor(modelItem => item.Name)
                         </a>
                     </div>
-                    <a href='@Url.Action("Details", "Restaurant", new { id = item.Id })'>
-                        <img src="https://placehold.it/150x80?text=Restaurant" class="img-responsive" style="width:100%; height:200px" alt="Image" />
-                    </a>
+                    <div class="thumbs">
+                        <a href='@Url.Action("Details", "Restaurant", new { id = item.Id })'>
+                            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%; height:200px" alt="Image" />
+                        </a>
+                        <div class="caption">
+                            <span style="float:left">Cредний чек: @item.AverageCheck ₴</span>
+                            <span style="float:right"><span class="glyphicon glyphicon-thumbs-up"> @item.Likes.Count</span></span>
+                        </div>
+                    </div>
                     <div class="panel-footer panelFooterCustom">
-                        <span class="oi oi-timer"></span> @Html.DisplayFor(modelItem => item.Address)<br />
-                        <span class="oi oi-timer"></span> @Html.DisplayFor(modelItem => item.PhoneNumber)<br />
+                        <span class="glyphicon glyphicon-map-marker"></span> @Html.DisplayFor(modelItem => item.Address)<br />
+                        <span class="glyphicon glyphicon-earphone"></span> @Html.DisplayFor(modelItem => item.PhoneNumber)<br />
                     </div>
                 </div>
             </div>
