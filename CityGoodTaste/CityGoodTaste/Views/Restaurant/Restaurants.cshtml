@@ -61,7 +61,7 @@
                 {
                         <div class="col-sm-4" style="text-align:left;">
                             <div class="panel panel-success">
-                                <div class="panel-heading">
+                                <div class="panel-heading panelHeadingCustom">
                                     <a href='@Url.Action("Details", "Restaurant", new { id = item.Id })' style="color:black; text-decoration:none">
                                         @Html.DisplayFor(modelItem => item.Name)
                                     </a>
@@ -75,7 +75,7 @@
                                         <span style="float:right"><span class="glyphicon glyphicon-thumbs-up"> @item.Likes.Count</span></span>
                                     </div>
                                 </div>
-                                <div class="panel-footer">
+                                <div class="panel-footer panelFooterCustom">
                                     <span class="glyphicon glyphicon-map-marker"></span> @Html.DisplayFor(modelItem => item.Address)<br />
                                     <span class="glyphicon glyphicon-earphone"></span> @Html.DisplayFor(modelItem => item.PhoneNumber)<br />
                                 </div>
