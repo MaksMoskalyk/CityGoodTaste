@@ -346,7 +346,7 @@
     <value />
   </data>
   <data name="Сurrency" xml:space="preserve">
-    <value />
+    <value>Валюта</value>
   </data>
   <data name="InformationAboutRestaurant" xml:space="preserve">
     <value>InformationAboutRestaurant</value>
@@ -419,5 +419,17 @@
   </data>
   <data name="RestaurantReview" xml:space="preserve">
     <value>Огляд</value>
+  </data>
+  <data name="ErNotFundRest" xml:space="preserve">
+    <value>Ресторан не знайдено</value>
+  </data>
+  <data name="ButtonConfirm" xml:space="preserve">
+    <value>Підтвердити</value>
+  </data>
+  <data name="ButtonAdd" xml:space="preserve">
+    <value>Додати</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Cума</value>
   </data>
 </root>

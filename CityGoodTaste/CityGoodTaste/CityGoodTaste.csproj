@@ -209,7 +209,9 @@
     <Compile Include="Models\Context\GoodTasteDBInitializer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\ConfirmReserve.cs" />
     <Compile Include="Models\ViewModels\ConfirmReservViewModel.cs" />
+    <Compile Include="Models\ViewModels\OrderFood.cs" />
     <Compile Include="Models\ViewModels\RestaurantShemaViewModel.cs" />
     <Compile Include="Models\ViewModels\TablesListViewModel.cs" />
     <Compile Include="Models\ViewModels\TableViewModel.cs" />
@@ -3317,6 +3319,8 @@
     <Content Include="Views\Restaurant\RestaurantsSearch.cshtml" />
     <Content Include="Scripts\Default\jQuery\jquery-1.12.4.min.map" />
     <Content Include="Views\Restaurant\ConfirmReserv.cshtml" />
+    <Content Include="Views\Restaurant\ConfirmReserve.cshtml" />
+    <Content Include="Views\Restaurant\ConfirmReserveAddMeal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

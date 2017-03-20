@@ -420,4 +420,16 @@
   <data name="RestaurantReview" xml:space="preserve">
     <value>Обзор</value>
   </data>
+  <data name="ErNotFundRest" xml:space="preserve">
+    <value>Ресторан не найден</value>
+  </data>
+  <data name="ButtonConfirm" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="ButtonAdd" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Всего</value>
+  </data>
 </root>

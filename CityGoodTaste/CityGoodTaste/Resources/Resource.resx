@@ -420,4 +420,16 @@
   <data name="RestaurantReview" xml:space="preserve">
     <value>Review</value>
   </data>
+  <data name="ErNotFundRest" xml:space="preserve">
+    <value>Restaurant not found</value>
+  </data>
+  <data name="ButtonConfirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="ButtonAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
 </root>

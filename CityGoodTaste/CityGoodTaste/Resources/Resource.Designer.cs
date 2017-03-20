@@ -70,6 +70,15 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string ButtonAdd {
+            get {
+                return ResourceManager.GetString("ButtonAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string ButtonBack {
@@ -84,6 +93,15 @@ namespace CityGoodTaste.Resources {
         public static string ButtonCancel {
             get {
                 return ResourceManager.GetString("ButtonCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string ButtonConfirm {
+            get {
+                return ResourceManager.GetString("ButtonConfirm", resourceCulture);
             }
         }
         
@@ -219,6 +237,15 @@ namespace CityGoodTaste.Resources {
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restaurant not found.
+        /// </summary>
+        public static string ErNotFundRest {
+            get {
+                return ResourceManager.GetString("ErNotFundRest", resourceCulture);
             }
         }
         
@@ -885,6 +912,15 @@ namespace CityGoodTaste.Resources {
         public static string Time {
             get {
                 return ResourceManager.GetString("Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
             }
         }
         

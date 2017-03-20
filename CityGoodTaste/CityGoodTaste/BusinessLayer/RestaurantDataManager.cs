@@ -25,6 +25,7 @@ namespace CityGoodTaste.BusinessLayer
     {
         Restaurant GetRestaurant(int? id);
         List<Restaurant> GetListRestaurants();
+        List<Table> GetListTables(List<int> ids);
         List<Restaurant> GetFoundRestaurants(string searchTerm);
         RestaurantSchema GetRestaurantSchema(int? id);
         List<RestaurantEvent> GetListRestaurantEvents();
@@ -40,6 +41,7 @@ namespace CityGoodTaste.BusinessLayer
         List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups);
         void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds);
         Menu GetRestMenu(int id);
+        OrderFood GetOrderFood(int Id, int Value);
     }
 
     public class RestaurantDataManager : IRestaurantDataManager
@@ -75,7 +77,7 @@ namespace CityGoodTaste.BusinessLayer
                 }
                 catch
                 {
-                    throw new Exception("Restaurant not found");
+                    throw new Exception(CityGoodTaste.Resources.Resource.ErNotFundRest);
                 }
             }
 
@@ -591,6 +593,37 @@ namespace CityGoodTaste.BusinessLayer
                     reserv.Reserved = false;
                 }
                 context.SaveChanges();
+            }
+        }
+
+        public List<Table> GetListTables(List<int> ids)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<Table> Tables = context.Tables.Where(t=> ids.Contains(t.Id)).ToList();
+                    return Tables;
+                }
+                catch
+                {
+                    throw new Exception("Tables not found");
+                }
+            }
+        }
+        public OrderFood GetOrderFood(int Id, int value)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    OrderFood OF = new Models.OrderFood();
+                    return OF;
+                }
+                catch
+                {
+                    throw new Exception("Order food not found");
+                }
             }
         }
     }

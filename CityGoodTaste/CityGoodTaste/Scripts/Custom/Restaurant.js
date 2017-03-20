@@ -1,11 +1,11 @@
 ﻿$(document).ready(function () {
     myMap();
-    $("#demo2").TouchSpin({
-        min: 1,
-        max: 100,
-        stepinterval: 1,
-        maxboostedstep: 100,
-    });
+    //$("#demo2").TouchSpin({
+    //    min: 1,
+    //    max: 100,
+    //    stepinterval: 1,
+    //    maxboostedstep: 100,
+    //});
 
     //$('#datetimepicker').datetimepicker({
     //    inline: true

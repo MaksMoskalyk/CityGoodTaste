@@ -300,5 +300,58 @@ namespace CityGoodTaste.Controllers
                 return PartialView(new List<Restaurant>());
             }
         }
+
+        public async Task<ActionResult> ConfirmReserve(FormCollection collection)
+        {
+            try
+            {
+                var tenm = collection.AllKeys.ToList();
+                var tabls = tenm.FindAll((x) => x.Contains(".Id"));
+                List<int> tablIds = new List<int>();
+                foreach(var t in tabls)
+                {
+                    int leng = t.IndexOf(']')-1;
+                    tablIds.Add(Convert.ToInt32(t.Substring(1, leng)));
+                }
+                string Id= Request.Form["Id"];
+                string name = Request.Form["name"];
+                string phone = Request.Form["phone"];
+                string date = Request.Form["date"];
+                string time = Request.Form["time"];
+
+                RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+                IRestaurantDataManager manager = factory.GetManager();
+                int lengId = Id.IndexOf(']') - 1;
+                Restaurant Rest = manager.GetRestaurant(Convert.ToInt32(Id));
+                List<Table> Tables = manager.GetListTables(tablIds);
+                ConfirmReserve ConfirmReserve = new ConfirmReserve() {UserName=name,Phone=phone,
+                Date = date,Time = time, Tables = Tables, Restaurant = Rest};
+                return View(ConfirmReserve);
+            }
+            catch
+            {
+                return RedirectToAction("Index", new { id = 1 });
+            }  
+        }
+        public async Task<ActionResult> ConfirmReserveAddMeal(FormCollection collection)
+        {
+            try
+            {
+                OrderFood LOF = new OrderFood();
+                string Id = Request.Form["Id"];
+                string value = Request.Form["value"];
+                TempData.Add("Food" + Id, "" + Id);
+                TempData.Add("Value" + Id, "" + Id);
+                //RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+                //IRestaurantDataManager manager = factory.GetManager();
+                //LOF = manager.GetOrderFood(Convert.ToInt32(Id), Convert.ToInt32(value));
+                return PartialView(LOF);
+            }
+            catch
+            {
+                return PartialView(new List<OrderFood>());
+            }
+        }
+        
     }
 }
