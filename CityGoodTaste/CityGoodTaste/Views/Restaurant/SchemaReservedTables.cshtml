@@ -15,17 +15,8 @@
 
 @using (Ajax.BeginForm("_ReservedTablesPartial", new AjaxOptions { UpdateTargetId = "reseredTables" }))
 {
-        <div class="container-fluid" style="margin-bottom:50px;">
-            <div class="panel-heading">
-                <button id="submitBt" type="submit" class="btn btn-success btn-default pull-left">
-                    <span class="glyphicon glyphicon-ok"></span>
-                    Ok
-                </button>
-                <button id="closeBt" class="btn btn-danger btn-default pull-right" data-dismiss="modal">
-                    <span class="glyphicon glyphicon-remove"></span>
-                    Cancel
-                </button>
-            </div>
+        <div class="container-fluid">
+            
             @Html.HiddenFor(m => Model.RestaurantId)
             @Html.HiddenFor(m => Model.Id)
             @Html.HiddenFor(m => Model.XLength)
@@ -89,6 +80,18 @@
         </div>
         }
 </div>
+    <div class="modal-footer">
+        <div class="panel-heading">
+            <button id="submitBt" type="submit" class="btn btn-success btn-default pull-left">
+                <span class="glyphicon glyphicon-ok"></span>
+               Подтвердить
+            </button>
+            <button id="closeBt" class="btn btn-danger btn-default pull-right" data-dismiss="modal">
+                <span class="glyphicon glyphicon-remove"></span>
+                Отмена
+            </button>
+        </div>
+    </div>
 </div>
 
 
