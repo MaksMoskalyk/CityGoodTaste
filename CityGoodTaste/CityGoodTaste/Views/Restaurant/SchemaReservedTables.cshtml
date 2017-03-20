@@ -54,7 +54,7 @@
                                             personPath = "/Content/icons/SchemaIcons/Person.png";
                                             tablePath = "/Content/icons/SchemaIcons/Table.png";
                                         }
-                        <td id="@x@y" coord="@x.@y" style="width:80px;height:40px; border:1px solid black" tableid="@Model.Tables[i].Id" reserved="@Model.Tables[i].Reserved.ToString()" reservedandconfirmed="@Model.Tables[i].ReservedAndConfirmed.ToString()">
+                        <td id="@x@y" coord="@x.@y" style="width:80px;height:40px;" tableid="@Model.Tables[i].Id" reserved="@Model.Tables[i].Reserved.ToString()" reservedandconfirmed="@Model.Tables[i].ReservedAndConfirmed.ToString()">
                             <div id="divP.@x@y" style="top:8px; position:relative" tableid="@Model.Tables[i].Id">
                                 <p id="P.@x@y" style="font-weight:bold" tableid="@Model.Tables[i].Id">
                                     @Model.Tables[i].Seats
@@ -71,7 +71,7 @@
                                 }
                                 if (!tdCreated)
                                 {
-                        <td id="@x@y" coord="@x.@y" style="width:80px;height:40px; border:1px solid black"></td>
+                        <td id="@x@y" coord="@x.@y" style="width:80px;height:40px;"></td>
                                 }
                             }
                 </tr>
