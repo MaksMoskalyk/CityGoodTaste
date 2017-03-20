@@ -7,7 +7,7 @@
 @using (Ajax.BeginForm("RestaurantsSearch", new { id = "RestaurantsForm" }, new AjaxOptions { UpdateTargetId = "RestaurantsList", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }))
 {
     <div class="input-group">
-        <input type="text" class="form-control" name="searchText">
+        <input type="text" class="form-control" id="searchTextRestaurants" name="searchText">
         <div class="input-group-btn">
             <button type="submit" id="sendData" class="btn btn-danger">@CityGoodTaste.Resources.Resource.Search</button>
         </div>

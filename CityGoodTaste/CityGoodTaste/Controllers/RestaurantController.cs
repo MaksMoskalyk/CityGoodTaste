@@ -352,6 +352,24 @@ namespace CityGoodTaste.Controllers
                 return PartialView(new List<OrderFood>());
             }
         }
+        public JsonResult GetSearchDataEvents(string term)
+        {
+            List<string> EventsNames;
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                EventsNames = context.RestaurantEvent.Where(r => r.Name.Contains(term)).Select(r => r.Name).ToList();
+            }
+            return Json(EventsNames, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetSearchDataRestaurants(string term)
+        {
+            List<string> EventsNames;
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                EventsNames = context.Restaurants.Where(r => r.Name.Contains(term)).Select(r => r.Name).ToList();
+            }
+            return Json(EventsNames, JsonRequestBehavior.AllowGet);
+        }
         
     }
 }

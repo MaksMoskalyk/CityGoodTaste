@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+     SetSearchAutocompleteRes();
     myMap();
     //$("#demo2").TouchSpin({
     //    min: 1,
@@ -62,3 +63,12 @@ function SetAjaxForShemaModals() {
         });
     });
 };
+
+function SetSearchAutocompleteRes() {
+    $("#searchTextEvents").autocomplete({
+        source: '/Restaurant/GetSearchDataEvents'
+    });
+    $("#searchTextRestaurants").autocomplete({
+        source: '/Restaurant/GetSearchDataRestaurants'
+    });
+}

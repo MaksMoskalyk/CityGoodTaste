@@ -95,7 +95,7 @@ namespace CityGoodTaste.Controllers
             List<string> restaurantNames;
             using (GoodTasteContext context = new GoodTasteContext())
             {
-                restaurantNames = context.Restaurants.Where(r => r.Name.StartsWith(term)).Select(r => r.Name).ToList();
+                restaurantNames = context.Restaurants.Where(r => r.Name.Contains(term)).Select(r => r.Name).ToList();
             }
             return Json(restaurantNames, JsonRequestBehavior.AllowGet);
         }
