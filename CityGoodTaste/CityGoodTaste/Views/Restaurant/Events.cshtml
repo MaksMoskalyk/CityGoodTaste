@@ -4,7 +4,7 @@
 }
 @using (Ajax.BeginForm("EventsSearch", new { id = "EventsForm" }, new AjaxOptions { UpdateTargetId = "EventsList", InsertionMode= InsertionMode.Replace, HttpMethod = "POST" }))
 {
-    <div class="input-group">
+    <div class="input-group searchBlock">
         <input type="text" class="form-control" name="searchText" id="searchTextEvents">
         <div class="input-group-btn">
             <button type="submit" id="sendData" class="btn btn-danger">@CityGoodTaste.Resources.Resource.Search</button>

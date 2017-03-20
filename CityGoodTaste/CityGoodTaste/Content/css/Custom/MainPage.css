@@ -15,6 +15,10 @@
     min-height: 200px;
 }
 
+#myCarousel {
+    margin-bottom: 0px;
+}
+
 .searchForm{
     background-color:#333333;
     padding-left:1%; 

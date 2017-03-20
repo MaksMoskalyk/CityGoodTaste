@@ -12,6 +12,10 @@ body {
     height: 100%;
 }
 
+#myNavbar{
+
+}
+
 #navPanel {
     background-color: #333333 !important;
     color:whitesmoke !important;
@@ -53,6 +57,10 @@ body {
 
 .NoPadding {
     padding: 0px !important;
+}
+
+.minPadding {
+    padding: 8px;
 }
 
 .contentWithoutFooterWrapper {
