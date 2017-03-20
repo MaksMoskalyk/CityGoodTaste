@@ -14,22 +14,21 @@
     </div>
     
     <div>
-        <div class="col-sm-2">
-                <h4>Фильтры:</h4>
+        <div id="searchFiltersBlock" class="col-sm-2">
             <div class="panel-group">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel-heading panelHeadingCustom">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" href="#collapse1">Кухня:</a>
                         </h4>
                     </div>
-                    <div id="collapse1" class="panel-collapse collapse in">
+                    <div id="collapse1" class="panel-collapse collapse in filtersPanel">
                         @{
                             CityGoodTaste.BusinessLayer.RestaurantDataManager manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
                             var Cuisines = manager.GetAllCuisines();
                         }
                         @foreach (var item in Cuisines)
-                {
+                        {
                             <div class="checkbox">
                                 <label><input id="CuisinesCheck" name="CuisinesCheck" class="CuisinesCheck" type="checkbox" value=@item.Id>@item.Name</label>
                             </div>
@@ -39,12 +38,12 @@
             </div>
             <div class="panel-group">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel-heading panelHeadingCustom">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" href="#collapse2">Особенности:</a>
                         </h4>
                     </div>
-                    <div id="collapse2" class="panel-collapse collapse in">
+                    <div id="collapse2" class="panel-collapse collapse in filtersPanel">
                         @{
                             manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
                             var Features = manager.GetAllRestaurantFeatures();
@@ -61,12 +60,12 @@
             </div>
             <div class="panel-group">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel-heading panelHeadingCustom">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" href="#collapse3">Категории меню:</a>
                         </h4>
                     </div>
-                    <div id="collapse3" class="panel-collapse collapse in">
+                    <div id="collapse3" class="panel-collapse collapse in filtersPanel">
                         @{
                             manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
                             var MealGroups = manager.GetAllMealGroups();
@@ -116,6 +115,8 @@
         </div>
     </div>
 }
+
+
 <script>
     $('.CuisinesCheck').click(function () {
         var t = document.getElementById("sendData");

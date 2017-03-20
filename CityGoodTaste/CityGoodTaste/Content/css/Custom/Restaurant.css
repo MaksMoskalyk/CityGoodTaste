@@ -56,12 +56,11 @@ button.ui-datepicker-current {
 
 .searchBlock {
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     background-color:#333333;
 }
 
 .panelHeadingCustom {
-    /*background-color: #E1E1C8 !important;*/
     background-color: #ECECD3 !important;
 }
 
@@ -72,6 +71,15 @@ button.ui-datepicker-current {
 li.active a {
     background-color: #8BB6C4 !important;
     color: white !important;
+}
+
+.filtersPanel {
+    padding-left: 20px;
+}
+
+#searchFiltersBlock {
+    margin-bottom: 15px;
+    margin-right: -20px
 }
 
 input.name {
