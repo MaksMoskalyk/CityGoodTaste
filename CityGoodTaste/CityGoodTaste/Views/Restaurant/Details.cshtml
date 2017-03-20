@@ -112,6 +112,7 @@
                             @Html.DisplayFor(model => model.Address) @Html.DisplayFor(model => model.City.Name) @Html.DisplayFor(model => model.City.Country.Name) @Html.DisplayFor(model => model.ZipCode)
                             <div id="googleMap" style="height:400px;width:100%"></div>
                             <script>
+
                                 function myMap() {
                                     var myCenter = new google.maps.LatLng(46.477416, 30.746928);
                                     var mapProp = { center: myCenter, zoom: 18, scrollwheel: false, draggable: false, mapTypeId: google.maps.MapTypeId.ROADMAP };
@@ -120,7 +121,7 @@
                                     marker.setMap(map);
                                 }
                             </script>
-                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRO1uVeSSy5wTZOpDY0kGJR2347oaWJQ4&callback=myMap" async defer></script>
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRO1uVeSSy5wTZOpDY0kGJR2347oaWJQ4&callback=myMap&language=ru" async defer></script>
                         </div>
                         <br />
                     </div>
