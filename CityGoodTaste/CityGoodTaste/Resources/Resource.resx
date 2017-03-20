@@ -247,7 +247,7 @@
     <value>Password</value>
   </data>
   <data name="PhoneName" xml:space="preserve">
-    <value>PhoneName</value>
+    <value>Phone</value>
   </data>
   <data name="Phones" xml:space="preserve">
     <value>Phones</value>
@@ -420,16 +420,28 @@
   <data name="RestaurantReview" xml:space="preserve">
     <value>Review</value>
   </data>
-  <data name="ErNotFundRest" xml:space="preserve">
-    <value>Restaurant not found</value>
+  <data name="Friday" xml:space="preserve">
+    <value>Fri</value>
   </data>
-  <data name="ButtonConfirm" xml:space="preserve">
-    <value>Confirm</value>
+  <data name="Monday" xml:space="preserve">
+    <value>Mon</value>
   </data>
-  <data name="ButtonAdd" xml:space="preserve">
-    <value>Add</value>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="Total" xml:space="preserve">
-    <value>Total</value>
+  <data name="Saturday" xml:space="preserve">
+    <value>Sat</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Sun</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Thu</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Tue</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Wed</value>
   </data>
 </root>

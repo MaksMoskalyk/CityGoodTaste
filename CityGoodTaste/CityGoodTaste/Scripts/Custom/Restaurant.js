@@ -11,12 +11,12 @@
     //    inline: true
     //});
 
-
-    $("datepicker").datepicker({});
+    
+    $("#datepicker").datepicker();
     
     $('#datepicker').datepicker('setDate', 'today');
 
-    $('.clockpicker').clockpicker({ donetext: 'Готово' });
+    $('.clockpicker').clockpicker({ donetext: '<span class="glyphicon glyphicon-ok"></span>' });
 
     SetAjaxForShemaModals();
 

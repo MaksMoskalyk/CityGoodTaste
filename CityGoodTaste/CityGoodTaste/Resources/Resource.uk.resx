@@ -420,16 +420,28 @@
   <data name="RestaurantReview" xml:space="preserve">
     <value>Огляд</value>
   </data>
-  <data name="ErNotFundRest" xml:space="preserve">
-    <value>Ресторан не знайдено</value>
+  <data name="Friday" xml:space="preserve">
+    <value />
   </data>
-  <data name="ButtonConfirm" xml:space="preserve">
-    <value>Підтвердити</value>
+  <data name="Monday" xml:space="preserve">
+    <value />
   </data>
-  <data name="ButtonAdd" xml:space="preserve">
-    <value>Додати</value>
+  <data name="Name" xml:space="preserve">
+    <value />
   </data>
-  <data name="Total" xml:space="preserve">
-    <value>Cума</value>
+  <data name="Saturday" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value />
   </data>
 </root>

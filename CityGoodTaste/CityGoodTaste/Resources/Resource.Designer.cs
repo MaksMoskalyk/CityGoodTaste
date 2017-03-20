@@ -331,6 +331,15 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fri.
+        /// </summary>
+        public static string Friday {
+            get {
+                return ResourceManager.GetString("Friday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Icon.
         /// </summary>
         public static string Icon {
@@ -520,6 +529,24 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mon.
+        /// </summary>
+        public static string Monday {
+            get {
+                return ResourceManager.GetString("Monday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string Next {
@@ -565,7 +592,7 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PhoneName.
+        ///   Looks up a localized string similar to Phone.
         /// </summary>
         public static string PhoneName {
             get {
@@ -799,6 +826,15 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sat.
+        /// </summary>
+        public static string Saturday {
+            get {
+                return ResourceManager.GetString("Saturday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Search {
@@ -871,6 +907,15 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sun.
+        /// </summary>
+        public static string Sunday {
+            get {
+                return ResourceManager.GetString("Sunday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Table.
         /// </summary>
         public static string Table {
@@ -907,6 +952,15 @@ namespace CityGoodTaste.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thu.
+        /// </summary>
+        public static string Thursday {
+            get {
+                return ResourceManager.GetString("Thursday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time.
         /// </summary>
         public static string Time {
@@ -921,6 +975,15 @@ namespace CityGoodTaste.Resources {
         public static string Total {
             get {
                 return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tue.
+        /// </summary>
+        public static string Tuesday {
+            get {
+                return ResourceManager.GetString("Tuesday", resourceCulture);
             }
         }
         
@@ -957,6 +1020,15 @@ namespace CityGoodTaste.Resources {
         public static string UserSurname {
             get {
                 return ResourceManager.GetString("UserSurname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wed.
+        /// </summary>
+        public static string Wednesday {
+            get {
+                return ResourceManager.GetString("Wednesday", resourceCulture);
             }
         }
         

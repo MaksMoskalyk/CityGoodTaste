@@ -6,7 +6,7 @@
         <h4><span class="glyphicon glyphicon-user"></span> @CityGoodTaste.Resources.Resource.RestaurantSchema</h4>
         <div style="text-align:center"><h2 style="display:inline-block">@Html.DisplayFor(m => m.Name, new { @class = "form-control" })</h2></div>
     </div>
-    <div class="modal-body" style="padding:40px 50px;">
+    <div class="modal-body">
 
 @using (Ajax.BeginForm("_ReservedTablesPartial", new AjaxOptions { UpdateTargetId = "reseredTables" }))
 {
@@ -25,7 +25,7 @@
             @Html.HiddenFor(m => Model.Id)
             @Html.HiddenFor(m => Model.XLength)
             @Html.HiddenFor(m => Model.YLength)
-            <table style="border-left:3px solid black; border-right:3px solid black; border-bottom:3px solid black">
+            <table style="border-left:3px solid black;">
                 @for (int y = 0; y < Model.YLength; y++)
                 {
                     <tr>
@@ -57,15 +57,15 @@
                                             personPath = "/Content/icons/SchemaIcons/Person.png";
                                             tablePath = "/Content/icons/SchemaIcons/Table.png";
                                         }
-                                        <td id="@x@y" style="width:98px;height:81px; text-align: center; border:solid 1px black;" tableid="@Model.Tables[i].Id" reserved="@Model.Tables[i].Reserved.ToString()" reservedandconfirmed="@Model.Tables[i].ReservedAndConfirmed.ToString()">
-                                            <div id="divP.@x@y" style="top:10px; position:relative" tableid="@Model.Tables[i].Id">
+                                        <td id="@x@y" coord="@x.@y" style="width:80px;height:40px;" tableid="@Model.Tables[i].Id" reserved="@Model.Tables[i].Reserved.ToString()" reservedandconfirmed="@Model.Tables[i].ReservedAndConfirmed.ToString()">
+                                            <div id="divP.@x@y" style="top:8px; position:relative" tableid="@Model.Tables[i].Id">
                                                 <p id="P.@x@y" style="font-weight:bold" tableid="@Model.Tables[i].Id">
                                                     @Model.Tables[i].Seats
                                                     <img id="imgP.@x@y" style="width:15px; height:15px" src="@(personPath)" tableid="@Model.Tables[i].Id" />
                                                 </p>
                                             </div>
-                                            <div id="divT.@x@y" style="top:-10px; position:relative" tableid="@Model.Tables[i].Id">
-                                                <img id="imgT.@x@y" style="width:48px; height:48px" src="@(tablePath)" alt="loading" tableid="@Model.Tables[i].Id" />
+                                            <div id="divT.@x@y" style="top:-8px; position:relative" tableid="@Model.Tables[i].Id">
+                                                <img id="imgT.@x@y" style="width:36px; height:18px" src="@(tablePath)" alt="loading" tableid="@Model.Tables[i].Id" />
                                             </div>
                                         </td>
                                         tdCreated = true;
@@ -74,7 +74,7 @@
                                 }
                                 if (!tdCreated)
                                 {
-                                    <td id="@x@y" style="width:98px;height:81px; text-align: center; border:solid 1px black;"></td>
+                                    <td id="@x@y" coord="@x.@y" style="width:80px;height:40px;"></td>
                                 }
                             }
                     </tr>
@@ -129,44 +129,108 @@
 
                 $('document').ready(createBorders());
                 function createBorders() {
-                    $('#03').css('border-bottom', '3px solid black');
-                    $('#13').css('border-bottom', '3px solid black');
-                    $('#23').css('border-bottom', '3px solid black');
-                    $('#33').css('border-bottom', '3px solid black');
-
-                    $('#72').css('border-bottom', '3px solid black');
-                    $('#82').css('border-bottom', '3px solid black');
-                    $('#92').css('border-bottom', '3px solid black');
-
-
-                    $('#75').css('border-bottom', '3px solid black');
-                    $('#85').css('border-bottom', '3px solid black');
-                    $('#95').css('border-bottom', '3px solid black');
-
-                    $('#60').css('border-right', '3px solid black');
-                    $('#62').css('border-right', '3px solid black');
-
-                    $('#63').css('border-right', '3px solid black');
-                    $('#65').css('border-right', '3px solid black');
-
-                    $('#66').css('border-right', '3px solid black');
-                    $('#68').css('border-right', '3px solid black');
-                    $('#69').css('border-right', '3px solid black');
-
-                    $('#34').css('border-right', '3px solid black');
-                    $('#36').css('border-right', '3px solid black');
-                    $('#37').css('border-right', '3px solid black');
-                    $('#38').css('border-right', '3px solid black');
-                    $('#39').css('border-right', '3px solid black');
-
+                    $("[coord='0.6']").css('border-bottom', '3px solid black');
+                    $('#16').css('border-bottom', '3px solid black');
+                    $('#46').css('border-bottom', '3px solid black');
+                    $('#47').css('border-right', '3px solid black');
+                    $('#49').css('border-right', '3px solid black');
+                    $('#411').css('border-right', '3px solid black');
+                    $('#64').css('border-bottom', '3px solid black');
+                    $('#74').css('border-bottom', '3px solid black');
+                    $('#84').css('border-bottom', '3px solid black');
+                    $('#94').css('border-bottom', '3px solid black');
+                    $('#104').css('border-bottom', '3px solid black');
+                    $('#114').css('border-bottom', '3px solid black');
+                    $('#124').css('border-bottom', '3px solid black');
+                    $('#134').css('border-bottom', '3px solid black');
+                    $('#155').css('border-bottom', '3px solid black');
+                    $('#165').css('border-bottom', '3px solid black');
+                    $('#175').css('border-bottom', '3px solid black');
+                    $('#185').css('border-bottom', '3px solid black');
+                    $('#195').css('border-bottom', '3px solid black');
+                    $('#205').css('border-bottom', '3px solid black');
+                    $('#215').css('border-bottom', '3px solid black');
+                    $('#156').css('border-left', '3px solid black');
+                    $('#159').css('border-left', '3px solid black');
+                    $('#1511').css('border-left', '3px solid black');
                     $('#00').css('border-top', '3px solid black');
                     $('#10').css('border-top', '3px solid black');
+                    $('#20').css('border-top', '3px solid black');
                     $('#30').css('border-top', '3px solid black');
                     $('#40').css('border-top', '3px solid black');
                     $('#50').css('border-top', '3px solid black');
-                    $('#60').css('border-top', '3px solid black');
-                    $('#70').css('border-top', '3px solid black');
-                    $('#80').css('border-top', '3px solid black');
-                    $('#90').css('border-top', '3px solid black');
+                    $('#51').css('border-right', '3px solid black');
+                    $('#52').css('border-right', '3px solid black');
+                    $('#53').css('border-right', '3px solid black');
+                    $('#54').css('border-right', '3px solid black');
+                    $('#55').css('border-right', '3px solid black');
+                    $('#50').css('border-right', '3px solid black');
+                    $('#144').css('border-bottom', '3px solid black');
+                    $('#145').css('border-right', '3px solid black');
+                    $('#216').css('border-right', '3px solid black');
+                    $('#217').css('border-right', '3px solid black');
+                    $('#218').css('border-right', '3px solid black');
+                    $('#219').css('border-right', '3px solid black');
+                    $('#2110').css('border-right', '3px solid black');
+                    $('#2111').css('border-right', '3px solid black');
+                    $('#011').css('border-bottom', '3px solid black');
+                    $("[coord='1.11']").css('border-bottom', '3px solid black');
+                    $("[coord='2.11']").css('border-bottom', '3px solid black');
+                    $('#311').css('border-bottom', '3px solid black');
+                    $('#411').css('border-bottom', '3px solid black');
+                    $('#63').css('border-bottom', '3px solid black');
+                    $('#73').css('border-bottom', '3px solid black');
+                    $('#83').css('border-bottom', '3px solid black');
+                    $('#93').css('border-bottom', '3px solid black');
+                    $('#103').css('border-bottom', '3px solid black');
+                    $('#113').css('border-bottom', '3px solid black');
+                    $('#123').css('border-bottom', '3px solid black');
+                    $('#133').css('border-bottom', '3px solid black');
+                    $('#143').css('border-bottom', '3px solid black');
+                    $('#154').css('border-left', '3px solid black');
+
+                    for (var i = 7; i < 22; i++) {
+                        $('#'+i+'11').css('border-bottom', '3px solid black');
+                    }
+
+                    $('#94').append('<p style="font:bold; font-size: 150%">B</p>');
+                    $('#104').append('<p style="font:bold; font-size: 150%">A</p>');
+                    $('#114').append('<p style="font:bold; font-size: 150%">R</p>');
+
+                    var color = "#fcfcfc";
+                    for (var x = 0; x < 6; x++) {
+                        for (var y = 0; y < 12; y++) {
+                            $("[coord='"+x+"."+y+"']").css('background-color', color);
+                        }
+                    }
+
+                    for (var x = 6; x < 15; x++) {
+                        for (var y = 5; y < 12; y++) {
+                            $("[coord='" + x + "." + y + "']").css('background-color', color);
+                        }
+                    }
+
+                    for (var x = 6; x < 15; x++) {
+                        for (var y = 5; y < 12; y++) {
+                            $("[coord='" + x + "." + y + "']").css('background-color', color);
+                        }
+                    }
+
+                    for (var x = 15; x < 22; x++) {
+                        for (var y = 6; y < 12; y++) {
+                            $("[coord='" + x + "." + y + "']").css('background-color', color);
+                        }
+                    }
+
+
+                    var barColor = "#ffc1c1";
+                    for (var x = 6; x < 15; x++) {
+                        for (var y = 4; y < 5; y++) {
+                            $("[coord='" + x + "." + y + "']").css('background-color', barColor);
+                        }
+                    }
+
+                    
+                    
                 }
 </script>
