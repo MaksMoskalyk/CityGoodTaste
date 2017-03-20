@@ -297,7 +297,10 @@
                 <p>ДАТА</p>
                 <div id="datepickerContainer" class="form-group center-block">
                     <div class="input-group">
-                        <input type="text" id="datepicker" value="22.03.2017" class="form-control">
+                        @{ 
+                            DateTime dt = DateTime.Now.Date;
+                        }
+                        <input type="text" id="datepicker" value=@dt class="form-control">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
