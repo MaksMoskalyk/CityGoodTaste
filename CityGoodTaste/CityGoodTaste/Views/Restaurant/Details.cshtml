@@ -28,7 +28,7 @@
     </div>*@
 
 
-<div class="container-fluid NoPadding" style="margin-left: auto; margin-right: auto">
+<div class="container-fluid minPadding" style="margin-left: auto; margin-right: auto">
     <div class="col-sm-9">
         <div class="jumbotron"  style="padding:0">
             <img class="img-responsive Center-Image-Width" src="https://placehold.it/800x400?text=IMAGE" alt="img" />
@@ -365,13 +365,19 @@
 {
         <div class="modal-content" style="width:400px">
             <div class="modal-header" style="background-color:#333333; color:white">             
-                <span style="color:white">Подтвердить резерв</span>
-                <button id="closeModalReserv" type="button" class="close" data-dismiss="modal">&times;</button>
+                <button id="closeModalReserv" type="button" style="color:white" class="close" data-dismiss="modal">&times;</button>
+                Подтвердить резерв
             </div>
             <div id="confirmReservModalBody" class="modal-body" style="padding:40px 50px;">
             </div>
             <div class="modal-footer">
-                <button id="sumbitReservBt" type="submit" class="btn btn-success btn-default pull-right">Подтвердить</button>
+                <button id="sumbitReservBt" type="submit" class="btn btn-success btn-default pull-left">
+                <span class="glyphicon glyphicon-ok"></span>
+                    Подтвердить</button>
+                <button class="btn btn-danger btn-default pull-right" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Отмена
+                </button>
             </div>
         </div>
 }
@@ -390,7 +396,7 @@
                 <div id="confirmReservModalBody" class="modal-body" style="padding:40px 50px;">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success btn-default pull-right" data-dismiss="modal">Ок</button>
+                    <button type="button" class="btn btn-success btn-default pull-left" data-dismiss="modal">Ок</button>
                 </div>
             </div>
     </div>

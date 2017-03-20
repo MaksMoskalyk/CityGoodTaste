@@ -54,10 +54,26 @@ button.ui-datepicker-current {
     padding: 0.2em !important;
 }
 
-.ui-datepicker-buttonpane ui-widget-content {
-    
+.searchBlock {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color:#333333;
 }
 
-.searchBlock {
-    margin: 10px;
+.panelHeadingCustom {
+    /*background-color: #E1E1C8 !important;*/
+    background-color: #ECECD3 !important;
+}
+
+.panelFooterCustom {
+    background-color: beige !important;
+}
+
+li.active a {
+    background-color: #8BB6C4 !important;
+    color: white !important;
+}
+
+input.name {
+
 }
