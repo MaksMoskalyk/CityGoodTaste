@@ -16,42 +16,71 @@
     <div>
         <div class="col-sm-2">
                 <h4>Фильтры:</h4>
-                <p>Кухня:</p>
-                @{
-                    CityGoodTaste.BusinessLayer.RestaurantDataManager manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
-                    var Cuisines = manager.GetAllCuisines();
-                }
-                @foreach (var item in Cuisines)
-                {
-                    <div class="checkbox">
-                        <label><input id="CuisinesCheck" name="CuisinesCheck" class="CuisinesCheck" type="checkbox" value=@item.Id>@item.Name</label>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse1">Кухня:</a>
+                        </h4>
                     </div>
-                }
-
-                <p>Особенности:</p>
-                @{
-                    manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
-                    var Features = manager.GetAllRestaurantFeatures();
-                }
-
-                @foreach (var item in Features)
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        @{
+                            CityGoodTaste.BusinessLayer.RestaurantDataManager manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
+                            var Cuisines = manager.GetAllCuisines();
+                        }
+                        @foreach (var item in Cuisines)
                 {
-                    <div class="checkbox">
-                        <label><input id="FeaturesCheck" name="FeaturesCheck" class="FeaturesCheck" type="checkbox" value=@item.Id>@item.Name</label>
+                            <div class="checkbox">
+                                <label><input id="CuisinesCheck" name="CuisinesCheck" class="CuisinesCheck" type="checkbox" value=@item.Id>@item.Name</label>
+                            </div>
+                        }
                     </div>
-                }
-                <p>Категории меню:</p>
-                @{
-                    manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
-                    var MealGroups = manager.GetAllMealGroups();
-                }
+                </div>
+            </div>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse2">Особенности:</a>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse in">
+                        @{
+                            manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
+                            var Features = manager.GetAllRestaurantFeatures();
+                        }
 
-                @foreach (var item in MealGroups)
+                        @foreach (var item in Features)
                 {
-                    <div class="checkbox">
-                        <label><input id="MealGroupsCheck"  name="MealGroups" class="MealGroups" type="checkbox" value=@item.Id>@item.Name</label>
+                            <div class="checkbox">
+                                <label><input id="FeaturesCheck" name="FeaturesCheck" class="FeaturesCheck" type="checkbox" value=@item.Id>@item.Name</label>
+                            </div>
+                        }
                     </div>
-                }
+                </div>
+            </div>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse3">Категории меню:</a>
+                        </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse in">
+                        @{
+                            manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
+                            var MealGroups = manager.GetAllMealGroups();
+                        }
+
+                        @foreach (var item in MealGroups)
+                {
+                            <div class="checkbox">
+                                <label><input id="MealGroupsCheck" name="MealGroups" class="MealGroups" type="checkbox" value=@item.Id>@item.Name</label>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>              
 
             </div>
         <div class="col-sm-10">
