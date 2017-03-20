@@ -36,42 +36,47 @@
         <div class="row">
             <div class="col-sm-6">
                 <div>
-                    <span style="font-weight:bold">@CityGoodTaste.Resources.Resource.RestaurantName</span> 
+                    <span class="deteilsTag">Название ресторана:</span> 
                     @Html.DisplayFor(model => model.Name)
                 </div>
                 <div>
-                    <span style="font-weight:bold">@CityGoodTaste.Resources.Resource.RestaurantAddress</span> 
-                    @Html.DisplayFor(model => model.Address) @Html.DisplayFor(model => model.City.Name) @Html.DisplayFor(model => model.City.Country.Name)
+                    <span class="deteilsTag">Адрес:</span> 
+                    @Html.DisplayFor(model => model.Address), @Html.DisplayFor(model => model.City.Name), @Html.DisplayFor(model => model.City.Country.Name), @Html.DisplayFor(model => model.ZipCode)
+                </div>
+                <div>
+                    <span class="deteilsTag">Телефон:</span>
+                    @Html.DisplayFor(model => model.PhoneNumber)
                 </div>
             </div>
             <div class="col-sm-4">
                 <div>
-                    <span style="font-weight:bold">@CityGoodTaste.Resources.Resource.Likes</span> 
+                    <span style="font-weight:bold">Лайки:</span> 
                     <span class="badge"> <span class="glyphicon glyphicon-thumbs-up"></span> @Html.DisplayFor(model => model.Likes.Count)</span>
                 </div>
                 <div>
-                    <span style="font-weight:bold">@CityGoodTaste.Resources.Resource.AverageCheck</span>
+                    <span style="font-weight:bold">Средний чек:</span>
                     <span class="badge">@Html.DisplayFor(model => model.AverageCheck) ₴</span>
                 </div>
             </div>
         </div>
+        <br />
         <div>
             <div>
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#review">@CityGoodTaste.Resources.Resource.RestaurantReview</a></li>
-                    <li><a data-toggle="tab" href="#menuRest">@CityGoodTaste.Resources.Resource.Menu</a></li>
-                    <li><a data-toggle="tab" href="#notice">@CityGoodTaste.Resources.Resource.Events</a></li>
-                    <li><a data-toggle="tab" href="#reviews">@CityGoodTaste.Resources.Resource.Reviews</a></li>
+                    <li class="active"><a data-toggle="tab" href="#review">Обзор</a></li>
+                    <li><a data-toggle="tab" href="#menuRest">Меню</a></li>
+                    <li><a data-toggle="tab" href="#notice">Афиша</a></li>
+                    <li><a data-toggle="tab" href="#reviews">Отзывы</a></li>
                 </ul>
 
                 <div class="tab-content">
                     <div id="review" class="tab-pane fade in active">
                         <div>
-                            <h2><span style="font-weight:bold">@CityGoodTaste.Resources.Resource.InformationAboutRestaurant</span></h2>
+                            <p style="margin-top:10px"><span  class="deteilsTag">Описание:</span></p>
                             <p>@Html.DisplayFor(model => model.InformationAbout)</p>
                         </div>
                         <div>
-                            <h2><span style="font-weight:bold">@CityGoodTaste.Resources.Resource.RestaurantFeatures</span></h2>
+                            <p><span class="deteilsTag">Особенности:</span></p>
                             <div class="row">
                                 @for (int i = 0; i < Model.RestaurantFeatures.Count; i++)
                                 {
@@ -79,18 +84,19 @@
                                 }
                             </div>
                         </div>
+                        <br />
                         <div>
-                            <h2><span style="font-weight:bold">@CityGoodTaste.Resources.Resource.WorkHours</span></h2>
+                            <p><span class="deteilsTag">Часы работы:</span></p>
                             <table class="table table-responsive">
                                 <thead>
                                     <tr>
-                                        <th>@CityGoodTaste.Resources.Resource.Monday.ToUpper()</th>
-                                        <th>@CityGoodTaste.Resources.Resource.Tuesday.ToUpper()</th>
-                                        <th>@CityGoodTaste.Resources.Resource.Wednesday.ToUpper()</th>
-                                        <th>@CityGoodTaste.Resources.Resource.Thursday.ToUpper()</th>
-                                        <th>@CityGoodTaste.Resources.Resource.Friday.ToUpper()</th>
-                                        <th>@CityGoodTaste.Resources.Resource.Saturday.ToUpper()</th>
-                                        <th>@CityGoodTaste.Resources.Resource.Sunday.ToUpper()</th>
+                                        <th>ПН</th>
+                                        <th>ВТ</th>
+                                        <th>СР</th>
+                                        <th>ЧТ</th>
+                                        <th>ПТ</th>
+                                        <th>СБ</th>
+                                        <th>ВС</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -103,13 +109,13 @@
                                 </tbody>
                             </table>
                         </div>
+                        @*<div>
+                            <p><span class="deteilsTag">Телефон:</span> <span> @Html.DisplayFor(model => model.PhoneNumber)</span></p>
+                            
+                        </div>*@
                         <div>
-                            <h2><span style="font-weight:bold">@CityGoodTaste.Resources.Resource.PhoneName</span></h2>
-                            @Html.DisplayFor(model => model.PhoneNumber)
-                        </div>
-                        <div>
-                            <h2><span style="font-weight:bold">@CityGoodTaste.Resources.Resource.RestaurantAddress</span></h2>
-                            @Html.DisplayFor(model => model.Address) @Html.DisplayFor(model => model.City.Name) @Html.DisplayFor(model => model.City.Country.Name) @Html.DisplayFor(model => model.ZipCode)
+                            @*<p><span class="deteilsTag">Адрес:</span> @Html.DisplayFor(model => model.Address), @Html.DisplayFor(model => model.City.Name), @Html.DisplayFor(model => model.City.Country.Name), @Html.DisplayFor(model => model.ZipCode)</p>*@
+                            <p><span class="deteilsTag">Карта:</span></p>
                             <div id="googleMap" style="height:400px;width:100%"></div>
                             <script>
 
@@ -262,7 +268,7 @@
                                         <table style="border-spacing: 5px 5px; border-collapse:unset">
                                             <tr>
                                                 <td class="well" style="border-radius:20px; padding:10px;">
-                                                    <img src="https://placehold.it/190x190?text=@item.User.Name" class="img-circle" width="90" height="90" alt="Avatar">
+                                                    <img src="https://placehold.it/190x190?text=@item.User.Name[0]" class="img-circle" width="90" height="90" alt="Avatar">
                                                     <br />
                                                     <h4 style="text-align:center">@item.User.Name</h4>
                                                 </td>
@@ -284,11 +290,11 @@
     <div class="col-sm-3 text-center">
         <div class="panel panel-default ">
             <div class="panel-heading">
-                <p>@CityGoodTaste.Resources.Resource.MakeReserv</p>
+                <p>ЗАРЕЗЕРВИРОВАТЬ</p>
             </div>
 
             <div class="panel-body text-center center-block">
-                <p>@CityGoodTaste.Resources.Resource.Date</p>
+                <p>ДАТА</p>
                 <div id="datepickerContainer" class="form-group center-block">
                     <div class="input-group">
                         <input type="text" id="datepicker" class="form-control">
@@ -300,7 +306,7 @@
             </div>
 
             <div class="panel-footer">
-                <p>@CityGoodTaste.Resources.Resource.Time</p>
+                <p>ВРЕМЯ</p>
                 <div class="form-group center-block">
                     <div class="input-group clockpicker ">
                         <input id="timePicker" type="text" class="form-control" value="09:30">
@@ -312,7 +318,7 @@
             </div>
 
             <div class="panel-body">
-                <p>@CityGoodTaste.Resources.Resource.SelectTable</p>
+                <p>ВЫБРАТЬ СТОЛИК</p>
                 <div class="center-block row">
                     <a data-toggle="modal" data-target="#SchemaModal" href="#">
                         <img src="https://placehold.it/250x150?text=Schema" alt="img" class="img-responsive col-sm-12" />
@@ -322,22 +328,22 @@
             </div>
 
             <div class="panel-footer">
-                <p>@CityGoodTaste.Resources.Resource.ContactInfo</p>
+                <p>КОНТАКТНАЯ ИНФОРМАЦИЯ</p>
                 <div class="form-group">
                     <div class="input-group col-sm-12">
-                        <input id="name" type="text" class="form-control input-sm" name="name" placeholder="@CityGoodTaste.Resources.Resource.Name">
+                        <input id="name" type="text" class="form-control input-sm" name="name" placeholder="Имя">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group col-sm-12">
-                        <input id="phone" type="text" class="form-control input-sm" name="phone" placeholder="@CityGoodTaste.Resources.Resource.PhoneName">
+                        <input id="phone" type="text" class="form-control input-sm" name="phone" placeholder="Телефон">
                 </div>
                     </div>
 
                 </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <button id="reservBt" type="button" class="btn btn-danger btn-block">@CityGoodTaste.Resources.Resource.Reserv</button>
+                    <button id="reservBt" type="button" class="btn btn-danger btn-block">Зарезервировать</button>
                 </div>
             </div>
         </div>
