@@ -38,12 +38,17 @@
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </a>
                             </div>
-                            <a href='@Url.Action("Details", "Restaurant", new { id = item.Restaurant.Id })'>
-                                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%; height:200px" alt="Image" />
-                            </a>
+                            <div class="thumbs">
+                                <a href='@Url.Action("Details", "Restaurant", new { id = item.Restaurant.Id })'>
+                                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%; height:200px" alt="Image" />
+                                </a>
+                                <div class="caption">
+                                    <span ></span>
+                                </div>
+                            </div>
                             <div class="panel-footer">
-                                <span class="oi oi-timer"></span> @Html.DisplayFor(modelItem => item.StartDate)<br />
-                                <span class="oi oi-timer"></span> @Html.DisplayFor(modelItem => item.EndDate)<br />
+                                <span class="glyphicon glyphicon-time"></span> Начала:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(modelItem => item.StartDate)<br />
+                                <span class="glyphicon glyphicon-time"></span> Завершение:&nbsp;@Html.DisplayFor(modelItem => item.EndDate)<br />
                             </div>
                         </div>
                     </div>

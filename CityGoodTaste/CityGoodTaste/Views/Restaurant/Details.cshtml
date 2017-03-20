@@ -30,7 +30,7 @@
 
 <div class="container-fluid NoPadding" style="margin-left: auto; margin-right: auto">
     <div class="col-sm-9">
-        <div class="jumbotron" style="padding:0">
+        <div class="jumbotron"  style="padding:0">
             <img class="img-responsive Center-Image-Width" src="https://placehold.it/800x400?text=IMAGE" alt="img" />
         </div>
         <div class="row">
@@ -47,11 +47,11 @@
             <div class="col-sm-4">
                 <div>
                     <span style="font-weight:bold">@CityGoodTaste.Resources.Resource.Likes</span> 
-                    <span class="badge">@Html.DisplayFor(model => model.Likes.Count)</span>
+                    <span class="badge"> <span class="glyphicon glyphicon-thumbs-up"></span> @Html.DisplayFor(model => model.Likes.Count)</span>
                 </div>
                 <div>
                     <span style="font-weight:bold">@CityGoodTaste.Resources.Resource.AverageCheck</span>
-                    <span class="badge">@Html.DisplayFor(model => model.AverageCheck)</span>
+                    <span class="badge">@Html.DisplayFor(model => model.AverageCheck) ₴</span>
                 </div>
             </div>
         </div>
@@ -262,7 +262,7 @@
                                         <table style="border-spacing: 5px 5px; border-collapse:unset">
                                             <tr>
                                                 <td class="well" style="border-radius:20px; padding:10px;">
-                                                    <img src="https://placehold.it/90x90?text=Аватар" class="img-circle" width="90" height="90" alt="Avatar">
+                                                    <img src="https://placehold.it/190x190?text=@item.User.Name" class="img-circle" width="90" height="90" alt="Avatar">
                                                     <br />
                                                     <h4 style="text-align:center">@item.User.Name</h4>
                                                 </td>
