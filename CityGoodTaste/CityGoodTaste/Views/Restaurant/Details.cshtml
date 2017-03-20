@@ -297,7 +297,10 @@
                 <p>ДАТА</p>
                 <div id="datepickerContainer" class="form-group center-block">
                     <div class="input-group">
-                        <input type="text" id="datepicker" class="form-control">
+                        @{ 
+                            DateTime dt = DateTime.Now.Date;
+                        }
+                        <input type="text" id="datepicker" value=@dt class="form-control">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -309,7 +312,10 @@
                 <p>ВРЕМЯ</p>
                 <div class="form-group center-block">
                     <div class="input-group clockpicker ">
-                        <input id="timePicker" type="text" class="form-control" value="09:30">
+                        @{
+                            var dtt = DateTime.Now.ToShortTimeString();
+                        }
+                        <input id="timePicker" type="text" class="form-control" value=@dtt>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-time"></span>
                         </span>
