@@ -30,17 +30,17 @@
 
 <div class="container-fluid minPadding" style="margin-left: auto; margin-right: auto">
     <div class="col-sm-9">
-        <div class="jumbotron"  style="padding:0">
+        <div class="jumbotron" style="padding:0">
             <img class="img-responsive Center-Image-Width" src="https://placehold.it/800x400?text=IMAGE" alt="img" />
         </div>
         <div class="row">
             <div class="col-sm-6">
                 <div>
-                    <span class="deteilsTag">Название ресторана:</span> 
+                    <span class="deteilsTag">Название ресторана:</span>
                     @Html.DisplayFor(model => model.Name)
                 </div>
                 <div>
-                    <span class="deteilsTag">Адрес:</span> 
+                    <span class="deteilsTag">Адрес:</span>
                     @Html.DisplayFor(model => model.Address), @Html.DisplayFor(model => model.City.Name), @Html.DisplayFor(model => model.City.Country.Name), @Html.DisplayFor(model => model.ZipCode)
                 </div>
                 <div>
@@ -50,7 +50,7 @@
             </div>
             <div class="col-sm-4">
                 <div>
-                    <span style="font-weight:bold">Лайки:</span> 
+                    <span style="font-weight:bold">Лайки:</span>
                     <span class="badge"> <span class="glyphicon glyphicon-thumbs-up"></span> @Html.DisplayFor(model => model.Likes.Count)</span>
                 </div>
                 <div>
@@ -72,7 +72,7 @@
                 <div class="tab-content">
                     <div id="review" class="tab-pane fade in active">
                         <div>
-                            <p style="margin-top:10px"><span  class="deteilsTag">Описание:</span></p>
+                            <p style="margin-top:10px"><span class="deteilsTag">Описание:</span></p>
                             <p>@Html.DisplayFor(model => model.InformationAbout)</p>
                         </div>
                         <div>
@@ -110,9 +110,9 @@
                             </table>
                         </div>
                         @*<div>
-                            <p><span class="deteilsTag">Телефон:</span> <span> @Html.DisplayFor(model => model.PhoneNumber)</span></p>
-                            
-                        </div>*@
+                                <p><span class="deteilsTag">Телефон:</span> <span> @Html.DisplayFor(model => model.PhoneNumber)</span></p>
+
+                            </div>*@
                         <div>
                             @*<p><span class="deteilsTag">Адрес:</span> @Html.DisplayFor(model => model.Address), @Html.DisplayFor(model => model.City.Name), @Html.DisplayFor(model => model.City.Country.Name), @Html.DisplayFor(model => model.ZipCode)</p>*@
                             <p><span class="deteilsTag">Карта:</span></p>
@@ -171,13 +171,13 @@
                                                     </h4>
                                                 </div>
                                                 @{
-                                                    
+
                                                     string colID = "collapseMealGroup" + @i + @j;
                                                 }
                                                 <div id=@colID class="panel-collapse collapse">
                                                     <div class="panel-bodycol-sm-12">
                                                         <div class="well">
-                                                            <table class="table" >
+                                                            <table class="table">
                                                                 @foreach (var Meal in MealGroup.Meals)
                                                                 {
                                                                     <tr>
@@ -201,7 +201,7 @@
                                                     }
                                     </div>
                                 </div>
-}
+                                                    }
                         </div>
                     </div>
                     <div id="notice" class="tab-pane fade">
@@ -241,8 +241,8 @@
                                                 @CityGoodTaste.Resources.Resource.EventTypes:
                                                 @foreach (var EventType in @Event.EventTypes)
                                                 {
-                                                <span>@EventType.Icon</span>
-                                                <span>@EventType.Name</span>
+                                                    <span>@EventType.Icon</span>
+                                                    <span>@EventType.Name</span>
                                                     if (@EventType == @Event.EventTypes.Last())
                                                     {<span>.</span> }
                                                     else
@@ -297,14 +297,14 @@
                 <p>ДАТА</p>
                 <div id="datepickerContainer" class="form-group center-block">
                     <div class="input-group">
-                        @{ 
+                        @{
                             DateTime dt = DateTime.Now.Date;
                         }
                         <input type="text" id="datepicker" value=@dt class="form-control">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
-            </div>
+                    </div>
                 </div>
             </div>
 
@@ -333,20 +333,16 @@
                 <div id="reseredTables">@Html.Partial("_ReservedTablesPartial")</div>
             </div>
 
-            <div class="panel-footer">
+            <div class="panel-footer" style="padding: 10px 20px">
                 <p>КОНТАКТНАЯ ИНФОРМАЦИЯ</p>
                 <div class="form-group">
-                    <div class="input-group col-sm-12">
-                        <input id="name" type="text" class="form-control input-sm" name="name" placeholder="Имя">
-                    </div>
+                    <input id="name" type="text" class="form-control input-md" name="name" placeholder="Имя">
                 </div>
                 <div class="form-group">
-                    <div class="input-group col-sm-12">
-                        <input id="phone" type="text" class="form-control input-sm" name="phone" placeholder="Телефон">
+                    <input id="phone" type="text" class="form-control input-md" name="phone" placeholder="Телефон">
                 </div>
-                    </div>
 
-                </div>
+            </div>
             <div class="panel-body">
                 <div class="form-group">
                     <button id="reservBt" type="button" class="btn btn-danger btn-block">Зарезервировать</button>
@@ -361,50 +357,51 @@
         <!-- Modal content-->
         @Html.Action("SchemaReservedTables", "Restaurant", new { id = Model.Id })
     </div>
-</div> 
+</div>
 
 <a style="visibility: hidden" id="confirmModalLink" data-toggle="modal" data-target="#ConfirmModal" href="#"></a>
 <div class="modal fade" id="ConfirmModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
-@using (Ajax.BeginForm("ConfirmReserv", null, new AjaxOptions { UpdateTargetId = "reseredTables" }, new { id = "confirmForm" }))
-{
-        <div class="modal-content" style="width:400px">
-            <div class="modal-header" style="background-color:#333333; color:white">             
-                <button id="closeModalReserv" type="button" style="color:white" class="close" data-dismiss="modal">&times;</button>
-                Подтвердить резерв
+        @using (Ajax.BeginForm("ConfirmReserv", null, new AjaxOptions { UpdateTargetId = "reseredTables" }, new { id = "confirmForm" }))
+        {
+            <div class="modal-content" style="width:400px">
+                <div class="modal-header" style="background-color:#333333; color:white">
+                    <button id="closeModalReserv" type="button" style="color:white" class="close" data-dismiss="modal">&times;</button>
+                    Подтвердить резерв
+                </div>
+                <div id="confirmReservModalBody" class="modal-body" style="padding:40px 50px;">
+                </div>
+                <div class="modal-footer">
+                    <button id="sumbitReservBt" type="submit" class="btn btn-success btn-default pull-left">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        Подтвердить
+                    </button>
+                    <button class="btn btn-danger btn-default pull-right" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Отмена
+                    </button>
+                </div>
             </div>
-            <div id="confirmReservModalBody" class="modal-body" style="padding:40px 50px;">
-            </div>
-            <div class="modal-footer">
-                <button id="sumbitReservBt" type="submit" class="btn btn-success btn-default pull-left">
-                <span class="glyphicon glyphicon-ok"></span>
-                    Подтвердить</button>
-                <button class="btn btn-danger btn-default pull-right" data-dismiss="modal">
-                    <span class="glyphicon glyphicon-remove"></span>
-                    Отмена
-                </button>
-            </div>
-        </div>
-}
+        }
     </div>
-</div> 
+</div>
 
 <a style="visibility: hidden" id="errorModalLink" data-toggle="modal" data-target="#errorModal" href="#"></a>
 <div class="modal fade" id="errorModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
-            <div class="modal-content" style="width:200px">
-                <div class="modal-header" style="background-color:#c34b4b; color:white">
-                    <span style="color:white">Данные не заполнены</span>
-                    <button id="closeModalError" type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div id="confirmReservModalBody" class="modal-body" style="padding:40px 50px;">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success btn-default pull-left" data-dismiss="modal">Ок</button>
-                </div>
+        <div class="modal-content" style="width:200px">
+            <div class="modal-header" style="background-color:#c34b4b; color:white">
+                <span style="color:white">Данные не заполнены</span>
+                <button id="closeModalError" type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
+            <div id="confirmReservModalBody" class="modal-body" style="padding:40px 50px;">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-default pull-left" data-dismiss="modal">Ок</button>
+            </div>
+        </div>
     </div>
 </div>
 
