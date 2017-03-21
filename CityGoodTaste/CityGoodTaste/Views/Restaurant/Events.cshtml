@@ -44,7 +44,7 @@
                             </div>
                             <div class="thumbs">
                                 <a href='@Url.Action("Details", "Restaurant", new { id = item.Restaurant.Id })'>
-                                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%; height:200px" alt="Image" />
+                                    <img src=@item.Photo class="img-responsive" style="width:100%; height:200px" alt="Image" />
                                 </a>
                                 <div class="caption">
                                     <span>@item.Restaurant.Name</span>

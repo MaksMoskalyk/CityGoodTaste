@@ -25,8 +25,8 @@
                 string isActive = "";
                 if (item == ListRestaurantEvents.First())
                 { isActive = " active"; }
-                <div class="item @isActive">
-                    <img class="img-responsive Center-Image-Width" src="https://placehold.it/800x200?text=Реклама" alt="Image">
+                <div class="item @isActive" style="height:400px">
+                    <img class="img-responsive Center-Image-Width" src=@item.Photo alt="Image">
                     <div class="carousel-caption">
                         <a href='@Url.Action("Details", "Restaurant", new { id = item.Restaurant.Id })' style="color:black; text-decoration:none">
                             <h3>@Html.DisplayFor(modelItem => item.Name)</h3>

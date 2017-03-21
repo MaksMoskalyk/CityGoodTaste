@@ -12,6 +12,17 @@ namespace CityGoodTaste.Models
         {
             InitializeAdminUserAndRoles(context);
             InitializeRestaurant(context);
+            InitializeR1(context);
+            InitializeR11(context);
+            InitializeR2(context);
+            InitializeR3(context);
+            InitializeR4(context);
+            InitializeR5(context);
+            InitializeR6(context);
+            InitializeR7(context);
+            InitializeR8(context);
+            InitializeR9(context);
+            InitializeR10(context);
             base.Seed(context);
         }
 
@@ -303,6 +314,335 @@ namespace CityGoodTaste.Models
             context.Menus.Add(M1);
             context.Menus.Add(M2);
             
+            context.Restaurants.Add(r);
+            context.SaveChanges();
+        }
+        private void InitializeR1(GoodTasteContext context)
+        {
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Клён кудрявый" };
+            Restaurant r = new Restaurant
+            {
+                Name = "Клён кудрявый",
+                Address = "ул. Победы 16",
+                ZipCode = 95009,
+                AverageCheck = 150,
+                Floors = 1,
+                PhoneNumber = "+380 50 113 50 11",
+                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
+                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
+                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
+                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
+                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
+                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
+                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
+                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
+                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                RestaurantGroup = restaurantsGroup,
+                Photo = "/Img/food.png"
+            };
+
+            r.RestaurantFeatures = new List<RestaurantFeature>();
+            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
+
+            context.Restaurants.Add(r);
+            context.SaveChanges();
+        }
+        private void InitializeR11(GoodTasteContext context)
+        {
+            
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Три Резвых Коня" };
+            Restaurant r = new Restaurant
+            {
+                Name = "Три Резвых Коня",
+                Address = "ул. Победы 6",
+                ZipCode = 95009,
+                AverageCheck = 305,
+                Floors = 2,
+                PhoneNumber = "+380 97 725 83 65",
+                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
+                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
+                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
+                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
+                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
+                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
+                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
+                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
+                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                Photo = "/Img/food.png",
+                RestaurantGroup = restaurantsGroup
+            };
+
+            r.RestaurantFeatures = new List<RestaurantFeature>();
+            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(2));
+
+            context.Restaurants.Add(r);
+            context.SaveChanges();
+        }
+        private void InitializeR2(GoodTasteContext context)
+        {
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Винная идиллия" };
+            Restaurant r = new Restaurant
+            {
+                Name = "Винная идилия",
+                Address = "ул. краснова 99",
+                ZipCode = 95009,
+                AverageCheck = 310,
+                Floors = 1,
+                PhoneNumber = "+380 60 453 56 12",
+                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
+                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
+                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
+                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
+                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
+                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
+                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
+                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
+                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                RestaurantGroup = restaurantsGroup,
+                Photo = "/Img/food.png"
+            };
+
+            r.RestaurantFeatures = new List<RestaurantFeature>();
+            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(2));
+
+
+
+            context.Restaurants.Add(r);
+            context.SaveChanges();
+        }
+        private void InitializeR3(GoodTasteContext context)
+        {
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Сладкоежкин" };
+            Restaurant r = new Restaurant
+            {
+                Name = "Сладкоежкин",
+                Address = "ул. Победы 16",
+                ZipCode = 95009,
+                AverageCheck = 150,
+                Floors = 1,
+                PhoneNumber = "+380 50 113 50 11",
+                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
+                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
+                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
+                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
+                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
+                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
+                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
+                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
+                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                RestaurantGroup = restaurantsGroup,
+                Photo = "/Img/food.png"
+            };
+
+            r.RestaurantFeatures = new List<RestaurantFeature>();
+            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
+            context.Restaurants.Add(r);
+            context.SaveChanges();
+        }
+        private void InitializeR4(GoodTasteContext context)
+        {
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Мир деликатесов" };
+            Restaurant r = new Restaurant
+            {
+                Name = "Мир деликатесов",
+                Address = "ул. Заболотного 33",
+                ZipCode = 95009,
+                AverageCheck = 180,
+                Floors = 1,
+                PhoneNumber = "+380 50 338 50 11",
+                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
+                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
+                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
+                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
+                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
+                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
+                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
+                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
+                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                RestaurantGroup = restaurantsGroup,
+                Photo = "/Img/food.png"
+            };
+
+            r.RestaurantFeatures = new List<RestaurantFeature>();
+            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
+            context.Restaurants.Add(r);
+            context.SaveChanges();
+        }
+        private void InitializeR5(GoodTasteContext context)
+        {
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Дом вкусняшек" };
+            Restaurant r = new Restaurant
+            {
+                Name = "Дом вкусняшек",
+                Address = "ул. Говорового 70",
+                ZipCode = 95009,
+                AverageCheck = 250,
+                Floors = 1,
+                PhoneNumber = "+380 67 241 67 11",
+                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
+                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
+                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
+                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
+                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
+                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
+                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
+                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
+                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                RestaurantGroup = restaurantsGroup,
+                Photo = "/Img/food.png"
+            };
+
+            r.RestaurantFeatures = new List<RestaurantFeature>();
+            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
+            
+            context.Restaurants.Add(r);
+            context.SaveChanges();
+        }
+        private void InitializeR6(GoodTasteContext context)
+        {
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Ням-ням" };
+            Restaurant r = new Restaurant
+            {
+                Name = "Ням-ням",
+                Address = "ул. Болгарская 10",
+                ZipCode = 95009,
+                AverageCheck = 150,
+                Floors = 1,
+                PhoneNumber = "+380 90 555 60 11",
+                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
+                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
+                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
+                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
+                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
+                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
+                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
+                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
+                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                RestaurantGroup = restaurantsGroup,
+                Photo = "/Img/food.png"
+            };
+
+            context.Restaurants.Add(r);
+            context.SaveChanges();
+        }
+        private void InitializeR7(GoodTasteContext context)
+        {
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Море пива" };
+            Restaurant r = new Restaurant
+            {
+                Name = "Море пива",
+                Address = "ул. Победы 16",
+                ZipCode = 95009,
+                AverageCheck = 150,
+                Floors = 1,
+                PhoneNumber = "+380 50 890 23 56",
+                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
+                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
+                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
+                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
+                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
+                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
+                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
+                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
+                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                RestaurantGroup = restaurantsGroup,
+                Photo = "/Img/food.png"
+            };
+
+            r.RestaurantFeatures = new List<RestaurantFeature>();
+            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
+
+            context.Restaurants.Add(r);
+            context.SaveChanges();
+        }
+        private void InitializeR8(GoodTasteContext context)
+        {
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Фреш мит" };
+            Restaurant r = new Restaurant
+            {
+                Name = "Фреш мит",
+                Address = "ул. Старосенная 57",
+                ZipCode = 95009,
+                AverageCheck = 235,
+                Floors = 1,
+                PhoneNumber = "+380 50 546 23 67",
+                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
+                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
+                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
+                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
+                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
+                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
+                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
+                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
+                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                RestaurantGroup = restaurantsGroup,
+                Photo = "/Img/food.png"
+            };
+
+            r.RestaurantFeatures = new List<RestaurantFeature>();
+            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
+
+            context.Restaurants.Add(r);
+            context.SaveChanges();
+        }
+        private void InitializeR9(GoodTasteContext context)
+        {
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Гамбургеры и фри" };
+            Restaurant r = new Restaurant
+            {
+                Name = "Гамбургеры и фри",
+                Address = "ул. Ученическая 34",
+                ZipCode = 95009,
+                AverageCheck = 150,
+                Floors = 1,
+                PhoneNumber = "+380 50 123 12 43",
+                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
+                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
+                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
+                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
+                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
+                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
+                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
+                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
+                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                RestaurantGroup = restaurantsGroup,
+                Photo = "/Img/food.png"
+            };
+
+            r.RestaurantFeatures = new List<RestaurantFeature>();
+            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
+
+            context.Restaurants.Add(r);
+            context.SaveChanges();
+        }
+        private void InitializeR10(GoodTasteContext context)
+        {
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Фазаны и куропатки" };
+            Restaurant r = new Restaurant
+            {
+                Name = "Фазаны и куропатки",
+                Address = "ул. Кордонная 54",
+                ZipCode = 95009,
+                AverageCheck = 210,
+                Floors = 1,
+                PhoneNumber = "+380 90 789 34 56",
+                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
+                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
+                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
+                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
+                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
+                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
+                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
+                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
+                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                RestaurantGroup = restaurantsGroup,
+                Photo = "/Img/food.png"
+            };
+
+            r.RestaurantFeatures = new List<RestaurantFeature>();
+            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
+
+
             context.Restaurants.Add(r);
             context.SaveChanges();
         }

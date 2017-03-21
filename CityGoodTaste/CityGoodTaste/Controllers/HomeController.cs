@@ -51,7 +51,7 @@ namespace CityGoodTaste.Controllers
             List<Restaurant> Restaurants = manager.GetListRestaurants();
             if(Restaurants.Count>8)
             {
-                Restaurants.RemoveRange(8, Restaurants.Count - 7);
+                Restaurants.RemoveRange(8, Restaurants.Count - 8);
             }
             return View(Restaurants);
         }
