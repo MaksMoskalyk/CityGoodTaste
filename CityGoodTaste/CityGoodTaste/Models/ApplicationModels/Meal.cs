@@ -12,7 +12,7 @@ namespace CityGoodTaste.Models
         [MaxLength(100)]
         [Required]
         public string Name { get; set; }
-
+        public string Photo { get; set; }
 
         public virtual MealGroup MealGroup { get; set; }
 
