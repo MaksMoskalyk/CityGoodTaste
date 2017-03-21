@@ -32,7 +32,7 @@ namespace CityGoodTaste.Models
 
         public ICollection<SpecialWorkHour> SpecialWorkHours { get; set; }
 
-        public virtual ICollection<Photo> Photos { get; set; }
+        public string Photo { get; set; }
 
         public virtual ICollection<RestaurantSchema> RestaurantSchemas { get; set; }
 

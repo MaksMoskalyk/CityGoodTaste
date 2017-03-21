@@ -6,7 +6,7 @@ using System;
 
 namespace CityGoodTaste.Models
 {
-    public class GoodTasteDBInitializer :CreateDatabaseIfNotExists<GoodTasteContext>
+    public class GoodTasteDBInitializer :DropCreateDatabaseAlways<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {
@@ -50,7 +50,8 @@ namespace CityGoodTaste.Models
                  Map= map,
                  RestaurantGroup= restaurantsGroup
             };
-
+           
+            r.Photo = "/Img/food.png";
             RestaurantFeature f1 = new RestaurantFeature { Name = "WiFi" };
             RestaurantFeature f2 = new RestaurantFeature { Name = "Завтраки" };
             RestaurantFeature f3 = new RestaurantFeature { Name = "Живая Музыки" };

@@ -41,5 +41,6 @@ namespace CityGoodTaste.Models
         public virtual Restaurant Restaurant { get; set; }
 
         public virtual ICollection<EventType> EventTypes { get; set; }
+        public string Photo { get; set; }
     }
 }
