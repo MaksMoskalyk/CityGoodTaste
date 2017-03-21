@@ -78,10 +78,16 @@
                         <div>
                             <p><span class="deteilsTag">Особенности:</span></p>
                             <div class="row">
-                                @for (int i = 0; i < Model.RestaurantFeatures.Count; i++)
+                                @*@for (int i = 0; i < Model.RestaurantFeatures.Count; i++)
                                 {
                                     <div class="col-sm-4">@Model.RestaurantFeatures.ElementAt(i).Name</div>
-                                }
+                                }*@
+                                <div class="col-sm-4"><span class="oi" data-glyph="wifi"></span> Wi-Fi</div>
+                                <div class="col-sm-4"><span class="oi" data-glyph="musical-note"></span> Живая музыка</div>
+                                <div class="col-sm-4"><span class="oi" data-glyph="sun"></span> Летняя площадка</div>
+                                <div class="col-sm-4"><span class="oi" data-glyph="credit-card"></span> Оплата кредитной картой</div>
+                                <div class="col-sm-4"><span class="oi" data-glyph="briefcase"></span> Бизнес ланч</div>
+                                <div class="col-sm-4"><span class="oi" data-glyph="bell"></span> Завтраки</div>
                             </div>
                         </div>
                         <br />
