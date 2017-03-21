@@ -8,7 +8,7 @@
 <div class="modal-content modalFix" style="width:1000px">
     <div class="modal-header" style="background-color:#333333; color:white">
         <button type="button" style="color:white" class="close" data-dismiss="modal">&times;</button>
-        <h4 style="margin:0"><span style="color:white" class="oi" data-glyph="puzzle-piece"></span> @CityGoodTaste.Resources.Resource.RestaurantSchema</h4>
+        <h4 style="margin:0"><span style="color:white" class="oi" data-glyph="puzzle-piece"></span> Схема заведения</h4>
         <div style="text-align:center"><h2 style="display:inline-block;  margin:0">@Html.DisplayFor(m => m.Name, new { @class = "form-control" })</h2></div>
     </div>
     @using (Ajax.BeginForm("_ReservedTablesPartial", new AjaxOptions { UpdateTargetId = "reseredTables" }))
@@ -54,7 +54,7 @@
                                             personPath = "/Content/icons/SchemaIcons/Person.png";
                                             tablePath = "/Content/icons/SchemaIcons/Table.png";
                                         }
-                        <td id="@x@y" coord="@x.@y" style="width:80px;height:40px; border:1px solid black" tableid="@Model.Tables[i].Id" reserved="@Model.Tables[i].Reserved.ToString()" reservedandconfirmed="@Model.Tables[i].ReservedAndConfirmed.ToString()">
+                        <td id="@x@y" coord="@x.@y" style="width:80px;height:40px;" tableid="@Model.Tables[i].Id" reserved="@Model.Tables[i].Reserved.ToString()" reservedandconfirmed="@Model.Tables[i].ReservedAndConfirmed.ToString()">
                             <div id="divP.@x@y" style="top:8px; position:relative" tableid="@Model.Tables[i].Id">
                                 <p id="P.@x@y" style="font-weight:bold" tableid="@Model.Tables[i].Id">
                                     @Model.Tables[i].Seats
@@ -71,7 +71,7 @@
                                 }
                                 if (!tdCreated)
                                 {
-                        <td id="@x@y" coord="@x.@y" style="width:80px;height:40px; border:1px solid black"></td>
+                        <td id="@x@y" coord="@x.@y" style="width:80px;height:40px;"></td>
                                 }
                             }
                 </tr>

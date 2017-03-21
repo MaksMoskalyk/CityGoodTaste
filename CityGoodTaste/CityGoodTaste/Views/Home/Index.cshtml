@@ -60,7 +60,7 @@
         </div>
     }
     <div class="container-fluid bg-3 text-center">
-        <h3>@CityGoodTaste.Resources.Resource.RecommendedRestaurants:</h3><br>
+        <h3>Рекомендуемые рестораны:</h3><br>
         <div class="row NoMargin">
             @foreach (var item in Model)
             {
@@ -73,7 +73,7 @@
                         </div>
                         <div class="thumbs">
                             <a href='@Url.Action("Details", "Restaurant", new { id = item.Id })'>
-                                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%; height:200px" alt="Image" />
+                                <img src=@item.Photo class="img-responsive" style="width:100%; height:200px" alt="Image" />
                             </a>
                             <div class="caption">
                                 <span style="float:left">Cредний чек: @item.AverageCheck ₴</span>

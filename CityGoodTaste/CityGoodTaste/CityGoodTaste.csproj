@@ -3237,6 +3237,8 @@
     <Content Include="Content\icons\open-iconic\webp\zoom-out-6x.webp" />
     <Content Include="Content\icons\open-iconic\webp\zoom-out-8x.webp" />
     <Content Include="Content\icons\open-iconic\webp\zoom-out.webp" />
+    <Content Include="Img\food.png" />
+    <Content Include="Img\Schema.png" />
     <Content Include="Scripts\Custom\Localization\datepicker-ENG.js" />
     <Content Include="Scripts\Custom\Localization\datepicker-RUS.js" />
     <Content Include="Scripts\Custom\Localization\datepicker-UKR.js" />
@@ -3323,6 +3325,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Migrations\" />
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -63,7 +63,7 @@ namespace CityGoodTaste.BusinessLayer
                     //Rest.RestaurantSchemas = context.RestaurantSchemas.Include(t => t.Tables.Select(r => r.TableReservation.Select(u => u.User))).ToList();
                     //return Rest;
                     Restaurant result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
-                            Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).Include(r => r.Photos).
+                            Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).
                             Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
                             Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
                             Include(r => r.WorkHours).Where(r=>r.Id==id).FirstOrDefault();
@@ -332,7 +332,7 @@ namespace CityGoodTaste.BusinessLayer
                         if (searchText == null)
                         {
                             result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
-                           Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).Include(r => r.Photos).
+                           Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).
                            Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
                            Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
                            Include(r => r.WorkHours).Where(t => id.Contains(t.Id)).ToList();
@@ -340,14 +340,14 @@ namespace CityGoodTaste.BusinessLayer
                         else
                         {
                             result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
-                           Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).Include(r => r.Photos).
+                           Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).
                            Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
                            Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
                            Include(r => r.WorkHours).Where(t => id.Contains(t.Id))
                            .Where(t => t.Name.Contains(searchText)).ToList();
                         }
                         result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
-                            Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).Include(r => r.Photos).
+                            Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).
                             Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
                             Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
                             Include(r => r.WorkHours).ToList();
@@ -355,7 +355,7 @@ namespace CityGoodTaste.BusinessLayer
                     else if (searchText.Length > 0)
                     {
                         result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
-                            Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).Include(r => r.Photos).
+                            Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).
                             Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
                             Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
                             Include(r => r.WorkHours).Where(t => t.Name.Contains(searchText)).ToList();
@@ -363,7 +363,7 @@ namespace CityGoodTaste.BusinessLayer
                     else
                     {
                         result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
-                            Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).Include(r => r.Photos).
+                            Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).
                             Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
                             Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
                             Include(r => r.WorkHours).ToList();

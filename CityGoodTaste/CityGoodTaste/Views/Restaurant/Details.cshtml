@@ -31,7 +31,7 @@
 <div class="container-fluid minPadding" style="margin-left: auto; margin-right: auto">
     <div class="col-sm-9">
         <div class="jumbotron" style="padding:0">
-            <img class="img-responsive Center-Image-Width" src="https://placehold.it/800x400?text=IMAGE" alt="img" />
+            <img class="img-responsive Center-Image-Width" src=@Model.Photo alt="img" />
         </div>
         <div class="row">
             <div class="col-sm-6">
@@ -188,7 +188,7 @@
                                                                 {
                                                                     <tr>
                                                                         <td style="width:110px">
-                                                                            <img class="img-thumbnail" src="https://placehold.it/100x100?text=@Meal.Name" alt="Image">
+                                                                            <img class="img-thumbnail" src=@Meal.Photo alt="Image">
                                                                         </td>
                                                                         <td style="text-align:left">
                                                                             <p style="font-size:large; margin:0;">@Meal.Name</p>
@@ -242,9 +242,9 @@
                                     }
                                     <div id=@colID class="panel-collapse collapse @isActive">
                                         <div class="panel-body">
-                                            <img class="img-responsive Center-Image-Width" src="https://placehold.it/800x400?text=@Event.Name" alt="Image">
+                                            <img class="img-responsive Center-Image-Width" src=@Event.Photo alt="Image">
                                             <p class="WordBreak">
-                                                @CityGoodTaste.Resources.Resource.EventTypes:
+                                                Типы события:
                                                 @foreach (var EventType in @Event.EventTypes)
                                                 {
                                                     <span>@EventType.Icon</span>
@@ -256,7 +256,7 @@
                                                 }
                                             </p>
                                             <p class="WordBreak">
-                                                @CityGoodTaste.Resources.Resource.EventDescription: <br />
+                                                Описание: <br />
                                                 @Event.Description
                                             </p>
                                         </div>
@@ -333,7 +333,7 @@
                 <p>ВЫБРАТЬ СТОЛИК</p>
                 <div class="center-block row">
                     <a data-toggle="modal" data-target="#SchemaModal" href="#">
-                        <img src="https://placehold.it/250x150?text=Schema" alt="img" class="img-responsive col-sm-12" />
+                        <img src="~/Img/Schema.png" alt="img" class="img-responsive col-sm-12" />
                     </a>
                 </div>
                 <div id="reseredTables">@Html.Partial("_ReservedTablesPartial")</div>
@@ -458,7 +458,7 @@
 
         $('#confirmReservModalBody').empty();
         $('#confirmReservModalBody').append("<p><span style=\"font-weight:bold\">Дата: </span>"+date+" "+time+"</p>");
-        $('#confirmReservModalBody').append("<ul id=\"tablesUl\"><span style=\"font-weight:bold\">@CityGoodTaste.Resources.Resource.Tables:</span></ul>");
+        $('#confirmReservModalBody').append("<ul id=\"tablesUl\"><span style=\"font-weight:bold\">Столы:</span></ul>");
         for (i = 0; i < els.length; i++) {
             if (els[i].hasAttribute('tableid')) {
 

@@ -50,7 +50,8 @@ namespace CityGoodTaste.Models
                  Map= map,
                  RestaurantGroup= restaurantsGroup
             };
-
+           
+            r.Photo = "/Img/food.png";
             RestaurantFeature f1 = new RestaurantFeature { Name = "WiFi" };
             RestaurantFeature f2 = new RestaurantFeature { Name = "Завтраки" };
             RestaurantFeature f3 = new RestaurantFeature { Name = "Живая Музыки" };
@@ -185,11 +186,11 @@ namespace CityGoodTaste.Models
             let4.Add(et1);
             let4.Add(et4);
 
-            RestaurantEvent re1 = new RestaurantEvent() { Name= "Restaurant Event 1",Description= "Restaurant Event 1 Description", StartDate= DateTime.Now , EndDate= DateTime.Now.AddHours(4) , Restaurant = r, EventTypes= let1 };
-            RestaurantEvent re2 = new RestaurantEvent() { Name = "Restaurant Event 2", Description = "Restaurant Event 2 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let2 };
-            RestaurantEvent re3 = new RestaurantEvent() { Name = "Restaurant Event 3", Description = "Restaurant Event 3 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let3 };
-            RestaurantEvent re4 = new RestaurantEvent() { Name = "Restaurant Event 4", Description = "Restaurant Event 4 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let4 };
-            RestaurantEvent re5 = new RestaurantEvent() { Name = "Restaurant Event 5", Description = "Restaurant Event 5 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let1 };
+            RestaurantEvent re1 = new RestaurantEvent() { Name= "Restaurant Event 1",Description= "Restaurant Event 1 Description", StartDate= DateTime.Now , EndDate= DateTime.Now.AddHours(4) , Restaurant = r, EventTypes= let1, Photo="/Img/food.png" };
+            RestaurantEvent re2 = new RestaurantEvent() { Name = "Restaurant Event 2", Description = "Restaurant Event 2 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let2, Photo = "/Img/food.png" };
+            RestaurantEvent re3 = new RestaurantEvent() { Name = "Restaurant Event 3", Description = "Restaurant Event 3 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let3, Photo = "/Img/food.png" };
+            RestaurantEvent re4 = new RestaurantEvent() { Name = "Restaurant Event 4", Description = "Restaurant Event 4 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let4, Photo = "/Img/food.png" };
+            RestaurantEvent re5 = new RestaurantEvent() { Name = "Restaurant Event 5", Description = "Restaurant Event 5 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let1, Photo = "/Img/food.png" };
 
 
             context.RestaurantEvent.Add(re1);
