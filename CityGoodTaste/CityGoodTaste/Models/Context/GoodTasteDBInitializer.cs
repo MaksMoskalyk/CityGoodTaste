@@ -6,7 +6,7 @@ using System;
 
 namespace CityGoodTaste.Models
 {
-    public class GoodTasteDBInitializer :DropCreateDatabaseAlways<GoodTasteContext>
+    public class GoodTasteDBInitializer :CreateDatabaseIfNotExists<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {
@@ -32,7 +32,7 @@ namespace CityGoodTaste.Models
             Country c = new Country { Name = "Украина" };
             City ct = new City { Name = "Одесса", Country = c };
             var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
-            var user = new ApplicationUser { Email = "somemail2@mail.ru", UserName = "user", Name="Егор" };
+            var user = new ApplicationUser { Email = "somemail2@mail.ru", UserName = "user", Name="Артур" };
             var result = userManager.Create(user, "Password!2");
             var user2 = new ApplicationUser { Email = "somemail22@mail.ru", UserName = "user2", Name = "Виктор" };
             var result2 = userManager.Create(user2, "Password!2");
@@ -42,27 +42,19 @@ namespace CityGoodTaste.Models
             RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Три Резвых Коня" };
             Restaurant r = new Restaurant
             {
-                Name = "Три Резвых Коня",
-                Address = "ул. Победы 6",
-                ZipCode = 95009,
-                AverageCheck = 305,
+                Name = "Unit",
+                Address = "ул. Тираспольская, 22",
+                ZipCode = 65000,
+                AverageCheck = 205,
                 Floors = 2,
                 City=ct, 
-                PhoneNumber="+380 97 725 83 65",
-                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r"+ 
-                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную"+
-                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе,"+ 
-                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской,"+
-                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
-                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам,"+
-                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!"+
-                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!"+
-                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                PhoneNumber="+380 48 729 9090",
+                InformationAbout = "UNIT Military Cafe - это уникальное заведение c потрясающей кухней и удивительной атмосферой, выдержанное в военном стиле. Мы раскрываем военную тематику в оформлении, в подаче наших блюд и в мероприятиях. В нашем меню присутствуют блюда русской, украинской и немецкой кухни. Мы разнообразили её и легкими салатами, и сочными бургерами, различными закусками, и, конечно же, мясными блюдами, вкус которых по достоинству оценит любой гурман. Первый этаж сочетает комфортные столики и диваны с камуфляжной сеткой и различной армейской атрибутикой. На нижнем уровне перед Вами раскроются 3 VIP-зоны для командных сборов, брифингов и товарищеских посиделок: зал славы страйкбола, небольшой зал в приглушенных тонах с мягкими подушками.",
                  Map= map,
                  RestaurantGroup= restaurantsGroup
             };
-           
-            r.Photo = "/Img/food.png";
+
+            r.Photo = "/Img/UnitMain.jpg";
             RestaurantFeature f1 = new RestaurantFeature { Name = "WiFi" };
             RestaurantFeature f2 = new RestaurantFeature { Name = "Завтраки" };
             RestaurantFeature f3 = new RestaurantFeature { Name = "Живая Музыки" };
@@ -105,7 +97,7 @@ namespace CityGoodTaste.Models
 
             Like like = new Like { User = user, Restaurant = r };
 
-            RestaurantSchema schema = new RestaurantSchema { Name = "1th Foor", InDoor = true, Restaurant = r, SmokingZone = false, XLength = 22, YLength = 12 };
+            RestaurantSchema schema = new RestaurantSchema { Name = "Первый этаж", InDoor = true, Restaurant = r, SmokingZone = false, XLength = 22, YLength = 12 };
             Table t1 = new Table { Seats = 4, X = 1, Y = 1};
             Table t2 = new Table { Seats = 4, X = 1, Y = 3};
             Table t3 = new Table { Seats = 4, X = 1, Y = 5};
@@ -197,26 +189,24 @@ namespace CityGoodTaste.Models
             let4.Add(et1);
             let4.Add(et4);
 
-            RestaurantEvent re1 = new RestaurantEvent() { Name= "Restaurant Event 1",Description= "Restaurant Event 1 Description", StartDate= DateTime.Now , EndDate= DateTime.Now.AddHours(4) , Restaurant = r, EventTypes= let1, Photo="/Img/food.png" };
-            RestaurantEvent re2 = new RestaurantEvent() { Name = "Restaurant Event 2", Description = "Restaurant Event 2 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let2, Photo = "/Img/food.png" };
-            RestaurantEvent re3 = new RestaurantEvent() { Name = "Restaurant Event 3", Description = "Restaurant Event 3 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let3, Photo = "/Img/food.png" };
-            RestaurantEvent re4 = new RestaurantEvent() { Name = "Restaurant Event 4", Description = "Restaurant Event 4 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let4, Photo = "/Img/food.png" };
-            RestaurantEvent re5 = new RestaurantEvent() { Name = "Restaurant Event 5", Description = "Restaurant Event 5 Description", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let1, Photo = "/Img/food.png" };
+            RestaurantEvent re1 = new RestaurantEvent() { Name= "Wednesday Pub Quiz",Description= "Паб-квиз — от английских слов Pub (паб, тут все понятно) и Quiz (викторина). Это популярная во всём мире командная игра, которая объединяет в себе облегченные «Брейн-Ринг» или «Что? Где?Когда?» и веселое времяпрепровождение в пабе с друзьями. Мы приглашаем команды от 2х до 4х человек. Короче говоря, собираемся вместе, делимся на команды и весело проводим время, умничая и отвечая на вопросы.", StartDate= DateTime.Now , EndDate= DateTime.Now.AddHours(4) , Restaurant = r, EventTypes= let1, Photo="/Img/food.png" };
+            RestaurantEvent re2 = new RestaurantEvent() { Name = "Old School Rock четверг с KIFA", Description = "Когда у человека есть вкус, есть чувство стиля, в народе все,что бы он не делал, называют \"фирмА\". Вкус и стиль потерять невозможно, это или есть, или нет. У Кифы есть всё, поэтому что бы она не делала: выбирала ли одежду, подбирала ли музыку, кушала ли или просто шла по улочкам Одессы- она делает это обворожительно и очень стильно. Вашему вниманию Acoustic Old School of Rock от удивительной группы KIFA!", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let2, Photo = "/Img/food.png" };
+            RestaurantEvent re3 = new RestaurantEvent() { Name = "Трансляция матча Хорватия-Украина", Description = "Трансляция матча Хорватия-Украина", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let3, Photo = "/Img/food.png" };
+
 
 
             context.RestaurantEvent.Add(re1);
             context.RestaurantEvent.Add(re2);
             context.RestaurantEvent.Add(re3);
-            context.RestaurantEvent.Add(re4);
-            context.RestaurantEvent.Add(re5);
 
-            Cuisine cuisine1 = new Cuisine() { Name = "Cuisine 1" };
-            Cuisine cuisine2 = new Cuisine() { Name = "Cuisine 2" };
-            Cuisine cuisine3 = new Cuisine() { Name = "Cuisine 3" };
-            Cuisine cuisine4 = new Cuisine() { Name = "Cuisine 4" };
-            Cuisine cuisine5 = new Cuisine() { Name = "Cuisine 5" };
-            Cuisine cuisine6 = new Cuisine() { Name = "Cuisine 6" };
-            Cuisine cuisine7 = new Cuisine() { Name = "Cuisine 7" };
+
+            Cuisine cuisine1 = new Cuisine() { Name = "Полевая" };
+            Cuisine cuisine2 = new Cuisine() { Name = "Украинская" };
+            Cuisine cuisine3 = new Cuisine() { Name = "Европейская" };
+            Cuisine cuisine4 = new Cuisine() { Name = "Азиатская" };
+            Cuisine cuisine5 = new Cuisine() { Name = "Восточная" };
+            Cuisine cuisine6 = new Cuisine() { Name = "Средиземноморская" };
+            Cuisine cuisine7 = new Cuisine() { Name = "Итальянская" };
             context.Cuisines.Add(cuisine1);
             context.Cuisines.Add(cuisine2);
             context.Cuisines.Add(cuisine3);

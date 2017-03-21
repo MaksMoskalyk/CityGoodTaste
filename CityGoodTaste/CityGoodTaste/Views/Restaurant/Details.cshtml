@@ -78,10 +78,16 @@
                         <div>
                             <p><span class="deteilsTag">Особенности:</span></p>
                             <div class="row">
-                                @for (int i = 0; i < Model.RestaurantFeatures.Count; i++)
+                                @*@for (int i = 0; i < Model.RestaurantFeatures.Count; i++)
                                 {
                                     <div class="col-sm-4">@Model.RestaurantFeatures.ElementAt(i).Name</div>
-                                }
+                                }*@
+                                <div class="col-sm-4"><span class="oi" data-glyph="wifi"></span> Wi-Fi</div>
+                                <div class="col-sm-4"><span class="oi" data-glyph="musical-note"></span> Живая музыка</div>
+                                <div class="col-sm-4"><span class="oi" data-glyph="sun"></span> Летняя площадка</div>
+                                <div class="col-sm-4"><span class="oi" data-glyph="credit-card"></span> Оплата кредитной картой</div>
+                                <div class="col-sm-4"><span class="oi" data-glyph="briefcase"></span> Бизнес ланч</div>
+                                <div class="col-sm-4"><span class="oi" data-glyph="bell"></span> Завтраки</div>
                             </div>
                         </div>
                         <br />
@@ -290,7 +296,7 @@
     <div class="col-sm-3 text-center">
         <div class="panel panel-default ">
             <div class="panel-heading">
-                <p>ЗАРЕЗЕРВИРОВАТЬ</p>
+                <p style="font-weight:bold">ЗАРЕЗЕРВИРОВАТЬ</p>
             </div>
 
             <div class="panel-body text-center center-block">
@@ -309,7 +315,7 @@
             </div>
 
             <div class="panel-footer">
-                <p>ВРЕМЯ</p>
+                <p style="font-weight:bold">ВРЕМЯ</p>
                 <div class="form-group center-block">
                     <div class="input-group clockpicker ">
                         @{
@@ -324,7 +330,7 @@
             </div>
 
             <div class="panel-body">
-                <p>ВЫБРАТЬ СТОЛИК</p>
+                <p style="font-weight:bold">ВЫБРАТЬ СТОЛИК</p>
                 <div class="center-block row">
                     <a data-toggle="modal" data-target="#SchemaModal" href="#">
                         <img src="~/Img/Schema.png" alt="img" class="img-responsive col-sm-12" />
@@ -334,7 +340,7 @@
             </div>
 
             <div class="panel-footer" style="padding: 10px 20px">
-                <p>КОНТАКТНАЯ ИНФОРМАЦИЯ</p>
+                <p style="font-weight:bold">КОНТАКТНАЯ ИНФОРМАЦИЯ</p>
                 <div class="form-group">
                     <input id="name" type="text" class="form-control input-md" name="name" placeholder="Имя">
                 </div>
