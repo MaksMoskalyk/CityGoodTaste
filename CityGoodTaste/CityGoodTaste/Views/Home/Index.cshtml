@@ -27,10 +27,12 @@
                 { isActive = " active"; }
                 <div class="item @isActive" style="height:400px">
                     <img class="img-responsive Center-Image-Width" src=@item.Photo alt="Image">
-                    <div class="carousel-caption">
-                        <a href='@Url.Action("Details", "Restaurant", new { id = item.Restaurant.Id })' style="color:black; text-decoration:none">
-                            <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
-                            <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                    <div class="carousel-caption" style="background: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+  right:0; left:0">
+                        <a href='@Url.Action("Details", "Restaurant", new { id = item.Restaurant.Id })' style="color:white; margin-left:10%; margin-right:10%; text-decoration:none">
+                            <h3 >@Html.DisplayFor(modelItem => item.Name)</h3>
+                            <p >@Html.DisplayFor(modelItem => item.Description)</p>
                         </a>
                     </div>
                 </div>
