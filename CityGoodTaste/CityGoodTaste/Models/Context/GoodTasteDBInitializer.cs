@@ -82,6 +82,7 @@ namespace CityGoodTaste.Models
             RestaurantFeature f25 = new RestaurantFeature { Name = "Настольные игры" };
             RestaurantFeature f26 = new RestaurantFeature { Name = "Танцпол" };
             RestaurantFeature f27 = new RestaurantFeature { Name = "Этно ресторан" };
+            RestaurantFeature f28 = new RestaurantFeature { Name = "Банкетный зал" };
 
             RestaurantReview rr1 = new RestaurantReview { Text= "все понравилось. Сервис и еда вкусно", Restaurant=r, Date= DateTime.Now, User=user };
             RestaurantReview rr2 = new RestaurantReview { Text = "Очень мило и приятно проведен и отмечен праздник. Все на высоком уровне и очень культурно.", Restaurant = r, Date = DateTime.Now, User = user2 };
@@ -120,6 +121,7 @@ namespace CityGoodTaste.Models
             r.RestaurantFeatures.Add(f25);
             r.RestaurantFeatures.Add(f26);
             r.RestaurantFeatures.Add(f27);
+            r.RestaurantFeatures.Add(f28);
             r.WorkHours = new List<WorkHour>();
             for (int i = 0; i < 7; i++)
             {
@@ -188,7 +190,6 @@ namespace CityGoodTaste.Models
             schema.Tables.Add(t25);
             schema.Tables.Add(t26);
             schema.Tables.Add(t27);
-            //schema.Tables.Add(t28);
 
             context.RestaurantSchemas.Add(schema);
 
