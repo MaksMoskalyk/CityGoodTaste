@@ -6,7 +6,7 @@ using System;
 
 namespace CityGoodTaste.Models
 {
-    public class GoodTasteDBInitializer :CreateDatabaseIfNotExists<GoodTasteContext>
+    public class GoodTasteDBInitializer :DropCreateDatabaseAlways<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {
@@ -309,26 +309,18 @@ namespace CityGoodTaste.Models
         }
         private void InitializeR1(GoodTasteContext context)
         {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Клён кудрявый" };
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Olio pizza" };
             Restaurant r = new Restaurant
             {
-                Name = "Клён кудрявый",
-                Address = "ул. Победы 16",
+                Name = "Olio pizza",
+                Address = "ул. Гаванная, 7",
                 ZipCode = 95009,
-                AverageCheck = 150,
+                AverageCheck = 200,
                 Floors = 1,
-                PhoneNumber = "+380 50 113 50 11",
-                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
-                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
-                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
-                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
-                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
-                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
-                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
-                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
-                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                PhoneNumber = "+380 482 33 50 11",
+                InformationAbout = "Olio — это сеть популярных итальянских ресторанов в городе Одесса с итальянской кухней и знаменитым итальянским гостеприимством. Olio pizza создана силами людей, которые основательно подошли к вопросу рождения этого проекта – это одесские рестораторы Виталий и Лина Имерцаки. Известные такими успешными проектами, как  почитаемый украинский ресторан «Куманець», основанный в 2001 году, стильный и современный ресторан «GluKoza» с европейской и азиатской кухней, сеть ресторанов  Olio и кафе с домашней одесской кухней  «Тёtя-Моtя». На сегодняшний день в городе Одесса работают уже три заведения сети Olio и «Дай Бог!», чтобы сеть развивалась не теряя качества, сноровки и своей привлекательности.",
                 RestaurantGroup = restaurantsGroup,
-                Photo = "/Img/food.png"
+                Photo = "/Img/Olio.jpg"
             };
 
             r.RestaurantFeatures = new List<RestaurantFeature>();
@@ -339,26 +331,18 @@ namespace CityGoodTaste.Models
         }
         private void InitializeR11(GoodTasteContext context)
         {
-            
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Три Резвых Коня" };
+
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Бернардацци" };
             Restaurant r = new Restaurant
             {
-                Name = "Три Резвых Коня",
-                Address = "ул. Победы 6",
+                Name = "Бернардацци",
+                Address = "ул. Бунина, 15 ",
                 ZipCode = 95009,
-                AverageCheck = 305,
+                AverageCheck = 400,
                 Floors = 2,
-                PhoneNumber = "+380 97 725 83 65",
-                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
-                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
-                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
-                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
-                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
-                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
-                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
-                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
-                                    "У нас как в театре: хотите на класс – покупайте билет!",
-                Photo = "/Img/food.png",
+                PhoneNumber = "+380 67 000 2511",
+                InformationAbout = "",
+                Photo = "/Img/bernardaci.png",
                 RestaurantGroup = restaurantsGroup
             };
 
@@ -370,26 +354,18 @@ namespace CityGoodTaste.Models
         }
         private void InitializeR2(GoodTasteContext context)
         {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Винная идиллия" };
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Pomodoro" };
             Restaurant r = new Restaurant
             {
-                Name = "Винная идилия",
-                Address = "ул. краснова 99",
+                Name = "Pomodoro",
+                Address = "Академика Глушко проспект, д. 14/7",
                 ZipCode = 95009,
-                AverageCheck = 310,
-                Floors = 1,
-                PhoneNumber = "+380 60 453 56 12",
-                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
-                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
-                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
-                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
-                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
-                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
-                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
-                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
-                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                AverageCheck = 150,
+                Floors = 2,
+                PhoneNumber = "+380 48 700 0022",
+                InformationAbout = "",
                 RestaurantGroup = restaurantsGroup,
-                Photo = "/Img/food.png"
+                Photo = "/Img/pomadoro.png"
             };
 
             r.RestaurantFeatures = new List<RestaurantFeature>();
@@ -402,26 +378,18 @@ namespace CityGoodTaste.Models
         }
         private void InitializeR3(GoodTasteContext context)
         {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Сладкоежкин" };
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Бодега 2 Карла" };
             Restaurant r = new Restaurant
             {
-                Name = "Сладкоежкин",
-                Address = "ул. Победы 16",
+                Name = "Бодега 2 Карла",
+                Address = "ул. Греческая, 32",
                 ZipCode = 95009,
-                AverageCheck = 150,
+                AverageCheck = 250,
                 Floors = 1,
-                PhoneNumber = "+380 50 113 50 11",
-                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
-                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
-                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
-                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
-                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
-                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
-                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
-                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
-                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                PhoneNumber = "+380 96 524 1601",
+                InformationAbout = "",
                 RestaurantGroup = restaurantsGroup,
-                Photo = "/Img/food.png"
+                Photo = "/Img/2karla.png"
             };
 
             r.RestaurantFeatures = new List<RestaurantFeature>();
@@ -431,26 +399,18 @@ namespace CityGoodTaste.Models
         }
         private void InitializeR4(GoodTasteContext context)
         {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Мир деликатесов" };
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Jardin" };
             Restaurant r = new Restaurant
             {
-                Name = "Мир деликатесов",
-                Address = "ул. Заболотного 33",
+                Name = "Jardin",
+                Address = "Городской сад",
                 ZipCode = 95009,
-                AverageCheck = 180,
+                AverageCheck = 300,
                 Floors = 1,
-                PhoneNumber = "+380 50 338 50 11",
-                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
-                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
-                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
-                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
-                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
-                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
-                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
-                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
-                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                PhoneNumber = "+380 48 700 14 71",
+                InformationAbout = "",
                 RestaurantGroup = restaurantsGroup,
-                Photo = "/Img/food.png"
+                Photo = "/Img/jardin.png"
             };
 
             r.RestaurantFeatures = new List<RestaurantFeature>();
@@ -460,26 +420,18 @@ namespace CityGoodTaste.Models
         }
         private void InitializeR5(GoodTasteContext context)
         {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Дом вкусняшек" };
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Стейкхаус" };
             Restaurant r = new Restaurant
             {
-                Name = "Дом вкусняшек",
-                Address = "ул. Говорового 70",
-                ZipCode = 95009,
+                Name = "Стейкхаус",
+                Address = "ул. Дерибасовская, 20",
+                ZipCode = 65026,
                 AverageCheck = 250,
                 Floors = 1,
-                PhoneNumber = "+380 67 241 67 11",
-                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
-                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
-                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
-                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
-                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
-                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
-                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
-                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
-                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                PhoneNumber = "+380 482 348 782",
+                InformationAbout = "",
                 RestaurantGroup = restaurantsGroup,
-                Photo = "/Img/food.png"
+                Photo = "/Img/sh.jpg"
             };
 
             r.RestaurantFeatures = new List<RestaurantFeature>();
@@ -490,26 +442,18 @@ namespace CityGoodTaste.Models
         }
         private void InitializeR6(GoodTasteContext context)
         {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Ням-ням" };
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Тавернетта" };
             Restaurant r = new Restaurant
             {
-                Name = "Ням-ням",
-                Address = "ул. Болгарская 10",
-                ZipCode = 95009,
-                AverageCheck = 150,
+                Name = "Тавернетта",
+                Address = "ул. Екатерининская, д. 45",
+                ZipCode = 95003,
+                AverageCheck = 300,
                 Floors = 1,
-                PhoneNumber = "+380 90 555 60 11",
-                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
-                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
-                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
-                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
-                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
-                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
-                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
-                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
-                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                PhoneNumber = "+380 96 234 4621",
+                InformationAbout = "",
                 RestaurantGroup = restaurantsGroup,
-                Photo = "/Img/food.png"
+                Photo = "/Img/tav.png"
             };
 
             context.Restaurants.Add(r);
@@ -517,26 +461,18 @@ namespace CityGoodTaste.Models
         }
         private void InitializeR7(GoodTasteContext context)
         {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Море пива" };
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Фрателли" };
             Restaurant r = new Restaurant
             {
-                Name = "Море пива",
-                Address = "ул. Победы 16",
-                ZipCode = 95009,
+                Name = "Фрателли",
+                Address = "ул. Греческая, д. 17",
+                ZipCode = 65026,
                 AverageCheck = 150,
                 Floors = 1,
-                PhoneNumber = "+380 50 890 23 56",
-                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
-                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
-                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
-                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
-                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
-                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
-                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
-                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
-                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                PhoneNumber = "+380 48 738 4848",
+                InformationAbout = "",
                 RestaurantGroup = restaurantsGroup,
-                Photo = "/Img/food.png"
+                Photo = "/Img/frat.png"
             };
 
             r.RestaurantFeatures = new List<RestaurantFeature>();
@@ -547,26 +483,18 @@ namespace CityGoodTaste.Models
         }
         private void InitializeR8(GoodTasteContext context)
         {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Фреш мит" };
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Дача" };
             Restaurant r = new Restaurant
             {
-                Name = "Фреш мит",
-                Address = "ул. Старосенная 57",
-                ZipCode = 95009,
+                Name = "Дача",
+                Address = "Французский бульвар, 85/3",
+                ZipCode = 65058,
                 AverageCheck = 235,
                 Floors = 1,
-                PhoneNumber = "+380 50 546 23 67",
-                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
-                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
-                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
-                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
-                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
-                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
-                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
-                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
-                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                PhoneNumber = "+380 48 714 3119",
+                InformationAbout = "",
                 RestaurantGroup = restaurantsGroup,
-                Photo = "/Img/food.png"
+                Photo = "/Img/dach.png"
             };
 
             r.RestaurantFeatures = new List<RestaurantFeature>();
@@ -577,26 +505,18 @@ namespace CityGoodTaste.Models
         }
         private void InitializeR9(GoodTasteContext context)
         {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Гамбургеры и фри" };
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Grand Prix" };
             Restaurant r = new Restaurant
             {
-                Name = "Гамбургеры и фри",
-                Address = "ул. Ученическая 34",
-                ZipCode = 95009,
-                AverageCheck = 150,
-                Floors = 1,
-                PhoneNumber = "+380 50 123 12 43",
-                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
-                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
-                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
-                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
-                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
-                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
-                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
-                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
-                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                Name = "Grand Prix",
+                Address = "ул. Бунина, д. 24",
+                ZipCode = 65026,
+                AverageCheck = 400,
+                Floors = 2,
+                PhoneNumber = "+380 48 785 0701",
+                InformationAbout = "",
                 RestaurantGroup = restaurantsGroup,
-                Photo = "/Img/food.png"
+                Photo = "/Img/grand.png"
             };
 
             r.RestaurantFeatures = new List<RestaurantFeature>();
@@ -607,26 +527,18 @@ namespace CityGoodTaste.Models
         }
         private void InitializeR10(GoodTasteContext context)
         {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Фазаны и куропатки" };
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Баффало 99" };
             Restaurant r = new Restaurant
             {
-                Name = "Фазаны и куропатки",
-                Address = "ул. Кордонная 54",
-                ZipCode = 95009,
-                AverageCheck = 210,
+                Name = "Баффало 99",
+                Address = "ул. Ришельевская, д. 7",
+                ZipCode = 65014,
+                AverageCheck = 300,
                 Floors = 1,
-                PhoneNumber = "+380 90 789 34 56",
-                InformationAbout = "Мы любим готовить! И самое главное для нас – чтобы вы готовили и получали от этого удовольствие!\n\r" +
-                                    " Ну а мы со своей стороны предоставим все необходимое: большую кухню, удобные столы, качественную" +
-                                    " технику и самые лучшие продукты! И, само собой, пригласим лучших шеф-поваров. Как и в обычной школе," +
-                                    " у нас есть четкое разделение по предметам. Так, мы предлагаем классы итальянской, французской," +
-                                    " кавказской, азиатской кухни и т.д.\n\r По желанию, можно посетить один понравившийся мастер-класс" +
-                                    " или же пройти курс полностью. Кто к нам приходит? Мы рады всем! Студентам, безнесменам," +
-                                    " домохозяйкам, белым воротничкам и даже тем, кто просто проходил мимо. Интересно будет каждому!" +
-                                    "Как записаться? Расписание всех наших классов – на сайте, на страницах в Facebook!" +
-                                    "У нас как в театре: хотите на класс – покупайте билет!",
+                PhoneNumber = "+380 67 489 8395",
+                InformationAbout = "",
                 RestaurantGroup = restaurantsGroup,
-                Photo = "/Img/food.png"
+                Photo = "/Img/buf.png"
             };
 
             r.RestaurantFeatures = new List<RestaurantFeature>();
