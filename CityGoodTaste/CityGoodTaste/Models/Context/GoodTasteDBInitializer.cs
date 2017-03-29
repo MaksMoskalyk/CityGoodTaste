@@ -65,6 +65,23 @@ namespace CityGoodTaste.Models
             RestaurantFeature f8 = new RestaurantFeature { Name = "Детская площадка" };
             RestaurantFeature f9 = new RestaurantFeature { Name = "Детский стульчик" };
             RestaurantFeature f10 = new RestaurantFeature { Name = "Оплата кредитной картой" };
+            RestaurantFeature f11 = new RestaurantFeature { Name = "Парковка" };
+            RestaurantFeature f12 = new RestaurantFeature { Name = "Сезонное меню" };
+            RestaurantFeature f13 = new RestaurantFeature { Name = "Летняя терраса" };
+            RestaurantFeature f14 = new RestaurantFeature { Name = "Открытая кухня" };
+            RestaurantFeature f15 = new RestaurantFeature { Name = "Оплата за обслужывание включена в чек" };
+            RestaurantFeature f16 = new RestaurantFeature { Name = "Dj" };
+            RestaurantFeature f17 = new RestaurantFeature { Name = "VIP зал" };
+            RestaurantFeature f18 = new RestaurantFeature { Name = "Бесплатная вода от заведения" };
+            RestaurantFeature f19 = new RestaurantFeature { Name = "Бильярд" };
+            RestaurantFeature f20 = new RestaurantFeature { Name = "Зал для курящих" };
+            RestaurantFeature f21 = new RestaurantFeature { Name = "Кальян" };
+            RestaurantFeature f22 = new RestaurantFeature { Name = "Круглосуточный" };
+            RestaurantFeature f23 = new RestaurantFeature { Name = "На воде" };
+            RestaurantFeature f24 = new RestaurantFeature { Name = "На крыше" };
+            RestaurantFeature f25 = new RestaurantFeature { Name = "Настольные игры" };
+            RestaurantFeature f26 = new RestaurantFeature { Name = "Танцпол" };
+            RestaurantFeature f27 = new RestaurantFeature { Name = "Этно ресторан" };
 
             RestaurantReview rr1 = new RestaurantReview { Text= "все понравилось. Сервис и еда вкусно", Restaurant=r, Date= DateTime.Now, User=user };
             RestaurantReview rr2 = new RestaurantReview { Text = "Очень мило и приятно проведен и отмечен праздник. Все на высоком уровне и очень культурно.", Restaurant = r, Date = DateTime.Now, User = user2 };
@@ -86,7 +103,23 @@ namespace CityGoodTaste.Models
             r.RestaurantFeatures.Add(f8);
             r.RestaurantFeatures.Add(f9);
             r.RestaurantFeatures.Add(f10);
-
+            r.RestaurantFeatures.Add(f11);
+            r.RestaurantFeatures.Add(f12);
+            r.RestaurantFeatures.Add(f13);
+            r.RestaurantFeatures.Add(f14);
+            r.RestaurantFeatures.Add(f15);
+            r.RestaurantFeatures.Add(f16);
+            r.RestaurantFeatures.Add(f17);
+            r.RestaurantFeatures.Add(f18);
+            r.RestaurantFeatures.Add(f19);
+            r.RestaurantFeatures.Add(f20);
+            r.RestaurantFeatures.Add(f21);
+            r.RestaurantFeatures.Add(f22);
+            r.RestaurantFeatures.Add(f23);
+            r.RestaurantFeatures.Add(f24);
+            r.RestaurantFeatures.Add(f25);
+            r.RestaurantFeatures.Add(f26);
+            r.RestaurantFeatures.Add(f27);
             r.WorkHours = new List<WorkHour>();
             for (int i = 0; i < 7; i++)
             {
@@ -163,10 +196,10 @@ namespace CityGoodTaste.Models
             context.Countries.Add(c);
             context.Cities.Add(ct);
 
-            EventType et1 =new EventType() { Name = "EventTypes 1" };
-            EventType et2 = new EventType() { Name = "EventTypes 2" };
-            EventType et3 = new EventType() { Name = "EventTypes 3" };
-            EventType et4 = new EventType() { Name = "EventTypes 4" };
+            EventType et1 =new EventType() { Name = "Quiz (викторина)" };
+            EventType et2 = new EventType() { Name = "Живая музыка" };
+            EventType et3 = new EventType() { Name = "Футбол" };
+            EventType et4 = new EventType() { Name = "Новое маню" };
 
             context.EventTypes.Add(et1);
             context.EventTypes.Add(et2);
@@ -175,18 +208,14 @@ namespace CityGoodTaste.Models
 
             List<EventType> let1 = new List<EventType>();
             let1.Add(et1);
-            let1.Add(et3);
 
             List<EventType> let2 = new List<EventType>();
             let2.Add(et2);
-            let2.Add(et4);
 
             List<EventType> let3 = new List<EventType>();
-            let3.Add(et2);
             let3.Add(et3);
 
             List<EventType> let4 = new List<EventType>();
-            let4.Add(et1);
             let4.Add(et4);
 
             RestaurantEvent re1 = new RestaurantEvent() { Name= "Wednesday Pub Quiz",Description= "Паб-квиз — от английских слов Pub (паб, тут все понятно) и Quiz (викторина). Это популярная во всём мире командная игра, которая объединяет в себе облегченные «Брейн-Ринг» или «Что? Где?Когда?» и веселое времяпрепровождение в пабе с друзьями. Мы приглашаем команды от 2х до 4х человек. Короче говоря, собираемся вместе, делимся на команды и весело проводим время, умничая и отвечая на вопросы.", StartDate= DateTime.Now , EndDate= DateTime.Now.AddHours(4) , Restaurant = r, EventTypes= let1, Photo="/Img/Events/1.jpg" };
@@ -200,13 +229,58 @@ namespace CityGoodTaste.Models
             context.RestaurantEvent.Add(re3);
 
 
-            Cuisine cuisine1 = new Cuisine() { Name = "Полевая" };
-            Cuisine cuisine2 = new Cuisine() { Name = "Украинская" };
-            Cuisine cuisine3 = new Cuisine() { Name = "Европейская" };
+            Cuisine cuisine1 = new Cuisine() { Name = "Авангардная" };
+            Cuisine cuisine2 = new Cuisine() { Name = "Авторская" };
+            Cuisine cuisine3 = new Cuisine() { Name = "Азербайджанская " };
             Cuisine cuisine4 = new Cuisine() { Name = "Азиатская" };
-            Cuisine cuisine5 = new Cuisine() { Name = "Восточная" };
-            Cuisine cuisine6 = new Cuisine() { Name = "Средиземноморская" };
-            Cuisine cuisine7 = new Cuisine() { Name = "Итальянская" };
+            Cuisine cuisine5 = new Cuisine() { Name = "Американская" };
+            Cuisine cuisine6 = new Cuisine() { Name = "Английская" };
+            Cuisine cuisine7 = new Cuisine() { Name = "Аргентинская" };
+            Cuisine cuisine8 = new Cuisine() { Name = "Армянская" };
+            Cuisine cuisine9 = new Cuisine() { Name = "Бельгийская" };
+            Cuisine cuisine10 = new Cuisine() { Name = "Ближневосточная" };
+            Cuisine cuisine11 = new Cuisine() { Name = "Бразильская" };
+            Cuisine cuisine12 = new Cuisine() { Name = "Вегетарианская" };
+            Cuisine cuisine13 = new Cuisine() { Name = "Венгерская" };
+            Cuisine cuisine14 = new Cuisine() { Name = "Восточная" };
+            Cuisine cuisine15 = new Cuisine() { Name = "Греческая" };
+            Cuisine cuisine16 = new Cuisine() { Name = "Грузинская" };
+            Cuisine cuisine17 = new Cuisine() { Name = "Домашняя" };
+            Cuisine cuisine18 = new Cuisine() { Name = "Еврейская" };
+            Cuisine cuisine19 = new Cuisine() { Name = "Европейская" };
+            Cuisine cuisine20 = new Cuisine() { Name = "Индийская" };
+            Cuisine cuisine21 = new Cuisine() { Name = "Интернациональная" };
+            Cuisine cuisine22 = new Cuisine() { Name = "Ирландская" };
+            Cuisine cuisine23 = new Cuisine() { Name = "Испанская" };
+            Cuisine cuisine24 = new Cuisine() { Name = "Итальянская" };
+            Cuisine cuisine26 = new Cuisine() { Name = "Кавказская" };
+            Cuisine cuisine27 = new Cuisine() { Name = "Китайская" };
+            Cuisine cuisine28 = new Cuisine() { Name = "Корейская" };
+            Cuisine cuisine29 = new Cuisine() { Name = "Крымскотатарская " };
+            Cuisine cuisine30 = new Cuisine() { Name = "Кубинская" };
+            Cuisine cuisine31 = new Cuisine() { Name = "Ливанская" };
+            Cuisine cuisine32 = new Cuisine() { Name = "Литовская" };
+            Cuisine cuisine33 = new Cuisine() { Name = "Мексиканская" };
+            Cuisine cuisine34 = new Cuisine() { Name = "Молекулярная" };
+            Cuisine cuisine35 = new Cuisine() { Name = "Мясная" };
+            Cuisine cuisine36 = new Cuisine() { Name = "Немецкая" };
+            Cuisine cuisine37 = new Cuisine() { Name = "Паназиатская" };
+            Cuisine cuisine38 = new Cuisine() { Name = "Персидская" };
+            Cuisine cuisine39 = new Cuisine() { Name = "Перуанская" };
+            Cuisine cuisine40 = new Cuisine() { Name = "Русская" };
+            Cuisine cuisine41 = new Cuisine() { Name = "Сезонная" };
+            Cuisine cuisine42 = new Cuisine() { Name = "Скандинавская" };
+            Cuisine cuisine43 = new Cuisine() { Name = "Средиземноморская" };
+            Cuisine cuisine44 = new Cuisine() { Name = "Старославянская" };
+            Cuisine cuisine45 = new Cuisine() { Name = "Тайская" };
+            Cuisine cuisine46 = new Cuisine() { Name = "Турецкая" };
+            Cuisine cuisine47 = new Cuisine() { Name = "Узбекская" };
+            Cuisine cuisine48 = new Cuisine() { Name = "Украинская" };
+            Cuisine cuisine49 = new Cuisine() { Name = "Французская" };
+            Cuisine cuisine50 = new Cuisine() { Name = "Фьюжн" };
+            Cuisine cuisine51 = new Cuisine() { Name = "Чешская" };
+            Cuisine cuisine52 = new Cuisine() { Name = "Шотландская" };
+            Cuisine cuisine53 = new Cuisine() { Name = "Японская" };
             context.Cuisines.Add(cuisine1);
             context.Cuisines.Add(cuisine2);
             context.Cuisines.Add(cuisine3);
@@ -214,7 +288,51 @@ namespace CityGoodTaste.Models
             context.Cuisines.Add(cuisine5);
             context.Cuisines.Add(cuisine6);
             context.Cuisines.Add(cuisine7);
-
+            context.Cuisines.Add(cuisine8);
+            context.Cuisines.Add(cuisine9);
+            context.Cuisines.Add(cuisine10);
+            context.Cuisines.Add(cuisine11);
+            context.Cuisines.Add(cuisine12);
+            context.Cuisines.Add(cuisine13);
+            context.Cuisines.Add(cuisine14);
+            context.Cuisines.Add(cuisine15);
+            context.Cuisines.Add(cuisine16);
+            context.Cuisines.Add(cuisine17);
+            context.Cuisines.Add(cuisine18);
+            context.Cuisines.Add(cuisine19);
+            context.Cuisines.Add(cuisine20);
+            context.Cuisines.Add(cuisine21);
+            context.Cuisines.Add(cuisine22);
+            context.Cuisines.Add(cuisine23);
+            context.Cuisines.Add(cuisine24);
+            context.Cuisines.Add(cuisine26);
+            context.Cuisines.Add(cuisine27);
+            context.Cuisines.Add(cuisine28);
+            context.Cuisines.Add(cuisine29);
+            context.Cuisines.Add(cuisine30);
+            context.Cuisines.Add(cuisine31);
+            context.Cuisines.Add(cuisine32);
+            context.Cuisines.Add(cuisine33);
+            context.Cuisines.Add(cuisine34);
+            context.Cuisines.Add(cuisine35);
+            context.Cuisines.Add(cuisine36);
+            context.Cuisines.Add(cuisine37);
+            context.Cuisines.Add(cuisine38);
+            context.Cuisines.Add(cuisine39);
+            context.Cuisines.Add(cuisine40);
+            context.Cuisines.Add(cuisine41);
+            context.Cuisines.Add(cuisine42);
+            context.Cuisines.Add(cuisine43);
+            context.Cuisines.Add(cuisine44);
+            context.Cuisines.Add(cuisine45);
+            context.Cuisines.Add(cuisine46);
+            context.Cuisines.Add(cuisine47);
+            context.Cuisines.Add(cuisine48);
+            context.Cuisines.Add(cuisine49);
+            context.Cuisines.Add(cuisine50);
+            context.Cuisines.Add(cuisine51);
+            context.Cuisines.Add(cuisine52);
+            context.Cuisines.Add(cuisine53);
             Currency crnc = new Currency() {Name= "Hryvnia", sing= "₴" };
 
             Meal ml1 = new Meal() { Name = "Meal 1", Description = "Meal 1 description", Price = 10, Cuisine = cuisine1, Currency= crnc };
