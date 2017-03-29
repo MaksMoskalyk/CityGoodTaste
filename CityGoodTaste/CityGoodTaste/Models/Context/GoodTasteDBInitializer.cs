@@ -69,7 +69,7 @@ namespace CityGoodTaste.Models
             RestaurantFeature f12 = new RestaurantFeature { Name = "Сезонное меню" };
             RestaurantFeature f13 = new RestaurantFeature { Name = "Летняя терраса" };
             RestaurantFeature f14 = new RestaurantFeature { Name = "Открытая кухня" };
-            RestaurantFeature f15 = new RestaurantFeature { Name = "Оплата за обслужывание включена в чек" };
+            RestaurantFeature f15 = new RestaurantFeature { Name = "Оплата за обслуживание включена в чек" };
             RestaurantFeature f16 = new RestaurantFeature { Name = "Dj" };
             RestaurantFeature f17 = new RestaurantFeature { Name = "VIP зал" };
             RestaurantFeature f18 = new RestaurantFeature { Name = "Бесплатная вода от заведения" };
