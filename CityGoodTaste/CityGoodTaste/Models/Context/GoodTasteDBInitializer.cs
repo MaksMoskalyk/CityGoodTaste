@@ -200,7 +200,7 @@ namespace CityGoodTaste.Models
             EventType et1 =new EventType() { Name = "Quiz (викторина)" };
             EventType et2 = new EventType() { Name = "Живая музыка" };
             EventType et3 = new EventType() { Name = "Футбол" };
-            EventType et4 = new EventType() { Name = "Новое маню" };
+            EventType et4 = new EventType() { Name = "Новое меню" };
 
             context.EventTypes.Add(et1);
             context.EventTypes.Add(et2);
