@@ -73,6 +73,7 @@ namespace CityGoodTaste.BusinessLayer
                     result.RestaurantEvent = context.RestaurantEvent.Include(t => t.EventTypes).ToList();
                     result.Menu = context.Menus.Include(t => t.MealGroups.Select(m=>m.Meals.Select(c=>c.Currency))).ToList();
                     result.RestaurantSchemas = context.RestaurantSchemas.Include(t => t.Tables.Select(r => r.TableReservation.Select(u => u.User))).ToList();
+                    result.Map = context.Maps.Where(x => x.id == result.Map.id).SingleOrDefault();
                     return result;
                 }
                 catch
@@ -146,7 +147,7 @@ namespace CityGoodTaste.BusinessLayer
                 List<EventType> EventTypes = new List<EventType>();
 
                 EventTypes = context.EventTypes.Include(t => t.RestaurantEvents)
-                           .Where(x => idEl.Contains(x.Id)).ToList();
+                           .Where(x => idEl.Contains(x.Id)).OrderBy(x => x.Name).ToList();
 
                 return EventTypes;
             }
@@ -400,7 +401,7 @@ namespace CityGoodTaste.BusinessLayer
             {
                 try
                 {
-                    List<EventType> result = context.EventTypes.ToList();
+                    List<EventType> result = context.EventTypes.OrderBy(x => x.Name).ToList();
                     return result;
                 }
                 catch
@@ -417,7 +418,7 @@ namespace CityGoodTaste.BusinessLayer
             {
                 try
                 {
-                    List<Cuisine> result = context.Cuisines.ToList();
+                    List<Cuisine> result = context.Cuisines.OrderBy(x => x.Name).ToList();
                     return result;
                 }
                 catch
@@ -433,7 +434,7 @@ namespace CityGoodTaste.BusinessLayer
             {
                 try
                 {
-                    List<RestaurantFeature> result = context.RestaurantFeatures.ToList();
+                    List<RestaurantFeature> result = context.RestaurantFeatures.OrderBy(x => x.Name).ToList();
                     return result;
                 }
                 catch
@@ -449,7 +450,7 @@ namespace CityGoodTaste.BusinessLayer
             {
                 try
                 {
-                    List<MealGroup> result = context.MealGroups.ToList();
+                    List<MealGroup> result = context.MealGroups.OrderBy(x => x.Name).ToList();
                     return result;
                 }
                 catch
