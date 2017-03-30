@@ -146,7 +146,7 @@ namespace CityGoodTaste.BusinessLayer
                 List<EventType> EventTypes = new List<EventType>();
 
                 EventTypes = context.EventTypes.Include(t => t.RestaurantEvents)
-                           .Where(x => idEl.Contains(x.Id)).ToList();
+                           .Where(x => idEl.Contains(x.Id)).OrderBy(x => x.Name).ToList();
 
                 return EventTypes;
             }
@@ -400,7 +400,7 @@ namespace CityGoodTaste.BusinessLayer
             {
                 try
                 {
-                    List<EventType> result = context.EventTypes.ToList();
+                    List<EventType> result = context.EventTypes.OrderBy(x => x.Name).ToList();
                     return result;
                 }
                 catch
@@ -417,7 +417,7 @@ namespace CityGoodTaste.BusinessLayer
             {
                 try
                 {
-                    List<Cuisine> result = context.Cuisines.ToList();
+                    List<Cuisine> result = context.Cuisines.OrderBy(x => x.Name).ToList();
                     return result;
                 }
                 catch
@@ -433,7 +433,7 @@ namespace CityGoodTaste.BusinessLayer
             {
                 try
                 {
-                    List<RestaurantFeature> result = context.RestaurantFeatures.ToList();
+                    List<RestaurantFeature> result = context.RestaurantFeatures.OrderBy(x => x.Name).ToList();
                     return result;
                 }
                 catch
@@ -449,7 +449,7 @@ namespace CityGoodTaste.BusinessLayer
             {
                 try
                 {
-                    List<MealGroup> result = context.MealGroups.ToList();
+                    List<MealGroup> result = context.MealGroups.OrderBy(x => x.Name).ToList();
                     return result;
                 }
                 catch

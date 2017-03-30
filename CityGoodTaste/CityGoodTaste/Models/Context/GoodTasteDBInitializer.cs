@@ -203,7 +203,7 @@ namespace CityGoodTaste.Models
             EventType et4 = new EventType() { Name = "Новое меню" };
             EventType et5 = new EventType() { Name = "Octoberfest" };
             EventType et6 = new EventType() { Name = "Сезонное меню" };
-            EventType et7 = new EventType() { Name = "Празничное меню" };
+            EventType et7 = new EventType() { Name = "Праздничное меню" };
             EventType et8 = new EventType() { Name = "Тематический вечер" };
             EventType et9 = new EventType() { Name = "Dj" };
             
@@ -212,6 +212,11 @@ namespace CityGoodTaste.Models
             context.EventTypes.Add(et2);
             context.EventTypes.Add(et3);
             context.EventTypes.Add(et4);
+            context.EventTypes.Add(et5);
+            context.EventTypes.Add(et6);
+            context.EventTypes.Add(et7);
+            context.EventTypes.Add(et8);
+            context.EventTypes.Add(et9);
 
             List<EventType> let1 = new List<EventType>();
             let1.Add(et1);
@@ -675,7 +680,7 @@ namespace CityGoodTaste.Models
             Restaurant r = new Restaurant
             {
                 Name = "Pomodoro",
-                Address = "Академика Глушко проспект, д. 14/7",
+                Address = "Акад. Глушко проспект, д. 14/7",
                 ZipCode = 95009,
                 AverageCheck = 150,
                 Floors = 2,
