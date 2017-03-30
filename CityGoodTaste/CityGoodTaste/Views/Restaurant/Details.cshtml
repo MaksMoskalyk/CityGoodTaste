@@ -124,10 +124,12 @@
                             <p><span class="deteilsTag">Карта:</span></p>
                             <div id="googleMap" style="height:400px;width:100%"></div>
                             <script>
-
+                                var Lat = parseFloat(@Model.Map.Latitude.ToString().Replace(',','.'));
+                                var Lng = parseFloat(@Model.Map.Longitude.ToString().Replace(',','.'));
+                                var Zoom = @Model.Map.Zoom;
                                 function myMap() {
-                                    var myCenter = new google.maps.LatLng(46.477416, 30.746928);
-                                    var mapProp = { center: myCenter, zoom: 18, scrollwheel: false, draggable: false, mapTypeId: google.maps.MapTypeId.ROADMAP };
+                                    var myCenter = new google.maps.LatLng(Lat ,  Lng);
+                                    var mapProp = { center: myCenter, zoom: Zoom, scrollwheel: false, draggable: false, mapTypeId: google.maps.MapTypeId.ROADMAP };
                                     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
                                     var marker = new google.maps.Marker({ position: myCenter });
                                     marker.setMap(map);

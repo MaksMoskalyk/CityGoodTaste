@@ -3239,6 +3239,7 @@
     <Content Include="Content\icons\open-iconic\webp\zoom-out.webp" />
     <Content Include="Img\food.png" />
     <Content Include="Img\Schema.png" />
+    <Content Include="Img\UnitMain.jpg" />
     <Content Include="Scripts\Custom\Localization\datepicker-ENG.js" />
     <Content Include="Scripts\Custom\Localization\datepicker-RUS.js" />
     <Content Include="Scripts\Custom\Localization\datepicker-UKR.js" />

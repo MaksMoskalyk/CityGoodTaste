@@ -38,7 +38,7 @@ namespace CityGoodTaste.Models
             var result2 = userManager.Create(user2, "Password!2");
             var user3 = new ApplicationUser { Email = "somemail3@mail.ru", UserName = "user3", Name = "Светлана" };
             var result3 = userManager.Create(user3, "Password!2");
-            Map map = new Map() { Latitude = 0, Longitude = 0, Zoom = 1 };
+            Map map = new Map() { Latitude = 46.477055, Longitude = 30.725973, Zoom = 18 };
             RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Три Резвых Коня" };
             Restaurant r = new Restaurant
             {
@@ -230,9 +230,12 @@ namespace CityGoodTaste.Models
             List<EventType> let4 = new List<EventType>();
             let4.Add(et4);
 
-            RestaurantEvent re1 = new RestaurantEvent() { Name= "Wednesday Pub Quiz",Description= "Паб-квиз — от английских слов Pub (паб, тут все понятно) и Quiz (викторина). Это популярная во всём мире командная игра, которая объединяет в себе облегченные «Брейн-Ринг» или «Что? Где?Когда?» и веселое времяпрепровождение в пабе с друзьями. Мы приглашаем команды от 2х до 4х человек. Короче говоря, собираемся вместе, делимся на команды и весело проводим время, умничая и отвечая на вопросы.", StartDate= DateTime.Now , EndDate= DateTime.Now.AddHours(4) , Restaurant = r, EventTypes= let1, Photo="/Img/Events/1.jpg" };
-            RestaurantEvent re2 = new RestaurantEvent() { Name = "Old School Rock четверг с KIFA", Description = "Когда у человека есть вкус, есть чувство стиля, в народе все,что бы он не делал, называют \"фирмА\". Вкус и стиль потерять невозможно, это или есть, или нет. У Кифы есть всё, поэтому что бы она не делала: выбирала ли одежду, подбирала ли музыку, кушала ли или просто шла по улочкам Одессы- она делает это обворожительно и очень стильно. Вашему вниманию Acoustic Old School of Rock от удивительной группы KIFA!", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let2, Photo = "/Img/Events/2.jpg" };
-            RestaurantEvent re3 = new RestaurantEvent() { Name = "Трансляция матча Хорватия-Украина", Description = "Трансляция матча Хорватия-Украина", StartDate = DateTime.Now, EndDate = DateTime.Now.AddHours(4), Restaurant = r, EventTypes = let3, Photo = "/Img/Events/3.jpg" };
+            RestaurantEvent re1 = new RestaurantEvent() { Name= "Wednesday Pub Quiz",Description= "Паб-квиз — от английских слов Pub (паб, тут все понятно) и Quiz (викторина). Это популярная во всём мире командная игра, которая объединяет в себе облегченные «Брейн-Ринг» или «Что? Где?Когда?» и веселое времяпрепровождение в пабе с друзьями. Мы приглашаем команды от 2х до 4х человек. Короче говоря, собираемся вместе, делимся на команды и весело проводим время, умничая и отвечая на вопросы.",
+                StartDate = new DateTime(2017,3, 22,20,0,0), EndDate= new DateTime(2017, 3, 23, 0, 0, 0), Restaurant = r, EventTypes= let1, Photo="/Img/Events/1.jpg" };
+            RestaurantEvent re2 = new RestaurantEvent() { Name = "Old School Rock четверг с KIFA", Description = "Когда у человека есть вкус, есть чувство стиля, в народе все,что бы он не делал, называют \"фирмА\". Вкус и стиль потерять невозможно, это или есть, или нет. У Кифы есть всё, поэтому что бы она не делала: выбирала ли одежду, подбирала ли музыку, кушала ли или просто шла по улочкам Одессы- она делает это обворожительно и очень стильно. Вашему вниманию Acoustic Old School of Rock от удивительной группы KIFA!",
+                StartDate = new DateTime(2017, 3, 23, 18, 0, 0), EndDate = new DateTime(2017, 3, 24, 0, 0, 0), Restaurant = r, EventTypes = let2, Photo = "/Img/Events/2.jpg" };
+            RestaurantEvent re3 = new RestaurantEvent() { Name = "Трансляция матча Хорватия-Украина", Description = "Трансляция матча Хорватия-Украина",
+                StartDate = new DateTime(2017, 3, 24, 21, 45, 0), EndDate = new DateTime(2017, 3, 24, 23, 30, 0), Restaurant = r, EventTypes = let3, Photo = "/Img/Events/3.jpg" };
 
 
 
