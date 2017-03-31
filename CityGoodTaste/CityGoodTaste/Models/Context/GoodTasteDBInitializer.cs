@@ -541,7 +541,7 @@ namespace CityGoodTaste.Models
             MealGroup mg25 = new MealGroup() { Name = "Джин", Meals = LML25 };
             MealGroup mg26 = new MealGroup() { Name = "Пиво", Meals = LML26 };
             MealGroup mg27 = new MealGroup() { Name = "Водка", Meals = LML27 };
-            MealGroup mg28 = new MealGroup() { Name = "Водка", Meals = LML28 };
+            //MealGroup mg28 = new MealGroup() { Name = "Водка", Meals = LML28 };
             MealGroup mg29 = new MealGroup() { Name = "Коньяк", Meals = LML29 };
             MealGroup mg30 = new MealGroup() { Name = "Ликеры", Meals = LML30 };
             MealGroup mg31 = new MealGroup() { Name = "Шоты", Meals = LML31 };
@@ -577,7 +577,7 @@ namespace CityGoodTaste.Models
             context.MealGroups.Add(mg25);
             context.MealGroups.Add(mg26);
             context.MealGroups.Add(mg27);
-            context.MealGroups.Add(mg28);
+            //context.MealGroups.Add(mg28);
             context.MealGroups.Add(mg29);
             context.MealGroups.Add(mg30);
             context.MealGroups.Add(mg31);
@@ -615,7 +615,7 @@ namespace CityGoodTaste.Models
             lgm2.Add(mg25);
             lgm2.Add(mg26);
             lgm2.Add(mg27);
-            lgm2.Add(mg28);
+            //lgm2.Add(mg28);
             lgm2.Add(mg29);
             lgm2.Add(mg30);
             lgm2.Add(mg31);
