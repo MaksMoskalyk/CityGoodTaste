@@ -239,6 +239,7 @@
     <Content Include="Content\css\Custom\MainPage.css" />
     <Content Include="Content\css\Custom\ModalFix.css" />
     <Content Include="Content\css\Custom\Restaurant.css" />
+    <Content Include="Content\css\Custom\CheckboxesAndRadios.css" />
     <Content Include="Content\css\Default\bootstrap.css" />
     <Content Include="Content\css\Default\bootstrap.min.css" />
     <Content Include="Content\css\Default\clockpicker.css" />

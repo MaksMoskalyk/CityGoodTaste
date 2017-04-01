@@ -55,7 +55,8 @@ namespace CityGoodTaste
                     "~/Content/css/Custom/AuthenticationModals.css",
                     "~/Content/css/Custom/AuthenticationPages.css",
                     "~/Content/css/Custom/ModalFix.css",
-                    "~/Content/css/Custom/MainPage.css"));
+                    "~/Content/css/Custom/MainPage.css",
+                    "~/Content/css/Custom/CheckboxesAndRadios.css"));
             #endregion
         }
     }
