@@ -3253,6 +3253,8 @@
     <Content Include="Img\sh.jpg" />
     <Content Include="Img\tav.png" />
     <Content Include="Img\UnitMain.jpg" />
+    <Content Include="Scripts\Custom\Details.js" />
+    <Content Include="Scripts\Custom\Events.js" />
     <Content Include="Scripts\Custom\Localization\datepicker-ENG.js" />
     <Content Include="Scripts\Custom\Localization\datepicker-RUS.js" />
     <Content Include="Scripts\Custom\Localization\datepicker-UKR.js" />
@@ -3261,7 +3263,7 @@
     <Content Include="Scripts\Default\Angular\angular.js" />
     <Content Include="Scripts\Default\Angular\angular.min.js" />
     <Content Include="Scripts\Custom\MainPage.js" />
-    <Content Include="Scripts\Custom\Restaurant.js" />
+    <Content Include="Scripts\Custom\Restaurants.js" />
     <Content Include="Scripts\Default\bootstrap.js" />
     <Content Include="Scripts\Default\bootstrap.min.js" />
     <Content Include="Scripts\Default\clockpicker.js" />

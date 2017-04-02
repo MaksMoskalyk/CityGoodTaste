@@ -25,8 +25,8 @@
                     @foreach (var item in EventTypes)
                     {
                         @*<div class="checkbox">
-                            <label><input class="EventTypesCheck" id="EventTypesCheck" name="EventTypesCheck" type="checkbox" value=@item.Id>  @item.Name </label>
-                        </div>*@
+                                <label><input class="EventTypesCheck" id="EventTypesCheck" name="EventTypesCheck" type="checkbox" value=@item.Id>  @item.Name </label>
+                            </div>*@
 
                         <div class="checkbox">
                             <input type="checkbox" value=@item.Id id=@("eventType" + item.Id) class="EventTypesCheck" name="EventTypesCheck" unchecked />
@@ -68,11 +68,3 @@
         </div>
     </div>
 }
-
-
-<script>
-    $('.EventTypesCheck').click(function () {
-        var t = document.getElementById("sendData");
-        t.click();
-    });
-</script>

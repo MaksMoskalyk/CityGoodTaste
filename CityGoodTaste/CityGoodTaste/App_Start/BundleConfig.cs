@@ -27,8 +27,10 @@ namespace CityGoodTaste
 
             //Custom  
             bundles.Add(new ScriptBundle("~/bundles/customScript").Include(
+                     "~/Scripts/Custom/Details.js",
+                     "~/Scripts/Custom/Events.js",
                      "~/Scripts/Custom/MainPage.js",
-                     "~/Scripts/Custom/Restaurant.js"));
+                     "~/Scripts/Custom/Restaurants.js"));
             #endregion
 
             #region Style
