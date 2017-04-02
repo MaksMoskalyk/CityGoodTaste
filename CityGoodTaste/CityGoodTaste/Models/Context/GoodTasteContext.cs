@@ -14,8 +14,9 @@ namespace CityGoodTaste.Models
         {
             return new GoodTasteContext();
         }
-
+       
         public DbSet<City> Cities { get; set; }
+        public DbSet<Neighborhood> Neighborhoods { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Cuisine> Cuisines { get; set; }
         public DbSet<Like> Likes { get; set; }

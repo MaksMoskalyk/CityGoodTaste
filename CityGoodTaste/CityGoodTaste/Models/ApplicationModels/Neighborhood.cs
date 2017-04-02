@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
 namespace CityGoodTaste.Models
 {
-    public class City
+    public class Neighborhood
     {
         [Key]
         public int Id { get; set; }
@@ -12,10 +15,7 @@ namespace CityGoodTaste.Models
         [Required]
         public string Name { get; set; }
 
+        public virtual City City { get; set; }
         public virtual ICollection<Restaurant> Restaurants { get; set; }
-
-        public virtual ICollection<Neighborhood> Neighborhoods { get; set; }
-
-        public virtual Country Country { get; set; }
     }
 }

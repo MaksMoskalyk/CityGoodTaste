@@ -287,11 +287,12 @@ namespace CityGoodTaste.Controllers
             string CuisinesCheck = Request.Form["CuisinesCheck"];
             string FeaturesCheck = Request.Form["FeaturesCheck"];
             string MealGroups = Request.Form["MealGroups"];
+            string Neighborhoods = Request.Form["NeighborhoodsCheck"];
             RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
             IRestaurantDataManager manager = factory.GetManager();
             try
             {
-                var Restaurants = manager.SearchRestaurants(searchText, CuisinesCheck, FeaturesCheck, MealGroups);
+                var Restaurants = manager.SearchRestaurants(searchText, CuisinesCheck, FeaturesCheck, MealGroups, Neighborhoods);
 
                 if (Restaurants.Count > 0)
                 {

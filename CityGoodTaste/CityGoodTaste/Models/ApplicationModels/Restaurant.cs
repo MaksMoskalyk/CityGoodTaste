@@ -37,6 +37,7 @@ namespace CityGoodTaste.Models
         public virtual ICollection<RestaurantSchema> RestaurantSchemas { get; set; }
 
         public virtual City City { get; set; }
+        public virtual Neighborhood Neighborhood { get; set; }
 
         public virtual ICollection<Cuisine> Cuisines { get; set; }
 

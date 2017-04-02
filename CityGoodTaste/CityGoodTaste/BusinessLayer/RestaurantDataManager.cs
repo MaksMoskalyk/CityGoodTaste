@@ -38,7 +38,7 @@ namespace CityGoodTaste.BusinessLayer
         void ReservTables(List<TableViewModel> tables);
         string GetCurrectUserId();
         List<RestaurantEvent> SearchEvents(string searchText, string CheckEl);
-        List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups);
+        List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups, string Neighborhoods);
         void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds);
         Menu GetRestMenu(int id);
         OrderFood GetOrderFood(int Id, int Value);
@@ -286,7 +286,30 @@ namespace CityGoodTaste.BusinessLayer
                 return id;
             }
         }
-        public List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups)
+        private List<int> GetRestaurantsByNeighborhoods(List<int> idEl)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+
+                List<int> id = new List<int>();
+                var rest = context.Neighborhoods.Include(t => t.Restaurants)
+                           .Where(x => idEl.Contains(x.Id)).Select(t => t.Restaurants).ToList();
+                for (int i = 0; i < rest.Count(); i++)
+                {
+                    List<int> temp = new List<int>();
+                    for (int j = 0; j < rest[i].ToList().Count(); j++)
+                    {
+                        temp.Add(rest[i].ToList()[j].Id);
+                    }
+                    if (id.Count > 0)
+                        id = id.Intersect(temp).ToList();
+                    else
+                        id = temp;
+                }
+                return id;
+            }
+        }
+        public List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups, string Neighborhoods)
         {
             using (GoodTasteContext context = new GoodTasteContext())
             {
@@ -296,6 +319,7 @@ namespace CityGoodTaste.BusinessLayer
                     List<int> idRC = new List<int>();
                     List<int> idRF = new List<int>();
                     List<int> idRMG = new List<int>();
+                    List<int> idNB = new List<int>();
                     if (CuisinesCheck!=null)
                     {
                         string[] el = CuisinesCheck.Split(',');
@@ -326,10 +350,32 @@ namespace CityGoodTaste.BusinessLayer
                         }
                         idRMG = GetRestaurantsByMealGroups(idEl);
                     }
-                    if (idRC.Count>0|| idRF.Count > 0 || idRMG.Count > 0)
+                    if (Neighborhoods != null)
                     {
-                        List<int> id = idRC.Intersect(idRF).ToList();
-                        id = id.Intersect(idRMG).ToList();
+                        string[] el = Neighborhoods.Split(',');
+                        List<int> idEl = new List<int>();
+                        for (int i = 0; i < el.Count(); i++)
+                        {
+                            idEl.Add(int.Parse(el[i].Trim()));
+                        }
+                        idNB = GetRestaurantsByNeighborhoods(idEl);
+                    }
+                    if (idRC.Count>0|| idRF.Count > 0 || idRMG.Count > 0|| idNB.Count>0)
+                    {
+                        List<int> id = idRC;
+                        if(id.Count>0)
+                            id = id.Intersect(idRF).ToList();
+                        else
+                            id = idRF;
+                        if (id.Count > 0)
+                            id = id.Intersect(idRMG).ToList();
+                        else
+                            id = idRMG;
+                        if (id.Count > 0)
+                            id = id.Intersect(idNB).ToList();
+                        else
+                            id = idNB;
+
                         if (searchText == null)
                         {
                             result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
@@ -347,11 +393,6 @@ namespace CityGoodTaste.BusinessLayer
                            Include(r => r.WorkHours).Where(t => id.Contains(t.Id))
                            .Where(t => t.Name.Contains(searchText)).ToList();
                         }
-                        result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
-                            Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).
-                            Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
-                            Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
-                            Include(r => r.WorkHours).ToList();
                     }
                     else if (searchText.Length > 0)
                     {
@@ -443,7 +484,22 @@ namespace CityGoodTaste.BusinessLayer
                 }
             }
         }
-
+        public List<Neighborhood> GetAllNeighborhoods()
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<Neighborhood> result = context.Neighborhoods.Where(n=> n.City.Id==1).OrderBy(x => x.Name).ToList();
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Neighborhood features not found");
+                }
+            }
+        }
+        
         public List<MealGroup> GetAllMealGroups()
         {
             using (GoodTasteContext context = new GoodTasteContext())
