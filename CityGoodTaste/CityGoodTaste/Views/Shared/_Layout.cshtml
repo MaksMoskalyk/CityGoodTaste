@@ -5,66 +5,73 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Good Taste City</title>
-    @*Custom Scripts*@
+    @*Scripts*@
     @Scripts.Render("~/bundles/defaultScript")
     @Scripts.Render("~/bundles/customScript")
 
-    @*Default Styles*@
+    @*Styles*@
     @Styles.Render("~/bundles/defaultStyle")
     @Styles.Render("~/bundles/customStyle")
-
-    <script src="~/Scripts/Custom/MainPage.js"></script>
 </head>
 
 <body>
     <div class="contentWithoutFooterWrapper">
-        <nav id="navPanel" class="navbar navbar-inverse" style="margin-bottom:0px">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href='@Url.Action("Index", "Home")'><span class="glyphicon glyphicon-home"></span> GTC</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Рестораны", "Restaurants", "Restaurant")</li>
-                        <li>@Html.ActionLink("Афиша", "Events", "Restaurant")</li>
-                        <li><a data-toggle="modal" data-target="#BotModal" href="#">Умный помощник</a></li>
-                    </ul>
-                   @Html.Partial("_LoginPartial")
-                    @*<div class="dropdown " style="float:right; margin-top: 10px;">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                            <span class="glyphicon glyphicon-globe"></span> @CityGoodTaste.Controllers.HomeController.getCulture()
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu langDropdown" style="left:-50px" role="menu" aria-labelledby="dropdownMenu1">
-                            <li role="presentation">
-                                <a class="langHref" role="menuitem" tabindex="-1" href="@Url.Action("ChangeCulture", "Home", new { lang = "en-GB" })" data-toggle="tooltip" title="English">
-                                    <img src="../../Content/icons/flags/enGB.png" class="img-rounded langImg" alt="flag" />
-                                    English
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a class="langHref" role="menuitem" tabindex="-1" href="@Url.Action("ChangeCulture", "Home", new { lang = "ru-RU" })" data-toggle="tooltip" title="Русский">
-                                    <img src="../../Content/icons/flags/ruRU.png" class="img-rounded langImg" alt="flag" />
-                                    Русский
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a class="langHref" role="menuitem" tabindex="-1" href="@Url.Action("ChangeCulture", "Home", new { lang = "uk-UA" })" data-toggle="tooltip" title="Українська">
-                                    <img src="../../Content/icons/flags/ukUA.png" class="img-rounded langImg" alt="flag" />
-                                    Українська
-                                </a>
-                            </li>
+        <header id="mainHeader">
+            <nav id="navPanel" class="navbar navbar-inverse" style="margin-bottom:0px">
+                <div class="container-fluid">
+
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href='@Url.Action("Index", "Home")'><span class="glyphicon glyphicon-home"></span> GTC</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="myNavbar">
+
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Рестораны", "Restaurants", "Restaurant")</li>
+                            <li>@Html.ActionLink("Афиша", "Events", "Restaurant")</li>
+                            <li><a data-toggle="modal" data-target="#BotModal" href="#">Умный помощник</a></li>
                         </ul>
-                    </div>*@
-                    
+
+                        @Html.Partial("_LoginPartial")
+
+                        @*<div class="dropdown customRightNavElement">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                    <span class="glyphicon glyphicon-globe"></span> @CityGoodTaste.Controllers.HomeController.getCulture()
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu langDropdown" style="left:-50px" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation">
+                                        <a class="langHref" role="menuitem" tabindex="-1" href="@Url.Action("ChangeCulture", "Home", new { lang = "en-GB" })" data-toggle="tooltip" title="English">
+                                            <img src="../../Content/icons/flags/enGB.png" class="img-rounded langImg" alt="flag" />
+                                            English
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a class="langHref" role="menuitem" tabindex="-1" href="@Url.Action("ChangeCulture", "Home", new { lang = "ru-RU" })" data-toggle="tooltip" title="Русский">
+                                            <img src="../../Content/icons/flags/ruRU.png" class="img-rounded langImg" alt="flag" />
+                                            Русский
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a class="langHref" role="menuitem" tabindex="-1" href="@Url.Action("ChangeCulture", "Home", new { lang = "uk-UA" })" data-toggle="tooltip" title="Українська">
+                                            <img src="../../Content/icons/flags/ukUA.png" class="img-rounded langImg" alt="flag" />
+                                            Українська
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>*@
+                               
+                        <div class="nav navbar-nav customRightNavElement">
+                            <select class="form-control">
+                                <option selected="selected" value="Odessa">Одесса</option>
+                                <option value="Kiev">Киев</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </header>
+
 
         <div class="container body-content NoMargin NoPadding" style="max-width:none">
             @RenderBody()
@@ -74,13 +81,13 @@
     </div>
 
 
-    <footer id="footer" class="container-fluid text-center"  style="margin: 0px; padding: 0px; background-color:crimson">
+    <footer id="footer" class="container-fluid text-center" style="margin: 0px; padding: 0px; background-color:crimson">
         <a class="up-arrow" href="#navPanel" data-toggle="tooltip" title="TO TOP">
             <span class="glyphicon glyphicon-chevron-up"></span>
         </a>
         <div>
 
-        </div>      
+        </div>
     </footer>
 
 
@@ -97,16 +104,17 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal">
-                    <span class="glyphicon glyphicon-ok"></span>
-                     Подтвердить</button>
+                        <span class="glyphicon glyphicon-ok"></span>
+                        Подтвердить
+                    </button>
                     <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal">
                         <span class="glyphicon glyphicon-remove"></span>
-                      Отмена
+                        Отмена
                     </button>
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 
     @RenderSection("scripts", required: false)
 </body>

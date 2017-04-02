@@ -1,0 +1,13 @@
+﻿.customRightNavElement {
+    float:right; 
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.customLeftNavElement {
+    float:left; 
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
