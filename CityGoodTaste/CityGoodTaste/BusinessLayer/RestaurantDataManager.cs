@@ -363,17 +363,18 @@ namespace CityGoodTaste.BusinessLayer
                     if (idRC.Count>0|| idRF.Count > 0 || idRMG.Count > 0|| idNB.Count>0)
                     {
                         List<int> id = idRC;
-                        if(id.Count>0)
+                        if(id.Count>0 && idRF.Count > 0)
                             id = id.Intersect(idRF).ToList();
-                        else
+                        else if (idRF.Count > 0)
                             id = idRF;
-                        if (id.Count > 0)
+                                                    
+                        if (id.Count > 0 && idRMG.Count > 0)
                             id = id.Intersect(idRMG).ToList();
-                        else
+                        else if (idRMG.Count > 0)
                             id = idRMG;
-                        if (id.Count > 0)
+                        if (id.Count > 0 && idNB.Count > 0)
                             id = id.Intersect(idNB).ToList();
-                        else
+                        else if (idNB.Count > 0)
                             id = idNB;
 
                         if (searchText == null)
