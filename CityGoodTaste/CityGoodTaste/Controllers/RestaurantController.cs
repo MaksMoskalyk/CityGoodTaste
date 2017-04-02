@@ -266,7 +266,11 @@ namespace CityGoodTaste.Controllers
 
                 if (RestaurantEvent.Count > 0)
                 {
-                    RestaurantEvent = RestaurantEvent.Distinct().ToList();
+                    string from = Request.Form["from"];
+                    DateTime dtfrom = Convert.ToDateTime(from);
+                    string to = Request.Form["to"];
+                    DateTime dtto = Convert.ToDateTime(to);
+                    RestaurantEvent = RestaurantEvent.Where(d => d.StartDate >= dtfrom && d.StartDate <= dtto).Distinct().ToList();
 
                 }
                 return PartialView(RestaurantEvent);

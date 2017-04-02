@@ -14,33 +14,7 @@
     </div>
 
     <div>
-        <div id="searchFiltersBlock" class="col-sm-2">
-            <div class="panel-group">
-                <div class="panel panel-default">
-                    <div class="panel-heading panelHeadingCustom">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse1">Кухня:</a>
-                        </h4>
-                    </div>
-                    <div id="collapse1" class="panel-collapse collapse in filtersPanel">
-                        @{
-                            CityGoodTaste.BusinessLayer.RestaurantDataManager manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
-                            var Cuisines = manager.GetAllCuisines();
-                        }
-                        @foreach (var item in Cuisines)
-                        {
-                            @*<div class="checkbox">
-                                    <label><input id="CuisinesCheck" name="CuisinesCheck" class="CuisinesCheck" type="checkbox" value=@item.Id>@item.Name</label>
-                                </div>*@
-
-                            <div class="checkbox">
-                                <input type="checkbox" value=@item.Id id=@("cuisine" + item.Id) class="CuisinesCheck" name="CuisinesCheck" unchecked />
-                                <label for=@("cuisine" + item.Id)>@item.Name</label>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
+        <div id="searchFiltersBlock" class="col-sm-2" style="padding-right:0;">
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading panelHeadingCustom">
@@ -48,17 +22,14 @@
                             <a data-toggle="collapse" href="#collapse2">Особенности:</a>
                         </h4>
                     </div>
-                    <div id="collapse2" class="panel-collapse collapse in filtersPanel">
+                    <div id="collapse2" class="panel-collapse collapse in filtersPanel" style="padding-left:10px;">
                         @{
-                            manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
+                            var manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
                             var Features = manager.GetAllRestaurantFeatures();
                         }
 
                         @foreach (var item in Features)
                         {
-                            @*<div class="checkbox">
-                                    <label><input id="FeaturesCheck" name="FeaturesCheck" class="FeaturesCheck" type="checkbox" value=@item.Id>@item.Name</label>
-                                </div>*@
 
                             <div class="checkbox">
                                 <input type="checkbox" value=@item.Id id=@("feature" + item.Id) class="FeaturesCheck" name="FeaturesCheck" unchecked />
@@ -72,10 +43,33 @@
                 <div class="panel panel-default">
                     <div class="panel-heading panelHeadingCustom">
                         <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse1">Кухня:</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse filtersPanel" style="padding-left:10px;">
+                        @{
+                            manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
+                            var Cuisines = manager.GetAllCuisines();
+                        }
+                        @foreach (var item in Cuisines)
+                        {
+                            <div class="checkbox">
+                                <input type="checkbox" value=@item.Id id=@("cuisine" + item.Id) class="CuisinesCheck" name="CuisinesCheck" unchecked />
+                                <label for=@("cuisine" + item.Id)>@item.Name</label>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading panelHeadingCustom">
+                        <h4 class="panel-title">
                             <a data-toggle="collapse" href="#collapse3">Категории меню:</a>
                         </h4>
                     </div>
-                    <div id="collapse3" class="panel-collapse collapse in filtersPanel">
+                    <div id="collapse3" class="panel-collapse collapse filtersPanel" style="padding-left:10px;">
                         @{
                             manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
                             var MealGroups = manager.GetAllMealGroups();
@@ -83,9 +77,6 @@
 
                         @foreach (var item in MealGroups)
                         {
-                            @*<div class="checkbox">
-                                    <label><input id="MealGroupsCheck" name="MealGroups" class="MealGroups" type="checkbox" value=@item.Id>@item.Name</label>
-                                </div>*@
 
                             <div class="checkbox">
                                 <input type="checkbox" value=@item.Id id=@("mealGroup" + item.Id) class="MealGroups" name="MealGroups" unchecked />
@@ -102,7 +93,7 @@
                 <div class="row NoMargin">
                     @foreach (var item in Model)
                     {
-                        <div class="col-sm-4" style="text-align:left;">
+                        <div class="col-sm-4 " style="text-align:left; padding-right:0; ">
                             <div class="panel panel-success">
                                 <div class="panel-heading panelHeadingCustom">
                                     <a href='@Url.Action("Details", "Restaurant", new { id = item.Id })' style="color:black; text-decoration:none">

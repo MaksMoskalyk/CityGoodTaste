@@ -4,7 +4,7 @@
     <div class="row NoMargin">
         @foreach (var item in Model)
             {
-            <div class="col-sm-4" style="text-align:left;">
+            <div class="col-sm-4 " style="text-align:left; padding-right:0; ">
                 <div class="panel panel-success">
                     <div class="panel-heading panelHeadingCustom">
                         <a href='@Url.Action("Details", "Restaurant", new { id = item.Id })' style="color:black; text-decoration:none">

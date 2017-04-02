@@ -233,3 +233,7 @@ footer {
     font-weight:bold;
     font-size:18px;
 }
+
+.ui-datepicker{
+    z-index:100 !important;
+}

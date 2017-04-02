@@ -350,36 +350,316 @@ namespace CityGoodTaste.Models
             context.Cuisines.Add(cuisine53);
             Currency crnc = new Currency() {Name= "Hryvnia", sing= "₴" };
 
-            Meal ml1 = new Meal() { Name = "Meal 1", Description = "Meal 1 description"
-                , Price = 10, Cuisine = cuisine1, Currency= crnc };
-            Meal ml2 = new Meal() { Name = "Meal 2", Description = "Meal 2 description"
-                , Price = 10, Cuisine = cuisine2, Currency = crnc };
-            Meal ml3 = new Meal() { Name = "Meal 3", Description = "Meal 3 description"
-                , Price = 10, Cuisine = cuisine3, Currency = crnc };
-            Meal ml4 = new Meal() { Name = "Meal 4", Description = "Meal 4 description"
-                , Price = 10, Cuisine = cuisine4, Currency = crnc };
-            Meal ml5 = new Meal() { Name = "Meal 5", Description = "Meal 5 description"
-                , Price = 10, Cuisine = cuisine5, Currency = crnc };
-            Meal ml6 = new Meal() { Name = "Meal 6", Description = "Meal 6 description"
-                , Price = 10, Cuisine = cuisine6, Currency = crnc };
-            Meal ml7 = new Meal() { Name = "Meal 7", Description = "Meal 7 description"
-                , Price = 10, Cuisine = cuisine7, Currency = crnc };
+            Meal ml1 = new Meal()
+            {
+                Name = "Здоровый салат",
+                Description = "свежие огурцы, томаты, капуста, оливковое масло.\n 250гр"
+                ,
+                Price = 55,
+                Cuisine = cuisine1,
+                Currency = crnc
+            };
+            Meal ml2 = new Meal()
+            {
+                Name = "Салат\"На зависть врагам\"",
+                Description = "микс салатов, томаты, свежие огурцы, хрустящие сырные шарики, пряный кисло-сладкий соус.\n 200 гр."
+                ,
+                Price = 60,
+                Cuisine = cuisine2,
+                Currency = crnc
+            };
+            Meal ml3 = new Meal()
+            {
+                Name = "Знаменитый салат \"Юнит\"",
+                Description = "балик, шампиьоны, свежие томаты, салатный лук, майонез, лаваш.\n 300 гр."
+                ,
+                Price = 65,
+                Cuisine = cuisine3,
+                Currency = crnc
+            };
+            Meal ml4 = new Meal()
+            {
+                Name = "Лучший салат",
+                Description = "микс салатов, томаты, свежие огурцы, теплая сочна телятина, сырные шарики, пряный кислосладкий соус.\n 300 гр."
+                ,
+                Price = 80,
+                Cuisine = cuisine4,
+                Currency = crnc
+            };
+            Meal ml5 = new Meal()
+            {
+                Name = "Чемпионский салат",
+                Description = "микс салатов, теплый картофель, сочная телятина, шампиньоны, пикантный имбирный соус.\n 260 гр."
+                ,
+                Price = 85,
+                Cuisine = cuisine5,
+                Currency = crnc
+            };
+            Meal ml6 = new Meal()
+            {
+                Name = "Волевая нарезка",
+                Description = "помидоры, огурцы, перец болгарский, зелень.\n 350 гр."
+                ,
+                Price = 80,
+                Cuisine = cuisine6,
+                Currency = crnc
+            };
+            Meal ml7 = new Meal()
+            {
+                Name = "Практичный закусон",
+                Description = "м/с огурцы, маринованные томаты, квашеная капуста, перец болгарский.\n 250 гр."
+                ,
+                Price = 45,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
 
-            Meal ml8 = new Meal() { Name = "Meal 8", Description = "Meal 8 description"
-                , Price = 10, Cuisine = cuisine1, Currency = crnc };
-            Meal ml9 = new Meal() { Name = "Meal 9", Description = "Meal 9 description"
-                , Price = 10, Cuisine = cuisine2, Currency = crnc };
-            Meal ml10 = new Meal() { Name = "Meal 10", Description = "Meal 10 description"
-                , Price = 10, Cuisine = cuisine3, Currency = crnc };
-            Meal ml11 = new Meal() { Name = "Meal 11", Description = "Meal 11 description"
-                , Price = 10, Cuisine = cuisine4, Currency = crnc };
-            Meal ml12 = new Meal() { Name = "Meal 12", Description = "Meal 12 description"
-                , Price = 10, Cuisine = cuisine5, Currency = crnc };
-            Meal ml13 = new Meal() { Name = "Meal 13", Description = "Meal 13 description"
-                , Price = 10, Cuisine = cuisine6, Currency = crnc };
-            Meal ml14 = new Meal() { Name = "Meal 14", Description = "Meal 14 description"
-                , Price = 10, Cuisine = cuisine7, Currency = crnc };
-
+            Meal ml8 = new Meal()
+            {
+                Name = "Дисциплинированное сало",
+                Description = "тонко нарезанное сало с хрустящими тостами - 4 вида засолки.\n 150/100 гр."
+                ,
+                Price = 55,
+                Cuisine = cuisine1,
+                Currency = crnc
+            };
+            Meal ml9 = new Meal()
+            {
+                Name = "Порядочная сельдь по-одесский",
+                Description = "нежное филе сельди с печеным картофелем, маслинами, лимоном и маринованным луком.\n 300 гр."
+                ,
+                Price = 55,
+                Cuisine = cuisine2,
+                Currency = crnc
+            };
+            Meal ml10 = new Meal()
+            {
+                Name = "Терпеливые овощи хоспер",
+                Description = "кабочки, баклажаны, перец болгарский, томаты, шампипьоны, соус тар-тар.\n 200/30 гр."
+                ,
+                Price = 80,
+                Cuisine = cuisine3,
+                Currency = crnc
+            };
+            Meal ml11 = new Meal()
+            {
+                Name = "Джентельменские шляпы",
+                Description = "запеченные в хоспере шляпки шампиньонов,  фаршировананные сыром сулугуныи, подаються на лаваше и соусом тар-тар.\n 200/30 гр."
+                ,
+                Price = 60,
+                Cuisine = cuisine4,
+                Currency = crnc
+            };
+            Meal ml12 = new Meal()
+            {
+                Name = "Благородный лаваш",
+                Description = "сулугуни с помидором и зеленью в лаваше, обжареный в хоспере.\n 250 гр."
+                ,
+                Price = 50,
+                Cuisine = cuisine5,
+                Currency = crnc
+            };
+            Meal ml13 = new Meal()
+            {
+                Name = "Честный маржской турнир",
+                Description = "бруссочки твердого сыра в ххрустящей панировке,  падаються с ягодным соусом. 150/30 гр."
+                ,
+                Price = 55,
+                Cuisine = cuisine6,
+                Currency = crnc
+            };
+            Meal ml14 = new Meal()
+            {
+                Name = "Четкий куринный бургер",
+                Description = "бургер с куриным филе хоспер, томатами, сыром, подпеться с картофилем фри, майонезом.\n 400 гр.",
+                Price = 80,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml15 = new Meal()
+            {
+                Name = "Изобретательный чисбургер",
+                Description = "бургер с сыром фри в панировке, с м/с огурцом, свежими томатами, подаеться с картофелем фри, соусом BBQ, майонезом.\n 400 гр.",
+                Price = 80,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml16 = new Meal()
+            {
+                Name = "Пунктуальный бифбургер",
+                Description = "бургер с сочным бифштексом из рубленого мяса, сыром и томатами, подаеться с картофелем фри и майонезом.\n 400 гр.",
+                Price = 90,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml17 = new Meal()
+            {
+                Name = "Грамотный чиабатта с ветченой и сыром",
+                Description = "чиабатта с ветченой, сыром и томатами, подаеться с печеным картофелем и кетчупом.\n 180/150/30 гр.",
+                Price = 55,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml18 = new Meal()
+            {
+                Name = "Разумная овощная чиабатта",
+                Description = "чиабатта с сыром, томатами и м/с огурцом, подаеться с печеным картофелем и кетчупом.\n 180/150/30 гр.",
+                Price = 50,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml19 = new Meal()
+            {
+                Name = "Meal Универсальная сулугуни косичка",
+                Description = "50 гр.",
+                Price = 35,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml20 = new Meal()
+            {
+                Name = "Точные сырные палочки",
+                Description = "хрустящие сырные палочки из слойки с кунжутом и морский солью.\n 100 гр.",
+                Price = 35,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml21 = new Meal()
+            {
+                Name = "Отважный сухпаек",
+                Description = "ржаные гренки с честноком и зеленью.\n 100 гр.",
+                Price = 25,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml22 = new Meal()
+            {
+                Name = "Мясны палочки",
+                Description = "50 гр.",
+                Price = 40,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml23 = new Meal()
+            {
+                Name = "Справедливые трофеи",
+                Description = "сырные палочки, мясные палочки, сулугуни косичка.\n 50/30/30 гр.",
+                Price = 80,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml24 = new Meal()
+            {
+                Name = "Ловкие рисовые чипсы",
+                Description = "подаються с соусом тар-тар.\n 40/30 гр.",
+                Price = 25,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml25 = new Meal()
+            {
+                Name = "Бдительные свиние ушки",
+                Description = "тонко нарезанные копченые свиные ушки, заправленые специями и честноком.\n 100 гр.",
+                Price = 55,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml26 = new Meal()
+            {
+                Name = "Крепкие орешки",
+                Description = "130 гр.",
+                Price = 30,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml27 = new Meal()
+            {
+                Name = "Гениальный грбной суп-крем",
+                Description = "сливочный суп-крем их шампиьонов с сыром пармезан, падаеться с сухариками.\n 250 гр.",
+                Price = 40,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml28 = new Meal()
+            {
+                Name = "Meal 14",
+                Description = "традиционный украинский мясной борщ, подаеться с салом, сметаной и чесноком.\n 300 гр.",
+                Price = 45,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml29 = new Meal()
+            {
+                Name = "Образцовый суп с фрикадельками",
+                Description = "ароматный бульйон с куриными фрикадельками и картофелем.\n 300 гр.",
+                Price = 40,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml30 = new Meal()
+            {
+                Name = "Проворная скумбрия",
+                Description = "жаренная в хоспере, подаеться на лаваше, со свежими огурцами и соусом тар-тар.\n 300 гр.",
+                Price = 100,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml31 = new Meal()
+            {
+                Name = "Пунктуальные драники",
+                Description = "картофельные драники ссоусом из грибов, лука и сливок, подаеться со сметаной и зеленью.\n 200 гр.",
+                Price = 50,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml32 = new Meal()
+            {
+                Name = "Авторитетное жаркое",
+                Description = "сливочно-сырное жаркое с куриным окороком и шампиньенами, подаеться и запекаеться в горшочке.\n 350 гр.",
+                Price = 70,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml33 = new Meal()
+            {
+                Name = "Дипломатичные вареники с картофелем",
+                Description = "домашние вареники с картофелем, приготовлениые нашим поваром, подаеться с беконом, луком и сметаной.\n 250/30/30 гр.",
+                Price = 55,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml34 = new Meal()
+            {
+                Name = "Ответстенные пелемени",
+                Description = "домашние пельмени с укропом и сметаною.\n 250/30/30 гр.",
+                Price = 65,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml35 = new Meal()
+            {
+                Name = "Дальновидные крылишки",
+                Description = "обжарение и притушенные в остро-сладком соусе крылышки с кунжутом и печеным картофелем.\n 300/150 гр.",
+                Price = 80,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml36 = new Meal()
+            {
+                Name = "Добросовестный бефстроганов",
+                Description = "нежное филе телятины с грибами в сливочном соусе с картофельным пюре и м/с огурцами.\n 200/150 гр.",
+                Price = 90,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
+            Meal ml = new Meal()
+            {
+                Name = "Meal 14",
+                Description = ".\n 0 гр.",
+                Price = 10,
+                Cuisine = cuisine7,
+                Currency = crnc
+            };
             context.Meals.Add(ml1);
             context.Meals.Add(ml2);
             context.Meals.Add(ml3);
@@ -394,57 +674,101 @@ namespace CityGoodTaste.Models
             context.Meals.Add(ml12);
             context.Meals.Add(ml13);
             context.Meals.Add(ml14);
+            context.Meals.Add(ml15);
+            context.Meals.Add(ml16);
+            context.Meals.Add(ml17);
+            context.Meals.Add(ml18);
+            context.Meals.Add(ml19);
+            context.Meals.Add(ml20);
+            context.Meals.Add(ml21);
+            context.Meals.Add(ml22);
+            context.Meals.Add(ml23);
+            context.Meals.Add(ml24);
+            context.Meals.Add(ml25);
+            context.Meals.Add(ml26);
+            context.Meals.Add(ml27);
+            context.Meals.Add(ml28);
+            context.Meals.Add(ml29);
+            context.Meals.Add(ml30);
+            context.Meals.Add(ml31);
+            context.Meals.Add(ml32);
+            context.Meals.Add(ml33);
+            context.Meals.Add(ml34);
+            context.Meals.Add(ml35);
+            context.Meals.Add(ml36);
 
             List<Meal> LML1 = new List<Meal>();
             LML1.Add(ml1);
-            
+            LML1.Add(ml2);
+            LML1.Add(ml3);
+            LML1.Add(ml4);
+            LML1.Add(ml5);
             List<Meal> LML2 = new List<Meal>();
-            LML2.Add(ml2);
-
+            LML2.Add(ml6);
+            LML2.Add(ml7);
+            LML2.Add(ml8);
+            LML2.Add(ml9);
             List<Meal> LML3 = new List<Meal>();
-            LML3.Add(ml3);
-
+            LML3.Add(ml10);
+            LML3.Add(ml11);
+            LML3.Add(ml12);
+            LML3.Add(ml13);
             List<Meal> LML4 = new List<Meal>();
-            LML4.Add(ml4);
-
+            LML4.Add(ml14);
+            LML4.Add(ml15);
+            LML4.Add(ml16);
+            LML4.Add(ml17);
+            LML4.Add(ml18);
             List<Meal> LML5 = new List<Meal>();
-            LML5.Add(ml5);
-
+            LML5.Add(ml19);
+            LML5.Add(ml20);
+            LML5.Add(ml21);
+            LML5.Add(ml22);
+            LML5.Add(ml23);
+            LML5.Add(ml24);
+            LML5.Add(ml25);
+            LML5.Add(ml26);
             List<Meal> LML6 = new List<Meal>();
-            LML6.Add(ml6);
-
+            LML6.Add(ml27);
+            LML6.Add(ml28);
+            LML6.Add(ml29);
             List<Meal> LML7 = new List<Meal>();
-            LML1.Add(ml1);
+            LML7.Add(ml30);
 
             List<Meal> LML8 = new List<Meal>();
-            LML1.Add(ml1);
+            LML8.Add(ml31);
+            LML8.Add(ml32);
+            LML8.Add(ml33);
+            LML8.Add(ml34);
+            LML8.Add(ml35);
+            LML8.Add(ml36);
 
             List<Meal> LML9 = new List<Meal>();
-            LML1.Add(ml1);
+            LML9.Add(ml3);
 
 
             List<Meal> LML10 = new List<Meal>();
-            LML1.Add(ml1);
+            LML10.Add(ml1);
 
 
             List<Meal> LML11 = new List<Meal>();
-            LML1.Add(ml1);
+            LML11.Add(ml1);
 
 
             List<Meal> LML12 = new List<Meal>();
-            LML1.Add(ml1);
+            LML12.Add(ml1);
 
 
             List<Meal> LML13 = new List<Meal>();
-            LML1.Add(ml1);
+            LML13.Add(ml1);
 
 
             List<Meal> LML14 = new List<Meal>();
-            LML1.Add(ml1);
+            LML14.Add(ml1);
 
 
             List<Meal> LML15 = new List<Meal>();
-            LML1.Add(ml1);
+            LML15.Add(ml1);
 
 
             List<Meal> LML16 = new List<Meal>();
@@ -518,7 +842,7 @@ namespace CityGoodTaste.Models
             MealGroup mg2 = new MealGroup() { Name = "Холодные закуски", Meals = LML2 };
             MealGroup mg3 = new MealGroup() { Name = "Горячие закуски", Meals = LML3 };
             MealGroup mg4 = new MealGroup() { Name = "Бургеры и чиабатта", Meals = LML4 };
-            MealGroup mg5 = new MealGroup() { Name = "Пивные трофеи", Meals = LML5 };
+            MealGroup mg5 = new MealGroup() { Name = "К пиву", Meals = LML5 };
             MealGroup mg6 = new MealGroup() { Name = "Первые блюда", Meals = LML6 };
             MealGroup mg7 = new MealGroup() { Name = "Рыбные блюда", Meals = LML7 };
             MealGroup mg8 = new MealGroup() { Name = "Горячие блюда", Meals = LML8 };
