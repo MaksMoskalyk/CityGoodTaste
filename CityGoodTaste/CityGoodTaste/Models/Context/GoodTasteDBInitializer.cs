@@ -31,6 +31,20 @@ namespace CityGoodTaste.Models
         {
             Country c = new Country { Name = "Украина" };
             City ct = new City { Name = "Одесса", Country = c };
+            Neighborhood n1 = new Neighborhood { Name = "Киевский район" };
+            Neighborhood n2 = new Neighborhood { Name = "Малиновский район" };
+            Neighborhood n3 = new Neighborhood { Name = "Приморский район" };
+            Neighborhood n4 = new Neighborhood { Name = "Суворовский район" };
+            context.Neighborhoods.Add(n1);
+            context.Neighborhoods.Add(n2);
+            context.Neighborhoods.Add(n3);
+            context.Neighborhoods.Add(n4);
+            ct.Neighborhoods = new List<Neighborhood>();
+            ct.Neighborhoods.Add(n1);
+            ct.Neighborhoods.Add(n2);
+            ct.Neighborhoods.Add(n3);
+            ct.Neighborhoods.Add(n4);
+
             var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
             var user = new ApplicationUser { Email = "somemail2@mail.ru", UserName = "user", Name="Артур" };
             var result = userManager.Create(user, "Password!2");
@@ -39,7 +53,7 @@ namespace CityGoodTaste.Models
             var user3 = new ApplicationUser { Email = "somemail3@mail.ru", UserName = "user3", Name = "Светлана" };
             var result3 = userManager.Create(user3, "Password!2");
             Map map = new Map() { Latitude = 46.477055, Longitude = 30.725973, Zoom = 18 };
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Три Резвых Коня" };
+            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Unit" };
             Restaurant r = new Restaurant
             {
                 Name = "Unit",
@@ -51,7 +65,8 @@ namespace CityGoodTaste.Models
                 PhoneNumber="+380 48 729 9090",
                 InformationAbout = "UNIT Military Cafe - это уникальное заведение c потрясающей кухней и удивительной атмосферой, выдержанное в военном стиле. Мы раскрываем военную тематику в оформлении, в подаче наших блюд и в мероприятиях. В нашем меню присутствуют блюда русской, украинской и немецкой кухни. Мы разнообразили её и легкими салатами, и сочными бургерами, различными закусками, и, конечно же, мясными блюдами, вкус которых по достоинству оценит любой гурман. Первый этаж сочетает комфортные столики и диваны с камуфляжной сеткой и различной армейской атрибутикой. На нижнем уровне перед Вами раскроются 3 VIP-зоны для командных сборов, брифингов и товарищеских посиделок: зал славы страйкбола, небольшой зал в приглушенных тонах с мягкими подушками.",
                  Map= map,
-                 RestaurantGroup= restaurantsGroup
+                 RestaurantGroup= restaurantsGroup,
+                Neighborhood=n3
             };
 
             r.Photo = "/Img/UnitMain.jpg";

@@ -27,4 +27,8 @@ function SetCheckboxClickHandler() {
         var t = document.getElementById("sendData");
         t.click();
     });
+    $('.NeighborhoodsCheck').click(function () {
+        var t = document.getElementById("sendData");
+        t.click();
+    });
 }
