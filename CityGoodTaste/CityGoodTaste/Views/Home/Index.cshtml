@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<CityGoodTaste.Models.Restaurant>
+
 @{
     ViewBag.Title = "Home Page";
 }
@@ -8,6 +9,7 @@
         CityGoodTaste.BusinessLayer.RestaurantDataManager manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
         var ListRestaurantEvents = manager.GetTopListRestaurantEvents();
     }
+
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -24,21 +26,17 @@
             {
                 string isActive = "";
                 if (item == ListRestaurantEvents.First())
-                { isActive = " active"; }
-                <div class="item @isActive" style="height:400px">
+                { isActive = "active"; }
+                <div class="item customCarouselItem @isActive">
                     <img class="img-responsive Center-Image-Width" src=@item.Photo alt="Image">
-                    <div class="carousel-caption" style="background: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
-  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
-  right:0; left:0; z-index:0; padding:0; margin:0">
-                        <a href='@Url.Action("Details", "Restaurant", new { id = item.Restaurant.Id })' style="color:white; margin-left:10%; margin-right:10%; text-decoration:none">
-                            <h3 style="margin-left:10%; margin-right:10%;">@Html.DisplayFor(modelItem => item.Name)</h3>
-                            <p style="margin-left:10%; margin-right:10%;">@Html.DisplayFor(modelItem => item.Description)</p>
+                    <div class="carousel-caption customCarouselCaption">
+                        <a href='@Url.Action("Details", "Restaurant", new { id = item.Restaurant.Id })'>
+                            <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+                            <p>@Html.DisplayFor(modelItem => item.Description)</p>
                         </a>
                     </div>
                 </div>
-
             }
-
         </div>
 
         <!-- Left and right controls -->
@@ -51,16 +49,17 @@
             <span class="sr-only">@CityGoodTaste.Resources.Resource.Next</span>
         </a>
     </div>
+
     @using (Html.BeginForm("Restaurants", "Restaurant", FormMethod.Get, new { @class = "searchForm" }))
     {
         <div class="input-group" style="padding-bottom:10px; padding-top:10px;">
-
             <input type="text" class="form-control" style="max-width:none" id="searchText" placeholder="Название ресторана" name="searchText">
             <div class="input-group-btn">
                 <button type="submit" class="btn btn-danger">Поиск</button>
             </div>
         </div>
     }
+
     <div class="container-fluid bg-3 text-center">
         <h3>Рекомендуемые рестораны:</h3><br>
         <div class="row NoMargin">
@@ -90,9 +89,7 @@
                 </div>
             }
         </div>
-
         <br>
-
     </div>
     <br><br>
 </div>

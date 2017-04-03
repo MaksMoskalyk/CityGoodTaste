@@ -9,22 +9,49 @@
     margin: 10px !important;
 }
 
-.carousel-inner img {
-    width: 100%;
-    margin: auto;
-    min-height: 200px;
-}
-
-#myCarousel {
-    margin-bottom: 0px;
-}
-
-.searchForm{
-    background-color:#333333;
-    padding-left:1%; 
-    padding-right:1%;
+.searchForm {
+    background-color: #333333;
+    padding-left: 1%;
+    padding-right: 1%;
 }
 
 .functionalButton {
     background-color: #74BBE7;
 }
+
+.carousel-inner item img {
+    width: 100%;
+    margin: auto;
+}
+
+#myCarousel {
+    margin-bottom: 0px;   
+}
+
+.customCarouselItem {
+    height: 400px;
+}
+
+.customCarouselCaption {
+    background: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+    right: 0;
+    left: 0;
+    z-index: 0;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+    .customCarouselCaption a {
+        color: white;
+        margin-left: 15%;
+        margin-right: 15%;
+        text-decoration: none;
+    }
+
+        .customCarouselCaption a h3,
+        .customCarouselCaption a p {
+            margin-left: 15%;
+            margin-right: 15%;
+        }

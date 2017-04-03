@@ -30,7 +30,6 @@
 
                         @foreach (var item in Features)
                         {
-
                             <div class="checkbox">
                                 <input type="checkbox" value=@item.Id id=@("feature" + item.Id) class="FeaturesCheck" name="FeaturesCheck" unchecked />
                                 <label for=@("feature" + item.Id)>@item.Name</label>
@@ -77,7 +76,6 @@
 
                         @foreach (var item in MealGroups)
                         {
-
                             <div class="checkbox">
                                 <input type="checkbox" value=@item.Id id=@("mealGroup" + item.Id) class="MealGroups" name="MealGroups" unchecked />
                                 <label for=@("mealGroup" + item.Id)>@item.Name</label>
