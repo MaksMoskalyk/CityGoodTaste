@@ -268,28 +268,17 @@
                         </div>
                     </div>
                     <div id="reviews" class="tab-pane fade">
-                        @foreach (var item in Model.Reviews)
-                        {
-                            <div class="row ">
-                                <div class="col-sm-12">
-                                    <div>
-                                        <table style="border-spacing: 5px 5px; border-collapse:unset">
-                                            <tr>
-                                                <td class="well" style="border-radius:20px; padding:10px;">
-                                                    <img src="https://placehold.it/190x190?text=@item.User.Name[0]" class="img-circle" width="90" height="90" alt="Avatar">
-                                                    <br />
-                                                    <h4 style="text-align:center">@item.User.Name</h4>
-                                                </td>
-                                                <td class="well" style="width:100%; border-radius:20px;padding:10px; vertical-align:top">
-                                                    <p><span class="glyphicon glyphicon-time"> @item.Date.ToString()</span></p>
-                                                    <p>@item.Text</p>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        }
+                        @Html.Partial("_ReviewsPartial", Model)
+
+
+                    @using (Ajax.BeginForm("MakeReview", new { id = "ReviewForm" }, new AjaxOptions { UpdateTargetId = "reviewsContent", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }))
+                    {
+                        <div class="form-group">
+                            <textarea style="width:100%" name="reviewText" cols="40" rows="5"></textarea>
+                            <button id="makeReviewBt" type="submit" class="btn btn-success btn-block">Оставить отзыв</button>
+                        </div>
+                    }
+
                     </div>
                 </div>
             </div>

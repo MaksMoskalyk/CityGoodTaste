@@ -3338,6 +3338,7 @@
     <Content Include="Views\Restaurant\ConfirmReserv.cshtml" />
     <Content Include="Views\Restaurant\ConfirmReserve.cshtml" />
     <Content Include="Views\Restaurant\ConfirmReserveAddMeal.cshtml" />
+    <Content Include="Views\Restaurant\_ReviewsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

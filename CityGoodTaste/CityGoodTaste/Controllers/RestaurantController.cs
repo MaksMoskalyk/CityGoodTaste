@@ -66,6 +66,7 @@ namespace CityGoodTaste.Controllers
             IRestaurantDataManager manager = factory.GetManager();
             Restaurant Rest =  manager.GetRestaurant(id);
             ViewBag.UserId = manager.GetCurrectUserId();
+            TempData["RestId"] = id;
             if (Rest == null)
             {
                 return HttpNotFound();
@@ -102,6 +103,20 @@ namespace CityGoodTaste.Controllers
             //ViewBag.UserId = manager.GetCurrectUserId();
 
             return View();
+        }
+
+        [AjaxOnly]
+        public ActionResult MakeReview()
+        {
+            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
+            IRestaurantDataManager manager = factory.GetManager();
+            string text = Request.Form["reviewText"];
+            string userId =  manager.GetCurrectUserId();
+            int restId=Convert.ToInt32(TempData["RestId"]);
+            TempData["RestId"] = restId;
+            manager.MakeReview(userId, restId, text);
+            Restaurant Rest = manager.GetRestaurant(restId);
+            return PartialView("~/Views/Restaurant/_ReviewsPartial.cshtml", Rest);
         }
 
         public async Task<ActionResult> Schema(int? id)

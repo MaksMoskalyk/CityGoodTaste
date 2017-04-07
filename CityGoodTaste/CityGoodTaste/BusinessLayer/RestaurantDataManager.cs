@@ -42,6 +42,7 @@ namespace CityGoodTaste.BusinessLayer
         void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds);
         Menu GetRestMenu(int id);
         OrderFood GetOrderFood(int Id, int Value);
+        void MakeReview(string userId, int restId, string text);
     }
 
     public class RestaurantDataManager : IRestaurantDataManager
@@ -682,6 +683,22 @@ namespace CityGoodTaste.BusinessLayer
                 {
                     throw new Exception("Order food not found");
                 }
+            }
+        }
+
+        public void MakeReview(string userId, int restId, string text)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                ApplicationUser currentUser = context.Users.FirstOrDefault();
+                Restaurant rest = context.Restaurants.Find(restId);
+                RestaurantReview review = new RestaurantReview { 
+                    Text = text.Trim(), 
+                    User = currentUser, 
+                    Restaurant = rest, 
+                    Date=DateTime.Now };
+                context.RestaurantReviews.Add(review);
+                context.SaveChanges();
             }
         }
     }
