@@ -18,5 +18,10 @@ namespace CityGoodTaste.Models
         public virtual ApplicationUser User { get; set; }
 
         public virtual Restaurant Restaurant { get; set; }
+
+        public int FoodRank { get; set; }
+        public int AmbienceRank { get; set; }
+        public int ServiceRank { get; set; }
+        public int Rank { get; set; }
     }
 }

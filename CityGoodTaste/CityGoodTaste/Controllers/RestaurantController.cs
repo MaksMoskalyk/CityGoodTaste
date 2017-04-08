@@ -67,6 +67,9 @@ namespace CityGoodTaste.Controllers
             Restaurant Rest =  manager.GetRestaurant(id);
             ViewBag.UserId = manager.GetCurrectUserId();
             TempData["RestId"] = id;
+            ViewData["foodRank"] = manager.GetFoodRank(id).ToString();
+            ViewData["serviceRank"]=5;
+            ViewData["ambienceRank"] = 6;
             if (Rest == null)
             {
                 return HttpNotFound();
@@ -113,8 +116,12 @@ namespace CityGoodTaste.Controllers
             string text = Request.Form["reviewText"];
             string userId =  manager.GetCurrectUserId();
             int restId=Convert.ToInt32(TempData["RestId"]);
+            int foodRank = Convert.ToInt32(Request.Form["ratingA"]);
+            int serviceRank = Convert.ToInt32(Request.Form["ratingB"]);
+            int ambienceRank = Convert.ToInt32(Request.Form["ratingC"]);
             TempData["RestId"] = restId;
-            manager.MakeReview(userId, restId, text);
+
+            manager.MakeReview(userId, restId, text, foodRank, ambienceRank, serviceRank);
             Restaurant Rest = manager.GetRestaurant(restId);
             return PartialView("~/Views/Restaurant/_ReviewsPartial.cshtml", Rest);
         }

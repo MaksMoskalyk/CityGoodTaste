@@ -268,17 +268,68 @@
                         </div>
                     </div>
                     <div id="reviews" class="tab-pane fade">
+                        <div class="row">
+                            <div class="col-sm-3">Кухня: @ViewData["foodRank"]/10</div>
+                            <div class="col-sm-3">Сервис: @ViewData["serviceRank"]/10</div>
+                            <div class="col-sm-3">Атмосфера: @ViewData["ambienceRank"]/10</div>
+                        </div>
                         @Html.Partial("_ReviewsPartial", Model)
-
-
                     @using (Ajax.BeginForm("MakeReview", new { id = "ReviewForm" }, new AjaxOptions { UpdateTargetId = "reviewsContent", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }))
                     {
+                        <div class="row">
+                            <div class="col-sm-3">
+                                Атмосфера
+                                <fieldset class="rating C">
+                                    <input type="radio" id="star5-c" name="ratingC" value="10" /><label class="full" for="star5-c" title="Awesome - 5 stars"></label>
+                                    <input type="radio" id="star4half-c" name="ratingC" value="9" /><label class="half" for="star4half-c" title="Pretty good - 4.5 stars"></label>
+                                    <input type="radio" id="star4-c" name="ratingC" value="8" /><label class="full" for="star4-c" title="Pretty good - 4 stars"></label>
+                                    <input type="radio" id="star3half-c" name="ratingC" value="7" /><label class="half" for="star3half-c" title="Meh - 3.5 stars"></label>
+                                    <input type="radio" id="star3-c" name="ratingC" value="6" /><label class="full" for="star3-c" title="Meh - 3 stars"></label>
+                                    <input type="radio" id="star2half-c" name="ratingC" value="5" /><label class="half" for="star2half-c" title="Kinda bad - 2.5 stars"></label>
+                                    <input type="radio" id="star2-c" name="ratingC" value="4" /><label class="full" for="star2-c" title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" id="star1half-c" name="ratingC" value="3" /><label class="half" for="star1half-c" title="Meh - 1.5 stars"></label>
+                                    <input type="radio" id="star1-c" name="ratingC" value="2" /><label class="full" for="star1-c" title="Sucks big time - 1 star"></label>
+                                    <input type="radio" id="starhalf-c" name="ratingC" value="1" /><label class="half" for="starhalf-c" title="Sucks big time - 0.5 stars"></label>
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-3">
+                                Кухня
+                                <fieldset class="rating A">
+                                    <input type="radio" id="star5-a" name="ratingA" value="10" /><label class="full" for="star5-a" title="Awesome - 5 stars"></label>
+                                    <input type="radio" id="star4half-a" name="ratingA" value="9" /><label class="half" for="star4half-a" title="Pretty good - 4.5 stars"></label>
+                                    <input type="radio" id="star4-a" name="ratingA" value="8" /><label class="full" for="star4-a" title="Pretty good - 4 stars"></label>
+                                    <input type="radio" id="star3half-a" name="ratingA" value="7" /><label class="half" for="star3half-a" title="Meh - 3.5 stars"></label>
+                                    <input type="radio" id="star3-a" name="ratingA" value="6" /><label class="full" for="star3-a" title="Meh - 3 stars"></label>
+                                    <input type="radio" id="star2half-a" name="ratingA" value="5" /><label class="half" for="star2half-a" title="Kinda bad - 2.5 stars"></label>
+                                    <input type="radio" id="star2-a" name="ratingA" value="4" /><label class="full" for="star2-a" title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" id="star1half-a" name="ratingA" value="3" /><label class="half" for="star1half-a" title="Meh - 1.5 stars"></label>
+                                    <input type="radio" id="star1-a" name="ratingA" value="2" /><label class="full" for="star1-a" title="Sucks big time - 1 star"></label>
+                                    <input type="radio" id="starhalf-a" name="ratingA" value="1" /><label class="half" for="starhalf-a" title="Sucks big time - 0.5 stars"></label>
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-3">
+                                Сервис
+                                <fieldset class="rating B">
+                                    <input type="radio" id="star5-b" name="ratingB" value="10" /><label class="full" for="star5-b" title="Awesome - 5 stars"></label>
+                                    <input type="radio" id="star4half-b" name="ratingB" value="9" /><label class="half" for="star4half-b" title="Pretty good - 4.5 stars"></label>
+                                    <input type="radio" id="star4-b" name="ratingB" value="8" /><label class="full" for="star4-b" title="Pretty good - 4 stars"></label>
+                                    <input type="radio" id="star3half-b" name="ratingB" value="7" /><label class="half" for="star3half-b" title="Meh - 3.5 stars"></label>
+                                    <input type="radio" id="star3-b" name="ratingB" value="6" /><label class="full" for="star3-b" title="Meh - 3 stars"></label>
+                                    <input type="radio" id="star2half-b" name="ratingB" value="5" /><label class="half" for="star2half-b" title="Kinda bad - 2.5 stars"></label>
+                                    <input type="radio" id="star2-b" name="ratingB" value="4" /><label class="full" for="star2-b" title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" id="star1half-b" name="ratingB" value="3" /><label class="half" for="star1half-b" title="Meh - 1.5 stars"></label>
+                                    <input type="radio" id="star1-b" name="ratingB" value="2" /><label class="full" for="star1-b" title="Sucks big time - 1 star"></label>
+                                    <input type="radio" id="starhalf-b" name="ratingB" value="1" /><label class="half" for="starhalf-b" title="Sucks big time - 0.5 stars"></label>
+                                </fieldset>
+                            </div>
+                        </div>
                         <div class="form-group">
-                            <textarea style="width:100%" name="reviewText" cols="40" rows="5"></textarea>
+                            <textarea id="revText" style="width:100%" name="reviewText" cols="40" rows="5"></textarea>
                             <button id="makeReviewBt" type="submit" class="btn btn-success btn-block">Оставить отзыв</button>
                         </div>
                     }
 
+                        
                     </div>
                 </div>
             </div>
@@ -422,6 +473,12 @@
 </div>
 
 <script>
+    $('#makeReviewBt').click(function(){
+        setTimeout(function() {
+            $('input:radio').removeAttr('checked');
+            $('#revText').val('');
+        }, 1000);     
+    });
     $('#reservBt').click(function () {
         var withProperty = [],
             els = document.getElementsByTagName('input'),
