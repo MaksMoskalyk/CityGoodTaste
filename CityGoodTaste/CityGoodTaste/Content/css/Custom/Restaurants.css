@@ -1,4 +1,6 @@
-﻿/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+﻿@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
     height: 450px;
 }
@@ -90,4 +92,66 @@ li.active a {
 
 input.name {
 
+
+fieldset, label { margin: 0; padding: 0; }
+
+
+.rating { 
+  border: none; 
+  float: left;
 }
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.A > input:checked ~ label, /* show gold star when clicked */
+.A:not(:checked) > label:hover, /* hover current star */
+.A:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.A > input:checked + label:hover, /* hover current star when changing rating */
+.A > input:checked ~ label:hover,
+.A > label:hover ~ input:checked ~ label, /* lighten current selection */
+.A > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+
+
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.B > input:checked ~ label, /* show gold star when clicked */
+.B:not(:checked) > label:hover, /* hover current star */
+.B:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.B > input:checked + label:hover, /* hover current star when changing rating */
+.B > input:checked ~ label:hover,
+.B > label:hover ~ input:checked ~ label, /* lighten current selection */
+.B > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.C > input:checked ~ label, /* show gold star when clicked */
+.C:not(:checked) > label:hover, /* hover current star */
+.C:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.C > input:checked + label:hover, /* hover current star when changing rating */
+.C > input:checked ~ label:hover,
+.C > label:hover ~ input:checked ~ label, /* lighten current selection */
+.C > input:checked ~ label:hover ~ label { color: #FFED85;  } 
