@@ -3,11 +3,13 @@
 @{
     ViewBag.Title = "Events";
 }
+
 @{
     string language = @CityGoodTaste.Controllers.HomeController.getCulture();
     string path = "../../../Scripts/Custom/Localization/datepicker-" + language + ".js";
     <script src=@path></script>
 }
+
 @using (Ajax.BeginForm("EventsSearch", new { id = "EventsForm" }, new AjaxOptions { UpdateTargetId = "EventsList", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }))
 {
     <div class="input-group searchBlock">
@@ -39,49 +41,6 @@
             <div class="panel panel-default">
                 <div class="panel-heading panelHeadingCustom">Дата:</div>
                 <div class="panel-body" style="padding-left:10px;">
-                    <script>
-                        $(function () {
-                            $("#from").datepicker({
-                                minDate: 0,
-                                showOtherMonths: true,
-                                selectOtherMonths: true
-                            });
-                            $("#to").datepicker({
-                                minDate: 0,
-                                showOtherMonths: true,
-                                selectOtherMonths: true
-                            });
-                            var dateFormat = "mm/dd/yy",
-                              from = $("#from")
-                                .datepicker({
-                                    defaultDate: "+1w",
-                                    changeMonth: true,
-                                    numberOfMonths: 1
-                                })
-                                .on("change", function () {
-                                    to.datepicker("option", "minDate", getDate(this));
-                                }),
-                              to = $("#to").datepicker({
-                                  defaultDate: "+1w",
-                                  changeMonth: true,
-                                  numberOfMonths: 1
-                              })
-                              .on("change", function () {
-                                  from.datepicker("option", "maxDate", getDate(this));
-                              });
-
-                            function getDate(element) {
-                                var date;
-                                try {
-                                    date = $.datepicker.parseDate(dateFormat, element.value);
-                                } catch (error) {
-                                    date = null;
-                                }
-
-                                return date;
-                            }
-                        });
-                    </script>
                     <div id="datepickerContainer" class="form-group center-block">
                         <div class="input-group">
                             @{
@@ -141,4 +100,4 @@
             </div>
         </div>
     </div>
-                        }
+}

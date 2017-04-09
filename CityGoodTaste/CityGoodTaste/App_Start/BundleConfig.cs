@@ -53,7 +53,7 @@ namespace CityGoodTaste
 
             //Custom          
             bundles.Add(new StyleBundle("~/bundles/customStyle").Include(
-                    "~/Content/css/Custom/Restaurant.css",
+                    "~/Content/css/Custom/Restaurants.css",
                     "~/Content/css/Custom/AuthenticationModals.css",
                     "~/Content/css/Custom/AuthenticationPages.css",
                     "~/Content/css/Custom/ModalFix.css",

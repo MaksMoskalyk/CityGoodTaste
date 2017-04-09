@@ -82,6 +82,12 @@ li.active a {
     margin-right: -20px
 }
 
+#collapseNeighborhoods,
+#collapse1,
+#collapse3{
+    padding-left:10px;
+}
+
 input.name {
 
 }

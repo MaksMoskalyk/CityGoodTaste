@@ -240,7 +240,7 @@
     <Content Include="Content\css\Custom\Layout.css" />
     <Content Include="Content\css\Custom\MainPage.css" />
     <Content Include="Content\css\Custom\ModalFix.css" />
-    <Content Include="Content\css\Custom\Restaurant.css" />
+    <Content Include="Content\css\Custom\Restaurants.css" />
     <Content Include="Content\css\Custom\CheckboxesAndRadios.css" />
     <Content Include="Content\css\Default\bootstrap.css" />
     <Content Include="Content\css\Default\bootstrap.min.css" />
@@ -3338,6 +3338,7 @@
     <Content Include="Views\Restaurant\ConfirmReserv.cshtml" />
     <Content Include="Views\Restaurant\ConfirmReserve.cshtml" />
     <Content Include="Views\Restaurant\ConfirmReserveAddMeal.cshtml" />
+    <Content Include="Views\Account\PersonalCabinet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

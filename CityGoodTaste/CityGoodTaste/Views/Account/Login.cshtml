@@ -1,5 +1,7 @@
 ﻿@using CityGoodTaste.Models
+
 @model LoginViewModel
+
 @{
     ViewBag.Title = "Авторизоваться";
 }
@@ -11,11 +13,11 @@
         <div class="col-md-12">
             <section id="loginForm">
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                    @Html.AntiForgeryToken()
+                {
+                    @*@Html.AntiForgeryToken()
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @*<div class="form-group">                                                                  
+                    <div class="form-group">                                                                  
                         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">                      
                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
@@ -31,26 +33,31 @@
                         </div>
                     </div>*@
 
+                    <hr />
                     <div class="form-group">
                         <div class="input-group col-md-12">
                             <span class="input-group-addon"><i class="oi" data-glyph="envelope-closed"></i></span>
-                            <input id="email" type="text" class="form-control input-sm authenticationInput" name="email" placeholder="Эл. адрес">
+                            <input id="email" type="text" class="form-control input-md authenticationInput" name="email" placeholder="Эл. адрес">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="input-group col-md-12">
                             <span class="input-group-addon"><i class="oi" data-glyph="key"></i></span>
-                            <input id="password" type="password" class="form-control input-sm authenticationInput" name="password" placeholder="Пароль">
+                            <input id="password" type="password" class="form-control input-md authenticationInput" name="password" placeholder="Пароль">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <div class="checkbox">
+                                <input type="checkbox" id="rememberMe" name="rememberMe" unchecked />
+                                <label for="rememberMe">Запомни меня?</label>
+                            </div>
+                            @*<div class="checkbox">
                                 @Html.CheckBoxFor(m => m.RememberMe)
                                 @Html.Label("Запомни меня?")
-                            </div>
+                            </div>*@
                         </div>
                     </div>
 
