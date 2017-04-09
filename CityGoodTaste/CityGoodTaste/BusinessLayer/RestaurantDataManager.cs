@@ -42,6 +42,10 @@ namespace CityGoodTaste.BusinessLayer
         void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds);
         Menu GetRestMenu(int id);
         OrderFood GetOrderFood(int Id, int Value);
+        void MakeReview(string userId, int restId, string text, int foodRank, int ambienceRank, int serviceRank);
+        int GetFoodRank(int? restId);
+        int GetServiceRank(int? restId);
+        int GetAmbienceRank(int? restId);
     }
 
     public class RestaurantDataManager : IRestaurantDataManager
@@ -682,6 +686,104 @@ namespace CityGoodTaste.BusinessLayer
                 {
                     throw new Exception("Order food not found");
                 }
+            }
+        }
+
+        public void MakeReview(string userId, int restId, string text, int foodRank, int ambienceRank, int serviceRank)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                ApplicationUser currentUser = context.Users.FirstOrDefault();
+                Restaurant rest = context.Restaurants.Find(restId);
+
+                int s = 0;
+                if (foodRank > 0)
+                    s++;
+                if (ambienceRank > 0)
+                    s++;
+                if (serviceRank > 0)
+                    s++;
+                double rank = (foodRank + ambienceRank + serviceRank)/s;                 
+
+                RestaurantReview review = new RestaurantReview { 
+                    Text = text.Trim(), 
+                    User = currentUser, 
+                    Restaurant = rest, 
+                    Date=DateTime.Now,
+                    FoodRank=foodRank,
+                    AmbienceRank=ambienceRank,
+                    ServiceRank=serviceRank,
+                    Rank=s
+                };
+                context.RestaurantReviews.Add(review);
+                context.SaveChanges();
+            }
+        }
+
+        public int GetFoodRank(int? restId)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                List<RestaurantReview> reviews = (from x in context.RestaurantReviews 
+                                                  where x.Restaurant.Id == restId 
+                                                  select x).ToList();
+                int count=0;
+                int totalRank =0;
+                foreach (var item in reviews)
+                {           
+                    totalRank += item.FoodRank;
+                    if (item.FoodRank > 0)
+                        count++;  
+                }
+                if (count == 0)
+                {
+                    return 1;
+                }           
+                return totalRank / count;
+            }
+        }
+        public int GetServiceRank(int? restId)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                List<RestaurantReview> reviews = (from x in context.RestaurantReviews
+                                                  where x.Restaurant.Id == restId
+                                                  select x).ToList();
+                int count = 0;
+                int totalRank = 0;
+                foreach (var item in reviews)
+                {
+                    totalRank += item.ServiceRank;
+                    if (item.FoodRank > 0)
+                        count++;
+                }
+                if (count == 0)
+                {
+                    return 1;
+                }
+                return totalRank / count;
+            }
+        }
+        public int GetAmbienceRank(int? restId)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                List<RestaurantReview> reviews = (from x in context.RestaurantReviews
+                                                  where x.Restaurant.Id == restId
+                                                  select x).ToList();
+                int count = 0;
+                int totalRank = 0;
+                foreach (var item in reviews)
+                {
+                    totalRank += item.AmbienceRank;
+                    if (item.FoodRank > 0)
+                        count++;
+                }
+                if (count == 0)
+                {
+                    return 1;
+                }
+                return totalRank / count;
             }
         }
     }
