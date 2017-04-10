@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     var submitButton = document.getElementById("logInSubmit");
-    submitButton.addEventListener("click", SubmitClickHandler);
+    if (submitButton != null)
+        submitButton.addEventListener("click", SubmitClickHandler);
 })
 
 function SubmitClickHandler(e) {

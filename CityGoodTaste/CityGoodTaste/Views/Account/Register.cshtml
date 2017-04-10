@@ -9,70 +9,103 @@
 
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
-        @*@Html.AntiForgeryToken()
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class="form-group">
-                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                </div>
-            </div>
+        @Html.AntiForgeryToken()
 
+        @*@Html.ValidationSummary("", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>*@
 
-        <hr />
-        <div class="form-group">
-            <div class="input-group col-md-12">
-                <span class="input-group-addon"><i class="oi" data-glyph="envelope-closed"></i></span>
-                <input id="email" type="text" class="form-control input-md authenticationInput" name="email" placeholder="Эл. почта">
-            </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    </div>
+                </div>*@
+
+
+    if (ViewData["ValidationMessage"].ToString() != "")
+    {
+        <script>
+            $(document).ready(function () {
+                $("#validationSummary").css("display", "block");
+            })
+        </script>
+    }
+    <label id="validationSummary" class="validationSummaryLabel col-md-12">@ViewData["ValidationMessage"]</label>
+    <hr />
+
+    <div class="form-group">
+        <label id="validationEmail" class="validationLabel col-md-12"></label>
+        <div class="input-group col-md-12">
+            <span class="input-group-addon"><i class="oi" data-glyph="envelope-closed"></i></span>
+            <input id="email" type="text" class="form-control input-md authenticationInput" name="email" placeholder="Эл. почта">
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="input-group col-md-12">
-                <span class="input-group-addon"><i class="oi" data-glyph="key"></i></span>
-                <input id="password" type="password" class="form-control input-md authenticationInput" name="password" placeholder="Пароль">
-            </div>
+    <div class="form-group">
+        <label id="validationPassword" class="validationLabel col-md-12"></label>
+        <div class="input-group col-md-12">
+            <span class="input-group-addon"><i class="oi" data-glyph="key"></i></span>
+            <input id="password" type="password" class="form-control input-md authenticationInput" name="password" placeholder="Пароль">
         </div>
+    </div>
 
         <div class="form-group">
+            <label id="validationConfirmPassword" class="validationLabel col-md-12"></label>
             <div class="input-group col-md-12">
                 <span class="input-group-addon"><i class="oi" data-glyph="key"></i></span>
                 <input id="passwordConfirm" type="password" class="form-control input-md authenticationInput" name="passwordConfirm" placeholder="Подтверждение пароля">
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
+            <label style="float: right" id="validationName" class="validationLabel col-md-5"></label>
             <div class="input-group col-md-5">
                 <span class="input-group-addon"><i class="oi" data-glyph="person"></i></span>
                 <input id="name" type="text" class="form-control input-md authenticationInput" name="name" placeholder="Имя">
             </div>
+            <label style="float: right" id="validationSurname" class="validationLabel col-md-7"></label>
             <div class="input-group col-md-7">
+                <span class="input-group-addon"><i class="oi" data-glyph="person"></i></span>
+                <input id="surname" type="text" class="form-control input-md authenticationInput" name="surname" placeholder="Фамилия">
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <label id="validationName" class="validationLabel col-md-12"></label>
+            <div class="input-group col-md-12">
+                <span class="input-group-addon"><i class="oi" data-glyph="person"></i></span>
+                <input id="name" type="text" class="form-control input-md authenticationInput" name="name" placeholder="Имя">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="validationSurname" class="validationLabel col-md-12"></label>
+            <div class="input-group col-md-12">
                 <span class="input-group-addon"><i class="oi" data-glyph="person"></i></span>
                 <input id="surname" type="text" class="form-control input-md authenticationInput" name="surname" placeholder="Фамилия">
             </div>
         </div>
 
         <div class="form-group">
+            <label id="validationPhone" class="validationLabel col-md-12"></label>
             <div class="input-group col-md-12">
                 <span class="input-group-addon"><i class="oi" data-glyph="phone"></i></span>
-                <input id="email" type="text" class="form-control input-md authenticationInput" name="phone" placeholder="Телефон">
+                <input id="phone" type="text" class="form-control input-md authenticationInput" name="phone" placeholder="Телефон">
             </div>
         </div>
-     
+
         <div class="form-group">
             <div class="col-md-12">
                 <input id="signUpButton" type="submit" class="btn btn-md btn-primary modalButton" value="Зарегистрироваться" />

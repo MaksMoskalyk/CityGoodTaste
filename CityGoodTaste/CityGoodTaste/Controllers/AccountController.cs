@@ -76,10 +76,9 @@ namespace CityGoodTaste.Controllers
         {            
             if (!ModelState.IsValid)
             {
+                ViewData["ValidationMessage"] = "Пользователь не найден, проверьте правильность введенной почты и пароля.";
                 return View(model);
             }
-
-            //userDatabaseManager.LogIn(model.Email, model.Password);
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -149,6 +148,8 @@ namespace CityGoodTaste.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewData["ValidationMessage"] = "";
+            RegisterViewModel model = new RegisterViewModel();
             return View();
         }
 

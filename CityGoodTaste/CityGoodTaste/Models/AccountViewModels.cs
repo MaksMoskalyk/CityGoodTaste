@@ -64,7 +64,6 @@ namespace CityGoodTaste.Models
 
     public class RegisterViewModel
     {
-
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -81,6 +80,17 @@ namespace CityGoodTaste.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        [Required]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Surname")]
+        public string Surname { get; set; }
+
+        [Required]
+        [Display(Name = "Phone")]
+        public string Phone { get; set; }
     }
 
     public class ResetPasswordViewModel
