@@ -46,6 +46,7 @@ namespace CityGoodTaste.BusinessLayer
         int GetFoodRank(int? restId);
         int GetServiceRank(int? restId);
         int GetAmbienceRank(int? restId);
+        double GetRestaurantRank(int? restId);
     }
 
     public class RestaurantDataManager : IRestaurantDataManager
@@ -703,8 +704,11 @@ namespace CityGoodTaste.BusinessLayer
                     s++;
                 if (serviceRank > 0)
                     s++;
-                double rank = (foodRank + ambienceRank + serviceRank)/s;                 
 
+                double rank=0;
+                if(s!=0)
+                    rank = (foodRank + ambienceRank + serviceRank)/s;       
+                
                 RestaurantReview review = new RestaurantReview { 
                     Text = text.Trim(), 
                     User = currentUser, 
@@ -784,6 +788,27 @@ namespace CityGoodTaste.BusinessLayer
                     return 1;
                 }
                 return totalRank / count;
+            }
+        }
+        public double GetRestaurantRank(int? restId)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                List<RestaurantReview> reviews = (from x in context.RestaurantReviews
+                                                  where x.Restaurant.Id == restId
+                                                  select x).ToList();
+                double rank = 0;
+                int count = 0;
+                for (int i = 0; i < reviews.Count; i++)
+                {
+                    rank += reviews[i].Rank;
+                    if (reviews[i].Rank > 0)
+                        count++;  
+                }
+                if (count == 0)
+                    return 0;
+
+                return Math.Round(rank / count,1);
             }
         }
     }

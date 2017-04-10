@@ -68,8 +68,9 @@ namespace CityGoodTaste.Controllers
             ViewBag.UserId = manager.GetCurrectUserId();
             TempData["RestId"] = id;
             ViewData["foodRank"] = manager.GetFoodRank(id).ToString();
-            ViewData["serviceRank"]=5;
-            ViewData["ambienceRank"] = 6;
+            ViewData["serviceRank"] = manager.GetServiceRank(id).ToString();
+            ViewData["ambienceRank"] = manager.GetAmbienceRank(id).ToString();
+            ViewData["restRank"] = manager.GetRestaurantRank(id).ToString();
             if (Rest == null)
             {
                 return HttpNotFound();

@@ -22,6 +22,6 @@ namespace CityGoodTaste.Models
         public int FoodRank { get; set; }
         public int AmbienceRank { get; set; }
         public int ServiceRank { get; set; }
-        public int Rank { get; set; }
+        public double Rank { get; set; }
     }
 }
