@@ -11,7 +11,7 @@ namespace CityGoodTaste.BusinessLayer
     public class UserDatabaseManager : IUserDatabase
     {
         #region Log in
-        private bool IsUserDataCorrect(GoodTasteContext context, 
+        private bool IsUserExist(GoodTasteContext context, 
             string email, string password)
         {
             var usersQuery = context.Users;
@@ -31,7 +31,7 @@ namespace CityGoodTaste.BusinessLayer
                 string message;
                 using (GoodTasteContext context = new GoodTasteContext())
                 {
-                    if (!IsUserDataCorrect(context, email, password))
+                    if (!IsUserExist(context, email, password))
                     {
                         message = "Your email or password isn't correct!";
                         throw new Exception(message);

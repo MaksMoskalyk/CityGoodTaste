@@ -167,9 +167,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="BusinessLayer\IUserDatabase.cs" />
+    <Compile Include="BusinessLayer\Account\IUserDatabase.cs" />
     <Compile Include="BusinessLayer\RestaurantDataManager.cs" />
-    <Compile Include="BusinessLayer\UserDatabaseManager.cs" />
+    <Compile Include="BusinessLayer\Account\UserDatabaseManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -240,8 +240,8 @@
     <Content Include="Content\css\Custom\Layout.css" />
     <Content Include="Content\css\Custom\MainPage.css" />
     <Content Include="Content\css\Custom\ModalFix.css" />
-    <Content Include="Content\css\Custom\Restaurant.css" />
     <Content Include="Content\css\Custom\CheckboxesAndRadios.css" />
+    <Content Include="Content\css\Custom\Restaurants.css" />
     <Content Include="Content\css\Default\bootstrap.css" />
     <Content Include="Content\css\Default\bootstrap.min.css" />
     <Content Include="Content\css\Default\clockpicker.css" />
@@ -3254,11 +3254,13 @@
     <Content Include="Img\sh.jpg" />
     <Content Include="Img\tav.png" />
     <Content Include="Img\UnitMain.jpg" />
+    <Content Include="Scripts\Custom\Account\LogIn.js" />
     <Content Include="Scripts\Custom\Details.js" />
     <Content Include="Scripts\Custom\Events.js" />
     <Content Include="Scripts\Custom\Localization\datepicker-ENG.js" />
     <Content Include="Scripts\Custom\Localization\datepicker-RUS.js" />
     <Content Include="Scripts\Custom\Localization\datepicker-UKR.js" />
+    <Content Include="Scripts\Custom\Account\SignUp.js" />
     <Content Include="Scripts\Custom\_Layout.js" />
     <Content Include="Scripts\Default\Angular\angular-mocks.js" />
     <Content Include="Scripts\Default\Angular\angular.js" />

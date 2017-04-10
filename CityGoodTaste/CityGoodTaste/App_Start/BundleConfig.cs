@@ -30,7 +30,9 @@ namespace CityGoodTaste
                      "~/Scripts/Custom/Details.js",
                      "~/Scripts/Custom/Events.js",
                      "~/Scripts/Custom/MainPage.js",
-                     "~/Scripts/Custom/Restaurants.js"));
+                     "~/Scripts/Custom/Restaurants.js",
+                     "~/Scripts/Custom/Account/LogIn.js",
+                     "~/Scripts/Custom/Account/SignUp.js"));
             #endregion
 
             #region Style

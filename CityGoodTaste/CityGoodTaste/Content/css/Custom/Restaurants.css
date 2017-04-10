@@ -92,9 +92,17 @@ li.active a {
 
 input.name {
 
+}
 
-fieldset, label { margin: 0; padding: 0; }
 
+
+
+/*Rating system*/
+fieldset, label 
+{ 
+    margin: 0; 
+    padding: 0; 
+}
 
 .rating { 
   border: none; 
@@ -120,8 +128,8 @@ fieldset, label { margin: 0; padding: 0; }
  float: right; 
 }
 
-/***** CSS Magic to Highlight Stars on Hover *****/
 
+/***** CSS Magic to Highlight Stars on Hover *****/
 .A > input:checked ~ label, /* show gold star when clicked */
 .A:not(:checked) > label:hover, /* hover current star */
 .A:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
@@ -132,10 +140,7 @@ fieldset, label { margin: 0; padding: 0; }
 .A > input:checked ~ label:hover ~ label { color: #FFED85;  }
 
 
-
-
 /***** CSS Magic to Highlight Stars on Hover *****/
-
 .B > input:checked ~ label, /* show gold star when clicked */
 .B:not(:checked) > label:hover, /* hover current star */
 .B:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
@@ -145,8 +150,8 @@ fieldset, label { margin: 0; padding: 0; }
 .B > label:hover ~ input:checked ~ label, /* lighten current selection */
 .B > input:checked ~ label:hover ~ label { color: #FFED85;  } 
 
-/***** CSS Magic to Highlight Stars on Hover *****/
 
+/***** CSS Magic to Highlight Stars on Hover *****/
 .C > input:checked ~ label, /* show gold star when clicked */
 .C:not(:checked) > label:hover, /* hover current star */
 .C:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */

@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CityGoodTaste.Models;
 using CityGoodTaste.CustomFilters;
+using CityGoodTaste.BusinessLayer;
 
 namespace CityGoodTaste.Controllers
 {
@@ -17,9 +18,9 @@ namespace CityGoodTaste.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IUserDatabase userDatabaseManager = new UserDatabaseManager();
 
         public AccountController()
         {
@@ -60,8 +61,10 @@ namespace CityGoodTaste.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            ViewData["ValidationMessage"] = "";
+            LoginViewModel model = new LoginViewModel();
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return View(model);
         }
 
         //
@@ -70,11 +73,13 @@ namespace CityGoodTaste.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
-        {
+        {            
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
+
+            //userDatabaseManager.LogIn(model.Email, model.Password);
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -90,7 +95,8 @@ namespace CityGoodTaste.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    //ModelState.AddModelError("", "Пользователь не найден, проверьте правильность введенной почты и пароля.");
+                    ViewData["ValidationMessage"] = "Пользователь не найден, проверьте правильность введенной почты и пароля.";
                     return View(model);
             }
         }
