@@ -46,26 +46,27 @@
                 <label id="validationSummary" class="validationSummaryLabel col-md-12">@ViewData["ValidationMessage"]</label>
                 <hr />
 
-                    <div class="form-group">
-                        <label id="validationEmail" class="validationLabel col-md-12"></label>
-                        <div class="input-group col-md-12">
-                            <span class="input-group-addon"><i class="oi" data-glyph="envelope-closed"></i></span>
-                            <input value="@Model.Email" id="email" type="text" class="form-control input-md authenticationInput" name="email" placeholder="Эл. адрес">
-                        </div>
+                <div class="form-group">
+                    <label id="validationEmail" class="validationLabel col-md-12"></label>
+                    <div class="input-group col-md-12">
+                        <span class="input-group-addon"><i class="oi" data-glyph="envelope-closed"></i></span>
+                        <input value="@Model.Email" id="email" type="text" class="form-control input-md authenticationInput" name="email" placeholder="Эл. адрес">
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label id="validationPassword" class="validationLabel col-md-12"></label>
-                        <div class="input-group col-md-12">
-                            <span class="input-group-addon"><i class="oi" data-glyph="key"></i></span>
-                            <input value="@Model.Password" id="password" type="password" class="form-control input-md authenticationInput" name="password" placeholder="Пароль">
-                        </div>
+                <div class="form-group">
+                    <label id="validationPassword" class="validationLabel col-md-12"></label>
+                    <div class="input-group col-md-12">
+                        <span class="input-group-addon"><i class="oi" data-glyph="key"></i></span>
+                        <input value="@Model.Password" id="password" type="password" class="form-control input-md authenticationInput" name="password" placeholder="Пароль">
                     </div>
+                </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <div class="checkbox">
-                                <input value="@Model.RememberMe" type="checkbox" id="rememberMe" name="rememberMe" unchecked />
+                                <input value="true" type="checkbox" id="rememberMe" name="rememberMe" checked="@Model.RememberMe" />
+                                @*<input type="hidden" value="false" name="rememberMe" @(Model.RememberMe ? "checked=\"checked\"" : "") />*@
                                 <label for="rememberMe">Запомни меня?</label>
                             </div>
                             @*<div class="checkbox">
