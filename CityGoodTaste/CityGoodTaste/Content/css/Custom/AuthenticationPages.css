@@ -25,7 +25,7 @@
 }
 
 .validationLabel {
-    color: red;
+    color: crimson;
     text-align: center;
     margin-bottom: 5px;
     font-weight: normal;
@@ -33,17 +33,9 @@
 }
 
 .validationSummaryLabel {
-    color: red;
+    color: crimson;
     text-align: center;
     margin-top: 10px;
     font-weight: normal;
     display: none;
 }
-
-/*#validationEmail {
-    display: none;
-}
-
-#validationPassword{
-    display: none;
-}*/

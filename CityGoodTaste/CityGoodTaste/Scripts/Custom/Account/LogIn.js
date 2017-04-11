@@ -4,17 +4,22 @@
         submitButton.addEventListener("click", SubmitClickHandler);
 })
 
+
+var emailMessage = "Введите почту";
+var passwordMessage = "Введите пароль";
+
+
 function SubmitClickHandler(e) {
     if (!IsEmailEntered())
     {
-        $("#validationEmail").text("Введите почту");
+        $("#validationEmail").text(emailMessage);
         $("#validationEmail").css("display", "block");        
         e.preventDefault();
     }
 
     if (!IsPasswordEntered())
     {
-        $("#validationPassword").text("Введите пароль");
+        $("#validationPassword").text(passwordMessage);
         $("#validationPassword").css("display", "block");
         e.preventDefault();
     }

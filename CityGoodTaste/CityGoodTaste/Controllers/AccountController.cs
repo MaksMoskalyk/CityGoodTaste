@@ -21,6 +21,10 @@ namespace CityGoodTaste.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private IUserDatabase userDatabaseManager = new UserDatabaseManager();
+        private string logInFailureMessage = 
+            "Пользователь не найден, проверьте правильность введенной почты и пароля";
+        private string signUpFailureMessage = 
+            "Данные введены неверно";
 
         public AccountController()
         {
@@ -76,7 +80,7 @@ namespace CityGoodTaste.Controllers
         {            
             if (!ModelState.IsValid)
             {
-                ViewData["ValidationMessage"] = "Пользователь не найден, проверьте правильность введенной почты и пароля.";
+                ViewData["ValidationMessage"] = logInFailureMessage;
                 return View(model);
             }
 
@@ -95,7 +99,7 @@ namespace CityGoodTaste.Controllers
                 case SignInStatus.Failure:
                 default:
                     //ModelState.AddModelError("", "Пользователь не найден, проверьте правильность введенной почты и пароля.");
-                    ViewData["ValidationMessage"] = "Пользователь не найден, проверьте правильность введенной почты и пароля.";
+                    ViewData["ValidationMessage"] = logInFailureMessage;
                     return View(model);
             }
         }
@@ -176,11 +180,12 @@ namespace CityGoodTaste.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
-                }
+                }                
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
+            ViewData["ValidationMessage"] = signUpFailureMessage;
             return View(model);
         }
 
