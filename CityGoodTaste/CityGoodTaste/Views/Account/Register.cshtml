@@ -51,7 +51,7 @@
         <label id="validationEmail" class="validationLabel col-md-12"></label>
         <div class="input-group col-md-12">
             <span class="input-group-addon"><i class="oi" data-glyph="envelope-closed"></i></span>
-            <input id="email" type="text" class="form-control input-md authenticationInput" name="email" placeholder="Эл. почта">
+            <input value="@Model.Email" id="email" type="text" class="form-control input-md authenticationInput" name="email" placeholder="Эл. почта">
         </div>
     </div>
 
@@ -59,7 +59,7 @@
         <label id="validationPassword" class="validationLabel col-md-12"></label>
         <div class="input-group col-md-12">
             <span class="input-group-addon"><i class="oi" data-glyph="key"></i></span>
-            <input id="password" type="password" class="form-control input-md authenticationInput" name="password" placeholder="Пароль">
+            <input value="@Model.Password" id="password" type="password" class="form-control input-md authenticationInput" name="password" placeholder="Пароль">
         </div>
     </div>
 
@@ -67,7 +67,7 @@
             <label id="validationConfirmPassword" class="validationLabel col-md-12"></label>
             <div class="input-group col-md-12">
                 <span class="input-group-addon"><i class="oi" data-glyph="key"></i></span>
-                <input id="passwordConfirm" type="password" class="form-control input-md authenticationInput" name="passwordConfirm" placeholder="Подтверждение пароля">
+                <input value="@Model.ConfirmPassword" id="passwordConfirm" type="password" class="form-control input-md authenticationInput" name="confirmPassword" placeholder="Подтверждение пароля">
             </div>
         </div>
 
@@ -88,7 +88,7 @@
             <label id="validationName" class="validationLabel col-md-12"></label>
             <div class="input-group col-md-12">
                 <span class="input-group-addon"><i class="oi" data-glyph="person"></i></span>
-                <input id="name" type="text" class="form-control input-md authenticationInput" name="name" placeholder="Имя">
+                <input value="@Model.Name" id="name" type="text" class="form-control input-md authenticationInput" name="name" placeholder="Имя">
             </div>
         </div>
 
@@ -96,7 +96,7 @@
             <label id="validationSurname" class="validationLabel col-md-12"></label>
             <div class="input-group col-md-12">
                 <span class="input-group-addon"><i class="oi" data-glyph="person"></i></span>
-                <input id="surname" type="text" class="form-control input-md authenticationInput" name="surname" placeholder="Фамилия">
+                <input value="@Model.Surname" id="surname" type="text" class="form-control input-md authenticationInput" name="surname" placeholder="Фамилия">
             </div>
         </div>
 
@@ -104,7 +104,7 @@
             <label id="validationPhone" class="validationLabel col-md-12"></label>
             <div class="input-group col-md-12">
                 <span class="input-group-addon"><i class="oi" data-glyph="phone"></i></span>
-                <input id="phone" type="text" class="form-control input-md authenticationInput" name="phone" placeholder="Телефон">
+                <input value="@Model.Phone" id="phone" type="text" class="form-control input-md authenticationInput" name="phone" placeholder="Телефон">
             </div>
         </div>
 

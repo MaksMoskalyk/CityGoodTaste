@@ -67,6 +67,7 @@ namespace CityGoodTaste.Controllers
         {
             ViewData["ValidationMessage"] = "";
             LoginViewModel model = new LoginViewModel();
+            model.RememberMe = false;
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
@@ -154,7 +155,7 @@ namespace CityGoodTaste.Controllers
         {
             ViewData["ValidationMessage"] = "";
             RegisterViewModel model = new RegisterViewModel();
-            return View();
+            return View(model);
         }
 
         //
@@ -166,7 +167,8 @@ namespace CityGoodTaste.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,
+                    Name = model.Name, Surname = model.Surname, PhoneNumber = model.Phone };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
