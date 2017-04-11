@@ -43,8 +43,19 @@ function SetCheckboxClickHandler() {
 }
 
 var SetRestRankStarts = function (restRank) {
+
     if (restRank == '0')
         return;
+    restRank = restRank.replace(',', '');
+    restRank = restRank.replace('.', '');
     $('#r' + restRank).attr('checked', true);
+    alert(restRank);
 };
 
+function reviewAddedSuccess() {
+    $('input:radio').removeAttr('checked');
+    $('#revText').val('');
+    $('#successHeader').text('Отзыв');
+    $('#successMsg').text('Благодарим Вас за отзыв.');
+    $('#successModalLink').click();
+}

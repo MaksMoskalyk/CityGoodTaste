@@ -129,6 +129,7 @@ fieldset, label
 }
 
 
+/** Food Rank   **/
 /***** CSS Magic to Highlight Stars on Hover *****/
 .A > input:checked ~ label, /* show gold star when clicked */
 .A:not(:checked) > label:hover, /* hover current star */
@@ -139,7 +140,7 @@ fieldset, label
 .A > label:hover ~ input:checked ~ label, /* lighten current selection */
 .A > input:checked ~ label:hover ~ label { color: #FFED85;  }
 
-
+/** Service Rank   **/
 /***** CSS Magic to Highlight Stars on Hover *****/
 .B > input:checked ~ label, /* show gold star when clicked */
 .B:not(:checked) > label:hover, /* hover current star */
@@ -150,7 +151,7 @@ fieldset, label
 .B > label:hover ~ input:checked ~ label, /* lighten current selection */
 .B > input:checked ~ label:hover ~ label { color: #FFED85;  } 
 
-
+/** Ambience Rank   **/
 /***** CSS Magic to Highlight Stars on Hover *****/
 .C > input:checked ~ label, /* show gold star when clicked */
 .C:not(:checked) > label:hover, /* hover current star */
@@ -160,3 +161,11 @@ fieldset, label
 .C > input:checked ~ label:hover,
 .C > label:hover ~ input:checked ~ label, /* lighten current selection */
 .C > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+/** Restaurant Rank   **/
+/***** CSS Magic to Highlight Stars on Hover *****/
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 

@@ -121,7 +121,7 @@ namespace CityGoodTaste.Controllers
             int serviceRank = Convert.ToInt32(Request.Form["ratingB"]);
             int ambienceRank = Convert.ToInt32(Request.Form["ratingC"]);
             TempData["RestId"] = restId;
-
+            ViewData["NewReviewAdded"] = true;
             manager.MakeReview(userId, restId, text, foodRank, ambienceRank, serviceRank);
             Restaurant Rest = manager.GetRestaurant(restId);
             return PartialView("~/Views/Restaurant/_ReviewsPartial.cshtml", Rest);
