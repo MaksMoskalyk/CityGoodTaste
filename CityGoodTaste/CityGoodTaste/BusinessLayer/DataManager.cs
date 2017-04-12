@@ -36,6 +36,7 @@ namespace CityGoodTaste.BusinessLayer
         void MakeReview(string userId, int restId, string text, int foodRank, int ambienceRank, int serviceRank);
         List<EventType> GetAllEventTypes();
         List<RestaurantFeature> GetAllRestaurantFeatures();
+        List<Neighborhood> GetAllNeighborhoods();
     }
 
     public class RestaurantDataManager : IRestaurantDataManager
@@ -348,6 +349,21 @@ namespace CityGoodTaste.BusinessLayer
                 }
             }
         }
+        public List<Neighborhood> GetAllNeighborhoods()
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<Neighborhood> result = context.Neighborhoods.Where(n => n.City.Id == 1).OrderBy(x => x.Name).ToList();
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Neighborhood features not found");
+                }
+            }
+        }
 
     }
 
@@ -540,21 +556,6 @@ namespace CityGoodTaste.BusinessLayer
 
         }
 
-        public List<Neighborhood> GetAllNeighborhoods()
-        {
-            using (GoodTasteContext context = new GoodTasteContext())
-            {
-                try
-                {
-                    List<Neighborhood> result = context.Neighborhoods.Where(n=> n.City.Id==1).OrderBy(x => x.Name).ToList();
-                    return result;
-                }
-                catch
-                {
-                    throw new Exception("Neighborhood features not found");
-                }
-            }
-        }
         
         public List<MealGroup> GetAllMealGroups()
         {
