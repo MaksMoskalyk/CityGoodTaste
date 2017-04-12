@@ -34,6 +34,8 @@ namespace CityGoodTaste.BusinessLayer
         List<Restaurant> GetFoundRestaurants(string searchTerm);
         List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups, string Neighborhoods);
         void MakeReview(string userId, int restId, string text, int foodRank, int ambienceRank, int serviceRank);
+        List<EventType> GetAllEventTypes();
+        List<RestaurantFeature> GetAllRestaurantFeatures();
     }
 
     public class RestaurantDataManager : IRestaurantDataManager
@@ -315,6 +317,38 @@ namespace CityGoodTaste.BusinessLayer
                 return id;
             }
         }
+        public List<EventType> GetAllEventTypes()
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<EventType> result = context.EventTypes.OrderBy(x => x.Name).ToList();
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Event types not found");
+                }
+            }
+
+        }
+        public List<RestaurantFeature> GetAllRestaurantFeatures()
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<RestaurantFeature> result = context.RestaurantFeatures.OrderBy(x => x.Name).ToList();
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Restaurant features not found");
+                }
+            }
+        }
+
     }
 
     public interface IBaseDataManager
@@ -325,9 +359,7 @@ namespace CityGoodTaste.BusinessLayer
         List<RestaurantEvent> GetListRestaurantEvents();
         List<RestaurantEvent> GetTopListRestaurantEvents();
         RestaurantShemaViewModel GetRestaurantViewModelSchema(int? id);
-        List<EventType> GetAllEventTypes();
         List<Cuisine> GetAllCuisines();
-        List<RestaurantFeature> GetAllRestaurantFeatures();
         List<MealGroup> GetAllMealGroups();
         void ReservTables(List<TableReservation> reservs);
         string GetCurrectUserId();
@@ -472,6 +504,7 @@ namespace CityGoodTaste.BusinessLayer
                 }
             }
         }
+
         public List<RestaurantEvent> GetTopListRestaurantEvents()
         {
             using (GoodTasteContext context = new GoodTasteContext())
@@ -488,22 +521,6 @@ namespace CityGoodTaste.BusinessLayer
                     throw new Exception("Events not found");
                 }
             }
-        }
-        public List<EventType> GetAllEventTypes()
-        {
-            using (GoodTasteContext context = new GoodTasteContext())
-            {
-                try
-                {
-                    List<EventType> result = context.EventTypes.OrderBy(x => x.Name).ToList();
-                    return result;
-                }
-                catch
-                {
-                    throw new Exception("Event types not found");
-                }
-            }
-
         }
 
         public List<Cuisine> GetAllCuisines()
@@ -522,21 +539,7 @@ namespace CityGoodTaste.BusinessLayer
             }
 
         }
-        public List<RestaurantFeature> GetAllRestaurantFeatures()
-        {
-            using (GoodTasteContext context = new GoodTasteContext())
-            {
-                try
-                {
-                    List<RestaurantFeature> result = context.RestaurantFeatures.OrderBy(x => x.Name).ToList();
-                    return result;
-                }
-                catch
-                {
-                    throw new Exception("Restaurant features not found");
-                }
-            }
-        }
+
         public List<Neighborhood> GetAllNeighborhoods()
         {
             using (GoodTasteContext context = new GoodTasteContext())
