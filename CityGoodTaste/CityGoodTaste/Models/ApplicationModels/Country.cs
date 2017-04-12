@@ -10,14 +10,19 @@ namespace CityGoodTaste.Models
             Cities = new List<City>();
         }
 
+        public Country(string name)
+        {
+            Name = name;
+            Cities = new List<City>();
+        }
+
+
         [Key]
         public int Id { get; set; }
-
         
         [MaxLength(50)]
         [Required]
         public string Name { get; set; }
-
 
         public virtual ICollection<City> Cities { get; set; }
     }

@@ -6,11 +6,11 @@ namespace CityGoodTaste.Models
     {
         [Key]
         public int Id { get; set; }
-
-        public virtual Meal Meal { get; set; }
-
+       
         public double Price { get; set; }
    
         public string Сurrency{ get; set; }
+
+        public virtual Meal Meal { get; set; }
     }
 }

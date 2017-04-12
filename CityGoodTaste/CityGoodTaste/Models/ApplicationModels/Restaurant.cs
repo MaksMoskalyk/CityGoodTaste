@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace CityGoodTaste.Models
 {
@@ -20,7 +20,7 @@ namespace CityGoodTaste.Models
 
         public int ZipCode { get; set; }
 
-        [MaxLength(25)]
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
         public int AverageCheck { get; set; }
@@ -28,21 +28,25 @@ namespace CityGoodTaste.Models
         [Column(TypeName = "ntext")]
         public string InformationAbout { get; set; }
 
-        public ICollection<WorkHour> WorkHours { get; set; }
-
-        public ICollection<SpecialWorkHour> SpecialWorkHours { get; set; }
+        public Map Map { get; set; }
 
         public string Photo { get; set; }
 
+        public int Floors { get; set; }
+
+
+        public ICollection<WorkHour> WorkHours { get; set; }
+
+        public ICollection<SpecialWorkHour> SpecialWorkHours { get; set; }
+       
         public virtual ICollection<RestaurantSchema> RestaurantSchemas { get; set; }
 
         public virtual City City { get; set; }
+
         public virtual Neighborhood Neighborhood { get; set; }
 
         public virtual ICollection<Cuisine> Cuisines { get; set; }
-
-        public int Floors { get; set; }
-
+       
         public virtual ICollection<Like> Likes { get; set; }
 
         public virtual RestaurantsGroup RestaurantGroup { get; set; }
@@ -51,13 +55,10 @@ namespace CityGoodTaste.Models
 
         public virtual ICollection<RestaurantReview> Reviews { get; set; }
 
-        public virtual ICollection<Menu> Menu { get; set; }
-
-        public Map Map { get; set; }
+        public virtual ICollection<Menu> Menu { get; set; }        
 
         public virtual ICollection<RestaurantEvent> RestaurantEvent { get; set; }
 
-        public virtual Administration Administration { get; set; }
-        
+        public virtual Administration Administration { get; set; }        
     }
 }

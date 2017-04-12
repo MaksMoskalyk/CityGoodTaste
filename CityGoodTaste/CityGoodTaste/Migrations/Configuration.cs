@@ -10,6 +10,7 @@ namespace CityGoodTaste.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            ContextKey = "CityGoodTaste.Models.GoodTasteContext";
         }
 
         protected override void Seed(CityGoodTaste.Models.GoodTasteContext context)
