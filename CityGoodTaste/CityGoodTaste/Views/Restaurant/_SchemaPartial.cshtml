@@ -1,0 +1,226 @@
+﻿@model CityGoodTaste.Models.ViewModels.RestaurantShemaViewModel
+
+<style>
+    .modalFix {
+        position: relative !important;
+        right: 200px !important;
+    }
+</style>
+
+
+<div class="modal-header" style="background-color:#333333; color:white">
+    <button type="button" style="color:white" class="close" data-dismiss="modal">&times;</button>
+    <h4 style="margin:0"><span style="color:white" class="oi" data-glyph="puzzle-piece"></span> Схема заведения</h4>
+    <div style="text-align:center"><h2 style="display:inline-block;  margin:0">@Html.DisplayFor(m => m.Name, new { @class = "form-control" })</h2></div>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        @Html.HiddenFor(m => Model.RestaurantId)
+        @Html.HiddenFor(m => Model.Id)
+        @Html.HiddenFor(m => Model.XLength)
+        @Html.HiddenFor(m => Model.YLength)
+        <table style="border-left:3px solid black;">
+            @for (int y = 0; y < Model.YLength; y++)
+            {
+                <tr>
+                    @for (int x = 0; x < Model.XLength; x++)
+                    {
+                        bool tdCreated = false;
+
+                        for (int i = 0; i < Model.Tables.Count; i++)
+                        {
+                            if (Model.Tables[i].X == x && Model.Tables[i].Y == y)
+                            {
+                                @Html.HiddenFor(m => Model.Tables[i].Id)
+                                @Html.HiddenFor(m => Model.Tables[i].Reserved, new { id = "reserved." + Model.Tables[i].Id })
+                                string personPath = string.Empty;
+                                string tablePath = string.Empty;
+
+                                if (Model.Tables[i].ReservedAndConfirmed == true)
+                                {
+                                    personPath = "/Content/icons/SchemaIcons/InactivePerson.png";
+                                    tablePath = "/Content/icons/SchemaIcons/InactiveTable.png";
+                                }
+                                else if (Model.Tables[i].Reserved == true)
+                                {
+                                    personPath = "/Content/icons/SchemaIcons/ActivePerson.png";
+                                    tablePath = "/Content/icons/SchemaIcons/ActiveTable.png";
+                                }
+                                else
+                                {
+                                    personPath = "/Content/icons/SchemaIcons/Person.png";
+                                    tablePath = "/Content/icons/SchemaIcons/Table.png";
+                                }
+                                <td id="@x@y" coord="@x.@y" style="width:80px;height:40px;" tableid="@Model.Tables[i].Id" reserved="@Model.Tables[i].Reserved.ToString()" reservedandconfirmed="@Model.Tables[i].ReservedAndConfirmed.ToString()">
+                                    <div id="divP.@x@y" style="top:8px; position:relative" tableid="@Model.Tables[i].Id">
+                                        <p id="P.@x@y" style="font-weight:bold" tableid="@Model.Tables[i].Id">
+                                            @Model.Tables[i].Seats
+                                            <img id="imgP.@x@y" style="width:15px; height:15px" src="@(personPath)" tableid="@Model.Tables[i].Id" />
+                                        </p>
+                                    </div>
+                                    <div id="divT.@x@y" style="top:-8px; position:relative" tableid="@Model.Tables[i].Id">
+                                        <img id="imgT.@x@y" style="width:36px; height:18px" src="@(tablePath)" alt="loading" tableid="@Model.Tables[i].Id" />
+                                    </div>
+                                </td>
+                                tdCreated = true;
+                                break;
+                            }
+                        }
+                        if (!tdCreated)
+                        {
+                            <td id="@x@y" coord="@x.@y" style="width:80px;height:40px;"></td>
+                        }
+                    }
+                </tr>
+            }
+        </table>
+
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+    $('#submitBt').click(function (event) {
+        $('#reseredTables').empty();
+        $('#closeBt').click();
+
+    });
+
+    $('td').click(function (event) {
+        event.stopPropagation();
+        var id = event.target.id;
+
+        if (id.indexOf('.') > 0)
+            id = id.substring(id.indexOf('.') + 1);
+
+        var reserved = document.getElementById(id).getAttribute('reserved');
+        if (document.getElementById(id).getAttribute('reservedandconfirmed') == "True")
+            return;
+
+        var tableId = document.getElementById('imgP.' + id).getAttribute('tableId');
+
+        if (reserved == "True") {
+            document.getElementById('imgP.' + id).src = "/Content/icons/SchemaIcons/Person.png";
+            document.getElementById('imgT.' + id).src = "/Content/icons/SchemaIcons/Table.png";
+            document.getElementById('P.' + id).style.color = "black";
+            document.getElementById(id).setAttribute('reserved', 'False');
+            document.getElementById('reserved.' + tableId).value = false;
+        } else {
+
+            document.getElementById('imgP.' + id).src = "/Content/icons/SchemaIcons/ActivePerson.png";
+            document.getElementById('imgT.' + id).src = "/Content/icons/SchemaIcons/ActiveTable.png";
+            document.getElementById('P.' + id).style.color = "green";
+            document.getElementById(id).setAttribute('reserved', 'True');
+            document.getElementById('reserved.' + tableId).value = true;
+        }
+    });
+
+    $('document').ready(createBorders());
+    function createBorders() {
+        $("[coord='0.6']").css('border-bottom', '3px solid black');
+        $('#16').css('border-bottom', '3px solid black');
+        $('#46').css('border-bottom', '3px solid black');
+        $('#47').css('border-right', '3px solid black');
+        $('#49').css('border-right', '3px solid black');
+        $('#411').css('border-right', '3px solid black');
+        $('#64').css('border-bottom', '3px solid black');
+        $('#74').css('border-bottom', '3px solid black');
+        $('#84').css('border-bottom', '3px solid black');
+        $('#94').css('border-bottom', '3px solid black');
+        $('#104').css('border-bottom', '3px solid black');
+        $('#114').css('border-bottom', '3px solid black');
+        $('#124').css('border-bottom', '3px solid black');
+        $('#134').css('border-bottom', '3px solid black');
+        $('#155').css('border-bottom', '3px solid black');
+        $('#165').css('border-bottom', '3px solid black');
+        $('#175').css('border-bottom', '3px solid black');
+        $('#185').css('border-bottom', '3px solid black');
+        $('#195').css('border-bottom', '3px solid black');
+        $('#205').css('border-bottom', '3px solid black');
+        $('#215').css('border-bottom', '3px solid black');
+        $('#156').css('border-left', '3px solid black');
+        $('#159').css('border-left', '3px solid black');
+        $('#1511').css('border-left', '3px solid black');
+        $('#00').css('border-top', '3px solid black');
+        $('#10').css('border-top', '3px solid black');
+        $('#20').css('border-top', '3px solid black');
+        $('#30').css('border-top', '3px solid black');
+        $('#40').css('border-top', '3px solid black');
+        $('#50').css('border-top', '3px solid black');
+        $('#51').css('border-right', '3px solid black');
+        $('#52').css('border-right', '3px solid black');
+        $('#53').css('border-right', '3px solid black');
+        $('#54').css('border-right', '3px solid black');
+        $('#55').css('border-right', '3px solid black');
+        $('#50').css('border-right', '3px solid black');
+        $('#144').css('border-bottom', '3px solid black');
+        $('#145').css('border-right', '3px solid black');
+        $('#216').css('border-right', '3px solid black');
+        $('#217').css('border-right', '3px solid black');
+        $('#218').css('border-right', '3px solid black');
+        $('#219').css('border-right', '3px solid black');
+        $('#2110').css('border-right', '3px solid black');
+        $('#2111').css('border-right', '3px solid black');
+        $('#011').css('border-bottom', '3px solid black');
+        $("[coord='1.11']").css('border-bottom', '3px solid black');
+        $("[coord='2.11']").css('border-bottom', '3px solid black');
+        $('#311').css('border-bottom', '3px solid black');
+        $('#411').css('border-bottom', '3px solid black');
+        $('#63').css('border-bottom', '3px solid black');
+        $('#73').css('border-bottom', '3px solid black');
+        $('#83').css('border-bottom', '3px solid black');
+        $('#93').css('border-bottom', '3px solid black');
+        $('#103').css('border-bottom', '3px solid black');
+        $('#113').css('border-bottom', '3px solid black');
+        $('#123').css('border-bottom', '3px solid black');
+        $('#133').css('border-bottom', '3px solid black');
+        $('#143').css('border-bottom', '3px solid black');
+        $('#154').css('border-left', '3px solid black');
+
+        for (var i = 7; i < 22; i++) {
+            $('#' + i + '11').css('border-bottom', '3px solid black');
+        }
+
+        $('#94').append('<p style="font:bold; font-size: 150%">B</p>');
+        $('#104').append('<p style="font:bold; font-size: 150%">A</p>');
+        $('#114').append('<p style="font:bold; font-size: 150%">R</p>');
+
+        var color = "#fcfcfc";
+        for (var x = 0; x < 6; x++) {
+            for (var y = 0; y < 12; y++) {
+                $("[coord='" + x + "." + y + "']").css('background-color', color);
+            }
+        }
+
+        for (var x = 6; x < 15; x++) {
+            for (var y = 5; y < 12; y++) {
+                $("[coord='" + x + "." + y + "']").css('background-color', color);
+            }
+        }
+
+        for (var x = 6; x < 15; x++) {
+            for (var y = 5; y < 12; y++) {
+                $("[coord='" + x + "." + y + "']").css('background-color', color);
+            }
+        }
+
+        for (var x = 15; x < 22; x++) {
+            for (var y = 6; y < 12; y++) {
+                $("[coord='" + x + "." + y + "']").css('background-color', color);
+            }
+        }
+
+        var barColor = "#ffc1c1";
+        for (var x = 6; x < 15; x++) {
+            for (var y = 4; y < 5; y++) {
+                $("[coord='" + x + "." + y + "']").css('background-color', barColor);
+            }
+        }
+
+        $('#09').append('<img style="width:36px; height:36px" src="/Content/icons/SchemaIcons/tv.png" alt="loading"/>');
+    }
+</script>

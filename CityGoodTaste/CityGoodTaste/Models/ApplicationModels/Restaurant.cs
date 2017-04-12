@@ -56,5 +56,8 @@ namespace CityGoodTaste.Models
         public Map Map { get; set; }
 
         public virtual ICollection<RestaurantEvent> RestaurantEvent { get; set; }
+
+        public virtual Administration Administration { get; set; }
+        
     }
 }

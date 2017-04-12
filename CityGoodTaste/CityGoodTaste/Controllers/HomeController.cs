@@ -47,8 +47,8 @@ namespace CityGoodTaste.Controllers
         // GET: Restaurants
         public ActionResult Index()
         {
-            RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
-            IRestaurantDataManager manager = factory.GetManager();
+            DataManagerCreator factory = new DefaultDataManagerCreator();
+            IRestaurantDataManager manager = factory.GetRestaurantDataManager();
             List<Restaurant> Restaurants = manager.GetListRestaurants();
             if(Restaurants.Count>8)
             {

@@ -45,5 +45,8 @@ namespace CityGoodTaste.Models
 
        
         public virtual ICollection<TableReservation> TableReservation { get; set; }
+
+        public virtual Administration Administration { get; set; }
+        
     }
 }
