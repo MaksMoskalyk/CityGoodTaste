@@ -14,7 +14,7 @@ namespace CityGoodTaste.Models
 
         public virtual Restaurant Restaurant { get; set; }
 
-        public virtual ICollection<Table> Tables { get; set; }
+        public virtual IList<Table> Tables { get; set; }
 
         public bool SmokingZone { get; set; }
 

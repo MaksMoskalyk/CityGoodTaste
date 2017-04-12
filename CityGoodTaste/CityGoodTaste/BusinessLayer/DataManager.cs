@@ -329,8 +329,9 @@ namespace CityGoodTaste.BusinessLayer
         List<Cuisine> GetAllCuisines();
         List<RestaurantFeature> GetAllRestaurantFeatures();
         List<MealGroup> GetAllMealGroups();
-        void ReservTables(List<TableViewModel> tables);
+        void ReservTables(List<TableReservation> reservs);
         string GetCurrectUserId();
+        ApplicationUser GetUser(string id);
         List<RestaurantEvent> SearchEvents(string searchText, string CheckEl);
         void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds);
         Menu GetRestMenu(int id);
@@ -578,6 +579,8 @@ namespace CityGoodTaste.BusinessLayer
                     RestaurantSchema Schema = Rest.RestaurantSchemas.FirstOrDefault();
                     Schema = context.RestaurantSchemas.Include(t => t.Restaurant).FirstOrDefault(t => t.Id == id);
                     Schema = context.RestaurantSchemas.Include(t => t.Tables).FirstOrDefault();
+                    Schema.Tables = context.Tables.Include(t => t.TableReservation).ToList();
+                    Schema.Tables = context.Tables.Include(t => t.Orders).ToList();
                     return Schema;
                 }
                 catch
@@ -634,25 +637,17 @@ namespace CityGoodTaste.BusinessLayer
             }
         }
 
-        public void ReservTables(List<TableViewModel> tables)
+        public void ReservTables(List<TableReservation> reservs)
         {
             using (GoodTasteContext context = new GoodTasteContext())
             {
-                ApplicationUser currentUser = context.Users.FirstOrDefault();
-                foreach (var item in tables)
+                foreach (var item in reservs)
                 {
-                    Table table = context.Tables.Find(item.Id);
-                    TableReservation dbTableReservation = (table.TableReservation.Where(x => x.Date.Date == DateTime.Now.Date).Where(x => x.User == currentUser).Where(x => x.Table == table)).FirstOrDefault();
-
-                    if (dbTableReservation != null)
-                    {
-                        dbTableReservation.Reserved = item.Reserved;
-                    }
-                    else
-                    {
-                        TableReservation reserv = new TableReservation { Date = DateTime.Now, Table = table, User = currentUser, Reserved = item.Reserved, ReservedAndConfirmed = false };
-                        context.TableReservations.Add(reserv);
-                    }
+                    Table t = context.Tables.Where(x => x.Id == item.Table.Id).FirstOrDefault();
+                    ApplicationUser u = context.Users.Find(item.User.Id);
+                    TableReservation r = new TableReservation { Date = DateTime.Now, Reserved = true, ReservedAndConfirmed = false, User = u, Table= t };
+                    t.TableReservation.Add(r);
+                    context.TableReservations.Add(r);
                 }
                 context.SaveChanges();
             }
@@ -821,6 +816,13 @@ namespace CityGoodTaste.BusinessLayer
                     return 0;
 
                 return Math.Round(rank / count,1);
+            }
+        }
+        public ApplicationUser GetUser(string id)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                return (from x in context.Users where x.Id == id select x).FirstOrDefault();
             }
         }
     }

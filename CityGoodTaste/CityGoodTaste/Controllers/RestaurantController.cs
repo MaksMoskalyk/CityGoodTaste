@@ -81,13 +81,19 @@ namespace CityGoodTaste.Controllers
         }
 
         [AjaxOnly]
-        public ActionResult _ReservedTablesPartial(Models.ViewModels.RestaurantShemaViewModel model)
+        public ActionResult _ReservedTablesPartial(RestaurantSchema model)
         {
             DataManagerCreator factory = new DefaultDataManagerCreator();
             IBaseDataManager manager = factory.GetBaseDataManager();
-            manager.ReservTables(model.Tables);
-            Restaurant Rest = manager.GetRestaurant(model.RestaurantId);
-            ViewBag.UserId = manager.GetCurrectUserId();
+            var reservs = model.Tables.ToList().Where(x => x.TableReservation[0].Reserved == true && x.TableReservation[0].User == null).Select(x => x.TableReservation).FirstOrDefault().ToList();
+            string userId = manager.GetCurrectUserId();
+            foreach (var item in reservs)
+            {
+                item.User = manager.GetUser(userId);
+            }
+            manager.ReservTables(reservs);
+            Restaurant Rest = manager.GetRestaurant(model.Restaurant.Id);
+            ViewBag.UserId = userId;
             ViewBag.SchemaId = Rest.RestaurantSchemas.FirstOrDefault().Id;
             return PartialView("~/Views/Restaurant/_ReservedTablesPartial.cshtml", Rest);
         }
@@ -278,7 +284,8 @@ namespace CityGoodTaste.Controllers
             {
                 return HttpNotFound();
             }
-            return PartialView(schema);
+            
+            return PartialView(Schema);
         }
         
         [AjaxOnly]

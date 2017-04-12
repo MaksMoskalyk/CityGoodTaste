@@ -1,82 +1,82 @@
-﻿@model CityGoodTaste.Models.ViewModels.RestaurantShemaViewModel
-
-<style>
-    .modalFix {
-        position: relative !important;
-        right: 200px !important;
-    }
-</style>
+﻿@using CityGoodTaste.Models
+@model CityGoodTaste.Models.RestaurantSchema
 
 
-<div class="modal-header" style="background-color:#333333; color:white">
-    <button type="button" style="color:white" class="close" data-dismiss="modal">&times;</button>
-    <h4 style="margin:0"><span style="color:white" class="oi" data-glyph="puzzle-piece"></span> Схема заведения</h4>
-    <div style="text-align:center"><h2 style="display:inline-block;  margin:0">@Html.DisplayFor(m => m.Name, new { @class = "form-control" })</h2></div>
-</div>
-<div class="modal-body">
-    <div class="container-fluid">
-        @Html.HiddenFor(m => Model.RestaurantId)
-        @Html.HiddenFor(m => Model.Id)
-        @Html.HiddenFor(m => Model.XLength)
-        @Html.HiddenFor(m => Model.YLength)
-        <table style="border-left:3px solid black;">
-            @for (int y = 0; y < Model.YLength; y++)
+<div class="container-fluid">
+    @Html.HiddenFor(m => Model.Restaurant.Id)
+    @Html.HiddenFor(m => Model.Id)
+    @Html.HiddenFor(m => Model.XLength)
+    @Html.HiddenFor(m => Model.YLength)
+    <table style="border-left:3px solid black;">
+        @for (int y = 0; y < Model.YLength; y++)
             {
-                <tr>
-                    @for (int x = 0; x < Model.XLength; x++)
+            <tr>
+                @for (int x = 0; x < Model.XLength; x++)
+                {
+                    bool tdCreated = false;
+
+                    for (int i = 0; i < Model.Tables.Count; i++)
                     {
-                        bool tdCreated = false;
-
-                        for (int i = 0; i < Model.Tables.Count; i++)
+                        if (Model.Tables.ToList()[i].X == x && Model.Tables.ToList()[i].Y == y)
                         {
-                            if (Model.Tables[i].X == x && Model.Tables[i].Y == y)
+                            @Html.HiddenFor(m => Model.Tables[i].Id)
+                            @Html.HiddenFor(m => Model.Tables[i].Seats)
+                            @Html.HiddenFor(m => Model.Tables[i].RestaurantSchema.Id)
+
+                            if (Model.Tables.ToList()[i].TableReservation.Count == 0)
                             {
-                                @Html.HiddenFor(m => Model.Tables[i].Id)
-                                @Html.HiddenFor(m => Model.Tables[i].Reserved, new { id = "reserved." + Model.Tables[i].Id })
-                                string personPath = string.Empty;
-                                string tablePath = string.Empty;
-
-                                if (Model.Tables[i].ReservedAndConfirmed == true)
-                                {
-                                    personPath = "/Content/icons/SchemaIcons/InactivePerson.png";
-                                    tablePath = "/Content/icons/SchemaIcons/InactiveTable.png";
-                                }
-                                else if (Model.Tables[i].Reserved == true)
-                                {
-                                    personPath = "/Content/icons/SchemaIcons/ActivePerson.png";
-                                    tablePath = "/Content/icons/SchemaIcons/ActiveTable.png";
-                                }
-                                else
-                                {
-                                    personPath = "/Content/icons/SchemaIcons/Person.png";
-                                    tablePath = "/Content/icons/SchemaIcons/Table.png";
-                                }
-                                <td id="@x@y" coord="@x.@y" style="width:80px;height:40px;" tableid="@Model.Tables[i].Id" reserved="@Model.Tables[i].Reserved.ToString()" reservedandconfirmed="@Model.Tables[i].ReservedAndConfirmed.ToString()">
-                                    <div id="divP.@x@y" style="top:8px; position:relative" tableid="@Model.Tables[i].Id">
-                                        <p id="P.@x@y" style="font-weight:bold" tableid="@Model.Tables[i].Id">
-                                            @Model.Tables[i].Seats
-                                            <img id="imgP.@x@y" style="width:15px; height:15px" src="@(personPath)" tableid="@Model.Tables[i].Id" />
-                                        </p>
-                                    </div>
-                                    <div id="divT.@x@y" style="top:-8px; position:relative" tableid="@Model.Tables[i].Id">
-                                        <img id="imgT.@x@y" style="width:36px; height:18px" src="@(tablePath)" alt="loading" tableid="@Model.Tables[i].Id" />
-                                    </div>
-                                </td>
-                                tdCreated = true;
-                                break;
+                                Model.Tables.ToList()[i].TableReservation.Add(new TableReservation { Date = DateTime.Now, Reserved = false, ReservedAndConfirmed = false, Table = Model.Tables.ToList()[i] });
                             }
-                        }
-                        if (!tdCreated)
-                        {
-                            <td id="@x@y" coord="@x.@y" style="width:80px;height:40px;"></td>
+
+                            @Html.HiddenFor(m => Model.Tables[i].TableReservation[0].Reserved, new { id = "reserved." + Model.Tables[i].Id })
+                            @Html.HiddenFor(m => Model.Tables[i].TableReservation[0].Table.Id)
+                            @Html.HiddenFor(m => Model.Tables[i].TableReservation[0].Date)
+                            string personPath = string.Empty;
+                            string tablePath = string.Empty;
+
+                            if (Model.Tables.ToList()[i].TableReservation.ToList()[0].ReservedAndConfirmed == true)
+                            {
+                                personPath = "/Content/icons/SchemaIcons/InactivePerson.png";
+                                tablePath = "/Content/icons/SchemaIcons/InactiveTable.png";
+                            }
+                            else if (Model.Tables.ToList()[i].TableReservation.ToList()[0].Reserved == true)
+                            {
+                                personPath = "/Content/icons/SchemaIcons/ActivePerson.png";
+                                tablePath = "/Content/icons/SchemaIcons/ActiveTable.png";
+                            }
+                            else
+                            {
+                                personPath = "/Content/icons/SchemaIcons/Person.png";
+                                tablePath = "/Content/icons/SchemaIcons/Table.png";
+                            }
+                            <td id="@x@y" coord="@x.@y" style="width:80px;height:40px;"
+                                tableid="@Model.Tables.ToList()[i].Id"
+                                reserved="@Model.Tables.ToList()[i].TableReservation.ToList()[0].Reserved.ToString()"
+                                reservedandconfirmed="@Model.Tables.ToList()[i].TableReservation.ToList()[0].ReservedAndConfirmed.ToString()">
+                                <div id="divP.@x@y" style="top:8px; position:relative" tableid="@Model.Tables.ToList()[i].Id">
+                                    <p id="P.@x@y" style="font-weight:bold" tableid="@Model.Tables.ToList()[i].Id">
+                                        @Model.Tables.ToList()[i].Seats
+                                        <img id="imgP.@x@y" style="width:15px; height:15px" src="@(personPath)" tableid="@Model.Tables.ToList()[i].Id" />
+                                    </p>
+                                </div>
+                                <div id="divT.@x@y" style="top:-8px; position:relative" tableid="@Model.Tables.ToList()[i].Id">
+                                    <img id="imgT.@x@y" style="width:36px; height:18px" src="@(tablePath)" alt="loading" tableid="@Model.Tables.ToList()[i].Id" />
+                                </div>
+                            </td>
+                            tdCreated = true;
+                            break;
                         }
                     }
-                </tr>
-            }
-        </table>
-
-    </div>
+                    if (!tdCreated)
+                    {
+                        <td id="@x@y" coord="@x.@y" style="width:80px;height:40px;"></td>
+                    }
+                }
+            </tr>
+        }
+    </table>
 </div>
+
 
 
 

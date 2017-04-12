@@ -18,6 +18,6 @@ namespace CityGoodTaste.Models
         public int X { get; set; }
         public int Y { get; set; }
 
-        public virtual ICollection<TableReservation> TableReservation { get; set; }
+        public virtual IList<TableReservation> TableReservation { get; set; }
     }
 }
