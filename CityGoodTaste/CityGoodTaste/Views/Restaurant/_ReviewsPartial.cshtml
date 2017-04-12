@@ -7,16 +7,17 @@
         <div class="row">
             <div class="col-sm-12">
                 <div>
-                    <table style="border-spacing: 5px 5px; border-collapse:unset">
+                    <table style="border-spacing: 2px 3px; border-collapse:unset">
                         <tr>
-                            <td class="well" style="border-radius:20px; padding:10px;">
+                            <td class="well" style="border-radius:15px; padding:10px; padding-bottom:0px; background-color:#fcfcfc">
                                 <img src="https://placehold.it/190x190?text=@item.User.Name[0]" class="img-circle" width="90" height="90" alt="Avatar">
                                 <br />
-                                <h4 style="text-align:center">@item.User.Name</h4>
+                                <h5 style="text-align:center"><span style="font-weight:600; color:#808080">@item.User.Name</span></h5>
                             </td>
-                            <td class="well" style="width:100%; border-radius:20px;padding:10px; vertical-align:top">
-                                <p><span class="glyphicon glyphicon-time"> @item.Date.ToString()</span></p>
-                                <p>@item.Text</p>
+                            <td class="well" style="width:100%; border-radius:10px;padding:10px; vertical-align:top; background-color:#fcfcfc">
+                                <div style="text-align:right; margin-bottom:5px; color:#808080; font-size:smaller">@item.Date.Date.ToShortDateString().ToString() @item.Date.Hour.ToString():@item.Date.Minute.ToString()</div>
+                                <div style="padding-left:10px;font-size:medium">@item.Text</div>
+
                             </td>
                         </tr>
                     </table>

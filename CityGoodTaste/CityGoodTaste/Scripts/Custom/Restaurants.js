@@ -6,6 +6,8 @@
 
     PrevenUserClickRestRank();
 
+    CheckReviewText();
+
 })
 
 function PrevenUserClickRestRank() {
@@ -49,7 +51,6 @@ var SetRestRankStarts = function (restRank) {
     restRank = restRank.replace(',', '');
     restRank = restRank.replace('.', '');
     $('#r' + restRank).attr('checked', true);
-    alert(restRank);
 };
 
 function reviewAddedSuccess() {
@@ -58,4 +59,23 @@ function reviewAddedSuccess() {
     $('#successHeader').text('Отзыв');
     $('#successMsg').text('Благодарим Вас за отзыв.');
     $('#successModalLink').click();
+}
+
+
+function reviewAddedFailure() {
+    $('#failureHeader').text('Ошибка');
+    $('#failureMsg').text('Возможно, вы пытались отравить пустое сообщение.');
+    $('#errorModalLink').click();
+}
+
+function CheckReviewText() {
+    function isEmptyOrSpaces(str) {
+        return str.length==0 || str.match(/^ *$/) !== null;
+    }
+    $('#makeReviewBt').click(function () {
+        if (isEmptyOrSpaces($('#revText').val())) {
+            reviewAddedFailure();
+            return false;
+        }
+    });
 }

@@ -271,7 +271,7 @@
                                 <div>
                                     <table style="border-spacing: 5px 5px; border-collapse:unset; width:100%;">
                                         <tr>
-                                            <td class="well" style="width:100%; border-radius:5px;padding-left:100px; padding-top:0; padding-bottom:0; vertical-align:top; background-color:#fefefe">
+                                            <td class="well" style="width:100%; border-radius:3px; padding-left:10%; padding-top:0; padding-bottom:0; vertical-align:top; background-color:#fefefe;  border:1px solid #ffe9e9">
                                                 <div class="row">
                                                     <div class="col-sm-10">
                                                         <table>
@@ -303,12 +303,12 @@
                                     </table>
                                 </div>
                     @Html.Partial("_ReviewsPartial", Model)
-                    @using (Ajax.BeginForm("MakeReview", new { id = "ReviewForm" }, new AjaxOptions { UpdateTargetId = "reviewsContent", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnSuccess = "reviewAddedSuccess" }))
+                    @using (Ajax.BeginForm("MakeReview", new { id = "ReviewForm" }, new AjaxOptions { UpdateTargetId = "reviewsContent", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnSuccess = "reviewAddedSuccess", OnFailure = "reviewAddedFailure" }))
                     {
                         <div>
                             <table style="border-spacing: 5px 5px; border-collapse:unset; width:100%">
                                 <tr>
-                                    <td class="well" style="width:100%; border-radius:5px;padding:10px; vertical-align:top">
+                                    <td class="well" style="width:100%; border-radius:5px;padding:10px; vertical-align:top;  background-color:#fefefe">
                                         <div class="form-group">
                                             <textarea id="revText" style="width:100%" name="reviewText" cols="40" rows="5"></textarea>
                                             <table>
@@ -365,18 +365,14 @@
                                                         </fieldset>
                                                     </td>
                                                 </tr>
-                                            </table>
-                                            
+                                            </table>                                            
                                             <button id="makeReviewBt" type="submit" class="btn btn-success btn-block">Оставить отзыв</button>
                                         </div>
                                     </td>
                                 </tr>
                             </table>
                         </div>
-
                     }
-
-                        
                     </div>
                 </div>
             </div>
@@ -486,12 +482,13 @@
 <div class="modal fade" id="errorModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
-        <div class="modal-content" style="width:200px">
+        <div class="modal-content" style="width:300px">
             <div class="modal-header" style="background-color:#c34b4b; color:white">
-                <span style="color:white">Данные не заполнены</span>
+                <span id="failureHeader" style="color:white">Данные не заполнены</span>
                 <button id="closeModalError" type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div id="confirmReservModalBody" class="modal-body" style="padding:40px 50px;">
+            <div class="modal-body" style="padding:10px 10px;">
+                <p id="failureMsg">Ваша бронь подтверждена, ждем вас.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success btn-default pull-left" data-dismiss="modal">Ок</button>
@@ -509,11 +506,11 @@
                 <span id="successHeader" style="color:white">Бронь прошла успешно</span>
                 <button id="closeModalSuccess" type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div id="confirmReservModalBody" class="modal-body" style="padding:40px 50px;">
+            <div id="confirmReservModalBody" class="modal-body" style="padding:10px 10px;">
                 <p id="successMsg">Ваша бронь подтверждена, ждем вас.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-default pull-right" data-dismiss="modal">Ок</button>
+                <button type="button" class="btn btn-success btn-default pull-left" data-dismiss="modal">Ок</button>
             </div>
         </div>
     </div>

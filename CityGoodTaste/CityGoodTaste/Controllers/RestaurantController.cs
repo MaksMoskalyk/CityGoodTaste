@@ -111,10 +111,12 @@ namespace CityGoodTaste.Controllers
 
         [AjaxOnly]
         public ActionResult MakeReview()
-        {
+        {        
             RestaurantDataManagerCreator factory = new DefaultRestaurantDataManagerCreator();
             IRestaurantDataManager manager = factory.GetManager();
             string text = Request.Form["reviewText"];
+            if(string.IsNullOrEmpty(text)||string.IsNullOrWhiteSpace(text))
+                return Json(new { success = false, responseText = "The attached file is not supported." }, JsonRequestBehavior.AllowGet);
             string userId =  manager.GetCurrectUserId();
             int restId=Convert.ToInt32(TempData["RestId"]);
             int foodRank = Convert.ToInt32(Request.Form["ratingA"]);
