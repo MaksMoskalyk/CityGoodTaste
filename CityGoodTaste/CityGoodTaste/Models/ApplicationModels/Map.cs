@@ -4,9 +4,8 @@ namespace CityGoodTaste.Models
 {
     public class Map
     {
-        public Map()
-        {
-        }
+        public Map() {}
+
         public Map(double latitude, double longitude, int zoom)
         {
             Latitude = latitude;
@@ -14,15 +13,13 @@ namespace CityGoodTaste.Models
             Zoom = zoom;
         }
 
+   
         [Key]
         public int id { get; set; }
 
-
         public double Latitude { get; set; }
 
-
         public double Longitude { get; set; }
-
 
         public int Zoom { get; set; }
     }

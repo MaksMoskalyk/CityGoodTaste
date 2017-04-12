@@ -1,16 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace CityGoodTaste.Models
 {
     public class Currency
     {
+        public Currency() { }
+
+        public Currency(string name)
+        {
+            Name = name;
+        }
+
+
         [Key]
         public int Id { get; set; }
-
 
         [MaxLength(50)]
         [Required]
@@ -18,7 +22,7 @@ namespace CityGoodTaste.Models
 
         [MaxLength(10)]
         [Required]
-        public string sing { get; set; }
+        public string Sing { get; set; }
         
         ICollection<Meal> Meal { get; set; }
     }

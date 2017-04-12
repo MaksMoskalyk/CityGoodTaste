@@ -7,8 +7,9 @@ namespace CityGoodTaste.Models
     {
         [Key]
         public int Id { get; set; }
-        public virtual ICollection<Restaurant> Restaurants { get; set; }
-        public virtual ICollection<ApplicationUser> Admins { get; set; }
 
+        public virtual ICollection<Restaurant> Restaurants { get; set; }
+
+        public virtual ICollection<ApplicationUser> Admins { get; set; }
     }
 }

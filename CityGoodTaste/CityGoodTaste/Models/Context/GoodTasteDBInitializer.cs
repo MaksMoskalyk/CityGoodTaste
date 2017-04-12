@@ -6,7 +6,7 @@ using System;
 
 namespace CityGoodTaste.Models
 {
-    public class GoodTasteDBInitializer :CreateDatabaseIfNotExists<GoodTasteContext>
+    public class GoodTasteDBInitializer : CreateDatabaseIfNotExists<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {
@@ -363,7 +363,7 @@ namespace CityGoodTaste.Models
             context.Cuisines.Add(cuisine51);
             context.Cuisines.Add(cuisine52);
             context.Cuisines.Add(cuisine53);
-            Currency crnc = new Currency() {Name= "Hryvnia", sing= "₴" };
+            Currency crnc = new Currency() {Name= "Hryvnia", Sing= "₴" };
 
             Meal ml1 = new Meal()
             {

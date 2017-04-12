@@ -5,6 +5,14 @@ namespace CityGoodTaste.Models
 {
     public class RestaurantsGroup
     {
+        public RestaurantsGroup() { }
+
+        public RestaurantsGroup(string name)
+        {
+            Name = name;
+        }
+
+
         [Key]
         public int Id { get; set; }
 

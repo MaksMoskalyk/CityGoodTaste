@@ -5,16 +5,16 @@ namespace CityGoodTaste.Models
 {
     public class MealGroup
     {
+        public MealGroup() {}
+
         public MealGroup(string name)
         {
             Name = name;
         }
-        public MealGroup()
-        {
-        }
+        
+
         [Key]
         public int Id { get; set; }
-
 
         [MaxLength(50)]
         [Required]
@@ -22,7 +22,6 @@ namespace CityGoodTaste.Models
 
 
         public virtual ICollection<Meal> Meals { get; set; }
-
 
         public virtual Menu Menu { get; set; }
     }
