@@ -6,8 +6,46 @@
 }
 
 <h2>Index</h2>
-
+@{
+    CityGoodTaste.Models.RestaurantSchema schemaModel = Model.Restaurants.FirstOrDefault().RestaurantSchemas.FirstOrDefault();
+} 
 <div class="container">
-    @Html.Partial("~/Views/Restaurant/_SchemaPartial.cshtml", Model.Restaurants.FirstOrDefault().RestaurantSchemas.FirstOrDefault());
+    <div class="row">
+        <div class="col-sm-8">@Html.Partial("~/Views/Restaurant/_SchemaPartial.cshtml", schemaModel)</div>
+        <div class="col-sm-4">    
+            <div class="list-group">
+                <a href="#" class="list-group-item active">Текущие резервы</a>
+                @foreach (var table in schemaModel.Tables)
+                {
+                    var reserv = table.TableReservation.FirstOrDefault();
+                    if (reserv.Reserved == true)
+                    {
+                        <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item">Имя: @reserv.User.UserName | Подтверждено: @reserv.ReservedAndConfirmed</a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        HighlightTableListClick();
+    });
+
+    function HighlightTableListClick() {
+        $("a[tablelistId]").click(function (event) {
+            var tableId = $(this).attr('tablelistId');
+            $('td[selected]').css("background-color", '#fcfcfc');
+            $('td[selected]').removeAttr('selected');
+            $('td[tableid="' + tableId + '"]').css("background-color", '#fcffbc');
+            $('td[tableid="' + tableId + '"]').attr("selected", "selected");
+        });
+
+
+
+    };
+
+
+</script>
 
