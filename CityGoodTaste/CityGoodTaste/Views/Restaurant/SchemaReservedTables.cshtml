@@ -33,10 +33,38 @@
 </div>
 }
 
-
 <script>
     $('#submitBt').click(function (event) {
         $('#reseredTables').empty();
         $('#closeBt').click();
+    });
+
+    $('td').click(function (event) {
+        event.stopPropagation();
+        var id = event.target.id;
+
+        if (id.indexOf('.') > 0)
+            id = id.substring(id.indexOf('.') + 1);
+
+        var reserved = document.getElementById(id).getAttribute('reserved');
+        if (document.getElementById(id).getAttribute('reservedandconfirmed') == "True")
+            return;
+
+        var tableId = document.getElementById('imgP.' + id).getAttribute('tableId');
+
+        if (reserved == "True") {
+            document.getElementById('imgP.' + id).src = "/Content/icons/SchemaIcons/Person.png";
+            document.getElementById('imgT.' + id).src = "/Content/icons/SchemaIcons/Table.png";
+            document.getElementById('P.' + id).style.color = "black";
+            document.getElementById(id).setAttribute('reserved', 'False');
+            document.getElementById('reserved.' + tableId).value = false;
+        } else {
+
+            document.getElementById('imgP.' + id).src = "/Content/icons/SchemaIcons/ActivePerson.png";
+            document.getElementById('imgT.' + id).src = "/Content/icons/SchemaIcons/ActiveTable.png";
+            document.getElementById('P.' + id).style.color = "green";
+            document.getElementById(id).setAttribute('reserved', 'True');
+            document.getElementById('reserved.' + tableId).value = true;
+        }
     });
 </script>

@@ -5,6 +5,14 @@ namespace CityGoodTaste.Models
 {
     public class RestaurantFeature
     {
+        public RestaurantFeature() { }
+
+        public RestaurantFeature(string name)
+        {
+            Name = name;
+        }
+
+
         [Key]
         public int Id { get; set; }
 
@@ -14,8 +22,6 @@ namespace CityGoodTaste.Models
 
         public byte[] Icon { get; set; }
 
-        public virtual ICollection<Restaurant> Restaurants { get; set; }
-
-        
+        public virtual ICollection<Restaurant> Restaurants { get; set; }       
     }
 }

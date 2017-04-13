@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace CityGoodTaste.Models
 {
@@ -23,6 +24,7 @@ namespace CityGoodTaste.Models
             InitializeR8(context);
             InitializeR9(context);
             InitializeR10(context);
+            InitializeRestaurantAdministration(context);
             base.Seed(context);
         }
 
@@ -366,7 +368,7 @@ namespace CityGoodTaste.Models
             context.Cuisines.Add(cuisine51);
             context.Cuisines.Add(cuisine52);
             context.Cuisines.Add(cuisine53);
-            Currency crnc = new Currency() {Name= "Hryvnia", sing= "₴" };
+            Currency crnc = new Currency() {Name= "Hryvnia", Sing= "₴" };
 
             Meal ml1 = new Meal()
             {
@@ -1247,6 +1249,19 @@ namespace CityGoodTaste.Models
                 userManager.AddToRole(admin.Id, role1.Name);
                 userManager.AddToRole(admin.Id, role2.Name);
             }
+        }
+
+        private void InitializeRestaurantAdministration(GoodTasteContext context)
+        {
+            var rest = context.Restaurants.Where(x => x.Name == "Unit").FirstOrDefault();
+            var user = context.Users.Where(x => x.UserName == "admin").FirstOrDefault();
+            Administration administration = new Administration();
+            administration.Restaurants = new List<Restaurant>();
+            administration.Admins = new List<ApplicationUser>();
+            administration.Restaurants.Add(rest);
+            administration.Admins.Add(user);
+            context.Administrations.Add(administration);
+            context.SaveChanges();
         }
     }
 }

@@ -8,10 +8,8 @@ namespace CityGoodTaste.Models
 {
     public class RestaurantEvent
     {
-        public RestaurantEvent()
-        {
+        public RestaurantEvent() {}
 
-        }
         public RestaurantEvent(string name, string description, DateTime startDate, DateTime endDate, Restaurant restaurant)
         {
             Name = name;
@@ -20,6 +18,7 @@ namespace CityGoodTaste.Models
             EndDate = endDate;
             Restaurant = restaurant;
         }
+
 
         [Key]
         public int Id { get; set; }
@@ -38,9 +37,11 @@ namespace CityGoodTaste.Models
         [Required]
         public DateTime EndDate { get; set; }
 
+        public string Photo { get; set; }
+
+
         public virtual Restaurant Restaurant { get; set; }
 
-        public virtual ICollection<EventType> EventTypes { get; set; }
-        public string Photo { get; set; }
+        public virtual ICollection<EventType> EventTypes { get; set; }        
     }
 }

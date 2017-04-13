@@ -1,13 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace CityGoodTaste.Models
 {
     public class Neighborhood
     {
+        public Neighborhood() { }
+
+        public Neighborhood(string name)
+        {
+            Name = name;
+        }
+
+
         [Key]
         public int Id { get; set; }
 
@@ -15,7 +20,9 @@ namespace CityGoodTaste.Models
         [Required]
         public string Name { get; set; }
 
+
         public virtual City City { get; set; }
+
         public virtual ICollection<Restaurant> Restaurants { get; set; }
     }
 }
