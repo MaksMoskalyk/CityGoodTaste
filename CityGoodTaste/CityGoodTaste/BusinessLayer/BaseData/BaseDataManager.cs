@@ -168,7 +168,7 @@ namespace CityGoodTaste.BusinessLayer
                     RestaurantSchema Schema = Rest.RestaurantSchemas.FirstOrDefault();
                     Schema = context.RestaurantSchemas.Include(t => t.Restaurant).FirstOrDefault(t => t.Id == id);
                     Schema = context.RestaurantSchemas.Include(t => t.Tables).FirstOrDefault();
-                    Schema.Tables = context.Tables.Include(t => t.TableReservation).ToList();
+                    Schema.Tables = context.Tables.Include(t => t.TableReservation.Select(x=>x.User)).ToList();
                     Schema.Tables = context.Tables.Include(t => t.Orders).ToList();
                     return Schema;
                 }
@@ -237,6 +237,19 @@ namespace CityGoodTaste.BusinessLayer
                     TableReservation r = new TableReservation { Date = DateTime.Now, Reserved = true, ReservedAndConfirmed = false, User = u, Table = t };
                     t.TableReservation.Add(r);
                     context.TableReservations.Add(r);
+                }
+                context.SaveChanges();
+            }
+        }
+
+        public void RemoveReserv(List<TableReservation> reservs)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                foreach (var item in reservs)
+                {
+                    TableReservation remove = context.TableReservations.Find(item.Id);
+                    context.TableReservations.Remove(remove);
                 }
                 context.SaveChanges();
             }

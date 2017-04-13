@@ -168,6 +168,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BusinessLayer\Account\IUserDatabase.cs" />
+    <Compile Include="BusinessLayer\AdministrationData\AdministrationDataManager.cs" />
+    <Compile Include="BusinessLayer\AdministrationData\IAdministrationDataManager.cs" />
     <Compile Include="BusinessLayer\BaseData\BaseDataManager.cs" />
     <Compile Include="BusinessLayer\Account\UserDatabaseManager.cs" />
     <Compile Include="BusinessLayer\DataManagerCreator.cs" />
@@ -3273,6 +3275,7 @@
     <Content Include="Scripts\Custom\Localization\datepicker-RUS.js" />
     <Content Include="Scripts\Custom\Localization\datepicker-UKR.js" />
     <Content Include="Scripts\Custom\Account\SignUp.js" />
+    <Content Include="Scripts\Custom\CreateSchema.js" />
     <Content Include="Scripts\Custom\_Layout.js" />
     <Content Include="Scripts\Default\Angular\angular-mocks.js" />
     <Content Include="Scripts\Default\Angular\angular.js" />
@@ -3352,8 +3355,11 @@
     <Content Include="Views\Restaurant\ConfirmReserve.cshtml" />
     <Content Include="Views\Restaurant\ConfirmReserveAddMeal.cshtml" />
     <Content Include="Views\Restaurant\_ReviewsPartial.cshtml" />
-    <Content Include="Views\Administration\Index.cshtml" />
     <Content Include="Views\Restaurant\_SchemaPartial.cshtml" />
+    <Content Include="Views\Administration\Create.cshtml" />
+    <Content Include="Views\Administration\Delete.cshtml" />
+    <Content Include="Views\Administration\Edit.cshtml" />
+    <Content Include="Views\Administration\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -24,5 +24,6 @@ namespace CityGoodTaste.BusinessLayer
         int GetServiceRank(int? restId);
         int GetAmbienceRank(int? restId);
         double GetRestaurantRank(int? restId);
+        void RemoveReserv(List<TableReservation> reservs);
     }
 }

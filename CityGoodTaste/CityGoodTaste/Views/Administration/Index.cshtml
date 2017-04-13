@@ -1,9 +1,13 @@
-﻿@model CityGoodTaste.Models.Restaurant
+﻿@model CityGoodTaste.Models.Administration
+
 @{
-    ViewBag.Title = "Administration Workspace";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
 
-@Html.Partial("_SchemaPartial")
+<div class="container">
+    @Html.Partial("~/Views/Restaurant/_SchemaPartial.cshtml", Model.Restaurants.FirstOrDefault().RestaurantSchemas.FirstOrDefault());
+</div>
+

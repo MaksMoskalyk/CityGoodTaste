@@ -5,6 +5,8 @@
         public abstract IBaseDataManager GetBaseDataManager();
 
         public abstract IRestaurantDataManager GetRestaurantDataManager();
+
+        public abstract IAdministrationDataManager GetAdministrationDataManager();
     }
 
 
@@ -18,6 +20,11 @@
         public override IRestaurantDataManager GetRestaurantDataManager()
         {
             return new RestaurantDataManager();
+        }
+
+        public override IAdministrationDataManager GetAdministrationDataManager()
+        {
+            return new AdministrationDataManager();
         }
     }
 }

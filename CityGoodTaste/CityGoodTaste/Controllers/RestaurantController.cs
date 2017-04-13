@@ -85,13 +85,23 @@ namespace CityGoodTaste.Controllers
         {
             DataManagerCreator factory = new DefaultDataManagerCreator();
             IBaseDataManager manager = factory.GetBaseDataManager();
-            var reservs = model.Tables.ToList().Where(x => x.TableReservation[0].Reserved == true && x.TableReservation[0].User == null).Select(x => x.TableReservation).FirstOrDefault().ToList();
+            var addReservs = (from x in model.Tables
+                          from r in x.TableReservation
+                          where r.Reserved == true && r.ReservedAndConfirmed == false && r.Id==0
+                          select r).ToList();
             string userId = manager.GetCurrectUserId();
-            foreach (var item in reservs)
+            foreach (var item in addReservs)
             {
                 item.User = manager.GetUser(userId);
             }
-            manager.ReservTables(reservs);
+            manager.ReservTables(addReservs);
+
+            var removeReserv = (from x in model.Tables
+                            from r in x.TableReservation
+                            where r.Reserved == false && r.ReservedAndConfirmed == false && r.Id>0
+                            select r).ToList();
+            manager.RemoveReserv(removeReserv);        
+
             Restaurant Rest = manager.GetRestaurant(model.Restaurant.Id);
             ViewBag.UserId = userId;
             ViewBag.SchemaId = Rest.RestaurantSchemas.FirstOrDefault().Id;
