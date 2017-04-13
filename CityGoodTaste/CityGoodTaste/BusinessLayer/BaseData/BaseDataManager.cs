@@ -42,7 +42,7 @@ namespace CityGoodTaste.BusinessLayer
                 }
                 catch
                 {
-                    throw new Exception(CityGoodTaste.Resources.Resource.ErNotFundRest);
+                    throw new Exception("");
                 }
             }
 
