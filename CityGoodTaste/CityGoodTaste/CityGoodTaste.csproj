@@ -168,8 +168,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BusinessLayer\Account\IUserDatabase.cs" />
-    <Compile Include="BusinessLayer\DataManager.cs" />
+    <Compile Include="BusinessLayer\BaseData\BaseDataManager.cs" />
     <Compile Include="BusinessLayer\Account\UserDatabaseManager.cs" />
+    <Compile Include="BusinessLayer\DataManagerCreator.cs" />
+    <Compile Include="BusinessLayer\BaseData\IBaseDataManager.cs" />
+    <Compile Include="BusinessLayer\RestaurantData\IRestaurantDataManager.cs" />
+    <Compile Include="BusinessLayer\RestaurantData\RestaurantDataManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
