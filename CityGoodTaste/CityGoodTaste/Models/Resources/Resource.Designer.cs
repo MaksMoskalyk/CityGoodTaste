@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CityGoodTaste.Resources {
+namespace CityGoodTaste.Models.Resources {
     using System;
     
     

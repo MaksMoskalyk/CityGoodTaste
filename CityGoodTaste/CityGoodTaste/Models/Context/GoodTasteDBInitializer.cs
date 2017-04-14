@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace CityGoodTaste.Models
 {
-    public class GoodTasteDBInitializer : CreateDatabaseIfNotExists<GoodTasteContext>
+    public class GoodTasteDBInitializer :DropCreateDatabaseAlways<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {
@@ -70,7 +70,7 @@ namespace CityGoodTaste.Models
                  RestaurantGroup= restaurantsGroup,
                 Neighborhood=n3
             };
-
+            //"Европейская, Немецкая, Украинская"
             r.Photo = "/Img/UnitMain.jpg";
             RestaurantFeature f1 = new RestaurantFeature { Name = "WiFi" };
             RestaurantFeature f2 = new RestaurantFeature { Name = "Завтраки" };
@@ -313,6 +313,8 @@ namespace CityGoodTaste.Models
             Cuisine cuisine51 = new Cuisine() { Name = "Чешская" };
             Cuisine cuisine52 = new Cuisine() { Name = "Шотландская" };
             Cuisine cuisine53 = new Cuisine() { Name = "Японская" };
+            Cuisine cuisine54= new Cuisine() { Name = "Одесская" };
+            
             context.Cuisines.Add(cuisine1);
             context.Cuisines.Add(cuisine2);
             context.Cuisines.Add(cuisine3);
@@ -348,6 +350,7 @@ namespace CityGoodTaste.Models
             context.Cuisines.Add(cuisine34);
             context.Cuisines.Add(cuisine35);
             context.Cuisines.Add(cuisine36);
+            context.Cuisines.Add(cuisine54);
             context.Cuisines.Add(cuisine37);
             context.Cuisines.Add(cuisine38);
             context.Cuisines.Add(cuisine39);
@@ -988,7 +991,7 @@ namespace CityGoodTaste.Models
                 RestaurantGroup = restaurantsGroup,
                 Photo = "/Img/Olio.jpg"
             };
-
+            //Итальянская https://oliopizza.com.ua/about/
             r.RestaurantFeatures = new List<RestaurantFeature>();
             r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
 
@@ -1002,7 +1005,7 @@ namespace CityGoodTaste.Models
             Restaurant r = new Restaurant
             {
                 Name = "Бернардацци",
-                Address = "ул. Бунина, 15 ",
+                Address = "ул. Бунина, 15",
                 ZipCode = 95009,
                 AverageCheck = 400,
                 Floors = 2,
@@ -1011,7 +1014,7 @@ namespace CityGoodTaste.Models
                 Photo = "/Img/bernardaci.png",
                 RestaurantGroup = restaurantsGroup
             };
-
+            //http://od.vgorode.ua/reference/kafe_bary_restorany/108917-bernardatstsy-restoran
             r.RestaurantFeatures = new List<RestaurantFeature>();
             r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(2));
 
@@ -1024,7 +1027,7 @@ namespace CityGoodTaste.Models
             Restaurant r = new Restaurant
             {
                 Name = "Pomodoro",
-                Address = "Акад. Глушко проспект, д. 14/7",
+                Address = "Акад. Глушко проспект, 14/7",
                 ZipCode = 95009,
                 AverageCheck = 150,
                 Floors = 2,
@@ -1033,7 +1036,7 @@ namespace CityGoodTaste.Models
                 RestaurantGroup = restaurantsGroup,
                 Photo = "/Img/pomadoro.png"
             };
-
+            //http://pomodoro.od.ua/restaurant/1
             r.RestaurantFeatures = new List<RestaurantFeature>();
             r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(2));
 
@@ -1057,7 +1060,7 @@ namespace CityGoodTaste.Models
                 RestaurantGroup = restaurantsGroup,
                 Photo = "/Img/2karla.png"
             };
-
+            //http://eatsmart.ua/odessa/restoran/5978-Bodega-2Karla
             r.RestaurantFeatures = new List<RestaurantFeature>();
             r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
             context.Restaurants.Add(r);
@@ -1069,7 +1072,7 @@ namespace CityGoodTaste.Models
             Restaurant r = new Restaurant
             {
                 Name = "Jardin",
-                Address = "Городской сад",
+                Address = "ул. Гаванная, 10",
                 ZipCode = 95009,
                 AverageCheck = 300,
                 Floors = 1,
@@ -1078,7 +1081,8 @@ namespace CityGoodTaste.Models
                 RestaurantGroup = restaurantsGroup,
                 Photo = "/Img/jardin.png"
             };
-
+            //https://www.tripadvisor.ru/Restaurant_Review-g295368-d3329997-Reviews-Jardin-Odessa_Odessa_Oblast.html
+            //http://topclub.ua/odessa/restaurant/jardin-gavanaya.html
             r.RestaurantFeatures = new List<RestaurantFeature>();
             r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
             context.Restaurants.Add(r);
@@ -1099,7 +1103,7 @@ namespace CityGoodTaste.Models
                 RestaurantGroup = restaurantsGroup,
                 Photo = "/Img/sh.jpg"
             };
-
+            //http://topclub.ua/odessa/restaurant/stejkhaus_myaso_i_vino.html
             r.RestaurantFeatures = new List<RestaurantFeature>();
             r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
             
@@ -1112,7 +1116,7 @@ namespace CityGoodTaste.Models
             Restaurant r = new Restaurant
             {
                 Name = "Тавернетта",
-                Address = "ул. Екатерининская, д. 45",
+                Address = "ул. Екатерининская, 45",
                 ZipCode = 95003,
                 AverageCheck = 300,
                 Floors = 1,
@@ -1121,7 +1125,7 @@ namespace CityGoodTaste.Models
                 RestaurantGroup = restaurantsGroup,
                 Photo = "/Img/tav.png"
             };
-
+            //https://2gis.ua/odessa/firm/1970853118469591?queryState=center%2F30.738072%2C46.457635%2Fzoom%2F17
             context.Restaurants.Add(r);
             context.SaveChanges();
         }
@@ -1131,7 +1135,7 @@ namespace CityGoodTaste.Models
             Restaurant r = new Restaurant
             {
                 Name = "Фрателли",
-                Address = "ул. Греческая, д. 17",
+                Address = "ул. Греческая, 17",
                 ZipCode = 65026,
                 AverageCheck = 150,
                 Floors = 1,
@@ -1140,7 +1144,7 @@ namespace CityGoodTaste.Models
                 RestaurantGroup = restaurantsGroup,
                 Photo = "/Img/frat.png"
             };
-
+            //http://topclub.ua/odessa/restaurant/fratelli.html
             r.RestaurantFeatures = new List<RestaurantFeature>();
             r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
 
@@ -1165,7 +1169,7 @@ namespace CityGoodTaste.Models
 
             r.RestaurantFeatures = new List<RestaurantFeature>();
             r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
-
+            //http://od.vgorode.ua/reference/restorany/100451-dacha
             context.Restaurants.Add(r);
             context.SaveChanges();
         }
@@ -1175,16 +1179,16 @@ namespace CityGoodTaste.Models
             Restaurant r = new Restaurant
             {
                 Name = "Grand Prix",
-                Address = "ул. Бунина, д. 24",
+                Address = "ул. Бунина, 24",
                 ZipCode = 65026,
-                AverageCheck = 400,
+                AverageCheck = 350,
                 Floors = 2,
                 PhoneNumber = "+380 48 785 0701",
                 InformationAbout = "",
                 RestaurantGroup = restaurantsGroup,
                 Photo = "/Img/grand.png"
             };
-
+            //http://topclub.ua/odessa/restaurant/grand-prix.html
             r.RestaurantFeatures = new List<RestaurantFeature>();
             r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
 
@@ -1197,7 +1201,7 @@ namespace CityGoodTaste.Models
             Restaurant r = new Restaurant
             {
                 Name = "Баффало 99",
-                Address = "ул. Ришельевская, д. 7",
+                Address = "ул. Ришельевская, 7",
                 ZipCode = 65014,
                 AverageCheck = 300,
                 Floors = 1,
@@ -1206,7 +1210,7 @@ namespace CityGoodTaste.Models
                 RestaurantGroup = restaurantsGroup,
                 Photo = "/Img/buf.png"
             };
-
+            //https://www.tripadvisor.ru/Restaurant_Review-g295368-d4469988-Reviews-Buffalo_99-Odessa_Odessa_Oblast.html
             r.RestaurantFeatures = new List<RestaurantFeature>();
             r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
 
