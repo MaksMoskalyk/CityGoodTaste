@@ -26,29 +26,3 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
   transition: background-color 5000s ease-in-out 0s;
 }
-
-
-/*Texsboxes clear button styles*/
-.clearable{    
-  background: #fff url('../../icons/open-iconic/svg/x.svg') no-repeat right -16px center;
-  border: 1px solid #999;
-  padding: 3px 23px 3px 4px;
-  border-radius: 3px;
-  /*transition: background 0.4s;*/
-}
-
-.clearable.x { 
-    background-position: right 6px center;                 
-    background-size: 14px;
-    position: relative;
-}
-
-.clearable.onX { 
-    cursor: pointer; 
-}  
-
-.clearable::-ms-clear {
-    display: none; 
-    width: 0px; 
-    height: 0px;
-}
