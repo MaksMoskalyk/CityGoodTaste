@@ -22,15 +22,15 @@ namespace CityGoodTaste
                       "~/Scripts/Default/clockpicker.js",
                       "~/Scripts/Default/datetimepicker.js",
                       "~/Scripts/Default/respond.js",
-                      "~/Scripts/Default/moment-with-locales.min.js"                      
-                      ));
+                      "~/Scripts/Default/moment-with-locales.min.js"));
 
             //Custom  
             bundles.Add(new ScriptBundle("~/bundles/customScript").Include(
                      "~/Scripts/Custom/Details.js",
                      "~/Scripts/Custom/Events.js",
                      "~/Scripts/Custom/MainPage.js",
-                     "~/Scripts/Custom/Restaurants.js"));
+                     "~/Scripts/Custom/Restaurants.js",
+                     "~/Scripts/Custom/_Layout.js"));
             #endregion
 
             #region Style

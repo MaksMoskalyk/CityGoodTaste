@@ -24,6 +24,10 @@
     margin-top: 15px;
 }
 
+#logInButton {
+    margin-top: 15px;
+}
+
 .validationLabel {
     color: crimson;
     text-align: center;
