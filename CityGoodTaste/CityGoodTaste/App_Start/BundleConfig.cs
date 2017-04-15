@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace CityGoodTaste
 {
@@ -26,11 +25,14 @@ namespace CityGoodTaste
 
             //Custom  
             bundles.Add(new ScriptBundle("~/bundles/customScript").Include(
+                     "~/Scripts/Custom/Account/LogIn.js",
+                     "~/Scripts/Custom/Account/SignUp.js",
+
+                     "~/Scripts/Custom/_Layout.js",
                      "~/Scripts/Custom/Details.js",
                      "~/Scripts/Custom/Events.js",
                      "~/Scripts/Custom/MainPage.js",
-                     "~/Scripts/Custom/Restaurants.js",
-                     "~/Scripts/Custom/_Layout.js"));
+                     "~/Scripts/Custom/Restaurants.js"));
             #endregion
 
             #region Style

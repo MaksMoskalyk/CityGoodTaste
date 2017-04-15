@@ -1,11 +1,11 @@
 ﻿$(document).ready(function () {
+    //$("span").css("background-color", "#EEEEEE");
     AddSubmitEventHandler();
 })
 
 //Configuration block
 var minPasswordLength = 6;
-var validationSuccessColor = "white";
-var validationFaultColor = "#FFD4DF";
+var validationFaultClass = "has-error";
 var minPhoneLength = 4;
 var maxPhoneLength = 13;
 
@@ -26,35 +26,17 @@ function AddSubmitEventHandler() {
 }
 
 function AddInputEventHandlers() {
-    var emailInput = document.getElementById("email");
-    if (emailInput != null) {
-        emailInput.addEventListener("input", EmailInputHandler);
-    }
+    $("#email").on('input blur', EmailInputHandler);
 
-    var passwordInput = document.getElementById("password");
-    if (passwordInput != null) {
-        passwordInput.addEventListener("input", PasswordInputHandler);
-    }
+    $("#password").on('input blur', PasswordInputHandler);
 
-    var passwordConfirmInput = document.getElementById("passwordConfirm");
-    if (passwordConfirmInput != null) {
-        passwordConfirmInput.addEventListener("input", PasswordConfirmInputHandler);
-    }
+    $("#passwordConfirm").on('input blur', PasswordConfirmInputHandler);
 
-    var nameInput = document.getElementById("name");
-    if (nameInput != null) {
-        nameInput.addEventListener("input", NameInputHandler);
-    }
+    $("#name").on('input blur', NameInputHandler);
 
-    var surnameInput = document.getElementById("surname");
-    if (surnameInput != null) {
-        surnameInput.addEventListener("input", SurnameInputHandler);
-    }
+    $("#surname").on('input blur', SurnameInputHandler);
 
-    var phoneInput = document.getElementById("phone");
-    if (phoneInput != null) {
-        phoneInput.addEventListener("input", PhoneInputHandler);
-    }
+    $("#phone").on('input blur', PhoneInputHandler);
 }
 
 
@@ -62,78 +44,78 @@ function AddInputEventHandlers() {
 function EmailInputHandler(e) {
     if (!IsEmailValid()) {
         $("#validationEmail").text(emailMessage);
-        $("#email").css("background-color", validationFaultColor);
         $("#validationEmail").css("display", "block");
+        $("#validationEmailForm").addClass(validationFaultClass);
         e.preventDefault();
     }
     else {
-        $("#email").css("background-color", validationSuccessColor);
         $("#validationEmail").css("display", "none");
+        $("#validationEmailForm").removeClass(validationFaultClass);
     }
 }
 
 function PasswordInputHandler(e) {
     if (!IsPasswordValid()) {
         $("#validationPassword").text(passwordMessage);
-        $("#password").css("background-color", validationFaultColor);
         $("#validationPassword").css("display", "block");
+        $("#validationPasswordForm").addClass(validationFaultClass);
         e.preventDefault();
     }
     else {
-        $("#password").css("background-color", validationSuccessColor);
         $("#validationPassword").css("display", "none");
+        $("#validationPasswordForm").removeClass(validationFaultClass);
     }
 }
 
 function PasswordConfirmInputHandler(e) {
     if (!IsPasswordConfirmationValid()) {
         $("#validationConfirmPassword").text(passwordConfirmMessage);
-        $("#passwordConfirm").css("background-color", validationFaultColor);
         $("#validationConfirmPassword").css("display", "block");
+        $("#validationConfirmPasswordForm").addClass(validationFaultClass);
         e.preventDefault();
     }
     else {
-        $("#passwordConfirm").css("background-color", validationSuccessColor);
         $("#validationConfirmPassword").css("display", "none");
+        $("#validationConfirmPasswordForm").removeClass(validationFaultClass);
     }
 }
 
 function NameInputHandler(e) {
     if (!IsNameValid()) {
         $("#validationName").text(nameMessage);
-        $("#name").css("background-color", validationFaultColor);
         $("#validationName").css("display", "block");
+        $("#validationNameForm").addClass(validationFaultClass);
         e.preventDefault();
     }
     else {
-        $("#name").css("background-color", validationSuccessColor);
         $("#validationName").css("display", "none");
+        $("#validationNameForm").removeClass(validationFaultClass);
     }
 }
 
 function SurnameInputHandler(e) {
     if (!IsSurnameValid()) {
         $("#validationSurname").text(surnameMessage);
-        $("#surname").css("background-color", validationFaultColor);
         $("#validationSurname").css("display", "block");
+        $("#validationSurnameForm").addClass(validationFaultClass);
         e.preventDefault();
     }
     else {
-        $("#surname").css("background-color", validationSuccessColor);
         $("#validationSurname").css("display", "none");
+        $("#validationSurnameForm").removeClass(validationFaultClass);
     }
 }
 
 function PhoneInputHandler(e) {
     if (!IsPhoneValid()) {
         $("#validationPhone").text(phoneMessage);
-        $("#phone").css("background-color", validationFaultColor);
         $("#validationPhone").css("display", "block");
+        $("#validationPhoneForm").addClass(validationFaultClass);
         e.preventDefault();
     }
     else {
-        $("#phone").css("background-color", validationSuccessColor);
         $("#validationPhone").css("display", "none");
+        $("#validationPhoneForm").removeClass(validationFaultClass);
     }
 }
 
@@ -148,7 +130,7 @@ function SubmitClickHandler(e) {
     PhoneInputHandler(e);
 
     if (e.defaultPrevented) {
-        AddInputEventHandlers()
+        AddInputEventHandlers();
         return;
     }
 }

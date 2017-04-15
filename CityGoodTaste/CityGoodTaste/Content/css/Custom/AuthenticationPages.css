@@ -43,3 +43,8 @@
     font-weight: normal;
     display: none;
 }
+
+.inputValidationError {
+    border: 1px crimson;
+    box-shadow: crimson 2px;
+}
