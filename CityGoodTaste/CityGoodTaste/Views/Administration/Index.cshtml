@@ -4,33 +4,143 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="~/Content/css/Custom/Administration.css" type="text/css">
 
-<h2>Index</h2>
+
+
+
 @{
     CityGoodTaste.Models.RestaurantSchema schemaModel = Model.Restaurants.FirstOrDefault().RestaurantSchemas.FirstOrDefault();
 } 
-<div class="container">
+
+<div class="form-group">
+    <input id="checkboxNewReservs" type="checkbox" name="checkbox" />Бронировать новые<br />
+    <button id="reservBt" type="button" class="btn btn-danger btn-block">Зарезервировать</button>
+</div>
+
+
+<div class="container-fluid minPadding" style="margin-left: auto; margin-right: auto">
     <div class="row">
-        <div class="col-sm-8">@Html.Partial("~/Views/Restaurant/_SchemaPartial.cshtml", schemaModel)</div>
-        <div class="col-sm-4">    
-            <div class="list-group">
-                <a href="#" class="list-group-item active">Текущие резервы</a>
-                @foreach (var table in schemaModel.Tables)
-                {
-                    var reserv = table.TableReservation.FirstOrDefault();
-                    if (reserv.Reserved == true)
-                    {
-                        <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item">Имя: @reserv.User.UserName | Подтверждено: @reserv.ReservedAndConfirmed</a>
-                    }
-                }
+        <div class="col-sm-2 text-center" style="border-top:none; padding:0;">
+            <ul id="nav" class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#confirmedReservs">Новые</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="newReservs" class="tab-pane fade  in active">
+                    <div class="list-group">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">@Html.Partial("~/Views/Restaurant/_SchemaPartial.cshtml", schemaModel)</div>
+        <div class="col-sm-4 text-center" style="border-top:none; padding:0; width:auto">
+            <ul id="nav" class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#confirmedReservs">Подтвержденные</a></li>
+                <li><a data-toggle="tab" href="#notConfirmedReservs">Неподтвержденные</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="confirmedReservs" class="tab-pane fade  in active">
+                    <div id="confirmedReservsList" class="list-group">
+                        @foreach (var table in schemaModel.Tables)
+                        {
+                            var reserv = table.TableReservation.FirstOrDefault();
+                            if (reserv == null) { continue; };
+                            if (reserv.ReservedAndConfirmed == true)
+                            {
+                                <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">Имя: @reserv.User.Name | Подтверждено: @reserv.ReservedAndConfirmed</a>
+                            }
+                        }
+                    </div>
+                </div>
+                <div id="notConfirmedReservs" class="tab-pane fade">
+                    <div class="list-group">
+                        @foreach (var table in schemaModel.Tables)
+                        {
+                            var reserv = table.TableReservation.FirstOrDefault();
+                            if (reserv == null) { continue; };
+                            if (reserv.Reserved == true && reserv.ReservedAndConfirmed == false)
+                            {
+                                <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">Имя: @reserv.User.UserName | Подтверждено: @reserv.ReservedAndConfirmed</a>
+                            }
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+
+<a style="visibility: hidden" id="confirmModalLink" data-toggle="modal" data-target="#ConfirmModal" href="#"></a>
+<div class="modal fade" id="ConfirmModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        @using (Ajax.BeginForm("ConfirmReserv",
+            new { schemaId = Model.Restaurants.FirstOrDefault().RestaurantSchemas.FirstOrDefault().Id,
+                  restId= Model.Restaurants.FirstOrDefault().Id,},
+            new AjaxOptions { UpdateTargetId = "reseredTables", OnSuccess = "reseredTablesSuccess", OnFailure = "reseredTablesFailure" }, new { id = "confirmForm" }))
+        {
+            <div class="modal-content" style="width:400px">
+                <div class="modal-header" style="background-color:#333333; color:white">
+                    <button id="closeModalReserv" type="button" style="color:white" class="close" data-dismiss="modal">&times;</button>
+                    Подтвердить резерв
+                </div>
+                <div id="confirmReservModalBody" class="modal-body" style="padding:40px 50px;">
+                    <div id="newTablesInfoModal"></div>
+                    <div class="form-group">
+                        <input id="name" type="text" class="form-control input-md" name="name" placeholder="Имя">
+                    </div>
+                    <div class="form-group">
+                        <input id="phone" type="text" class="form-control input-md" name="phone" placeholder="Телефон">
+                    </div>
+                    <div class="input-group clockpicker ">
+                        @{
+                            var dtt = DateTime.Now.ToShortTimeString();
+                        }
+                        <input id="timePicker" type="text" class="form-control" value=@dtt>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-time"></span>
+                        </span>
+                    </div>
+                    <div id="datepickerContainer" class="form-group center-block">
+                        <div class="input-group">
+                            @{
+                                DateTime dt = DateTime.Now.Date;
+                            }
+                            <input type="text" id="datepicker" value=@dt class="form-control">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="sumbitReservBt" type="submit" class="btn btn-success btn-default pull-left">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        Подтвердить
+                    </button>
+                    <button class="btn btn-danger btn-default pull-right" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Отмена
+                    </button>
+                    
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
 <script>
     $(document).ready(function () {
+
         HighlightTableListClick();
+
+        SelectTable();
+
+        ReservBtClick();
+
+
     });
 
     function HighlightTableListClick() {
@@ -41,10 +151,70 @@
             $('td[tableid="' + tableId + '"]').css("background-color", '#fcffbc');
             $('td[tableid="' + tableId + '"]').attr("selected", "selected");
         });
-
-
-
     };
+
+    function ReservBtClick() {
+        $('#reservBt').click(function () {
+            $('#newTablesInfoModal').empty();
+
+            for (var i = 0; i < $('td[newReserved="True"]').length; i++) {
+                var elemId = $('td[newReserved="True"]')[i].id;
+                var id = document.getElementById($('td[newReserved="True"]')[i].id).getAttribute('tableid');
+                var seats = document.getElementById($('td[newReserved="True"]')[i].id).getAttribute('seats');
+               
+                $('#newTablesInfoModal').append("<input data-val=\"true\" elemid="+elemId+" id=\"tableId" + id + "\" name=\"tableId" + id + "\" type=\"hidden\" value=\"" + id + "\">");
+                $('#newTablesInfoModal').append("<p><span class=\"glyphicon glyphicon-user\">" + seats + "</span></p>");
+            }
+
+            $('#confirmModalLink').click();
+        });
+        
+    }
+
+
+    function SelectTable() {
+        $('td').click(function (event) {
+            if($('#checkboxNewReservs:checked').val()!='on') return;
+            event.stopPropagation();
+            var id = event.target.id;
+            if (id.indexOf('.') > 0)
+                id = id.substring(id.indexOf('.') + 1);
+
+            var reserved = document.getElementById(id).getAttribute('newReserved');
+            if (document.getElementById(id).getAttribute('reservedandconfirmed') == "True")
+                return;
+
+            var tableId = document.getElementById('imgP.' + id).getAttribute('tableId');
+            if (reserved == "True") {
+                $('td[id="' + id + '"]').css("background-color", '#fcfcfc');
+                document.getElementById('P.' + id).style.color = "black";
+                document.getElementById(id).setAttribute('newReserved', 'False');
+                document.getElementById('newReserved.' + tableId).value = false;
+            } else {
+                $('td[id="' + id + '"]').css("background-color", '#fcffbc');
+                document.getElementById('P.' + id).style.color = "green";
+                document.getElementById(id).setAttribute('newReserved', 'True');
+                document.getElementById('newReserved.' + tableId).value = true;
+            }
+        });
+    };
+
+    function reseredTablesSuccess(data) {
+        alert(data);
+        for (var i = 0; i < $("#newTablesInfoModal :input").length; i++) {
+            var id = document.getElementById($("#newTablesInfoModal :input")[i].id).value;
+            var elemid = document.getElementById($("#newTablesInfoModal :input")[i].id).getAttribute("elemid");
+            $('td[id="' + elemid + '"]').css("background-color", '#fcfcfc');
+            document.getElementById('imgT.' + elemid).src = "/Content/icons/SchemaIcons/InactiveTable.png";
+            document.getElementById('imgP.' + elemid).src = "/Content/icons/SchemaIcons/InactivePerson.png";
+            document.getElementById('P.' + elemid).style.color = "black";
+            $('#confirmedReservsList').append("<a tablelistid="+id+" href=\"#\" class=\"list-group-item\" style=\"border-radius: 0\">Имя: "+data+" | Подтверждено: True</a>")
+
+            
+        }
+
+    }
+                
 
 
 </script>

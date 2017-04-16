@@ -110,6 +110,33 @@ namespace CityGoodTaste.Controllers
             return RedirectToAction("Index");
         }
 
+        [AjaxOnly]
+        public ActionResult ConfirmReserv(string restId, string schemaId)
+        {
+            if (restId == null || schemaId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            DataManagerCreator factory = new DefaultDataManagerCreator();
+            IBaseDataManager manager = factory.GetBaseDataManager();
+            string userId =manager.GetCurrectUserId();
+
+            List<int> tablesIds = new List<int>();
+            foreach (string key in Request.Form.AllKeys)
+            {
+                if (key.StartsWith("tableId"))
+                {
+                    tablesIds.Add(Convert.ToInt32(Request.Form[key]));
+                }
+            }
+            IAdministrationDataManager adminmanager = factory.GetAdministrationDataManager();
+            adminmanager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), userId, tablesIds);
+            
+            return Json(manager.GetUser(userId).Name);
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
