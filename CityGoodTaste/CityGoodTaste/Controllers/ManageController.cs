@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CityGoodTaste.Models;
 using CityGoodTaste.CustomFilters;
+using CityGoodTaste.BusinessLayer;
 
 namespace CityGoodTaste.Controllers
 {
@@ -17,6 +18,7 @@ namespace CityGoodTaste.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IUserDatabase userDatabaseManager = new UserDatabaseManager();
 
         public ManageController()
         {
@@ -74,6 +76,8 @@ namespace CityGoodTaste.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+
+            model.CurrentUser = userDatabaseManager.GetUserById(userId);
             return View(model);
         }
 

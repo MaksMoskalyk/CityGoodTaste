@@ -97,6 +97,24 @@ namespace CityGoodTaste.BusinessLayer
 
             }
         }
-        #endregion     
+        #endregion
+
+        #region Get user data
+        public ApplicationUser GetUserById(string id)
+        {
+            try
+            {
+                using (GoodTasteContext context = new GoodTasteContext())
+                {
+                    ApplicationUser user = context.Users.Where(d => d.Id == id).SingleOrDefault();
+                    return user;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        #endregion
     }
 }

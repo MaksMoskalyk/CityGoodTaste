@@ -14,5 +14,7 @@ namespace CityGoodTaste.BusinessLayer
         ApplicationUser LogIn(string email, string password);
 
         void SignUp(ApplicationUser user);
+
+        ApplicationUser GetUserById(string id);
     }
 }
