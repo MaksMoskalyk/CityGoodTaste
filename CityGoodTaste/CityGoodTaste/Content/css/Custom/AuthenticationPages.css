@@ -24,6 +24,10 @@
     margin-top: 15px;
 }
 
+#logInButton {
+    margin-top: 15px;
+}
+
 .validationLabel {
     color: crimson;
     text-align: center;
@@ -38,4 +42,9 @@
     margin-top: 10px;
     font-weight: normal;
     display: none;
+}
+
+.inputValidationError {
+    border: 1px crimson;
+    box-shadow: crimson 2px;
 }

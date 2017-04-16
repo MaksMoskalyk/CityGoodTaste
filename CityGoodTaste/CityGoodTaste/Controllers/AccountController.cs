@@ -67,7 +67,7 @@ namespace CityGoodTaste.Controllers
         {
             ViewData["ValidationMessage"] = "";
             LoginViewModel model = new LoginViewModel();
-            model.RememberMe = false;
+            model.RememberMe = true;
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }

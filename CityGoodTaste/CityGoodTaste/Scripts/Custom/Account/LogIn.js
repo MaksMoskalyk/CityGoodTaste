@@ -1,35 +1,71 @@
 ﻿$(document).ready(function () {
-    var submitButton = document.getElementById("logInSubmit");
-    if (submitButton != null)
-        submitButton.addEventListener("click", SubmitClickHandler);
+    //$("span").css("background-color", "#EEEEEE");
+    AddSubmitEventHandler();
 })
 
 
+//Configuration block
+var validationFaultClass = "has-error";
 var emailMessage = "Введите почту";
 var passwordMessage = "Введите пароль";
 
 
-function SubmitClickHandler(e) {
-    if (!IsEmailEntered())
-    {
+//Events handlers addition
+function AddSubmitEventHandler() {
+    var submitButton = document.getElementById("logInButton");
+    if (submitButton != null) {
+        submitButton.addEventListener("click", SubmitClickHandler);
+    }
+}
+
+function AddInputEventHandlers() {
+    $("#email").on('input blur', EmailInputHandler);
+
+    $("#password").on('input blur', PasswordInputHandler);
+}
+
+
+//Events handlers implementation
+function EmailInputHandler(e) {
+    if (!IsEmailEntered()) {
         $("#validationEmail").text(emailMessage);
-        $("#validationEmail").css("display", "block");        
+        $("#validationEmail").css("display", "block");
+        $("#validationEmailForm").addClass(validationFaultClass);
         e.preventDefault();
     }
+    else {
+        $("#validationEmail").css("display", "none");
+        $("#validationEmailForm").removeClass(validationFaultClass);
+    }
+}
 
-    if (!IsPasswordEntered())
-    {
+function PasswordInputHandler(e) {
+    if (!IsPasswordEntered()) {
         $("#validationPassword").text(passwordMessage);
         $("#validationPassword").css("display", "block");
+        $("#validationPasswordForm").addClass(validationFaultClass);
         e.preventDefault();
     }
+    else {
+        $("#validationPassword").css("display", "none");
+        $("#validationPasswordForm").removeClass(validationFaultClass);
+    }
+}
 
-    if (e.defaultPrevented)
-    {
+
+//Submit handler
+function SubmitClickHandler(e) {
+    EmailInputHandler(e);
+    PasswordInputHandler(e);
+
+    if (e.defaultPrevented) {
+        AddInputEventHandlers();
         return;
     }
 }
 
+
+//Validation block
 function IsEmailEntered() {
     var emailInput = document.getElementById("email");
     return (emailInput.value != "");

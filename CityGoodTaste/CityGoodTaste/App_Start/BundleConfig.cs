@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace CityGoodTaste
 {
@@ -22,11 +21,14 @@ namespace CityGoodTaste
                       "~/Scripts/Default/clockpicker.js",
                       "~/Scripts/Default/datetimepicker.js",
                       "~/Scripts/Default/respond.js",
-                      "~/Scripts/Default/moment-with-locales.min.js"                      
-                      ));
+                      "~/Scripts/Default/moment-with-locales.min.js"));
 
             //Custom  
             bundles.Add(new ScriptBundle("~/bundles/customScript").Include(
+                     "~/Scripts/Custom/Account/LogIn.js",
+                     "~/Scripts/Custom/Account/SignUp.js",
+
+                     "~/Scripts/Custom/_Layout.js",
                      "~/Scripts/Custom/Details.js",
                      "~/Scripts/Custom/Events.js",
                      "~/Scripts/Custom/MainPage.js",
@@ -36,31 +38,26 @@ namespace CityGoodTaste
             #region Style
             //Default
             bundles.Add(new StyleBundle("~/bundles/defaultStyle").Include(
-                    "~/Content/css/Default/bootstrap.css",
-                    "~/Content/icons/open-iconic/font/css/open-iconic.css",
-                    "~/Content/css/Default/bootstrap-datetimepicker.css",
+                    "~/Content/css/Default/bootstrap.css",                    
                     "~/Content/css/Default/clockpicker.css",
                     "~/Content/css/Default/jquery.bootstrap-touchspin.css",
                     "~/Content/css/Default/Site.css",
-                    "~/Content/css/Default/bootstrap.css",
+
                     "~/Content/icons/open-iconic/font/css/open-iconic.css",
-                    "~/Content/css/Default/bootstrap-datetimepicker.css",
-                    "~/Content/css/Default/clockpicker.css",
-                    "~/Content/css/Default/jquery.bootstrap-touchspin.css",
-                    "~/Content/css/Default/Site.css",
-                     "~/Content/css/Default/themes/base/jquery-ui.css"
-                     ));
+                    "~/Content/css/Default/themes/base/jquery-ui.css"));
 
             //Custom          
             bundles.Add(new StyleBundle("~/bundles/customStyle").Include(
-                    "~/Content/css/Custom/Restaurants.css",
-                    "~/Content/css/Custom/AuthenticationModals.css",
+                    "~/Content/css/Custom/Controls/CheckboxesAndRadios.css",
+                    "~/Content/css/Custom/Controls/TextboxClearButton.css",
+
+                    "~/Content/css/Custom/ModalDialogs/AuthenticationModals.css",
+                    "~/Content/css/Custom/ModalDialogs/ModalFix.css",
+
                     "~/Content/css/Custom/AuthenticationPages.css",
-                    "~/Content/css/Custom/ModalFix.css",
-                    "~/Content/css/Custom/MainPage.css",
-                    "~/Content/css/Custom/CheckboxesAndRadios.css",
-                    "~/Content/css/Custom/Layout.css"
-                    ));
+                    "~/Content/css/Custom/Layout.css",
+                    "~/Content/css/Custom/MainPage.css",                    
+                    "~/Content/css/Custom/Restaurants.css"));
             #endregion
         }
     }
