@@ -55,7 +55,8 @@
                             <td id="@x@y" coord="@x.@y" style="width:80px;height:40px;"
                                 tableid="@Model.Tables.ToList()[i].Id"
                                 reserved="@Model.Tables.ToList()[i].TableReservation.ToList()[0].Reserved.ToString()"
-                                reservedandconfirmed="@Model.Tables.ToList()[i].TableReservation.ToList()[0].ReservedAndConfirmed.ToString()">
+                                reservedandconfirmed="@Model.Tables.ToList()[i].TableReservation.ToList()[0].ReservedAndConfirmed.ToString()"
+                                seats="@Model.Tables.ToList()[i].Seats">
                                 <div id="divP.@x@y" style="top:8px; position:relative" tableid="@Model.Tables.ToList()[i].Id">
                                     <p id="P.@x@y" style="font-weight:bold" tableid="@Model.Tables.ToList()[i].Id">
                                         @Model.Tables.ToList()[i].Seats

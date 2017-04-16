@@ -28,5 +28,30 @@ namespace CityGoodTaste.BusinessLayer
             }
         }
 
+        public void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                ApplicationUser currentUser = context.Users.FirstOrDefault();
+                var reservs = from x in currentUser.TableReservation
+                              where tablesIds.Contains(x.Table.Id)
+                              where x.Reserved == true
+                              where x.ReservedAndConfirmed == false
+                              select x;
+
+                foreach (var tableId in tablesIds)
+                {
+                    Table table = context.Tables.Find(tableId);
+                    TableReservation reserv = new TableReservation();
+                    reserv.Table = table;
+                    reserv.User = currentUser;
+                    reserv.Date = DateTime.Now;
+                    reserv.ReservedAndConfirmed = true;
+                    reserv.Reserved = true;
+                    context.TableReservations.Add(reserv);
+                }
+                context.SaveChanges();
+            }
+        }
     }
 }
