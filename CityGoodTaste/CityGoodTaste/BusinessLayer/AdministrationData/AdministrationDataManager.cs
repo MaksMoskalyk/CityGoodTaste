@@ -47,5 +47,14 @@ namespace CityGoodTaste.BusinessLayer
                 context.SaveChanges();
             }
         }
+
+        public void RemoveReserv(int? reservId)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                context.TableReservations.Remove(context.TableReservations.Find(reservId));
+                context.SaveChanges();
+            }
+        }
     }
 }

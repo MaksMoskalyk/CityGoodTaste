@@ -1,0 +1,34 @@
+﻿@model CityGoodTaste.Models.RestaurantSchema
+
+
+@foreach (var table in Model.Tables)
+{
+    var reserv = table.TableReservation.FirstOrDefault();
+    if (reserv == null) { continue; };
+    if (reserv.Reserved == true && reserv.ReservedAndConfirmed == false)
+    {
+        <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">@reserv.Date | Имя: @reserv.User.UserName | <span style="color:red" class="glyphicon glyphicon-minus"></span></a>
+    }
+}
+
+
+<script>
+    $(document).ready(function () {
+
+        HighlightTableListClick();
+    });
+
+
+
+
+
+    function HighlightTableListClick() {
+        $("a[tablelistId]").click(function (event) {
+            var tableId = $(this).attr('tablelistId');
+            $('td[selected]').css("background-color", '#fcfcfc');
+            $('td[selected]').removeAttr('selected');
+            $('td[tableid="' + tableId + '"]').css("background-color", '#fcffbc');
+            $('td[tableid="' + tableId + '"]').attr("selected", "selected");
+        });
+    };
+</script>

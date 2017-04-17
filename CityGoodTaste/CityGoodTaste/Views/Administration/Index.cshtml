@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div>
-                        <button id="reservBt" type="button" class="btn btn-danger btn-block">Зарезервировать</button>
+                        <button id="reservBt" type="button" class="btn x btn-block">Зарезервировать</button>
                     </div>
                 </div>
         </div>
@@ -65,28 +65,12 @@
             <div class="tab-content">
                 <div id="confirmedReservs" class="tab-pane fade  in active">
                     <div id="confirmedReservsList" class="list-group">
-                        @foreach (var table in schemaModel.Tables)
-                        {
-                            var reserv = table.TableReservation.FirstOrDefault();
-                            if (reserv == null) { continue; };
-                            if (reserv.ReservedAndConfirmed == true)
-                            {
-                                <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">@reserv.Date  | Имя: @reserv.User.Name | Подтверждено: @reserv.ReservedAndConfirmed</a>
-                            }
-                        }
+                        @Html.Partial("_ReservsListPartial", schemaModel)
                     </div>
                 </div>
                 <div id="notConfirmedReservs" class="tab-pane fade">
                     <div class="list-group">
-                        @foreach (var table in schemaModel.Tables)
-                        {
-                            var reserv = table.TableReservation.FirstOrDefault();
-                            if (reserv == null) { continue; };
-                            if (reserv.Reserved == true && reserv.ReservedAndConfirmed == false)
-                            {
-                                <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">@reserv.Date | Имя: @reserv.User.UserName | Подтверждено: @reserv.ReservedAndConfirmed</a>
-                            }
-                        }
+                        @Html.Partial("_UnconfirmedReservsListPartial", schemaModel)
                     </div>
                 </div>
             </div>
@@ -99,10 +83,10 @@
 <div class="modal fade" id="ConfirmModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
-        @using (Ajax.BeginForm("ConfirmReserv",
+        @using (Ajax.BeginForm("_ReservsListPartial",
             new { schemaId = Model.Restaurants.FirstOrDefault().RestaurantSchemas.FirstOrDefault().Id,
                 restId= Model.Restaurants.FirstOrDefault().Id},
-            new AjaxOptions { UpdateTargetId = "reseredTables", OnSuccess = "reseredTablesSuccess", OnFailure = "reseredTablesFailure" }, new { id = "confirmForm" }))
+            new AjaxOptions { UpdateTargetId = "confirmedReservsList", OnSuccess = "reseredTablesSuccess", OnFailure = "reseredTablesFailure", InsertionMode = InsertionMode.Replace }, new { id = "confirmForm" }))
         {
             <div class="modal-content" style="width:400px">
                 <div class="modal-header" style="background-color:#333333; color:white">
@@ -135,27 +119,49 @@
 </div>
 
 
+<a style="visibility: hidden" id="unreservModalLink" data-toggle="modal" data-target="#unreservModal" href="#"></a>
+<div class="modal fade" id="unreservModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+@using (Ajax.BeginForm("RemoveReserv", new {restId = Model.Restaurants.FirstOrDefault().Id}, 
+    new AjaxOptions { UpdateTargetId = "confirmedReservsList", InsertionMode = InsertionMode.Replace }))
+{
+            <div class="modal-content" style="width:400px">
+                <div class="modal-header" style="background-color:#333333; color:white">
+                    <button id="closeModalUnReserv" type="button" style="color:white" class="close" data-dismiss="modal">&times;</button>
+                     Убрать резер
+                </div>
+                <div id="unReservModalBody" class="modal-body" style="padding:40px 50px;">
+                    <p>№ <input readonly data-val="true" id="reservNumber" type="text" class="form-control input-md" name="reservNumber"></p>
+                </div>
+                <div class="modal-footer">
+                    <button id="sumbitUnReservBt" type="submit" class="btn btn-success btn-default pull-left">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        Подтвердить
+                    </button>
+                    <button class="btn btn-danger btn-default pull-right" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Отмена
+                    </button>
+
+                </div>
+            </div>
+}   
+    </div>
+</div>
+
+
 <script>
     $(document).ready(function () {
-
-        HighlightTableListClick();
 
         SelectTable();
 
         ReservBtClick();
 
+        CheckBoxChecked();
 
     });
 
-    function HighlightTableListClick() {
-        $("a[tablelistId]").click(function (event) {
-            var tableId = $(this).attr('tablelistId');
-            $('td[selected]').css("background-color", '#fcfcfc');
-            $('td[selected]').removeAttr('selected');
-            $('td[tableid="' + tableId + '"]').css("background-color", '#fcffbc');
-            $('td[tableid="' + tableId + '"]').attr("selected", "selected");
-        });
-    };
 
     function ReservBtClick() {
         $('#reservBt').click(function () {
@@ -182,6 +188,14 @@
         });   
     }
 
+
+    function CheckBoxChecked() {
+        $('#checkboxNewReservs').click(function () {
+            $('td[selected]').css("background-color", '#fcfcfc');
+            $('td[selected]').removeAttr('selected');
+        });
+
+    }
 
     function SelectTable() {
         $('td').click(function (event) {
@@ -221,9 +235,6 @@
             document.getElementById('imgT.' + elemid).src = "/Content/icons/SchemaIcons/InactiveTable.png";
             document.getElementById('imgP.' + elemid).src = "/Content/icons/SchemaIcons/InactivePerson.png";
             document.getElementById('P.' + elemid).style.color = "black";
-            $('#confirmedReservsList').append("<a tablelistid=" + id + " href=\"#\" class=\"list-group-item\" style=\"border-radius: 0\">@(DateTime.Now) | Имя: " + data + " | Подтверждено: True</a>")
-
-            
         }
 
     }

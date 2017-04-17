@@ -111,7 +111,7 @@ namespace CityGoodTaste.Controllers
         }
 
         [AjaxOnly]
-        public ActionResult ConfirmReserv(string restId, string schemaId)
+        public ActionResult _ReservsListPartial(string restId, string schemaId)
         {
             if (restId == null || schemaId == null)
             {
@@ -139,8 +139,21 @@ namespace CityGoodTaste.Controllers
             ApplicationUser user =  manager.CreateUser(name, phone);
 
             adminmanager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), tablesIds, d, user);
-            
-            return Json(name);
+
+            return PartialView("~/Views/Administration/_ReservsListPartial.cshtml", manager.GetRestaurantSchema(Convert.ToInt32(restId)));
+
+        }
+
+
+        [AjaxOnly]
+        public ActionResult RemoveReserv(string restId)
+        {
+            int reservId = Convert.ToInt32(Request.Form["reservNumber"]);
+            DataManagerCreator factory = new DefaultDataManagerCreator();
+            IBaseDataManager manager = factory.GetBaseDataManager();
+            IAdministrationDataManager adminmanager = factory.GetAdministrationDataManager();
+            adminmanager.RemoveReserv(reservId);
+            return PartialView("~/Views/Administration/_ReservsListPartial.cshtml", manager.GetRestaurantSchema(Convert.ToInt32(restId)));
         }
 
 
