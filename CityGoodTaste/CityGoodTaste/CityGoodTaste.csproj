@@ -191,7 +191,7 @@
       <DependentUpon>201704122029532_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationModels\Administration.cs" />
     <Compile Include="Models\ApplicationModels\City.cs" />
     <Compile Include="Models\ApplicationModels\Country.cs" />
@@ -220,8 +220,8 @@
     <Compile Include="Models\ApplicationModels\WorkHour.cs" />
     <Compile Include="Models\Context\GoodTasteContext.cs" />
     <Compile Include="Models\Context\GoodTasteDBInitializer.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ApplicationModels\IdentityModels.cs" />
+    <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\ApplicationModels\Neighborhood.cs" />
     <Compile Include="Models\ViewModels\AdminViewModel.cs" />
     <Compile Include="Models\ViewModels\ConfirmReserve.cs" />
@@ -249,9 +249,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\Custom\Administration.css" />
-    <Content Include="Content\css\Custom\AuthenticationModals.css" />
-    <Content Include="Content\css\Custom\AuthenticationPages.css" />
+    <Content Include="Content\css\Custom\Account\ManageAccount.css" />
+    <Content Include="Content\css\Custom\ModalDialogs\AuthenticationModals.css" />
+    <Content Include="Content\css\Custom\Account\AuthenticationPages.css" />
     <Content Include="Content\css\Custom\Layout.css" />
     <Content Include="Content\css\Custom\MainPage.css" />
     <Content Include="Content\css\Custom\ModalDialogs\ModalFix.css" />
@@ -3266,11 +3266,13 @@
     <Content Include="Img\jardin.png" />
     <Content Include="Img\Olio.jpg" />
     <Content Include="Img\pomadoro.png" />
+    <Content Include="Img\userDefaultPhoto.png" />
     <Content Include="Img\Schema.png" />
     <Content Include="Img\sh.jpg" />
     <Content Include="Img\tav.png" />
     <Content Include="Img\UnitMain.jpg" />
     <Content Include="Scripts\Custom\Account\LogIn.js" />
+    <Content Include="Scripts\Custom\Account\ManageAccount.js" />
     <Content Include="Scripts\Custom\Details.js" />
     <Content Include="Scripts\Custom\Events.js" />
     <Content Include="Scripts\Custom\Localization\datepicker-ENG.js" />

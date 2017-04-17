@@ -1,88 +1,93 @@
 ﻿@model CityGoodTaste.Models.IndexViewModel
 
+<script src="~/Scripts/Custom/Account/ManageAccount.js"></script>
+
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "Настройки учетной записи";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
-        <dt>External Logins:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Manage", "ManageLogins") ]
-        </dd>
-        @*
-            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-             
-             See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-             
-             Uncomment the following block after you have set up two-factor authentication
-        *@
-        @*  
-            <dt>Phone Number:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
+<div id="manageAccountWrapper" class="container-fluid">
+    <div class="row">
+        <div id="personalDataContainer" class="col-sm-12 col-md-4 col-lg-4">
+            <div class="input-group">
+                <h3>Личные данные</h3>
+            </div>
+                        
+            <div class="input-group">
+                <img id="photoImage" src="~/Img/userDefaultPhoto.png" 
+                     class="img-thumbnail img-responsive" width="200" height="200" />
+            </div>
+            <div class="input-group">
+                <button id="addPhotoButton" class="btn btn-default" style="width:200px">Добавить фото</button>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="form-group">
+                <label>Имя:</label>
+                <input id="nameInput" type="text" value="@Model.CurrentUser.Name" />
+            </div>
+            <div class="form-group">
+                <label>Фамилия:</label>
+                <input id="surnameInput" type="text" value="@Model.CurrentUser.Surname" />
+            </div>
+
+            <div class="form-group">
+                <label>Почта:</label>
+                <input id="emailInput" type="text" value="@Model.CurrentUser.Email" />
+            </div>
+            <div class="form-group">
+                <label>Телефон:</label>
+                <input id="phoneInput" type="text" value="@Model.CurrentUser.PhoneNumber" />
+            </div>
+
+            <div class="form-group">
+                <label>Страна:</label>
+                <select id="countrySelect">
+                    <option selected="selected" value="Odessa">Украина</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Город:</label>
+                <select id="citySelect">
+                    <option selected="selected" value="Odessa">Одесса</option>
+                    <option value="Kiev">Киев</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Пол:</label>
+                <select id="genderSelect">
+                    <option selected="selected" value="male">Мужской</option>
+                    <option value="female">Женский</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Дата рождения:</label>
+                <input  id="birthdayInput" type="text" />
+            </div>
+
+            <div class="input-group">
+                <p class="text-success">@ViewBag.StatusMessage</p>
+                @if (Model.HasPassword)
                 {
-                    <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
-                    }
+                    @Html.ActionLink("Изменить пароль", "ChangePassword")
                 }
                 else
                 {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                    @Html.ActionLink("Создать", "SetPassword")
                 }
-            </dd>
-        *@
-        <dt>Two-Factor Authentication:</dt>
-        <dd>
-            <p>
-                There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication.
-            </p>
-            @*@if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Enabled
-                        <input type="submit" value="Disable" class="btn btn-link" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Disabled
-                        <input type="submit" value="Enable" class="btn btn-link" />
-                        </text>
-                    }
-                }*@
-        </dd>
-    </dl>
+            </div>            
+        </div>
+
+        <div id="ordersContainer" class="col-sm-12 col-md-4 col-lg-4">
+            <h3>История заказов</h3>
+        </div>
+
+        <div id="preferencesContainer" class="col-sm-12 col-md-4 col-lg-4">
+            <h3>Предпочтения</h3>
+        </div>
+    </div>
 </div>

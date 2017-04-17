@@ -48,6 +48,9 @@ namespace CityGoodTaste
 
             //Custom          
             bundles.Add(new StyleBundle("~/bundles/customStyle").Include(
+                    "~/Content/css/Custom/Account/AuthenticationPages.css",
+                    "~/Content/css/Custom/Account/ManageAccount.css",
+
                     "~/Content/css/Custom/Controls/CheckboxesAndRadios.css",
                     "~/Content/css/Custom/Controls/TextboxClearButton.css",
 
