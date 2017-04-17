@@ -13,24 +13,48 @@
     CityGoodTaste.Models.RestaurantSchema schemaModel = Model.Restaurants.FirstOrDefault().RestaurantSchemas.FirstOrDefault();
 } 
 
-<div class="form-group">
-    <input id="checkboxNewReservs" type="checkbox" name="checkbox" />Бронировать новые<br />
-    <button id="reservBt" type="button" class="btn btn-danger btn-block">Зарезервировать</button>
-</div>
+
 
 
 <div class="container-fluid minPadding" style="margin-left: auto; margin-right: auto">
     <div class="row">
         <div class="col-sm-2 text-center" style="border-top:none; padding:0;">
-            <ul id="nav" class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#confirmedReservs">Новые</a></li>
-            </ul>
-            <div class="tab-content">
-                <div id="newReservs" class="tab-pane fade  in active">
-                    <div class="list-group">
+            <div class="form-group">
+                <input id="checkboxNewReservs" type="checkbox" name="checkbox" />Бронировать новые<br />           
+            </div>
+                <div>
+                    <div id="confirmReservModalBody" style="padding:40px 50px;">
+                        <div class="form-group">
+                            <input id="name" type="text" class="form-control input-md" name="name" placeholder="Имя">
+                        </div>
+                        <div class="form-group">
+                            <input id="phone" type="text" class="form-control input-md" name="phone" placeholder="Телефон">
+                        </div>
+                        <div id="timeContainer" class="input-group clockpicker ">
+                            @{
+                                var dtt = DateTime.Now.ToShortTimeString();
+                            }
+                            <input id="timePicker" type="text" class="form-control" value=@dtt>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-time"></span>
+                            </span>
+                        </div>
+                        <div id="datepickerContainer" class="form-group center-block">
+                            <div class="input-group">
+                                @{
+                                    DateTime dt = DateTime.Now.Date;
+                                }
+                                <input type="text" id="datepicker" value=@dt class="form-control">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button id="reservBt" type="button" class="btn btn-danger btn-block">Зарезервировать</button>
                     </div>
                 </div>
-            </div>
         </div>
         <div class="col-sm-6">@Html.Partial("~/Views/Restaurant/_SchemaPartial.cshtml", schemaModel)</div>
         <div class="col-sm-4 text-center" style="border-top:none; padding:0; width:auto">
@@ -47,7 +71,7 @@
                             if (reserv == null) { continue; };
                             if (reserv.ReservedAndConfirmed == true)
                             {
-                                <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">Имя: @reserv.User.Name | Подтверждено: @reserv.ReservedAndConfirmed</a>
+                                <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">@reserv.Date  | Имя: @reserv.User.Name | Подтверждено: @reserv.ReservedAndConfirmed</a>
                             }
                         }
                     </div>
@@ -60,7 +84,7 @@
                             if (reserv == null) { continue; };
                             if (reserv.Reserved == true && reserv.ReservedAndConfirmed == false)
                             {
-                                <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">Имя: @reserv.User.UserName | Подтверждено: @reserv.ReservedAndConfirmed</a>
+                                <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">@reserv.Date | Имя: @reserv.User.UserName | Подтверждено: @reserv.ReservedAndConfirmed</a>
                             }
                         }
                     </div>
@@ -77,7 +101,7 @@
         <!-- Modal content-->
         @using (Ajax.BeginForm("ConfirmReserv",
             new { schemaId = Model.Restaurants.FirstOrDefault().RestaurantSchemas.FirstOrDefault().Id,
-                  restId= Model.Restaurants.FirstOrDefault().Id,},
+                restId= Model.Restaurants.FirstOrDefault().Id},
             new AjaxOptions { UpdateTargetId = "reseredTables", OnSuccess = "reseredTablesSuccess", OnFailure = "reseredTablesFailure" }, new { id = "confirmForm" }))
         {
             <div class="modal-content" style="width:400px">
@@ -88,30 +112,10 @@
                 <div id="confirmReservModalBody" class="modal-body" style="padding:40px 50px;">
                     <div id="newTablesInfoModal"></div>
                     <div class="form-group">
-                        <input id="name" type="text" class="form-control input-md" name="name" placeholder="Имя">
-                    </div>
-                    <div class="form-group">
-                        <input id="phone" type="text" class="form-control input-md" name="phone" placeholder="Телефон">
-                    </div>
-                    <div class="input-group clockpicker ">
-                        @{
-                            var dtt = DateTime.Now.ToShortTimeString();
-                        }
-                        <input id="timePicker" type="text" class="form-control" value=@dtt>
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-time"></span>
-                        </span>
-                    </div>
-                    <div id="datepickerContainer" class="form-group center-block">
-                        <div class="input-group">
-                            @{
-                                DateTime dt = DateTime.Now.Date;
-                            }
-                            <input type="text" id="datepicker" value=@dt class="form-control">
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
+                        <input data-val="true" id="nameModal" type="text" class="form-control input-md" name="name" placeholder="Имя">
+                        <input data-val="true" id="phoneModal" type="text" class="form-control input-md" name="phone" placeholder="Телефон">
+                        <input data-val="true" id="dateModal" type="text" class="form-control" name="date">
+                        <input data-val="true" id="timeModal" type="text" class="form-control" name="time">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -156,7 +160,14 @@
     function ReservBtClick() {
         $('#reservBt').click(function () {
             $('#newTablesInfoModal').empty();
-
+            $('#nameModal').val("");
+            $('#phoneModal').val("");
+            $('#dateModal').val("");
+            $('#timeModal').val("");
+            $('#nameModal').val($('#name').val());
+            $('#phoneModal').val($('#phone').val());
+            $('#dateModal').val($('#datepicker').val());
+            $('#timeModal').val($('#timePicker').val()); 
             for (var i = 0; i < $('td[newReserved="True"]').length; i++) {
                 var elemId = $('td[newReserved="True"]')[i].id;
                 var id = document.getElementById($('td[newReserved="True"]')[i].id).getAttribute('tableid');
@@ -165,10 +176,10 @@
                 $('#newTablesInfoModal').append("<input data-val=\"true\" elemid="+elemId+" id=\"tableId" + id + "\" name=\"tableId" + id + "\" type=\"hidden\" value=\"" + id + "\">");
                 $('#newTablesInfoModal').append("<p><span class=\"glyphicon glyphicon-user\">" + seats + "</span></p>");
             }
-
+            $('#ui-datepicker-div').css("z-index", "999");
             $('#confirmModalLink').click();
-        });
-        
+
+        });   
     }
 
 
@@ -200,15 +211,17 @@
     };
 
     function reseredTablesSuccess(data) {
-        alert(data);
         for (var i = 0; i < $("#newTablesInfoModal :input").length; i++) {
             var id = document.getElementById($("#newTablesInfoModal :input")[i].id).value;
             var elemid = document.getElementById($("#newTablesInfoModal :input")[i].id).getAttribute("elemid");
             $('td[id="' + elemid + '"]').css("background-color", '#fcfcfc');
+            $('td[id="' + elemid + '"]').attr("reserved", "True");
+            $('td[id="' + elemid + '"]').attr("reservedandconfirmed", "True");
+            $('td[id="' + elemid + '"]').removeAttr("newReserved");
             document.getElementById('imgT.' + elemid).src = "/Content/icons/SchemaIcons/InactiveTable.png";
             document.getElementById('imgP.' + elemid).src = "/Content/icons/SchemaIcons/InactivePerson.png";
             document.getElementById('P.' + elemid).style.color = "black";
-            $('#confirmedReservsList').append("<a tablelistid="+id+" href=\"#\" class=\"list-group-item\" style=\"border-radius: 0\">Имя: "+data+" | Подтверждено: True</a>")
+            $('#confirmedReservsList').append("<a tablelistid=" + id + " href=\"#\" class=\"list-group-item\" style=\"border-radius: 0\">@(DateTime.Now) | Имя: " + data + " | Подтверждено: True</a>")
 
             
         }

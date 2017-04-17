@@ -130,10 +130,17 @@ namespace CityGoodTaste.Controllers
                     tablesIds.Add(Convert.ToInt32(Request.Form[key]));
                 }
             }
+            string name = Request.Form["name"];
+            string phone = Request.Form["phone"];
+            DateTime d = DateTime.Parse(Request.Form["date"] + " " + Request.Form["time"]);
+
             IAdministrationDataManager adminmanager = factory.GetAdministrationDataManager();
-            adminmanager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), userId, tablesIds);
+
+            ApplicationUser user =  manager.CreateUser(name, phone);
+
+            adminmanager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), tablesIds, d, user);
             
-            return Json(manager.GetUser(userId).Name);
+            return Json(name);
         }
 
 

@@ -248,8 +248,10 @@ namespace CityGoodTaste.Controllers
         }
 
         [AjaxOnly]
-        public ActionResult ConfirmReserv(string restId, string schemaId)
+        public ActionResult ConfirmReserv(string restId, string schemaId, string date, string time)
         {
+
+
             if (restId == null || schemaId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -267,7 +269,9 @@ namespace CityGoodTaste.Controllers
                     tablesIds.Add(Convert.ToInt32(Request.Form[key]));
                 }
             }
-            manager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), userId, tablesIds);
+            DateTime d = DateTime.Parse(date + " " + time);
+            manager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), userId, tablesIds, d);
+
 
             //if (model == null)
             //{
