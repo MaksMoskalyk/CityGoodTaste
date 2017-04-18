@@ -19,45 +19,66 @@
 <div class="container-fluid minPadding" style="margin-left: auto; margin-right: auto">
     <div class="row">
         <div class="col-sm-2 text-center" style="border-top:none; padding:0;">
-            <div class="form-group">
-                <input id="checkboxNewReservs" type="checkbox" name="checkbox" />Бронировать новые<br />           
-            </div>
+
                 <div>
-                    <div id="confirmReservModalBody" style="padding:40px 50px;">
-                        <div class="form-group">
-                            <input id="name" type="text" class="form-control input-md" name="name" placeholder="Имя">
-                        </div>
-                        <div class="form-group">
-                            <input id="phone" type="text" class="form-control input-md" name="phone" placeholder="Телефон">
-                        </div>
-                        <div id="timeContainer" class="input-group clockpicker ">
-                            @{
-                                var dtt = DateTime.Now.ToShortTimeString();
-                            }
-                            <input id="timePicker" type="text" class="form-control" value=@dtt>
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-time"></span>
-                            </span>
-                        </div>
-                        <div id="datepickerContainer" class="form-group center-block">
-                            <div class="input-group">
-                                @{
-                                    DateTime dt = DateTime.Now.Date;
-                                }
-                                <input type="text" id="datepicker" value=@dt class="form-control">
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
+                    <div id="confirmReservModalBody" style="padding:0px 25px;">
+                        <div class="panel panel-default ">
+                            <div class="panel-heading">
+                                
+                                <div class="form-group">
+                                    <p style="font-weight:bold">ЗАРЕЗЕРВИРОВАТЬ</p>
+                                    <input id="checkboxNewReservs" type="checkbox" name="checkbox" />Бронировать новые<br />
+                                </div>
+                            </div>                        
+                            <div class="panel-body text-center center-block">
+                                <p style="font-weight:bold">ВРЕМЯ</p>
+                                <div id="timeContainer" class="input-group clockpicker ">
+                                    @{
+                                        var dtt = DateTime.Now.ToShortTimeString();
+                                    }
+                                    <input id="timePicker" type="text" class="form-control" value=@dtt>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="panel-footer text-center center-block">
+                                <p style="font-weight:bold">ДАТА</p>
+                                <div id="datepickerContainer" class="form-group center-block">
+                                    <div class="input-group">
+                                        @{
+                                            DateTime dt = DateTime.Now.Date;
+                                        }
+                                        <input type="text" id="datepicker" value=@dt class="form-control">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body text-center center-block">
+                                <p style="font-weight:bold">КОНТАКТНАЯ ИНФОРМАЦИЯ</p>
+                                <div class="form-group">
+                                    <input id="name" type="text" class="form-control input-md" name="name" placeholder="Имя">
+                                </div>
+                                <div class="form-group">
+                                    <input id="phone" type="text" class="form-control input-md" name="phone" placeholder="Телефон">
+                                </div>
+                            </div>
+                            <div class="panel-footer text-center center-block">
+                                <div>
+                                    <button id="reservBt" type="button" class="btn x btn-block btn-success">Зарезервировать</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <button id="reservBt" type="button" class="btn x btn-block">Зарезервировать</button>
-                    </div>
+                        
+                       
+                        </div>
+
                 </div>
         </div>
         <div class="col-sm-6">@Html.Partial("~/Views/Restaurant/_SchemaPartial.cshtml", schemaModel)</div>
-        <div class="col-sm-4 text-center" style="border-top:none; padding:0; width:auto">
+        <div class="col-sm-3 text-center" style="border-top:none; padding:0;">
             <ul id="nav" class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#confirmedReservs">Подтвержденные</a></li>
                 <li><a data-toggle="tab" href="#notConfirmedReservs">Неподтвержденные</a></li>
@@ -124,7 +145,7 @@
     <div class="modal-dialog">
         <!-- Modal content-->
 @using (Ajax.BeginForm("RemoveReserv", new {restId = Model.Restaurants.FirstOrDefault().Id}, 
-    new AjaxOptions { UpdateTargetId = "confirmedReservsList", InsertionMode = InsertionMode.Replace }))
+    new AjaxOptions { UpdateTargetId = "confirmedReservsList", InsertionMode = InsertionMode.Replace, OnSuccess="reservSuccess" }))
 {
             <div class="modal-content" style="width:400px">
                 <div class="modal-header" style="background-color:#333333; color:white">
@@ -139,7 +160,7 @@
                         <span class="glyphicon glyphicon-ok"></span>
                         Подтвердить
                     </button>
-                    <button class="btn btn-danger btn-default pull-right" data-dismiss="modal">
+                    <button id="closeBtRemoveReservModal" class="btn btn-danger btn-default pull-right" data-dismiss="modal">
                         <span class="glyphicon glyphicon-remove"></span>
                         Отмена
                     </button>
@@ -162,6 +183,16 @@
 
     });
 
+    function reservSuccess() {
+        var id = $('td[selected]').attr('id');
+        document.getElementById('imgT.' + id).src = "/Content/icons/SchemaIcons/Table.png";
+        document.getElementById('imgP.' + id).src = "/Content/icons/SchemaIcons/Person.png";
+        $('td[selected]').css("background-color", '#fcfcfc');
+        $('td[selected]').removeAttr('selected');
+        $('#closeBtRemoveReservModal').click();
+
+
+    }
 
     function ReservBtClick() {
         $('#reservBt').click(function () {
@@ -191,8 +222,20 @@
 
     function CheckBoxChecked() {
         $('#checkboxNewReservs').click(function () {
+            
             $('td[selected]').css("background-color", '#fcfcfc');
             $('td[selected]').removeAttr('selected');
+
+
+            for (var i = 0; i < $('td[newreserved]').length; i++) {
+                var id = $('td[newreserved]')[i].id;
+                document.getElementById("P." + id).style.color = "black";
+            }
+
+            $('td[newreserved]').css("background-color", '#fcfcfc');
+            $('td[newreserved]').removeAttr('newreserved');
+
+
         });
 
     }

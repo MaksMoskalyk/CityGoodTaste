@@ -7,36 +7,43 @@
     if (reserv == null) { continue; };
     if (reserv.ReservedAndConfirmed == true)
     {
-        <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">@reserv.Date  | Имя: @reserv.User.Name |  <span reservId="@(reserv.Id)" tablespanId="@(reserv.Table.Id)" style="color:red" class="glyphicon glyphicon-minus"></span></a>
+        @*<a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">@reserv.Date  | Имя:  |  <span reservId="@(reserv.Id)" tablespanId="@(reserv.Table.Id)" style="color:red" class="glyphicon glyphicon-minus"></span></a>*@
+        <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">
+            <div class="row">
+                <div class="pull-left" style="padding-left:10px">@reserv.Date.Date.ToShortDateString() @reserv.Date.ToShortTimeString()</div>
+                <div class="col-sm-6">@reserv.ContactInfoName  @reserv.ContactInfoPhone</div>
+                <div class="pull-right" style="padding-right:10px"><span reservId="@(reserv.Id)" tablespanId="@(reserv.Table.Id)" style="color:#cb3434" class="glyphicon glyphicon-remove"></span></div>
+            </div>
+        </a>
     }
 }
 
 
 
-<script>
-    $(document).ready(function () {
+            <script>
+                $(document).ready(function () {
 
-        HighlightTableListClick();
+                    HighlightTableListClick();
 
-        MinusClick();
-    });
+                    MinusClick();
+                });
 
 
-    function MinusClick() {
-        $('.glyphicon-minus').click(function () {
-            var reservId = $(this).attr('reservId');
-            $('#reservNumber').val(reservId);
-            $('#unreservModalLink').click();
-        });
-    };
+                function MinusClick() {
+                    $('.glyphicon-remove').click(function () {
+                        var reservId = $(this).attr('reservId');
+                        $('#reservNumber').val(reservId);
+                        $('#unreservModalLink').click();
+                    });
+                };
 
-    function HighlightTableListClick() {
-        $("a[tablelistId]").click(function (event) {
-            var tableId = $(this).attr('tablelistId');
-            $('td[selected]').css("background-color", '#fcfcfc');
-            $('td[selected]').removeAttr('selected');
-            $('td[tableid="' + tableId + '"]').css("background-color", '#fcffbc');
-            $('td[tableid="' + tableId + '"]').attr("selected", "selected");
-        });
-    };
-</script>
+                function HighlightTableListClick() {
+                    $("a[tablelistId]").click(function (event) {
+                        var tableId = $(this).attr('tablelistId');
+                        $('td[selected]').css("background-color", '#fcfcfc');
+                        $('td[selected]').removeAttr('selected');
+                        $('td[tableid="' + tableId + '"]').css("background-color", '#fcffbc');
+                        $('td[tableid="' + tableId + '"]').attr("selected", "selected");
+                    });
+                };
+            </script>

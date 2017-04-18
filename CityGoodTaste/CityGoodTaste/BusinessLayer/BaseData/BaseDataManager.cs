@@ -41,7 +41,7 @@ namespace CityGoodTaste.BusinessLayer
                     result.Map = context.Maps.Where(x => x.id == result.Map.id).SingleOrDefault();
                     return result;
                 }
-                catch
+                catch(Exception ex)
                 {
                     throw new Exception("");
                 }
@@ -283,7 +283,7 @@ namespace CityGoodTaste.BusinessLayer
 
         }
 
-        public void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds, DateTime date)
+        public void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds, DateTime date, string contactName, string contactPhone)
         {
             using (GoodTasteContext context = new GoodTasteContext())
             {
@@ -299,6 +299,8 @@ namespace CityGoodTaste.BusinessLayer
                     reserv.ReservedAndConfirmed = true;
                     reserv.Reserved = false;
                     reserv.Date = date;
+                    reserv.ContactInfoName = contactName.Trim();
+                    reserv.ContactInfoPhone = contactPhone.Trim();
                 }
                 context.SaveChanges();
             }

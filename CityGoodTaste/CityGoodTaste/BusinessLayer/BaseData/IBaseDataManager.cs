@@ -18,7 +18,7 @@ namespace CityGoodTaste.BusinessLayer
         string GetCurrectUserId();
         ApplicationUser GetUser(string id);
         List<RestaurantEvent> SearchEvents(string searchText, string CheckEl);
-        void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds, DateTime date);
+        void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds, DateTime date, string contactName, string contactPhone);
         Menu GetRestMenu(int id);
         OrderFood GetOrderFood(int Id, int Value);
         int GetFoodRank(int? restId);

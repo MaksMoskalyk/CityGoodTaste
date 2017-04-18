@@ -138,7 +138,7 @@ namespace CityGoodTaste.Controllers
 
             ApplicationUser user =  manager.CreateUser(name, phone);
 
-            adminmanager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), tablesIds, d, user);
+            adminmanager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), tablesIds, d, user, name, phone);
 
             return PartialView("~/Views/Administration/_ReservsListPartial.cshtml", manager.GetRestaurantSchema(Convert.ToInt32(restId)));
 

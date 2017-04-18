@@ -562,6 +562,6 @@
             }
         }
         $('#confirmReservModalBody').append("<div><p><span style=\"font-weight:bold\">Имя: </span>"+name+"</p><p><span style=\"font-weight:bold\">Телефон: </span>"+phone+"</p></div>");
-        $('#confirmForm').attr('action', '/Restaurant/ConfirmReserv?restId='+restId+'&schemaId=' + schemaId+'&date=' + date+'&time=' + time);
+        $('#confirmForm').attr('action', '/Restaurant/ConfirmReserv?restId='+restId+'&schemaId=' + schemaId+'&date=' + date+'&time=' + time+'&name=' + name+'&phone=' + phone);
     });
 </script>

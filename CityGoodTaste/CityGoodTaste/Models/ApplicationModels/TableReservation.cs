@@ -17,5 +17,8 @@ namespace CityGoodTaste.Models
         public virtual Table Table { get; set; }
 
         public virtual ApplicationUser User { get; set; }
+
+        public string ContactInfoName { get; set; }
+        public string ContactInfoPhone { get; set; }
     }
 }

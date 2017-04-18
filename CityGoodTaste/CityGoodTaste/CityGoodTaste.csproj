@@ -186,11 +186,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704122029532_InitialCreate.cs" />
-    <Compile Include="Migrations\201704122029532_InitialCreate.Designer.cs">
-      <DependentUpon>201704122029532_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationModels\Administration.cs" />
     <Compile Include="Models\ApplicationModels\City.cs" />
@@ -3375,9 +3370,6 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704122029532_InitialCreate.resx">
-      <DependentUpon>201704122029532_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>

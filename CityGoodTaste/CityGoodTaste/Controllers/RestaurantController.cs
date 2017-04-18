@@ -248,7 +248,7 @@ namespace CityGoodTaste.Controllers
         }
 
         [AjaxOnly]
-        public ActionResult ConfirmReserv(string restId, string schemaId, string date, string time)
+        public ActionResult ConfirmReserv(string restId, string schemaId, string date, string time, string name, string phone)
         {
 
 
@@ -270,7 +270,7 @@ namespace CityGoodTaste.Controllers
                 }
             }
             DateTime d = DateTime.Parse(date + " " + time);
-            manager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), userId, tablesIds, d);
+            manager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), userId, tablesIds, d , name, phone);
 
 
             //if (model == null)

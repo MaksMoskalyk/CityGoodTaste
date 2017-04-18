@@ -28,11 +28,14 @@ namespace CityGoodTaste.BusinessLayer
             }
         }
 
-        public void ConfirmReservTables(int restId, int schemaId, List<int> tablesIds, DateTime date, ApplicationUser user)
+        public void ConfirmReservTables(int restId, int schemaId, List<int> tablesIds, DateTime date, ApplicationUser user, string name, string phone)
         {
             using (GoodTasteContext context = new GoodTasteContext())
             {
-                ApplicationUser u = context.Users.Find(user.Id);
+                ApplicationUser u = null;
+                if (user != null)
+                     u = context.Users.Find(user.Id);
+
                 foreach (var tableId in tablesIds)
                 {
                     Table table = context.Tables.Find(tableId);
@@ -42,6 +45,8 @@ namespace CityGoodTaste.BusinessLayer
                     reserv.ReservedAndConfirmed = true;
                     reserv.Reserved = true;
                     reserv.Date = date;
+                    reserv.ContactInfoName = name.Trim();
+                    reserv.ContactInfoPhone = phone.Trim();
                     context.TableReservations.Add(reserv);
                 }
                 context.SaveChanges();

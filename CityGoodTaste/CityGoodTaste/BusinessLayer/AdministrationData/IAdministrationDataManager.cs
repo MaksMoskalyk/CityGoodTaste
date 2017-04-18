@@ -8,7 +8,7 @@ namespace CityGoodTaste.BusinessLayer
     public interface IAdministrationDataManager
     {
         Administration GetAdministration(int? id);
-        void ConfirmReservTables(int restId, int schemaId, List<int> tablesIds, DateTime date, ApplicationUser user);
+        void ConfirmReservTables(int restId, int schemaId, List<int> tablesIds, DateTime date, ApplicationUser user, string name, string phone);
         void RemoveReserv(int? reservId);
     }
 }
