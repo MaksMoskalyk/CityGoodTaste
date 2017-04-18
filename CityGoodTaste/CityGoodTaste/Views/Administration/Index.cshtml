@@ -115,12 +115,13 @@
                     Подтвердить резерв
                 </div>
                 <div id="confirmReservModalBody" class="modal-body" style="padding:40px 50px;">
+                    <p><span style="font-weight:700">Столики:</span></p>
                     <div id="newTablesInfoModal"></div>
                     <div class="form-group">
-                        <input data-val="true" id="nameModal" type="text" class="form-control input-md" name="name" placeholder="Имя">
-                        <input data-val="true" id="phoneModal" type="text" class="form-control input-md" name="phone" placeholder="Телефон">
-                        <input data-val="true" id="dateModal" type="text" class="form-control" name="date">
-                        <input data-val="true" id="timeModal" type="text" class="form-control" name="time">
+                        <div style="margin-bottom:10px;"><span style="font-weight:700">Имя:</span><input readonly data-val="true" id="nameModal" type="text" class="form-control input-md" name="name" placeholder="Имя"></div>
+                        <div style="margin-bottom:10px;"><span style="font-weight:700">Телефон:</span><input readonly data-val="true" id="phoneModal" type="text" class="form-control input-md" name="phone" placeholder="Телефон"></div>
+                        <div style="margin-bottom:10px;"><span style="font-weight:700">Дата:</span><input readonly data-val="true" id="dateModal" type="text" class="form-control" name="date"></div>
+                        <div><span style="font-weight:700">Время:</span><input readonly data-val="true" id="timeModal" type="text" class="form-control" name="time"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -172,6 +173,26 @@
 </div>
 
 
+<a style="visibility: hidden" id="errorModalLink" data-toggle="modal" data-target="#errorModal" href="#"></a>
+<div class="modal fade" id="errorModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="width:300px">
+            <div class="modal-header" style="background-color:#c34b4b; color:white">
+                <span id="failureHeader" style="color:white">Данные не заполнены</span>
+                <button id="closeModalError" type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" style="padding:10px 10px;">
+                <p id="failureMsg">Необходимо выбрать столик и заполнить контактную информацию.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-default pull-left" data-dismiss="modal">Ок</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
     $(document).ready(function () {
 
@@ -190,12 +211,18 @@
         $('td[selected]').css("background-color", '#fcfcfc');
         $('td[selected]').removeAttr('selected');
         $('#closeBtRemoveReservModal').click();
-
-
     }
 
     function ReservBtClick() {
         $('#reservBt').click(function () {
+            // check info - table / name / phone
+            if ($('td[newreserved]').attr('id') == "undefined" ||
+                $('#checkboxNewReservs:checked').val() != 'on' ||
+                $('#name').val().length == 0 ||$('#phone').val().length == 0) {
+                $('#errorModalLink').click();
+                return;
+            }
+
             $('#newTablesInfoModal').empty();
             $('#nameModal').val("");
             $('#phoneModal').val("");
