@@ -15,8 +15,7 @@
                     var reserv = table.TableReservation.FirstOrDefault();
                     if (reserv == null) { continue; };
                     if (reserv.ReservedAndConfirmed == true)
-                    {
-                        @*<a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">@reserv.Date  | Имя:  |  <span reservId="@(reserv.Id)" tablespanId="@(reserv.Table.Id)" style="color:red" class="glyphicon glyphicon-minus"></span></a>*@
+                    {                     
                         <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">
                             <div class="row">
                                 <div class="pull-left" style="padding-left:10px">@reserv.Date.Date.ToShortDateString() @reserv.Date.ToShortTimeString()</div>
@@ -36,7 +35,18 @@
                     if (reserv == null) { continue; };
                     if (reserv.Reserved == true && reserv.ReservedAndConfirmed == false)
                     {
-                        <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">@reserv.Date | Имя: @reserv.User.UserName | <span style="color:red" class="glyphicon glyphicon-minus"></span></a>
+                        string name = string.IsNullOrEmpty(reserv.ContactInfoName) ? reserv.User.Name : reserv.ContactInfoName;
+                        name = string.IsNullOrEmpty(name) ? "Имя отсутстувет" : name;
+                        string phone = string.IsNullOrEmpty(reserv.ContactInfoPhone) ? reserv.User.PhoneNumber : reserv.ContactInfoPhone;
+                        phone = string.IsNullOrEmpty(phone) ? "Телефон отсутствует" : phone;
+
+                        <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">
+                            <div class="row">
+                                <div class="pull-left" style="padding-left:10px">@reserv.Date.Date.ToShortDateString() @reserv.Date.ToShortTimeString()</div>
+                                <div class="col-sm-6">@name  @phone</div>
+                                <div class="pull-right" style="padding-right:10px"><span reservId="@(reserv.Id)" tablespanId="@(reserv.Table.Id)" style="color:#cb3434" class="glyphicon glyphicon-remove"></span></div>
+                            </div>
+                        </a>
                     }
                 }
             </div>
