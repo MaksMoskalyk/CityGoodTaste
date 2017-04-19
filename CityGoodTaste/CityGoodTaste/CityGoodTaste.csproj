@@ -3359,8 +3359,7 @@
     <Content Include="Views\Administration\Delete.cshtml" />
     <Content Include="Views\Administration\Edit.cshtml" />
     <Content Include="Views\Administration\Index.cshtml" />
-    <Content Include="Views\Administration\_ReservsListPartial.cshtml" />
-    <Content Include="Views\Administration\_UnconfirmedReservsListPartial.cshtml" />
+    <Content Include="Views\Administration\_SchemaAndInfoPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

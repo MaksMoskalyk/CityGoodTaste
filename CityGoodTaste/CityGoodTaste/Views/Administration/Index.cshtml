@@ -7,13 +7,9 @@
 <link rel="stylesheet" href="~/Content/css/Custom/Administration.css" type="text/css">
 
 
-
-
 @{
     CityGoodTaste.Models.RestaurantSchema schemaModel = Model.Restaurants.FirstOrDefault().RestaurantSchemas.FirstOrDefault();
 } 
-
-
 
 
 <div class="container-fluid minPadding" style="margin-left: auto; margin-right: auto">
@@ -77,25 +73,8 @@
 
                 </div>
         </div>
-        <div class="col-sm-6">@Html.Partial("~/Views/Restaurant/_SchemaPartial.cshtml", schemaModel)</div>
-        <div class="col-sm-3 text-center" style="border-top:none; padding:0;">
-            <ul id="nav" class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#confirmedReservs">Подтвержденные</a></li>
-                <li><a data-toggle="tab" href="#notConfirmedReservs">Неподтвержденные</a></li>
-            </ul>
-            <div class="tab-content">
-                <div id="confirmedReservs" class="tab-pane fade  in active">
-                    <div id="confirmedReservsList" class="list-group">
-                        @Html.Partial("_ReservsListPartial", schemaModel)
-                    </div>
-                </div>
-                <div id="notConfirmedReservs" class="tab-pane fade">
-                    <div class="list-group">
-                        @Html.Partial("_UnconfirmedReservsListPartial", schemaModel)
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div id="schemaAndInfo">@Html.Partial("_SchemaAndInfoPartial", schemaModel)</div>
+        
     </div>
 </div>
 
@@ -104,10 +83,10 @@
 <div class="modal fade" id="ConfirmModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
-        @using (Ajax.BeginForm("_ReservsListPartial",
+        @using (Ajax.BeginForm("ConfirmReservation",
             new { schemaId = Model.Restaurants.FirstOrDefault().RestaurantSchemas.FirstOrDefault().Id,
                 restId= Model.Restaurants.FirstOrDefault().Id},
-            new AjaxOptions { UpdateTargetId = "confirmedReservsList", OnSuccess = "reseredTablesSuccess", OnFailure = "reseredTablesFailure", InsertionMode = InsertionMode.Replace }, new { id = "confirmForm" }))
+            new AjaxOptions { UpdateTargetId = "schemaAndInfo", OnSuccess="UnCheckNewReservationCheckBox", OnFailure = "reseredTablesFailure", InsertionMode = InsertionMode.Replace }, new { id = "confirmForm" }))
         {
             <div class="modal-content" style="width:400px">
                 <div class="modal-header" style="background-color:#333333; color:white">
@@ -145,8 +124,8 @@
 <div class="modal fade" id="unreservModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
-@using (Ajax.BeginForm("RemoveReserv", new {restId = Model.Restaurants.FirstOrDefault().Id}, 
-    new AjaxOptions { UpdateTargetId = "confirmedReservsList", InsertionMode = InsertionMode.Replace, OnSuccess="reservSuccess" }))
+@using (Ajax.BeginForm("RemoveReservation", new { restId = Model.Restaurants.FirstOrDefault().Id },
+    new AjaxOptions { UpdateTargetId = "schemaAndInfo", InsertionMode = InsertionMode.Replace, OnSuccess = "reservSuccess" }))
 {
             <div class="modal-content" style="width:400px">
                 <div class="modal-header" style="background-color:#333333; color:white">
@@ -196,27 +175,29 @@
 <script>
     $(document).ready(function () {
 
-        SelectTable();
-
         ReservBtClick();
 
         CheckBoxChecked();
 
     });
 
+
     function reservSuccess() {
-        var id = $('td[selected]').attr('id');
-        document.getElementById('imgT.' + id).src = "/Content/icons/SchemaIcons/Table.png";
-        document.getElementById('imgP.' + id).src = "/Content/icons/SchemaIcons/Person.png";
-        $('td[selected]').css("background-color", '#fcfcfc');
-        $('td[selected]').removeAttr('selected');
-        $('#closeBtRemoveReservModal').click();
+        $('#closeModalUnReserv').click();
     }
+
+
+    function UnCheckNewReservationCheckBox() {
+        $('#checkboxNewReservs:checked').prop('checked', false);
+        SetDefaultColorAndRemoveAttrNewreservedTD();
+    }
+
 
     function ReservBtClick() {
         $('#reservBt').click(function () {
             // check info - table / name / phone
-            if ($('td[newreserved]').attr('id') == "undefined" ||
+            
+            if ($('td[newreserved]').length ==0 ||
                 $('#checkboxNewReservs:checked').val() != 'on' ||
                 $('#name').val().length == 0 ||$('#phone').val().length == 0) {
                 $('#errorModalLink').click();
@@ -224,10 +205,6 @@
             }
 
             $('#newTablesInfoModal').empty();
-            $('#nameModal').val("");
-            $('#phoneModal').val("");
-            $('#dateModal').val("");
-            $('#timeModal').val("");
             $('#nameModal').val($('#name').val());
             $('#phoneModal').val($('#phone').val());
             $('#dateModal').val($('#datepicker').val());
@@ -236,11 +213,9 @@
                 var elemId = $('td[newReserved="True"]')[i].id;
                 var id = document.getElementById($('td[newReserved="True"]')[i].id).getAttribute('tableid');
                 var seats = document.getElementById($('td[newReserved="True"]')[i].id).getAttribute('seats');
-               
                 $('#newTablesInfoModal').append("<input data-val=\"true\" elemid="+elemId+" id=\"tableId" + id + "\" name=\"tableId" + id + "\" type=\"hidden\" value=\"" + id + "\">");
                 $('#newTablesInfoModal').append("<p><span class=\"glyphicon glyphicon-user\">" + seats + "</span></p>");
             }
-            $('#ui-datepicker-div').css("z-index", "999");
             $('#confirmModalLink').click();
 
         });   
@@ -249,67 +224,22 @@
 
     function CheckBoxChecked() {
         $('#checkboxNewReservs').click(function () {
-            
-            $('td[selected]').css("background-color", '#fcfcfc');
-            $('td[selected]').removeAttr('selected');
-
-
-            for (var i = 0; i < $('td[newreserved]').length; i++) {
-                var id = $('td[newreserved]')[i].id;
-                document.getElementById("P." + id).style.color = "black";
-            }
-
-            $('td[newreserved]').css("background-color", '#fcfcfc');
-            $('td[newreserved]').removeAttr('newreserved');
-
-
+            SetDefaultColorAndRemoveAttrNewreservedTD();
         });
 
     }
 
-    function SelectTable() {
-        $('td').click(function (event) {
-            if($('#checkboxNewReservs:checked').val()!='on') return;
-            event.stopPropagation();
-            var id = event.target.id;
-            if (id.indexOf('.') > 0)
-                id = id.substring(id.indexOf('.') + 1);
+    function SetDefaultColorAndRemoveAttrNewreservedTD() {
+        $('td[selected]').css("background-color", '#fcfcfc');
+        $('td[selected]').removeAttr('selected');
 
-            var reserved = document.getElementById(id).getAttribute('newReserved');
-            if (document.getElementById(id).getAttribute('reservedandconfirmed') == "True")
-                return;
-
-            var tableId = document.getElementById('imgP.' + id).getAttribute('tableId');
-            if (reserved == "True") {
-                $('td[id="' + id + '"]').css("background-color", '#fcfcfc');
-                document.getElementById('P.' + id).style.color = "black";
-                document.getElementById(id).setAttribute('newReserved', 'False');
-                document.getElementById('newReserved.' + tableId).value = false;
-            } else {
-                $('td[id="' + id + '"]').css("background-color", '#fcffbc');
-                document.getElementById('P.' + id).style.color = "green";
-                document.getElementById(id).setAttribute('newReserved', 'True');
-                document.getElementById('newReserved.' + tableId).value = true;
-            }
-        });
-    };
-
-    function reseredTablesSuccess(data) {
-        for (var i = 0; i < $("#newTablesInfoModal :input").length; i++) {
-            var id = document.getElementById($("#newTablesInfoModal :input")[i].id).value;
-            var elemid = document.getElementById($("#newTablesInfoModal :input")[i].id).getAttribute("elemid");
-            $('td[id="' + elemid + '"]').css("background-color", '#fcfcfc');
-            $('td[id="' + elemid + '"]').attr("reserved", "True");
-            $('td[id="' + elemid + '"]').attr("reservedandconfirmed", "True");
-            $('td[id="' + elemid + '"]').removeAttr("newReserved");
-            document.getElementById('imgT.' + elemid).src = "/Content/icons/SchemaIcons/InactiveTable.png";
-            document.getElementById('imgP.' + elemid).src = "/Content/icons/SchemaIcons/InactivePerson.png";
-            document.getElementById('P.' + elemid).style.color = "black";
+        for (var i = 0; i < $('td[newreserved]').length; i++) {
+            var id = $('td[newreserved]')[i].id;
+            document.getElementById("P." + id).style.color = "black";
         }
 
+        $('td[newreserved]').css("background-color", '#fcfcfc');
+        $('td[newreserved]').removeAttr('newreserved');
     }
-                
-
-
 </script>
 
