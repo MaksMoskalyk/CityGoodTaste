@@ -5,11 +5,11 @@
 <script src="~/Scripts/Custom/Account/LogIn.js"></script>
 
 @{
-    ViewBag.Title = "Авторизоваться";
+    ViewBag.Title = "Войти";
 }
 
-<div class="authenticationBlock">
-    <h2 class="centralHeader">@ViewBag.Title</h2>
+<article class="authenticationBlock">
+    <h3 class="centralHeader">@ViewBag.Title</h3>
 
     <div class="row">
         <div class="col-md-12">
@@ -62,12 +62,16 @@
 
                     <p>
                         <span style="float:left">@Html.ActionLink("Регистрация", "Register")</span> <span style="float:right">@Html.ActionLink("Забыли пароль? ", "ForgotPassword")</span>
-                    </p>
+                    </p>                   
                 }
             </section>
         </div>
     </div>
-</div>
+
+    <section id="socialLoginForm">
+        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+    </section>
+</article>
 
 
 @section Scripts {

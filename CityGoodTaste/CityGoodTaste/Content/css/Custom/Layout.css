@@ -12,6 +12,12 @@
     margin-right: 10px;
 }
 
+#footer {
+    margin: 0px; 
+    padding: 0px; 
+    background-color:#333333 !important;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus

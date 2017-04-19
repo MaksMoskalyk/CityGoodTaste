@@ -54,15 +54,15 @@ namespace CityGoodTaste
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1416321845057884",
+               appSecret: "6934eed2249cdc1d26832b88eb698b41");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "91557539407-asoponcpr4rjr1rhi9f34ondica4ocl5.apps.googleusercontent.com",
+                ClientSecret = "SADIKsC9Vm-C0Jorp79dKUGl"
+            });
         }
     }
 }

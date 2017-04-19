@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44375</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -250,6 +250,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\Custom\Account\ManageAccount.css" />
+    <Content Include="Content\css\Custom\Controls\FilesUploadInput.css" />
     <Content Include="Content\css\Custom\ModalDialogs\AuthenticationModals.css" />
     <Content Include="Content\css\Custom\Account\AuthenticationPages.css" />
     <Content Include="Content\css\Custom\Layout.css" />
@@ -3407,7 +3408,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2850</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:2850/</IISUrl>
+          <IISUrl>https://localhost:44375/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

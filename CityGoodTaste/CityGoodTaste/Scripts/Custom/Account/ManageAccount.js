@@ -6,7 +6,8 @@
 
     $("#manageAccountWrapper input").css("width", "240px");
     $("#manageAccountWrapper select").css("width", "240px");
-    $("input, select").addClass("form-control");
+    $("#manageAccountWrapper input").addClass("form-control");
+    $("#manageAccountWrapper select").addClass("form-control");
 
     SetDatepicker();
 })
