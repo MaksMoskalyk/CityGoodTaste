@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
 using CityGoodTaste.Models.ViewModels;
-
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CityGoodTaste.BusinessLayer
 {
@@ -40,7 +41,7 @@ namespace CityGoodTaste.BusinessLayer
                     result.Map = context.Maps.Where(x => x.id == result.Map.id).SingleOrDefault();
                     return result;
                 }
-                catch
+                catch(Exception ex)
                 {
                     throw new Exception("");
                 }
@@ -282,7 +283,7 @@ namespace CityGoodTaste.BusinessLayer
 
         }
 
-        public void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds)
+        public void ConfirmReservTables(int restId, int schemaId, string userId, List<int> tablesIds, DateTime date, string contactName, string contactPhone)
         {
             using (GoodTasteContext context = new GoodTasteContext())
             {
@@ -297,6 +298,9 @@ namespace CityGoodTaste.BusinessLayer
                 {
                     reserv.ReservedAndConfirmed = true;
                     reserv.Reserved = false;
+                    reserv.Date = date;
+                    reserv.ContactInfoName = contactName.Trim();
+                    reserv.ContactInfoPhone = contactPhone.Trim();
                 }
                 context.SaveChanges();
             }
@@ -426,6 +430,29 @@ namespace CityGoodTaste.BusinessLayer
             {
                 return (from x in context.Users where x.Id == id select x).FirstOrDefault();
             }
+        }
+
+        public ApplicationUser CreateUser(string name, string phone)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+
+                // создаем пользователей
+                var user = new ApplicationUser { PhoneNumber = phone, UserName = phone, Name= name };
+                string password = "Password!2";
+                var result = userManager.Create(user, password);
+
+                // если создание пользователя прошло успешно
+                if (result.Succeeded)
+                {
+                    // добавляем для пользователя роль
+                    userManager.AddToRole(user.Id, "guest");
+                    return user;
+                }
+                return null;
+            }
+            
         }
     }
 }

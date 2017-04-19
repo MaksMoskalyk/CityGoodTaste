@@ -57,7 +57,8 @@
                                 reserved="@Model.Tables.ToList()[i].TableReservation.ToList()[0].Reserved.ToString()"
                                 reservedandconfirmed="@Model.Tables.ToList()[i].TableReservation.ToList()[0].ReservedAndConfirmed.ToString()"
                                 seats="@Model.Tables.ToList()[i].Seats">
-                                <div id="divP.@x@y" style="top:8px; position:relative" tableid="@Model.Tables.ToList()[i].Id">
+                                <span style="font-size:13px;">#@Model.Tables.ToList()[i].Id</span>
+                                <div id="divP.@x@y" style="top:8px; position:relative" tableid="@Model.Tables.ToList()[i].Id">                                  
                                     <p id="P.@x@y" style="font-weight:bold" tableid="@Model.Tables.ToList()[i].Id">
                                         @Model.Tables.ToList()[i].Seats
                                         <img id="imgP.@x@y" style="width:15px; height:15px" src="@(personPath)" tableid="@Model.Tables.ToList()[i].Id" />

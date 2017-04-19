@@ -111,7 +111,7 @@ namespace CityGoodTaste.Controllers
         }
 
         [AjaxOnly]
-        public ActionResult ConfirmReserv(string restId, string schemaId)
+        public ActionResult ConfirmReservation(string restId, string schemaId)
         {
             if (restId == null || schemaId == null)
             {
@@ -130,10 +130,30 @@ namespace CityGoodTaste.Controllers
                     tablesIds.Add(Convert.ToInt32(Request.Form[key]));
                 }
             }
+            string name = Request.Form["name"];
+            string phone = Request.Form["phone"];
+            DateTime d = DateTime.Parse(Request.Form["date"] + " " + Request.Form["time"]);
+
             IAdministrationDataManager adminmanager = factory.GetAdministrationDataManager();
-            adminmanager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), userId, tablesIds);
-            
-            return Json(manager.GetUser(userId).Name);
+
+            ApplicationUser user =  manager.CreateUser(name, phone);
+
+            adminmanager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), tablesIds, d, user, name, phone);
+
+            return PartialView("~/Views/Administration/_SchemaAndInfoPartial.cshtml", manager.GetRestaurantSchema(Convert.ToInt32(restId)));
+
+        }
+
+
+        [AjaxOnly]
+        public ActionResult RemoveReservation(string restId)
+        {
+            int reservId = Convert.ToInt32(Request.Form["reservNumber"]);
+            DataManagerCreator factory = new DefaultDataManagerCreator();
+            IBaseDataManager manager = factory.GetBaseDataManager();
+            IAdministrationDataManager adminmanager = factory.GetAdministrationDataManager();
+            adminmanager.RemoveReserv(reservId);
+            return PartialView("~/Views/Administration/_SchemaAndInfoPartial.cshtml", manager.GetRestaurantSchema(Convert.ToInt32(restId)));
         }
 
 

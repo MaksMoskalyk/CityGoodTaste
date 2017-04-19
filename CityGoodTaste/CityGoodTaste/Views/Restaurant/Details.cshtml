@@ -454,7 +454,7 @@
 <div class="modal fade" id="ConfirmModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
-        @using (Ajax.BeginForm("ConfirmReserv", null, new AjaxOptions { UpdateTargetId = "reseredTables" }, new { id = "confirmForm" }))
+        @using (Ajax.BeginForm("ConfirmReserv", null, new AjaxOptions { UpdateTargetId = "reseredTables"}, new { id = "confirmForm" }))
         {
             <div class="modal-content" style="width:400px">
                 <div class="modal-header" style="background-color:#333333; color:white">
@@ -488,7 +488,7 @@
                 <button id="closeModalError" type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body" style="padding:10px 10px;">
-                <p id="failureMsg">Ваша бронь подтверждена, ждем вас.</p>
+                <p id="failureMsg">Ваша бронь не подтверждена, необходимо заполнить контактную информацию.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success btn-default pull-left" data-dismiss="modal">Ок</button>
@@ -562,6 +562,6 @@
             }
         }
         $('#confirmReservModalBody').append("<div><p><span style=\"font-weight:bold\">Имя: </span>"+name+"</p><p><span style=\"font-weight:bold\">Телефон: </span>"+phone+"</p></div>");
-        $('#confirmForm').attr('action', '/Restaurant/ConfirmReserv?restId='+restId+'&schemaId=' + schemaId);
+        $('#confirmForm').attr('action', '/Restaurant/ConfirmReserv?restId='+restId+'&schemaId=' + schemaId+'&date=' + date+'&time=' + time+'&name=' + name+'&phone=' + phone);
     });
 </script>
