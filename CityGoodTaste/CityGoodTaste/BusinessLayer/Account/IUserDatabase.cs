@@ -16,5 +16,7 @@ namespace CityGoodTaste.BusinessLayer
         void SignUp(ApplicationUser user);
 
         ApplicationUser GetUserById(string id);
+
+        Task<string> SaveAccountChanges(ApplicationUser updatedUser);
     }
 }

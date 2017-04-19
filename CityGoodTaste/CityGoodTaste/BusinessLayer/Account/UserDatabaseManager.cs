@@ -5,6 +5,7 @@ using System.Web;
 using CityGoodTaste.Models;
 using System.Data.Entity;
 using CityGoodTaste.Models.ViewModels;
+using System.Threading.Tasks;
 
 namespace CityGoodTaste.BusinessLayer
 {
@@ -113,6 +114,26 @@ namespace CityGoodTaste.BusinessLayer
             catch (Exception)
             {
                 return null;
+            }
+        }
+        #endregion
+
+        #region Set user data
+        public async Task<string> SaveAccountChanges(ApplicationUser updatedUser)
+        {
+            try
+            {
+                using (GoodTasteContext context = new GoodTasteContext())
+                {
+                    //throw new Exception("Success");   
+                    //throw null;
+                    return "Success";
+                    //return await Task.FromResult("Hello");
+                }
+            }
+            catch (Exception)
+            {
+                throw null;
             }
         }
         #endregion

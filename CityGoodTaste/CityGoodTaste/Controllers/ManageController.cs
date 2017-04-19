@@ -77,6 +77,8 @@ namespace CityGoodTaste.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
 
+            model.UserName = "DDDDDDDDDD";
+            model.CurrentUser = new ApplicationUser();
             model.CurrentUser = userDatabaseManager.GetUserById(userId);
             return View(model);
         }
@@ -326,6 +328,21 @@ namespace CityGoodTaste.Controllers
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+        }
+
+        //
+        // POST: /Manage/SaveAccountChanges
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SaveAccountChanges(IndexViewModel model)
+        {
+            //model.CurrentUser = userDatabaseManager.GetUserById(User.Identity.GetUserId());
+            var result = await userDatabaseManager.SaveAccountChanges(model.CurrentUser);
+            if (result != null)
+            {
+                return View("Index", model);
+            }
+            return View("Error");
         }
 
         protected override void Dispose(bool disposing)

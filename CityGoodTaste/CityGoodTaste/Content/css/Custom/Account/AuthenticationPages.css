@@ -28,6 +28,10 @@
     margin-top: 15px;
 }
 
+#socialLoginForm {
+    margin-top: 100px;
+}
+
 .validationLabel {
     color: crimson;
     text-align: center;

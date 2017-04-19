@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CityGoodTaste.Controllers
 {
+    [RequireHttps]
     [Culture]
     public class HomeController : Controller
     {
