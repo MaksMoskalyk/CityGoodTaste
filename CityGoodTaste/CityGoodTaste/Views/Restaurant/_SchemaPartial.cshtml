@@ -57,7 +57,8 @@
                                 reserved="@Model.Tables.ToList()[i].TableReservation.ToList()[0].Reserved.ToString()"
                                 reservedandconfirmed="@Model.Tables.ToList()[i].TableReservation.ToList()[0].ReservedAndConfirmed.ToString()"
                                 seats="@Model.Tables.ToList()[i].Seats">
-                                <span style="font-size:13px;">#@Model.Tables.ToList()[i].Id</span>
+                                <div style="position:relative; top:-3px; right:-17px"><span style="font-size:12px; color:#bd0b0b; position:absolute;">#@Model.Tables.ToList()[i].Id</span></div>
+                                                                
                                 <div id="divP.@x@y" style="top:8px; position:relative" tableid="@Model.Tables.ToList()[i].Id">                                  
                                     <p id="P.@x@y" style="font-weight:bold" tableid="@Model.Tables.ToList()[i].Id">
                                         @Model.Tables.ToList()[i].Seats
