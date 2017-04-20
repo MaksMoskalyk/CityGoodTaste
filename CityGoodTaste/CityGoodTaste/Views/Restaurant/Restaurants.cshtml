@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<script src="~/Scripts/Custom/Restaurants.js"></script>
 @using (Ajax.BeginForm("RestaurantsSearch", new { id = "RestaurantsForm" }, new AjaxOptions { UpdateTargetId = "RestaurantsList", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }))
 {
     <div class="input-group searchBlock">

@@ -32,8 +32,7 @@
                     <img class="img-responsive Center-Image-Width" src=@item.Photo alt="Image">
                     <div class="carousel-caption customCarouselCaption">
                         <a href='@Url.Action("Details", "Restaurant", new { id = item.Restaurant.Id })'>
-                            <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
-                            <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                            <h3 style="font-size:36px">@Html.DisplayFor(modelItem => item.Name)</h3>
                         </a>
                     </div>
                 </div>

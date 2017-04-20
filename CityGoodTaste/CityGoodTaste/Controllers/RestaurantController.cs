@@ -321,6 +321,7 @@ namespace CityGoodTaste.Controllers
                     RestaurantEvent = RestaurantEvent.Where(d => d.StartDate >= dtfrom && d.StartDate <= dtto).Distinct().ToList();
 
                 }
+
                 return PartialView(RestaurantEvent);
             }
             catch
