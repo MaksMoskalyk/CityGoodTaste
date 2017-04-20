@@ -64,14 +64,6 @@ button.ui-datepicker-current {
     background-color:#333333;
 }
 
-.panelHeadingCustom {
-    background-color: #ECECD3 !important;
-}
-
-.panelFooterCustom {
-    background-color: beige !important;
-}
-
 li.active a {
     background-color: #8BB6C4 !important;
     color: white !important;

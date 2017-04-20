@@ -25,9 +25,6 @@ namespace CityGoodTaste
 
             //Custom  
             bundles.Add(new ScriptBundle("~/bundles/customScript").Include(
-                     "~/Scripts/Custom/Account/LogIn.js",
-                     "~/Scripts/Custom/Account/SignUp.js",
-
                      "~/Scripts/Custom/_Layout.js",
                      "~/Scripts/Custom/Details.js",
                      "~/Scripts/Custom/Events.js",
@@ -57,7 +54,6 @@ namespace CityGoodTaste
                     "~/Content/css/Custom/ModalDialogs/AuthenticationModals.css",
                     "~/Content/css/Custom/ModalDialogs/ModalFix.css",
 
-                    "~/Content/css/Custom/AuthenticationPages.css",
                     "~/Content/css/Custom/Layout.css",
                     "~/Content/css/Custom/MainPage.css",                    
                     "~/Content/css/Custom/Restaurants.css"));
