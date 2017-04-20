@@ -5,11 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{
+<script src="~/Scripts/Custom/Localization/datepicker-RUS.js"></script>
+
+@*@{
     string language = @CityGoodTaste.Controllers.HomeController.getCulture();
     string path = "../../../Scripts/Custom/Localization/datepicker-" + language + ".js";
     <script src=@path></script>
-}
+}*@
 
 @*<link href="~/Content/icons/SchemaIcons/Table/style.css" rel="stylesheet" />
     <script src="~/Content/icons/SchemaIcons/Table/svgxuse.js"></script>

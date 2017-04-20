@@ -15,7 +15,7 @@
     <input type="file" class="custom-file-input">
 }*@
 
-<div id="manageAccountWrapper" class="container-fluid">
+<div id="manageAccountWrapper" class="container-fluid col-sm-12 col-md-12 col-lg-12">
     <div class="row">
         @using (Html.BeginForm("SaveAccountChanges", "Manage", Model, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
@@ -24,10 +24,10 @@
             @Html.HiddenFor(model => model.CurrentUser.Id)
             @Html.HiddenFor(model => model.CurrentUser.UserName)
 
-            <div id="personalDataContainer" class="col-sm-12 col-md-4 col-lg-4">
-                <div class="input-group">
+            <div id="personalDataContainer">
+                @*<div class="input-group">
                     <h3>Личные данные</h3>
-                </div>
+                </div>*@
 
                 <div class="input-group">
                     <img id="photoImage" src="~/Img/userDefaultPhoto.png"
@@ -39,49 +39,53 @@
 
                 <div class="separator"></div>
 
-                <div class="form-group">
-                    <label>Имя:</label>
-                    <input id="nameInput" type="text" value="@Model.UserName" />
-                </div>
-                <div class="form-group">
-                    <label>Фамилия:</label>
-                    <input id="surnameInput" type="text" value="@Model.CurrentUser.Surname" />
-                </div>
 
-                <div class="form-group">
-                    <label>Почта:</label>
-                    <input id="emailInput" type="text" value="@Model.CurrentUser.Email" />
-                </div>
-                <div class="form-group">
-                    <label>Телефон:</label>
-                    <input id="phoneInput" type="text" value="@Model.CurrentUser.PhoneNumber" />
-                </div>
+                <div class="input-group">
+                    <div class="form-group">
+                        <label>Имя:</label>
+                        <input id="nameInput" type="text" value="@Model.UserName" />
+                    </div>
+                    <div class="form-group">
+                        <label>Фамилия:</label>
+                        <input id="surnameInput" type="text" value="@Model.CurrentUser.Surname" />
+                    </div>
 
-                <div class="form-group">
-                    <label>Страна:</label>
-                    <select id="countrySelect">
-                        <option selected="selected" value="Odessa">Украина</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Город:</label>
-                    <select id="citySelect">
-                        <option selected="selected" value="Odessa">Одесса</option>
-                        <option value="Kiev">Киев</option>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label>Почта:</label>
+                        <input id="emailInput" type="text" value="@Model.CurrentUser.Email" />
+                    </div>
+                    <div class="form-group">
+                        <label>Телефон:</label>
+                        <input id="phoneInput" type="text" value="@Model.CurrentUser.PhoneNumber" />
+                    </div>
 
-                <div class="form-group">
-                    <label>Пол:</label>
-                    <select id="genderSelect">
-                        <option selected="selected" value="male">Мужской</option>
-                        <option value="female">Женский</option>
-                    </select>
+                    <div class="form-group">
+                        <label>Страна:</label>
+                        <select id="countrySelect">
+                            <option selected="selected" value="Odessa">Украина</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Город:</label>
+                        <select id="citySelect">
+                            <option selected="selected" value="Odessa">Одесса</option>
+                            <option value="Kiev">Киев</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Пол:</label>
+                        <select id="genderSelect">
+                            <option selected="selected" value="male">Мужской</option>
+                            <option value="female">Женский</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Дата рождения:</label>
+                        <input id="birthdayInput" type="text" value="@Model.CurrentUser.DateOfBirth" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Дата рождения:</label>
-                    <input id="birthdayInput" type="text" value="@Model.CurrentUser.DateOfBirth" />
-                </div>
+               
 
                 <div class="input-group">
                     <p class="text-success">@ViewBag.StatusMessage</p>
@@ -91,7 +95,7 @@
                     }
                     else
                     {
-                        @Html.ActionLink("Создать", "SetPassword")
+                        @Html.ActionLink("Добавить пароль", "SetPassword")
                     }
                 </div>
 
@@ -101,12 +105,12 @@
             </div>
         }
         
-        <div id="ordersContainer" class="col-sm-12 col-md-4 col-lg-4">
+        @*<div id="ordersContainer" class="col-sm-12 col-md-4 col-lg-4">
             <h3>История заказов</h3>
         </div>
 
         <div id="preferencesContainer" class="col-sm-12 col-md-4 col-lg-4">
             <h3>Предпочтения</h3>
-        </div>
+        </div>*@
     </div>
 </div>
