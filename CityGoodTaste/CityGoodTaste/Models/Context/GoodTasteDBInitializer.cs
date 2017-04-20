@@ -7,23 +7,13 @@ using System.Linq;
 
 namespace CityGoodTaste.Models
 {
-    public class GoodTasteDBInitializer :CreateDatabaseIfNotExists<GoodTasteContext>
+    public class GoodTasteDBInitializer :DropCreateDatabaseAlways<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {
             InitializeAdminUserAndRoles(context);
             InitializeRestaurant(context);
-            InitializeR1(context);
-            InitializeR11(context);
-            InitializeR2(context);
-            InitializeR3(context);
-            InitializeR4(context);
-            InitializeR5(context);
-            InitializeR6(context);
-            InitializeR7(context);
-            InitializeR8(context);
-            InitializeR9(context);
-            InitializeR10(context);
+
             InitializeRestaurantAdministration(context);
             base.Seed(context);
         }
@@ -109,36 +99,43 @@ namespace CityGoodTaste.Models
             context.RestaurantReviews.Add(rr1);
             context.RestaurantReviews.Add(rr2);
             context.RestaurantReviews.Add(rr3);
-
             r.RestaurantFeatures = new List<RestaurantFeature>();
             r.RestaurantFeatures.Add(f1);
-            r.RestaurantFeatures.Add(f2);
             r.RestaurantFeatures.Add(f3);
-            r.RestaurantFeatures.Add(f4);
-            r.RestaurantFeatures.Add(f5);
-            r.RestaurantFeatures.Add(f6);
-            r.RestaurantFeatures.Add(f7);
-            r.RestaurantFeatures.Add(f8);
-            r.RestaurantFeatures.Add(f9);
-            r.RestaurantFeatures.Add(f10);
-            r.RestaurantFeatures.Add(f11);
-            r.RestaurantFeatures.Add(f12);
             r.RestaurantFeatures.Add(f13);
-            r.RestaurantFeatures.Add(f14);
-            r.RestaurantFeatures.Add(f15);
-            r.RestaurantFeatures.Add(f16);
-            r.RestaurantFeatures.Add(f17);
-            r.RestaurantFeatures.Add(f18);
-            r.RestaurantFeatures.Add(f19);
-            r.RestaurantFeatures.Add(f20);
-            r.RestaurantFeatures.Add(f21);
-            r.RestaurantFeatures.Add(f22);
-            r.RestaurantFeatures.Add(f23);
-            r.RestaurantFeatures.Add(f24);
-            r.RestaurantFeatures.Add(f25);
-            r.RestaurantFeatures.Add(f26);
-            r.RestaurantFeatures.Add(f27);
-            r.RestaurantFeatures.Add(f28);
+            r.RestaurantFeatures.Add(f10);
+            r.RestaurantFeatures.Add(f7);
+            r.RestaurantFeatures.Add(f2);
+
+           
+            context.RestaurantFeatures.Add(f1);
+            context.RestaurantFeatures.Add(f2);
+            context.RestaurantFeatures.Add(f3);
+            context.RestaurantFeatures.Add(f4);
+            context.RestaurantFeatures.Add(f5);
+            context.RestaurantFeatures.Add(f6);
+            context.RestaurantFeatures.Add(f7);
+            context.RestaurantFeatures.Add(f8);
+            context.RestaurantFeatures.Add(f9);
+            context.RestaurantFeatures.Add(f10);
+            context.RestaurantFeatures.Add(f11);
+            context.RestaurantFeatures.Add(f12);
+            context.RestaurantFeatures.Add(f13);
+            context.RestaurantFeatures.Add(f14);
+            context.RestaurantFeatures.Add(f15);
+            context.RestaurantFeatures.Add(f16);
+            context.RestaurantFeatures.Add(f17);
+            context.RestaurantFeatures.Add(f18);
+            context.RestaurantFeatures.Add(f19);
+            context.RestaurantFeatures.Add(f20);
+            context.RestaurantFeatures.Add(f21);
+            context.RestaurantFeatures.Add(f22);
+            context.RestaurantFeatures.Add(f23);
+            context.RestaurantFeatures.Add(f24);
+            context.RestaurantFeatures.Add(f25);
+            context.RestaurantFeatures.Add(f26);
+            context.RestaurantFeatures.Add(f27);
+            context.RestaurantFeatures.Add(f28);
             r.WorkHours = new List<WorkHour>();
             for (int i = 0; i < 7; i++)
             {
@@ -223,7 +220,9 @@ namespace CityGoodTaste.Models
             EventType et7 = new EventType() { Name = "Праздничное меню" };
             EventType et8 = new EventType() { Name = "Тематический вечер" };
             EventType et9 = new EventType() { Name = "Dj" };
-            
+            EventType et10 = new EventType() { Name = "Прочее" };
+            EventType et11 = new EventType() { Name = "Скидка" };
+            EventType et12 = new EventType() { Name = "Розыгрыш призов" };
 
             context.EventTypes.Add(et1);
             context.EventTypes.Add(et2);
@@ -234,32 +233,98 @@ namespace CityGoodTaste.Models
             context.EventTypes.Add(et7);
             context.EventTypes.Add(et8);
             context.EventTypes.Add(et9);
+            context.EventTypes.Add(et10);
+            context.EventTypes.Add(et11);
+            context.EventTypes.Add(et12);
 
             List<EventType> let1 = new List<EventType>();
-            let1.Add(et1);
+            let1.Add(et2);
 
             List<EventType> let2 = new List<EventType>();
             let2.Add(et2);
-
+            let2.Add(et11);
+            let2.Add(et10);
+            let2.Add(et9);
             List<EventType> let3 = new List<EventType>();
             let3.Add(et3);
 
             List<EventType> let4 = new List<EventType>();
             let4.Add(et4);
 
-            RestaurantEvent re1 = new RestaurantEvent() { Name= "Wednesday Pub Quiz",Description= "Паб-квиз — от английских слов Pub (паб, тут все понятно) и Quiz (викторина). Это популярная во всём мире командная игра, которая объединяет в себе облегченные «Брейн-Ринг» или «Что? Где?Когда?» и веселое времяпрепровождение в пабе с друзьями. Мы приглашаем команды от 2х до 4х человек. Короче говоря, собираемся вместе, делимся на команды и весело проводим время, умничая и отвечая на вопросы.",
-                StartDate = new DateTime(2017,3, 22,20,0,0), EndDate= new DateTime(2017, 3, 23, 0, 0, 0), Restaurant = r, EventTypes= let1, Photo="/Img/Events/1.jpg" };
-            RestaurantEvent re2 = new RestaurantEvent() { Name = "Old School Rock четверг с KIFA", Description = "Когда у человека есть вкус, есть чувство стиля, в народе все,что бы он не делал, называют \"фирмА\". Вкус и стиль потерять невозможно, это или есть, или нет. У Кифы есть всё, поэтому что бы она не делала: выбирала ли одежду, подбирала ли музыку, кушала ли или просто шла по улочкам Одессы- она делает это обворожительно и очень стильно. Вашему вниманию Acoustic Old School of Rock от удивительной группы KIFA!",
-                StartDate = new DateTime(2017, 3, 23, 18, 0, 0), EndDate = new DateTime(2017, 3, 24, 0, 0, 0), Restaurant = r, EventTypes = let2, Photo = "/Img/Events/2.jpg" };
-            RestaurantEvent re3 = new RestaurantEvent() { Name = "Трансляция матча Хорватия-Украина", Description = "Трансляция матча Хорватия-Украина",
-                StartDate = new DateTime(2017, 3, 24, 21, 45, 0), EndDate = new DateTime(2017, 3, 24, 23, 30, 0), Restaurant = r, EventTypes = let3, Photo = "/Img/Events/3.jpg" };
-
-
+            RestaurantEvent re1 = new RestaurantEvent()
+            {
+                Name = "Jazzforacat 22/04/2017",
+                Description = "КJazzforacat - акустический сайд-проект вокалиста MartoviOrchestra Асафатова Сергея и Димы Кошельника. Это качественная музыка,сильные тексты и уникальный в своем роде музыкальный продукт: только вокал, гитара и кларнет.",
+                StartDate = new DateTime(2017, 4, 22, 20, 0, 0),
+                EndDate = new DateTime(2017, 4, 23, 0, 0, 0),
+                Restaurant = r,
+                EventTypes = let1,
+                Photo = "/Img/Events/jazzforacat.jpg"
+            };
+            RestaurantEvent re2 = new RestaurantEvent()
+            {
+                Name = "Понедельник - UNIT DAY",
+                Description = "Первое правило клуба - всем рассказывать про клуб."+
+"\nВторое правило клуба - да,и бабуле тоже."+
+"\nВ понедельник клуб дает возможность тебе заглянуть по ту сторону:" +
+"\n-стать членом команды UNIT" +
+"\n- побыть в роли официанта" +
+"\n- петь песни под гитару" +
+"\n- танцевать возле диджея" +
+"\n-попробовать тайный перечень алкоголя со скидкой - 50 %" +
+"\n-усадить всех официантов, барменов, позвать поваров и заставить играть с тобой в игру" +
+"Это твоя свобода.Приходи к нам в клуб и получи допуск к понедельничному самоуправству."+
+"\nUNIT Men`s Life CAFE" +
+"\nТираспольская,22" +
+"\nЕсли не веришь - звони: 048 - 729 - 90 - 90" +
+"\nПОМНИ ПЕРВОЕ И ВТОРОЕ ПРАВИЛО КЛУБА.",
+                StartDate = new DateTime(2017, 4, 24, 20, 0, 0),
+                EndDate = new DateTime(2017, 4, 25, 0, 0, 0),
+                Restaurant = r,
+                EventTypes = let2,
+                Photo = "/Img/Events/mondayunit.jpg"
+            };
+            RestaurantEvent re3 = new RestaurantEvent()
+            {
+                Name = "Old School Rock четверг с KIFA",
+                Description = "Когда у человека есть вкус, есть чувство стиля, в народе все,что бы он не делал, называют \"фирмА\". Вкус и стиль потерять невозможно, это или есть, или нет. У Кифы есть всё, поэтому что бы она не делала: выбирала ли одежду, подбирала ли музыку, кушала ли или просто шла по улочкам Одессы- она делает это обворожительно и очень стильно. Вашему вниманию Acoustic Old School of Rock от удивительной группы KIFA!\n Проводите каждый четверг стильно и со вкусом!",
+                StartDate = new DateTime(2017, 4, 27, 20, 0, 0),
+                EndDate = new DateTime(2017, 4, 28, 0, 0, 0),
+                Restaurant = r,
+                EventTypes = let1,
+                Photo = "/Img/Events/rock140417.jpg"
+            };
+            RestaurantEvent re4 = new RestaurantEvent()
+            {
+                Name = "GOLDWAY в UNIT Men's Cafe!",
+                Description = "Вечеринка в UNIT Men’s Life CAFÉ с группой «GOLDWAY»."+
+"\n«GOLDWAY» -молодой кавер - проект из города - героя Одессы. Группа была образована в мае 2016 года, в своём репертуаре имеет хиты супер - широкого спектра!" +
+"\nОни готовы завести вас так, чтобы вы визжали и танцевали с нами, как будто любимый плей - лист приехал в ваш город)))" +
+"\nВ программе вечера - Gotye, Bruno Mars, 30 Seconds To Mars, Coldplay, One Republic, Бумбокс и др. не менее известные кавера!",
+                StartDate = new DateTime(2017, 4, 28, 20, 0, 0),
+                EndDate = new DateTime(2017, 4, 29, 0, 0, 0),
+                Restaurant = r,
+                EventTypes = let1,
+                Photo = "/Img/Events/goldway.jpg"
+            };
+            RestaurantEvent re5 = new RestaurantEvent()
+            {
+                Name = "ПАТРОНИЧІ в UNIT Men's Life Cafe",
+                Description = "Устали от рутины и серых будней? Тогда эта группа точно была создана для вас!)"+
+"\nВ 2010 году ребята собрались для того, чтобы творить: творить музыку и беспредел!) Группа, которая поражает своей энергетикой и позитивом. Очаровательные улыбки, блестящие глаза и яркие эмоции -как раз то, чего так не хватает в наших хмурых буднях." +
+"\n29 апреля в UNIT будет по - настоящему весело!) Особенно потому, что группа приезжает с новым альбомом.Приходите оценить и расслабиться!) Почувствуйте энергию украинской музыки!",
+                StartDate = new DateTime(2017, 4, 29, 20, 0, 0),
+                EndDate = new DateTime(2017, 4, 30, 0, 0, 0),
+                Restaurant = r,
+                EventTypes = let1,
+                Photo = "/Img/Events/patrochiny.jpg"
+            };
 
             context.RestaurantEvent.Add(re1);
             context.RestaurantEvent.Add(re2);
             context.RestaurantEvent.Add(re3);
-
+            context.RestaurantEvent.Add(re4);
+            context.RestaurantEvent.Add(re5);
 
             Cuisine cuisine1 = new Cuisine() { Name = "Авангардная" };
             Cuisine cuisine2 = new Cuisine() { Name = "Авторская" };
@@ -368,6 +433,12 @@ namespace CityGoodTaste.Models
             context.Cuisines.Add(cuisine51);
             context.Cuisines.Add(cuisine52);
             context.Cuisines.Add(cuisine53);
+            context.Cuisines.Add(cuisine54);
+            r.Cuisines = new List<Cuisine>();
+            r.Cuisines.Add(cuisine19);
+            r.Cuisines.Add(cuisine36);
+            r.Cuisines.Add(cuisine48);
+
             Currency crnc = new Currency() {Name= "Hryvnia", Sing= "₴" };
 
             Meal ml1 = new Meal()
@@ -975,11 +1046,9 @@ namespace CityGoodTaste.Models
             
             context.Restaurants.Add(r);
             context.SaveChanges();
-        }
-        private void InitializeR1(GoodTasteContext context)
-        {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Olio pizza" };
-            Restaurant r = new Restaurant
+
+            RestaurantsGroup restaurantsGroup1 = new RestaurantsGroup() { Name = "Olio pizza" };
+            Restaurant r1 = new Restaurant
             {
                 Name = "Olio pizza",
                 Address = "ул. Гаванная, 7",
@@ -988,21 +1057,24 @@ namespace CityGoodTaste.Models
                 Floors = 1,
                 PhoneNumber = "+380 482 33 50 11",
                 InformationAbout = "Olio — это сеть популярных итальянских ресторанов в городе Одесса с итальянской кухней и знаменитым итальянским гостеприимством. Olio pizza создана силами людей, которые основательно подошли к вопросу рождения этого проекта – это одесские рестораторы Виталий и Лина Имерцаки. Известные такими успешными проектами, как  почитаемый украинский ресторан «Куманець», основанный в 2001 году, стильный и современный ресторан «GluKoza» с европейской и азиатской кухней, сеть ресторанов  Olio и кафе с домашней одесской кухней  «Тёtя-Моtя». На сегодняшний день в городе Одесса работают уже три заведения сети Olio и «Дай Бог!», чтобы сеть развивалась не теряя качества, сноровки и своей привлекательности.",
-                RestaurantGroup = restaurantsGroup,
+                RestaurantGroup = restaurantsGroup1,
                 Photo = "/Img/Olio.jpg"
             };
             //Итальянская https://oliopizza.com.ua/about/
-            r.RestaurantFeatures = new List<RestaurantFeature>();
-            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
+            r1.RestaurantFeatures = new List<RestaurantFeature>();
+            r1.RestaurantFeatures.Add(f1);
+            r1.RestaurantFeatures.Add(f12);
+            r1.RestaurantFeatures.Add(f13);
+            r1.Cuisines = new List<Cuisine>();
+            r1.Cuisines.Add(cuisine24);
+            r1.Neighborhood = n3;
 
-            context.Restaurants.Add(r);
+            context.Restaurants.Add(r1);
             context.SaveChanges();
-        }
-        private void InitializeR11(GoodTasteContext context)
-        {
 
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Бернардацци" };
-            Restaurant r = new Restaurant
+
+            RestaurantsGroup restaurantsGroup11 = new RestaurantsGroup() { Name = "Бернардацци" };
+            Restaurant r11 = new Restaurant
             {
                 Name = "Бернардацци",
                 Address = "ул. Бунина, 15",
@@ -1012,19 +1084,26 @@ namespace CityGoodTaste.Models
                 PhoneNumber = "+380 67 000 2511",
                 InformationAbout = "",
                 Photo = "/Img/bernardaci.png",
-                RestaurantGroup = restaurantsGroup
+                RestaurantGroup = restaurantsGroup11
             };
             //http://od.vgorode.ua/reference/kafe_bary_restorany/108917-bernardatstsy-restoran
-            r.RestaurantFeatures = new List<RestaurantFeature>();
-            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(2));
+            r11.RestaurantFeatures = new List<RestaurantFeature>();
+            r11.RestaurantFeatures.Add(f1);
+            r11.RestaurantFeatures.Add(f3);
+            r11.RestaurantFeatures.Add(f21);
+            r11.RestaurantFeatures.Add(f11);
 
-            context.Restaurants.Add(r);
+            r11.Neighborhood = n3;
+            r11.Cuisines = new List<Cuisine>();
+            r11.Cuisines.Add(cuisine19);
+            r11.Cuisines.Add(cuisine53);
+            r11.Cuisines.Add(cuisine54);
+            r11.Cuisines.Add(cuisine43);
+            context.Restaurants.Add(r11);
             context.SaveChanges();
-        }
-        private void InitializeR2(GoodTasteContext context)
-        {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Pomodoro" };
-            Restaurant r = new Restaurant
+
+            RestaurantsGroup restaurantsGroup2 = new RestaurantsGroup() { Name = "Pomodoro" };
+            Restaurant r2 = new Restaurant
             {
                 Name = "Pomodoro",
                 Address = "Акад. Глушко проспект, 14/7",
@@ -1033,22 +1112,27 @@ namespace CityGoodTaste.Models
                 Floors = 2,
                 PhoneNumber = "+380 48 700 0022",
                 InformationAbout = "",
-                RestaurantGroup = restaurantsGroup,
+                RestaurantGroup = restaurantsGroup2,
                 Photo = "/Img/pomadoro.png"
             };
             //http://pomodoro.od.ua/restaurant/1
-            r.RestaurantFeatures = new List<RestaurantFeature>();
-            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(2));
+            r2.RestaurantFeatures = new List<RestaurantFeature>();
+            r2.RestaurantFeatures.Add(f1);
+            r11.RestaurantFeatures.Add(f3);
+            r11.RestaurantFeatures.Add(f21);
+            r11.RestaurantFeatures.Add(f11);
+            r11.RestaurantFeatures.Add(f14);
+            r2.Cuisines = new List<Cuisine>();
+            r2.Cuisines.Add(cuisine24);
+            r2.Cuisines.Add(cuisine18);
+            
+            r2.Neighborhood = n1;
 
-
-
-            context.Restaurants.Add(r);
+            context.Restaurants.Add(r2);
             context.SaveChanges();
-        }
-        private void InitializeR3(GoodTasteContext context)
-        {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Бодега 2 Карла" };
-            Restaurant r = new Restaurant
+
+            RestaurantsGroup restaurantsGroup3 = new RestaurantsGroup() { Name = "Бодега 2 Карла" };
+            Restaurant r3 = new Restaurant
             {
                 Name = "Бодега 2 Карла",
                 Address = "ул. Греческая, 32",
@@ -1057,19 +1141,26 @@ namespace CityGoodTaste.Models
                 Floors = 1,
                 PhoneNumber = "+380 96 524 1601",
                 InformationAbout = "",
-                RestaurantGroup = restaurantsGroup,
+                RestaurantGroup = restaurantsGroup3,
                 Photo = "/Img/2karla.png"
             };
             //http://eatsmart.ua/odessa/restoran/5978-Bodega-2Karla
-            r.RestaurantFeatures = new List<RestaurantFeature>();
-            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
-            context.Restaurants.Add(r);
+            r3.RestaurantFeatures = new List<RestaurantFeature>();
+            r3.RestaurantFeatures.Add(f1);
+            r3.RestaurantFeatures.Add(f2);
+            r3.RestaurantFeatures.Add(f3);
+            r3.RestaurantFeatures.Add(f5);
+            r3.RestaurantFeatures.Add(f25);
+            r3.RestaurantFeatures.Add(f10);
+            r3.Cuisines = new List<Cuisine>();
+            r3.Cuisines.Add(cuisine26);
+            r3.Cuisines.Add(cuisine26);
+            r3.Neighborhood = n3;
+            context.Restaurants.Add(r3);
             context.SaveChanges();
-        }
-        private void InitializeR4(GoodTasteContext context)
-        {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Jardin" };
-            Restaurant r = new Restaurant
+
+            RestaurantsGroup restaurantsGroup4 = new RestaurantsGroup() { Name = "Jardin" };
+            Restaurant r4 = new Restaurant
             {
                 Name = "Jardin",
                 Address = "ул. Гаванная, 10",
@@ -1078,20 +1169,28 @@ namespace CityGoodTaste.Models
                 Floors = 1,
                 PhoneNumber = "+380 48 700 14 71",
                 InformationAbout = "",
-                RestaurantGroup = restaurantsGroup,
+                RestaurantGroup = restaurantsGroup4,
                 Photo = "/Img/jardin.png"
             };
             //https://www.tripadvisor.ru/Restaurant_Review-g295368-d3329997-Reviews-Jardin-Odessa_Odessa_Oblast.html
             //http://topclub.ua/odessa/restaurant/jardin-gavanaya.html
-            r.RestaurantFeatures = new List<RestaurantFeature>();
-            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
-            context.Restaurants.Add(r);
+            r4.RestaurantFeatures = new List<RestaurantFeature>();
+            r4.RestaurantFeatures.Add(f1);
+            r4.RestaurantFeatures.Add(f2);
+            r4.RestaurantFeatures.Add(f10);
+            r4.RestaurantFeatures.Add(f13);
+            r4.RestaurantFeatures.Add(f12);
+            r4.RestaurantFeatures.Add(f28);
+            
+            r4.Cuisines = new List<Cuisine>();
+            r4.Cuisines.Add(cuisine24);
+            r4.Cuisines.Add(cuisine49);
+            r4.Neighborhood = n3;
+            context.Restaurants.Add(r4);
             context.SaveChanges();
-        }
-        private void InitializeR5(GoodTasteContext context)
-        {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Стейкхаус" };
-            Restaurant r = new Restaurant
+
+            RestaurantsGroup restaurantsGroup5 = new RestaurantsGroup() { Name = "Стейкхаус" };
+            Restaurant r5 = new Restaurant
             {
                 Name = "Стейкхаус",
                 Address = "ул. Дерибасовская, 20",
@@ -1100,20 +1199,25 @@ namespace CityGoodTaste.Models
                 Floors = 1,
                 PhoneNumber = "+380 482 348 782",
                 InformationAbout = "",
-                RestaurantGroup = restaurantsGroup,
+                RestaurantGroup = restaurantsGroup5,
                 Photo = "/Img/sh.jpg"
             };
             //http://topclub.ua/odessa/restaurant/stejkhaus_myaso_i_vino.html
-            r.RestaurantFeatures = new List<RestaurantFeature>();
-            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
-            
-            context.Restaurants.Add(r);
+            r5.RestaurantFeatures = new List<RestaurantFeature>();
+            r5.RestaurantFeatures.Add(f1);
+            r5.RestaurantFeatures.Add(f10);
+            r5.RestaurantFeatures.Add(f13);
+
+            r5.Cuisines = new List<Cuisine>();
+            r5.Cuisines.Add(cuisine5);
+            r5.Cuisines.Add(cuisine19);
+            r5.Neighborhood = n3;
+
+            context.Restaurants.Add(r5);
             context.SaveChanges();
-        }
-        private void InitializeR6(GoodTasteContext context)
-        {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Тавернетта" };
-            Restaurant r = new Restaurant
+
+            RestaurantsGroup restaurantsGroup6 = new RestaurantsGroup() { Name = "Тавернетта" };
+            Restaurant r6 = new Restaurant
             {
                 Name = "Тавернетта",
                 Address = "ул. Екатерининская, 45",
@@ -1122,17 +1226,25 @@ namespace CityGoodTaste.Models
                 Floors = 1,
                 PhoneNumber = "+380 96 234 4621",
                 InformationAbout = "",
-                RestaurantGroup = restaurantsGroup,
+                RestaurantGroup = restaurantsGroup6,
                 Photo = "/Img/tav.png"
             };
             //https://2gis.ua/odessa/firm/1970853118469591?queryState=center%2F30.738072%2C46.457635%2Fzoom%2F17
-            context.Restaurants.Add(r);
+            r6.RestaurantFeatures = new List<RestaurantFeature>();
+            r6.RestaurantFeatures.Add(f1);
+            r6.RestaurantFeatures.Add(f2);
+            r6.RestaurantFeatures.Add(f13);
+            r6.RestaurantFeatures.Add(f10);
+            r6.RestaurantFeatures.Add(f28);
+            r6.RestaurantFeatures.Add(f8);
+            r6.Cuisines = new List<Cuisine>();
+            r6.Cuisines.Add(cuisine19);
+            r6.Neighborhood = n3;
+            context.Restaurants.Add(r6);
             context.SaveChanges();
-        }
-        private void InitializeR7(GoodTasteContext context)
-        {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Фрателли" };
-            Restaurant r = new Restaurant
+
+            RestaurantsGroup restaurantsGroup7 = new RestaurantsGroup() { Name = "Фрателли" };
+            Restaurant r7 = new Restaurant
             {
                 Name = "Фрателли",
                 Address = "ул. Греческая, 17",
@@ -1141,20 +1253,28 @@ namespace CityGoodTaste.Models
                 Floors = 1,
                 PhoneNumber = "+380 48 738 4848",
                 InformationAbout = "",
-                RestaurantGroup = restaurantsGroup,
+                RestaurantGroup = restaurantsGroup7,
                 Photo = "/Img/frat.png"
             };
             //http://topclub.ua/odessa/restaurant/fratelli.html
-            r.RestaurantFeatures = new List<RestaurantFeature>();
-            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
+            r7.RestaurantFeatures = new List<RestaurantFeature>();
+            r7.RestaurantFeatures.Add(f1);
+            r7.RestaurantFeatures.Add(f6);
+            r7.RestaurantFeatures.Add(f13);
+            r7.RestaurantFeatures.Add(f10);
+            r7.RestaurantFeatures.Add(f8);
+            r7.RestaurantFeatures.Add(f28);
+            r7.RestaurantFeatures.Add(f20);
+            r7.Cuisines = new List<Cuisine>();
+            r7.Cuisines.Add(cuisine24);
+            r7.Cuisines.Add(cuisine43);
+            r7.Neighborhood = n3;
 
-            context.Restaurants.Add(r);
+            context.Restaurants.Add(r7);
             context.SaveChanges();
-        }
-        private void InitializeR8(GoodTasteContext context)
-        {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Дача" };
-            Restaurant r = new Restaurant
+
+            RestaurantsGroup restaurantsGroup8 = new RestaurantsGroup() { Name = "Дача" };
+            Restaurant r8 = new Restaurant
             {
                 Name = "Дача",
                 Address = "Французский бульвар, 85/3",
@@ -1163,20 +1283,27 @@ namespace CityGoodTaste.Models
                 Floors = 1,
                 PhoneNumber = "+380 48 714 3119",
                 InformationAbout = "",
-                RestaurantGroup = restaurantsGroup,
+                RestaurantGroup = restaurantsGroup8,
                 Photo = "/Img/dach.png"
             };
 
-            r.RestaurantFeatures = new List<RestaurantFeature>();
-            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
             //http://od.vgorode.ua/reference/restorany/100451-dacha
-            context.Restaurants.Add(r);
+
+            r8.RestaurantFeatures = new List<RestaurantFeature>();
+            r8.RestaurantFeatures.Add(f1);
+            r8.RestaurantFeatures.Add(f27);
+            r8.RestaurantFeatures.Add(f8);
+            r8.RestaurantFeatures.Add(f12);
+            r8.RestaurantFeatures.Add(f13);
+            r8.RestaurantFeatures.Add(f10);
+            r8.Cuisines = new List<Cuisine>();
+            r8.Cuisines.Add(cuisine54);
+            r8.Neighborhood = n3;
+            context.Restaurants.Add(r8);
             context.SaveChanges();
-        }
-        private void InitializeR9(GoodTasteContext context)
-        {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Grand Prix" };
-            Restaurant r = new Restaurant
+
+            RestaurantsGroup restaurantsGroup9 = new RestaurantsGroup() { Name = "Grand Prix" };
+            Restaurant r9 = new Restaurant
             {
                 Name = "Grand Prix",
                 Address = "ул. Бунина, 24",
@@ -1185,20 +1312,23 @@ namespace CityGoodTaste.Models
                 Floors = 2,
                 PhoneNumber = "+380 48 785 0701",
                 InformationAbout = "",
-                RestaurantGroup = restaurantsGroup,
+                RestaurantGroup = restaurantsGroup9,
                 Photo = "/Img/grand.png"
             };
             //http://topclub.ua/odessa/restaurant/grand-prix.html
-            r.RestaurantFeatures = new List<RestaurantFeature>();
-            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
+            r9.RestaurantFeatures = new List<RestaurantFeature>();
+            r9.RestaurantFeatures.Add(f1);
+            r9.RestaurantFeatures.Add(f28);
+            r9.RestaurantFeatures.Add(f10);
+            r9.Cuisines = new List<Cuisine>();
+            r9.Cuisines.Add(cuisine19);
+            r9.Neighborhood = n3;
 
-            context.Restaurants.Add(r);
+            context.Restaurants.Add(r9);
             context.SaveChanges();
-        }
-        private void InitializeR10(GoodTasteContext context)
-        {
-            RestaurantsGroup restaurantsGroup = new RestaurantsGroup() { Name = "Баффало 99" };
-            Restaurant r = new Restaurant
+
+            RestaurantsGroup restaurantsGroup10 = new RestaurantsGroup() { Name = "Баффало 99" };
+            Restaurant r10 = new Restaurant
             {
                 Name = "Баффало 99",
                 Address = "ул. Ришельевская, 7",
@@ -1207,17 +1337,24 @@ namespace CityGoodTaste.Models
                 Floors = 1,
                 PhoneNumber = "+380 67 489 8395",
                 InformationAbout = "",
-                RestaurantGroup = restaurantsGroup,
+                RestaurantGroup = restaurantsGroup10,
                 Photo = "/Img/buf.png"
             };
             //https://www.tripadvisor.ru/Restaurant_Review-g295368-d4469988-Reviews-Buffalo_99-Odessa_Odessa_Oblast.html
-            r.RestaurantFeatures = new List<RestaurantFeature>();
-            r.RestaurantFeatures.Add(context.RestaurantFeatures.Find(1));
+            r10.RestaurantFeatures = new List<RestaurantFeature>();
+            r10.RestaurantFeatures.Add(f1);
+            r10.RestaurantFeatures.Add(f10);
+            r10.RestaurantFeatures.Add(f13);
 
+            r10.Cuisines = new List<Cuisine>();
+            r10.Cuisines.Add(cuisine5);
+            r10.Cuisines.Add(cuisine19);
+            r10.Neighborhood = n3;
 
-            context.Restaurants.Add(r);
+            context.Restaurants.Add(r10);
             context.SaveChanges();
         }
+
 
         private void InitializeAdminUserAndRoles(GoodTasteContext context)
         {

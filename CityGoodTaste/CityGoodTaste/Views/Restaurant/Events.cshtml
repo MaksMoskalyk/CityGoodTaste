@@ -5,10 +5,12 @@
 }
 
 @{
+    <script src="~/Scripts/Custom/Events.js"></script>
     string language = @CityGoodTaste.Controllers.HomeController.getCulture();
     string path = "../../../Scripts/Custom/Localization/datepicker-" + language + ".js";
     <script src=@path></script>
 }
+
 
 @using (Ajax.BeginForm("EventsSearch", new { id = "EventsForm" }, new AjaxOptions { UpdateTargetId = "EventsList", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }))
 {
