@@ -1,36 +1,34 @@
 ﻿.customRightNavElement {
-    float:right; 
+    float: right;
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
 }
 
 .customLeftNavElement {
-    float:left; 
+    float: left;
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
 }
 
 #footer {
-    margin: 0px; 
-    padding: 0px; 
-    background-color:#333333 !important;
+    margin: 0px;
+    padding: 0px;
+    background-color: #333333 !important;
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus
-input:-webkit-autofill, 
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus input:-webkit-autofill,
 textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover
-textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  -webkit-text-fill-color: inherit !important;
-  -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
-  transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: inherit !important;
+    -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 #locationSelector {
@@ -44,3 +42,11 @@ select:-webkit-autofill:focus {
         border: 0px;
         border-color: #333333;
     }
+
+.panelHeadingCustom {
+    background-color: #91D791 !important;
+}
+
+.panelFooterCustom {
+    background-color: #C1F4C1 !important;
+}

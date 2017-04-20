@@ -22,10 +22,12 @@
 
 #signUpButton {
     margin-top: 15px;
+    font-size: medium;
 }
 
 #logInButton {
     margin-top: 15px;
+    font-size: medium;
 }
 
 #socialLogInForm {
@@ -77,13 +79,13 @@
 }
 
 .facebookButton {
-    background-image: url('../../../../Img/Social Network/facebook.png');   
+    background-image: url('../../../../Img/Social Network/facebook.png') !important;   
 }
 
 .googleButton {
-    background-image: url('../../../../Img/Social Network/google.png');
+    background-image: url('../../../../Img/Social Network/google.png') !important;
 }
 
 .vkButton {
-    background-image: url('../../../../Img/Social Network/vkontakte.ico');
+    background-image: url('../../../../Img/Social Network/vkontakte.ico') !important;
 }
