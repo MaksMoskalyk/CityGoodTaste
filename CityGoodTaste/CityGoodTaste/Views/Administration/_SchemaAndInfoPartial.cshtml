@@ -1,9 +1,17 @@
 ﻿@model CityGoodTaste.Models.RestaurantSchema
 
+<style>
+    a.list-group-item:hover,
+    a.list-group-item:focus{
+        border:3px solid #fcff00 !important;
+        font-weight:600;
+    }
+
+</style>
 
 <div class="col-sm-6">@Html.Partial("~/Views/Restaurant/_SchemaPartial.cshtml", Model)</div>
 <div class="col-sm-3 text-center" style="border-top:none; padding:0;">
-    <ul id="nav" class="nav nav-tabs">
+    <ul id="nav" class="nav nav-tabs"  style="border-radius:5px">
         <li class="active"><a data-toggle="tab" href="#confirmedReservs">Подтвержденные</a></li>
         <li><a data-toggle="tab" href="#notConfirmedReservs">Неподтвержденные</a></li>
     </ul>
@@ -14,13 +22,26 @@
                 {
                     var reserv = table.TableReservation.FirstOrDefault();
                     if (reserv == null) { continue; };
-                    if (reserv.ReservedAndConfirmed == true)
-                    {                     
-                        <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">
-                            <div class="row">
-                                <div class="pull-left" style="padding-left:10px">@reserv.Date.Date.ToShortDateString() @reserv.Date.ToShortTimeString()</div>
-                                <div class="col-sm-6">@reserv.ContactInfoName  @reserv.ContactInfoPhone</div>
-                                <div class="pull-right" style="padding-right:10px"><span reservId="@(reserv.Id)" tablespanId="@(reserv.Table.Id)" style="color:#cb3434" class="glyphicon glyphicon-remove"></span></div>
+                    if (reserv.ReservedAndConfirmed == true && reserv.ConfirmedByAdministration==true)
+                    {
+                        string name = string.IsNullOrEmpty(reserv.ContactInfoName) ? reserv.User.Name : reserv.ContactInfoName;
+                        name = string.IsNullOrEmpty(name) ? "Имя отсутстувет" : name;
+                        string phone = string.IsNullOrEmpty(reserv.ContactInfoPhone) ? reserv.User.PhoneNumber : reserv.ContactInfoPhone;
+                        phone = string.IsNullOrEmpty(phone) ? "Телефон отсутствует" : phone;
+                        <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="background-color:#f5f5f5; margin-bottom:5px; border-radius:5px; padding-top:3px; padding-bottom:5px; border:2px solid #c8c8c8;">
+                            <div class="row" style="background-color:#f5f5f5">
+                                <div class="pull-left" style="padding-left:5px;">
+                                    <span style="font-weight:600; color:#5b5b5b; font-size:15px"><span style="color:#bd0b0b;">#@reserv.Table.Id &nbsp;&nbsp;</span><span style="color:#4b9f3b;">резерв @reserv.Id</span></span>
+                                </div>
+                                <div class="pull-right" style="padding-right:5px">
+                                    <span style="font-weight:bold; font-size:15px; padding-right:5px; color:#5b5b5b" id="date@(reserv.Id)">@reserv.Date.Date.ToShortDateString()</span>
+                                    <span style="font-weight:bold;  font-size:15px; padding-right:20px; color:#5b5b5b" id="time@(reserv.Id)">@reserv.Date.ToShortTimeString()</span>
+                                    <span reservId="@(reserv.Id)" tablespanId="@(reserv.Table.Id)" style="color:#cb3434" class="glyphicon glyphicon-remove"></span> 
+                                </div>
+                            </div>
+
+                            <div class="row" style="padding-top:3px; padding-bottom:3px; border:1px solid #eeeeee; background-color:white">
+                                <div class="center-block" style="text-align:center"><span id="name@(reserv.Id)" style="padding-right:10px">@name</span> <span id="phone@(reserv.Id)">@phone</span></div>
                             </div>
                         </a>
                     }
@@ -33,18 +54,28 @@
                 {
                     var reserv = table.TableReservation.FirstOrDefault();
                     if (reserv == null) { continue; };
-                    if (reserv.Reserved == true && reserv.ReservedAndConfirmed == false)
+                    if (reserv.ReservedAndConfirmed == true && reserv.ConfirmedByAdministration == false)
                     {
                         string name = string.IsNullOrEmpty(reserv.ContactInfoName) ? reserv.User.Name : reserv.ContactInfoName;
                         name = string.IsNullOrEmpty(name) ? "Имя отсутстувет" : name;
                         string phone = string.IsNullOrEmpty(reserv.ContactInfoPhone) ? reserv.User.PhoneNumber : reserv.ContactInfoPhone;
                         phone = string.IsNullOrEmpty(phone) ? "Телефон отсутствует" : phone;
 
-                        <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="border-radius: 0">
-                            <div class="row">
-                                <div class="pull-left" style="padding-left:10px">@reserv.Date.Date.ToShortDateString() @reserv.Date.ToShortTimeString()</div>
-                                <div class="col-sm-6">@name  @phone</div>
-                                <div class="pull-right" style="padding-right:10px"><span reservId="@(reserv.Id)" tablespanId="@(reserv.Table.Id)" style="color:#cb3434" class="glyphicon glyphicon-remove"></span></div>
+                        <a tablelistId="@(reserv.Table.Id)" href="#" class="list-group-item" style="background-color:#f5f5f5; margin-bottom:5px; border-radius:5px; padding-top:3px; padding-bottom:5px; border:2px solid #c8c8c8;">
+                            <div class="row" style="background-color:#f5f5f5">
+                                <div class="pull-left" style="padding-left:5px;">
+                                    <span style="font-weight:600; color:#5b5b5b; font-size:15px"><span style="color:#bd0b0b;">#@reserv.Table.Id &nbsp;&nbsp;</span><span style="color:#4b9f3b;">резерв @reserv.Id</span></span>
+                                </div>
+                                <div class="pull-right" style="padding-right:5px">
+                                    <span style="font-weight:bold; font-size:15px; padding-right:5px; color:#5b5b5b" id="date@(reserv.Id)">@reserv.Date.Date.ToShortDateString()</span> 
+                                    <span style="font-weight:bold;  font-size:15px; padding-right:20px; color:#5b5b5b" id="time@(reserv.Id)">@reserv.Date.ToShortTimeString()</span> 
+                                    <span reservId="@(reserv.Id)" tablespanId="@(reserv.Table.Id)" style="color:#30a52b; padding-right:5px" class="glyphicon glyphicon-ok"></span>
+                                    <span reservId="@(reserv.Id)" tablespanId="@(reserv.Table.Id)" style="color:#cb3434" class="glyphicon glyphicon-remove"></span>                              
+                                </div>
+                            </div>
+                            
+                            <div class="row" style="padding-top:3px; padding-bottom:3px; border:1px solid #eeeeee; background-color:white">
+                                <div class="center-block" style="text-align:center"><span id="name@(reserv.Id)" style="padding-right:10px">@name</span> <span id="phone@(reserv.Id)">@phone</span></div>
                             </div>
                         </a>
                     }
@@ -63,14 +94,33 @@
                     RemoveReservationMinusClick();
 
                     SelectTableForReservation();
+
+                    ConfirmReservationClick();
                 });
 
 
                 function RemoveReservationMinusClick() {
                     $('.glyphicon-remove').click(function () {
                         var reservId = $(this).attr('reservId');
+                        var tableId = $(this).attr('tablespanId');
                         $('#reservNumber').val(reservId);
+                        $('#tablNumber').val(tableId);
                         $('#unreservModalLink').click();
+                    });
+                };
+
+                function ConfirmReservationClick() {
+                    $('.glyphicon-ok').click(function () {
+                        var reservId = $(this).attr('reservId');
+                        
+                        $('#clientReservNumberModal').val(reservId);
+                        $('#clientReservNameModal').val($('#name' + reservId).text());
+                        $('#clientReservPhoneModal').val($('#phone' + reservId).text());
+                        $('#clientReservDateModal').val($('#date' + reservId).text());
+                        $('#clientReservTimeModal').val($('#time' + reservId).text());
+
+
+                        $('#confirmClientsReservModalLink').click();
                     });
                 };
 
@@ -80,7 +130,7 @@
                         var tableId = $(this).attr('tablelistId');
                         $('td[selected]').css("background-color", '#fcfcfc');
                         $('td[selected]').removeAttr('selected');
-                        $('td[tableid="' + tableId + '"]').css("background-color", '#fcffbc');
+                        $('td[tableid="' + tableId + '"]').css("background-color", '#fbff97');
                         $('td[tableid="' + tableId + '"]').attr("selected", "selected");
                         
                     });
