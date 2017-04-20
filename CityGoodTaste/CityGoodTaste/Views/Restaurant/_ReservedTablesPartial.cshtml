@@ -22,7 +22,7 @@
         {
             continue;
         }
-
+        if(reserv.User==null) { continue; }
         if (reserv.Reserved == true && reserv.User.Id == ViewBag.UserId)
         {
             if (flag == false)

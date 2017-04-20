@@ -12,12 +12,11 @@
 } 
 
 
-<div class="container-fluid minPadding" style="margin-left: auto; margin-right: auto">
+<div class="container-fluid minPadding" style="margin-left: 15px; margin-right: 15px">
     <div class="row">
-        <div class="col-sm-2 text-center" style="border-top:none; padding:0;">
-
+        <div class="col-sm-2 text-center pull-left" style="border-top:none; padding:0; margin-right:75px">
                 <div>
-                    <div id="confirmReservModalBody" style="padding:0px 25px;">
+                    <div id="confirmReservModalBody" style="padding:0px 5px;">
                         <div class="panel panel-default ">
                             <div class="panel-heading">
                                 
@@ -73,7 +72,7 @@
 
                 </div>
         </div>
-        <div id="schemaAndInfo">@Html.Partial("_SchemaAndInfoPartial", schemaModel)</div>
+        <div  id="schemaAndInfo">@Html.Partial("_SchemaAndInfoPartial", schemaModel)</div>
         
     </div>
 </div>
@@ -86,25 +85,25 @@
         @using (Ajax.BeginForm("ConfirmReservation",
             new { schemaId = Model.Restaurants.FirstOrDefault().RestaurantSchemas.FirstOrDefault().Id,
                 restId= Model.Restaurants.FirstOrDefault().Id},
-            new AjaxOptions { UpdateTargetId = "schemaAndInfo", OnSuccess="UnCheckNewReservationCheckBox", OnFailure = "reseredTablesFailure", InsertionMode = InsertionMode.Replace }, new { id = "confirmForm" }))
+            new AjaxOptions { UpdateTargetId = "schemaAndInfo", OnSuccess= "reservByAdministrationSuccess", OnFailure = "reseredTablesFailure", InsertionMode = InsertionMode.Replace }, new { id = "confirmForm" }))
         {
             <div class="modal-content" style="width:400px">
                 <div class="modal-header" style="background-color:#333333; color:white">
                     <button id="closeModalReserv" type="button" style="color:white" class="close" data-dismiss="modal">&times;</button>
                     Подтвердить резерв
                 </div>
-                <div id="confirmReservModalBody" class="modal-body" style="padding:40px 50px;">
+                <div id="confirmReservModalBody" class="modal-body" style="padding:10px 25px;">
                     <p><span style="font-weight:700">Столики:</span></p>
                     <div id="newTablesInfoModal"></div>
-                    <div class="form-group">
+                    <div class="form-group">                       
                         <div style="margin-bottom:10px;"><span style="font-weight:700">Имя:</span><input readonly data-val="true" id="nameModal" type="text" class="form-control input-md" name="name" placeholder="Имя"></div>
                         <div style="margin-bottom:10px;"><span style="font-weight:700">Телефон:</span><input readonly data-val="true" id="phoneModal" type="text" class="form-control input-md" name="phone" placeholder="Телефон"></div>
-                        <div style="margin-bottom:10px;"><span style="font-weight:700">Дата:</span><input readonly data-val="true" id="dateModal" type="text" class="form-control" name="date"></div>
-                        <div><span style="font-weight:700">Время:</span><input readonly data-val="true" id="timeModal" type="text" class="form-control" name="time"></div>
+                        <div style="margin-bottom:10px;"><span style="font-weight:700">Дата:</span><input readonly data-val="true" id="dateModal" type="text" class="form-control" name="date"></div>                   
+                        <div style="margin-bottom:10px;"><span style="font-weight:700">Время:</span><input readonly data-val="true" id="timeModal" type="text" class="form-control" name="time"></div>                   
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="sumbitReservBt" type="submit" class="btn btn-success btn-default pull-left">
+                    <button id="sumbitReservModalBt" type="submit" class="btn btn-success btn-default pull-left">
                         <span class="glyphicon glyphicon-ok"></span>
                         Подтвердить
                     </button>
@@ -119,21 +118,65 @@
     </div>
 </div>
 
+<a style="visibility: hidden" id="confirmClientsReservModalLink" data-toggle="modal" data-target="#confirmClientsReservModal" href="#"></a>
+<div class="modal fade" id="confirmClientsReservModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        @using (Ajax.BeginForm("ConfirmClientReservation",
+                new
+                {
+                    schemaId = Model.Restaurants.FirstOrDefault().RestaurantSchemas.FirstOrDefault().Id,
+                    restId = Model.Restaurants.FirstOrDefault().Id
+                },
+                new AjaxOptions { UpdateTargetId = "schemaAndInfo", OnSuccess = "reservSuccess", OnFailure = "reseredTablesFailure", InsertionMode = InsertionMode.Replace }, new { id = "confirmClientReservForm" }))
+        {
+            <div class="modal-content" style="width:400px">
+                <div class="modal-header" style="background-color:#333333; color:white">
+                    <button id="closeModalClientReserv" type="button" style="color:white" class="close" data-dismiss="modal">&times;</button>
+                    Подтвердить резерв
+                </div>
+                <div id="confirmClientsReservModalBody" class="modal-body" style="padding:10px 25px;">
+                    <div class="form-group">
+                        <div style="margin-bottom:10px;"><span style="font-weight:700">Резерв №:</span><input readonly data-val="true" id="clientReservNumberModal" type="text" class="form-control input-md" name="reservnumber"></div>
+                        <div style="margin-bottom:10px;"><span style="font-weight:700">Имя:</span><input readonly data-val="true" id="clientReservNameModal" type="text" class="form-control input-md" name="name" placeholder="Имя"></div>
+                        <div style="margin-bottom:10px;"><span style="font-weight:700">Телефон:</span><input readonly data-val="true" id="clientReservPhoneModal" type="text" class="form-control input-md" name="phone" placeholder="Телефон"></div>
+                        <div style="margin-bottom:10px;"><span style="font-weight:700">Дата:</span><input readonly data-val="true" id="clientReservDateModal" type="text" class="form-control" name="date"></div>
+                        <div style="margin-bottom:10px;"><span style="font-weight:700">Время:</span><input readonly data-val="true" id="clientReservTimeModal" type="text" class="form-control" name="time"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="sumbitClientReservBt" type="submit" class="btn btn-success btn-default pull-left">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        Подтвердить
+                    </button>
+                    <button class="btn btn-danger btn-default pull-right" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Отмена
+                    </button>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
 
 <a style="visibility: hidden" id="unreservModalLink" data-toggle="modal" data-target="#unreservModal" href="#"></a>
 <div class="modal fade" id="unreservModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
 @using (Ajax.BeginForm("RemoveReservation", new { restId = Model.Restaurants.FirstOrDefault().Id },
-    new AjaxOptions { UpdateTargetId = "schemaAndInfo", InsertionMode = InsertionMode.Replace, OnSuccess = "reservSuccess" }))
+    new AjaxOptions { UpdateTargetId = "schemaAndInfo", InsertionMode = InsertionMode.Replace, OnSuccess = "removeReservSuccess" }))
 {
             <div class="modal-content" style="width:400px">
                 <div class="modal-header" style="background-color:#333333; color:white">
                     <button id="closeModalUnReserv" type="button" style="color:white" class="close" data-dismiss="modal">&times;</button>
-                     Убрать резер
+                     Отменить резер
                 </div>
-                <div id="unReservModalBody" class="modal-body" style="padding:40px 50px;">
-                    <p>№ <input readonly data-val="true" id="reservNumber" type="text" class="form-control input-md" name="reservNumber"></p>
+                <div id="unReservModalBody" class="modal-body" style="padding:10px 25px;">
+                    <p style="color:red">Вы уверены что хотите отменить этот резерв?</p>
+                    <p style="font-weight:bold">Резерв № <input readonly data-val="true" id="reservNumber" type="text" class="form-control input-md" name="reservNumber"></p>
+                    <p style="font-weight:bold">Стол № <input readonly data-val="true"  id="tablNumber" type="text" class="form-control input-md"></p>
                 </div>
                 <div class="modal-footer">
                     <button id="sumbitUnReservBt" type="submit" class="btn btn-success btn-default pull-left">
@@ -150,6 +193,7 @@
 }   
     </div>
 </div>
+
 
 
 <a style="visibility: hidden" id="errorModalLink" data-toggle="modal" data-target="#errorModal" href="#"></a>
@@ -172,20 +216,79 @@
 </div>
 
 
+<a style="visibility: hidden" id="successModalLink" data-toggle="modal" data-target="#successModal" href="#"></a>
+<div class="modal fade" id="successModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="width:300px">
+            <div class="modal-header" style="background-color:#333333; color:white">
+                <span id="headerSuccessModal" style="color:white">Резерв подтвержден</span>
+                <button id="closeModalSuccess" type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div id="confirmReservModalBody" class="modal-body" style="padding:10px 10px;">
+                <p id="successMsgModal">Резерв подтвержден успешно.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-default pull-left" data-dismiss="modal">Ок</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(document).ready(function () {
+        SetDatepicker();
+
+        SetClockpicker();
 
         ReservBtClick();
 
         CheckBoxChecked();
 
+
+
     });
 
+    function SetClockpicker() {
+        $('.clockpicker').clockpicker
+            ({ donetext: '<span class="glyphicon glyphicon-ok"></span>' });
+    }
+
+    function SetDatepicker() {
+        $("#datepicker").datepicker({
+            showAnim: "slideDown",
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            showButtonPanel: true,
+            minDate: 0,
+            maxDate: "+1M +10D",
+        });
+    }
+
+    function removeReservSuccess() {
+        $('#closeModalUnReserv').click();
+
+        $('#headerSuccessModal').text('Резерв отменен');
+        $('#successMsgModal').text('Резерв отменен успешно.');
+        $('#successModalLink').click();
+    }
 
     function reservSuccess() {
         $('#closeModalUnReserv').click();
+        $('#closeModalClientReserv').click();
+        $('#closeModalReserv').click();
+
+        $('#headerSuccessModal').text('Резерв подтвержден');
+        $('#successMsgModal').text('Резерв подтвержден успешно.');
+        $('#successModalLink').click();
     }
 
+
+    function reservByAdministrationSuccess() {
+        $('#checkboxNewReservs:checked').prop('checked', false);
+        
+        reservSuccess();
+    }
 
     function UnCheckNewReservationCheckBox() {
         $('#checkboxNewReservs:checked').prop('checked', false);
@@ -208,13 +311,14 @@
             $('#nameModal').val($('#name').val());
             $('#phoneModal').val($('#phone').val());
             $('#dateModal').val($('#datepicker').val());
-            $('#timeModal').val($('#timePicker').val()); 
+            $('#timeModal').val($('#timePicker').val());
+
             for (var i = 0; i < $('td[newReserved="True"]').length; i++) {
                 var elemId = $('td[newReserved="True"]')[i].id;
                 var id = document.getElementById($('td[newReserved="True"]')[i].id).getAttribute('tableid');
                 var seats = document.getElementById($('td[newReserved="True"]')[i].id).getAttribute('seats');
                 $('#newTablesInfoModal').append("<input data-val=\"true\" elemid="+elemId+" id=\"tableId" + id + "\" name=\"tableId" + id + "\" type=\"hidden\" value=\"" + id + "\">");
-                $('#newTablesInfoModal').append("<p><span class=\"glyphicon glyphicon-user\">" + seats + "</span></p>");
+                $('#newTablesInfoModal').append("<p style=\"font-weight:bold; padding-left:20px;\">#" + id + " <span style=\"padding-left:10px;\" class=\"glyphicon glyphicon-user\">" + seats + "</span></p>");
             }
             $('#confirmModalLink').click();
 

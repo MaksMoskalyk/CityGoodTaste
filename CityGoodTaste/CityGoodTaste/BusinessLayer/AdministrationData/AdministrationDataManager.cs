@@ -43,7 +43,8 @@ namespace CityGoodTaste.BusinessLayer
                     reserv.Table = table;
                     reserv.User = u;
                     reserv.ReservedAndConfirmed = true;
-                    reserv.Reserved = true;
+                    reserv.ConfirmedByAdministration = true;
+                    reserv.Reserved = false;
                     reserv.Date = date;
                     reserv.ContactInfoName = name.Trim();
                     reserv.ContactInfoPhone = phone.Trim();
@@ -58,6 +59,19 @@ namespace CityGoodTaste.BusinessLayer
             using (GoodTasteContext context = new GoodTasteContext())
             {
                 context.TableReservations.Remove(context.TableReservations.Find(reservId));
+                context.SaveChanges();
+            }
+        }
+
+        public void ConfirmReservByAdministration(int reservId)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                var reserv = context.TableReservations.Find(reservId);
+                if (reserv == null) throw new ArgumentNullException();
+                reserv.ConfirmedByAdministration = true;
+                reserv.ReservedAndConfirmed = true;
+                reserv.Reserved = false;
                 context.SaveChanges();
             }
         }

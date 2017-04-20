@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace CityGoodTaste.Models
 {
-    public class GoodTasteDBInitializer :DropCreateDatabaseAlways<GoodTasteContext>
+    public class GoodTasteDBInitializer :CreateDatabaseIfNotExists<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {
@@ -868,7 +868,7 @@ namespace CityGoodTaste.Models
             MealGroup mg8 = new MealGroup() { Name = "Горячие блюда", Meals = LML8 };
             MealGroup mg9 = new MealGroup() { Name = "Горячие сковородки", Meals = LML9 };
             MealGroup mg10 = new MealGroup() { Name = "Гарниры", Meals = LML10 };
-            MealGroup mg11 = new MealGroup() { Name = "Хоспер меню", Meals = LML11 };
+            MealGroup mg11 = new MealGroup() { Name = "Хоспер/гриль/мангал/барбекю", Meals = LML11 };
             MealGroup mg12 = new MealGroup() { Name = "Доски", Meals = LML12 };
             MealGroup mg13 = new MealGroup() { Name = "Десерты", Meals = LML13 };
             MealGroup mg14 = new MealGroup() { Name = "Кофе", Meals = LML14 };

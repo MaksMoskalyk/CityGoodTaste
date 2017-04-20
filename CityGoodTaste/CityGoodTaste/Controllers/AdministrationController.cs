@@ -146,6 +146,26 @@ namespace CityGoodTaste.Controllers
 
 
         [AjaxOnly]
+        public ActionResult ConfirmClientReservation(string restId, string schemaId)
+        {
+            if (restId == null || schemaId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            DataManagerCreator factory = new DefaultDataManagerCreator();
+            IBaseDataManager manager = factory.GetBaseDataManager();
+            IAdministrationDataManager adminmanager = factory.GetAdministrationDataManager();
+
+            string reservId = Request.Form["reservnumber"];
+            DateTime d = DateTime.Parse(Request.Form["date"] + " " + Request.Form["time"]);
+
+            adminmanager.ConfirmReservByAdministration(Convert.ToInt32(reservId));
+
+            return PartialView("~/Views/Administration/_SchemaAndInfoPartial.cshtml", manager.GetRestaurantSchema(Convert.ToInt32(restId)));
+        }
+
+        [AjaxOnly]
         public ActionResult RemoveReservation(string restId)
         {
             int reservId = Convert.ToInt32(Request.Form["reservNumber"]);
