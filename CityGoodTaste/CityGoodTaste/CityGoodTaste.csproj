@@ -3271,6 +3271,9 @@
     <Content Include="Img\jardin.png" />
     <Content Include="Img\Olio.jpg" />
     <Content Include="Img\pomadoro.png" />
+    <Content Include="Img\Social Network\facebook.png" />
+    <Content Include="Img\Social Network\google.png" />
+    <Content Include="Img\Social Network\vkontakte.ico" />
     <Content Include="Img\userDefaultPhoto.png" />
     <Content Include="Img\Schema.png" />
     <Content Include="Img\sh.jpg" />

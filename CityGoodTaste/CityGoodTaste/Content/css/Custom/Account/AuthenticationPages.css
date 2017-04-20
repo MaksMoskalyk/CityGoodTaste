@@ -17,7 +17,7 @@
 }
 
 .centralHeader {
-    text-align:center;
+    text-align: center;
 }
 
 #signUpButton {
@@ -28,7 +28,11 @@
     margin-top: 15px;
 }
 
-#socialLoginForm {
+#socialLogInForm {
+    margin-top: 100px;
+}
+
+#socialSignUpForm {
     margin-top: 100px;
 }
 
@@ -51,4 +55,35 @@
 .inputValidationError {
     border: 1px crimson;
     box-shadow: crimson 2px;
+}
+
+
+/*Social networks buttons styles*/
+#socialLoginList {
+    margin: auto;
+    text-align: center;
+    display: block;
+}
+
+#socialLoginList button {
+    margin: auto;
+    display: inline;
+    width: 70px;
+    height: 70px;
+    margin: 0px 5px;
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: 100%;
+}
+
+.facebookButton {
+    background-image: url('../../../../Img/Social Network/facebook.png');   
+}
+
+.googleButton {
+    background-image: url('../../../../Img/Social Network/google.png');
+}
+
+.vkButton {
+    background-image: url('../../../../Img/Social Network/vkontakte.ico');
 }

@@ -1,7 +1,12 @@
 ﻿$(document).ready(function () {
     //$("span").css("background-color", "#EEEEEE");
     AddSubmitEventHandler();
+
+    $("#Vkontakte").addClass("vkButton");
+    $("#Facebook").addClass("facebookButton");
+    $("#Google").addClass("googleButton");
 })
+
 
 //Configuration block
 var minPasswordLength = 6;
