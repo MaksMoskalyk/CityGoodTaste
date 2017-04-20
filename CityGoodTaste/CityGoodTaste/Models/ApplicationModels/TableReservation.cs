@@ -14,6 +14,8 @@ namespace CityGoodTaste.Models
 
         public bool ReservedAndConfirmed { get; set; }
 
+        public bool ConfirmedByAdministration { get; set; }
+
         public virtual Table Table { get; set; }
 
         public virtual ApplicationUser User { get; set; }

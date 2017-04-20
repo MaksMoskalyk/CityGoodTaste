@@ -36,11 +36,13 @@
                             @Html.HiddenFor(m => Model.Tables[i].TableReservation[0].User.Id)
                             string personPath = string.Empty;
                             string tablePath = string.Empty;
+                            string seatsColor = "black";
 
                             if (Model.Tables.ToList()[i].TableReservation.ToList()[0].ReservedAndConfirmed == true)
                             {
                                 personPath = "/Content/icons/SchemaIcons/InactivePerson.png";
                                 tablePath = "/Content/icons/SchemaIcons/InactiveTable.png";
+                                seatsColor = "#808080";
                             }
                             else if (Model.Tables.ToList()[i].TableReservation.ToList()[0].Reserved == true)
                             {
@@ -52,15 +54,18 @@
                                 personPath = "/Content/icons/SchemaIcons/Person.png";
                                 tablePath = "/Content/icons/SchemaIcons/Table.png";
                             }
+
                             <td id="@x@y" coord="@x.@y" style="width:80px;height:40px;"
                                 tableid="@Model.Tables.ToList()[i].Id"
                                 reserved="@Model.Tables.ToList()[i].TableReservation.ToList()[0].Reserved.ToString()"
                                 reservedandconfirmed="@Model.Tables.ToList()[i].TableReservation.ToList()[0].ReservedAndConfirmed.ToString()"
                                 seats="@Model.Tables.ToList()[i].Seats">
-                                <div style="position:relative; top:-3px; right:-17px"><span style="font-size:12px; color:#bd0b0b; position:absolute;">#@Model.Tables.ToList()[i].Id</span></div>
-                                                                
+                                <div style="position:relative; top:-3px; right:-19px"><span style="font-size:13px; font-weight:bold; color:#bd0b0b; position:absolute;">
+                                    <span style="font-weight:normal; color:#bd0b0b;">#</span>@Model.Tables.ToList()[i].Id</span>
+                                </div>
+                                                              
                                 <div id="divP.@x@y" style="top:8px; position:relative" tableid="@Model.Tables.ToList()[i].Id">                                  
-                                    <p id="P.@x@y" style="font-weight:bold" tableid="@Model.Tables.ToList()[i].Id">
+                                    <p id="P.@x@y" style="font-weight:bold; color:@(seatsColor)" tableid="@Model.Tables.ToList()[i].Id">
                                         @Model.Tables.ToList()[i].Seats
                                         <img id="imgP.@x@y" style="width:15px; height:15px" src="@(personPath)" tableid="@Model.Tables.ToList()[i].Id" />
                                     </p>

@@ -10,5 +10,6 @@ namespace CityGoodTaste.BusinessLayer
         Administration GetAdministration(int? id);
         void ConfirmReservTables(int restId, int schemaId, List<int> tablesIds, DateTime date, ApplicationUser user, string name, string phone);
         void RemoveReserv(int? reservId);
+        void ConfirmReservByAdministration(int reservId);
     }
 }
