@@ -13,7 +13,6 @@ namespace CityGoodTaste.Models
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
         public ApplicationUser CurrentUser { get; set; }
-        public string UserName { get; set; }
     }
 
     public class ManageLoginsViewModel

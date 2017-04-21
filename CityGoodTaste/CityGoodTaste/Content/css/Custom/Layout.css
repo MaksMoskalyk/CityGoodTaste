@@ -50,3 +50,16 @@ select:-webkit-autofill:focus {
 .panelFooterCustom {
     background-color: #C1F4C1 !important;
 }
+
+#myNavbar > ul > li:hover{
+    background-color: green;
+}
+
+#locationSelector {
+    color: #999999;
+}
+
+#locationSelector:hover {
+    /*box-shadow: 0 0 10px 100px green inset;*/
+    color: white;   
+}

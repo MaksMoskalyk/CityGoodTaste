@@ -77,7 +77,6 @@ namespace CityGoodTaste.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
 
-            model.UserName = "DDDDDDDDDD";
             model.CurrentUser = new ApplicationUser();
             model.CurrentUser = userDatabaseManager.GetUserById(userId);
             return View(model);

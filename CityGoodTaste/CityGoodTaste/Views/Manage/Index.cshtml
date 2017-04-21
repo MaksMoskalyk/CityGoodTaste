@@ -1,7 +1,8 @@
 ﻿@model CityGoodTaste.Models.IndexViewModel
 
 <script src="~/Scripts/Custom/Account/ManageAccount.js"></script>
-<link href="~/Content/css/Custom/Controls/FilesUploadInput.css" rel="stylesheet" />
+<script src="~/Scripts/Custom/Localization/datepicker-RUS.js"></script>
+
 @{
     ViewBag.Title = "Настройки учетной записи";
 }
@@ -17,12 +18,10 @@
 
 <div id="manageAccountWrapper" class="container-fluid col-sm-12 col-md-12 col-lg-12">
     <div class="row">
-        @using (Html.BeginForm("SaveAccountChanges", "Manage", Model, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        @using (Html.BeginForm("SaveAccountChanges", "Manage", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
-            @Html.HiddenFor(model => model.CurrentUser)
             @Html.HiddenFor(model => model.CurrentUser.Id)
-            @Html.HiddenFor(model => model.CurrentUser.UserName)
 
             <div id="personalDataContainer">
                 @*<div class="input-group">
@@ -43,7 +42,7 @@
                 <div class="input-group">
                     <div class="form-group">
                         <label>Имя:</label>
-                        <input id="nameInput" type="text" value="@Model.UserName" />
+                        <input id="nameInput" type="text" value="@Model.CurrentUser.Name" />
                     </div>
                     <div class="form-group">
                         <label>Фамилия:</label>
@@ -99,9 +98,13 @@
                     }
                 </div>
 
+                <div class="separator"></div>
+
                 <div class="input-group">
-                    <button id="saveAccountChangesButton" class="btn btn-default" style="width:200px">Сохранить все</button>
+                    <button id="saveAccountChangesButton" class="btn btn-success" style="width:200px">Сохранить все</button>
                 </div>
+
+                <div class="separator"></div>
             </div>
         }
         
