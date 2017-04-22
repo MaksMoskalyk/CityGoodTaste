@@ -14,17 +14,17 @@
 
         <h4></h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
         <p class="text-info">
             Аутентификация с <strong>@ViewBag.LoginProvider</strong> прошла успешно.
             Введите имя пользователя для этого сайта и нажмите "Вход" для завершения.
         </p>
         <div class="separator"></div>
         <div id="validationEmailForm" class="form-group">
-            <label id="validationEmail" class="validationLabel col-md-12"></label>
+            @*<label id="validationEmail" class="validationLabel col-md-12"></label>*@
             <div class="input-group col-md-12">
-                <span class="input-group-addon"><i class="oi" data-glyph="envelope-closed"></i></span>
-                <input value="@Model.Email" id="email" type="text" class="form-control input-md authenticationInput" name="email" placeholder="Эл. адрес">
+                <span class="input-group-addon"><i class="oi" data-glyph="person"></i></span>
+                <input value="Timur@gmail.com" id="email" type="text" class="form-control input-md authenticationInput" name="email" placeholder="Имя пользователя">
             </div>
         </div>
         <div class="form-group">

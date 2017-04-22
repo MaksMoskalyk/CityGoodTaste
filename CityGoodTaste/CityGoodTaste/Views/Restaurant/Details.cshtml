@@ -78,7 +78,7 @@
                             <p>@Html.DisplayFor(model => model.InformationAbout)</p>
                         </div>
                         <div>
-                            <p><span class="deteilsTag">Особенности:</span></p>
+                            <p><span class="deteilsTag">Сервисы:</span></p>
                             <div class="row">
                                 @*@for (int i = 0; i < Model.RestaurantFeatures.Count; i++)
                                 {
@@ -191,14 +191,14 @@
                                                                 @foreach (var Meal in MealGroup.Meals)
                                                                 {
                                                                     <tr>
-                                                                        <td style="width:110px">
+                                                                        @*<td style="width:110px">
                                                                             <img class="img-thumbnail" src=@Meal.Photo alt="Image">
-                                                                        </td>
+                                                                        </td>*@
                                                                         <td style="text-align:left">
                                                                             <p style="font-size:large; margin:0;">@Meal.Name</p>
                                                                             <p>@Meal.Description</p>
                                                                         </td>
-                                                                        <td style="width:100px">
+                                                                        <td style="width:100px; vertical-align:central">
                                                                             <p>@Meal.Price @Meal.Currency.Sing</p>
                                                                         </td>
                                                                     </tr>
@@ -505,14 +505,14 @@
         <!-- Modal content-->
         <div class="modal-content" style="width:300px">
             <div class="modal-header" style="background-color:#333333; color:white">
-                <span id="successHeader" style="color:white">Бронь прошла успешно</span>
+                <span id="successHeader" style="color:white">Запрос отправлен</span>
                 <button id="closeModalSuccess" type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div id="confirmReservModalBody" class="modal-body" style="padding:10px 10px;">
-                <p id="successMsg">Ваша бронь подтверждена, ждем вас.</p>
+                <p id="successMsg">Спасибо за выбор, менеджер ресторана свяжется с вами для подтверждения резерва.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-default pull-left" data-dismiss="modal">Ок</button>
+                <button type="button" style="width:100%" class="btn btn-success btn-default" data-dismiss="modal">Ок</button>
             </div>
         </div>
     </div>

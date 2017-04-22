@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace CityGoodTaste.Models
 {
-    public class GoodTasteDBInitializer :DropCreateDatabaseAlways<GoodTasteContext>
+    public class GoodTasteDBInitializer :CreateDatabaseIfNotExists<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {
@@ -794,6 +794,7 @@ namespace CityGoodTaste.Models
             LML1.Add(ml3);
             LML1.Add(ml4);
             LML1.Add(ml5);
+
             List<Meal> LML2 = new List<Meal>();
             LML2.Add(ml6);
             LML2.Add(ml7);
@@ -835,96 +836,96 @@ namespace CityGoodTaste.Models
             LML8.Add(ml36);
 
             List<Meal> LML9 = new List<Meal>();
-            LML9.Add(ml3);
+            //LML9.Add(ml3);
 
 
             List<Meal> LML10 = new List<Meal>();
-            LML10.Add(ml1);
+            //LML10.Add(ml1);
 
 
             List<Meal> LML11 = new List<Meal>();
-            LML11.Add(ml1);
+            //LML11.Add(ml1);
 
 
             List<Meal> LML12 = new List<Meal>();
-            LML12.Add(ml1);
+            //LML12.Add(ml1);
 
 
             List<Meal> LML13 = new List<Meal>();
-            LML13.Add(ml1);
+            //LML13.Add(ml1);
 
 
             List<Meal> LML14 = new List<Meal>();
-            LML14.Add(ml1);
+            //LML14.Add(ml1);
 
 
             List<Meal> LML15 = new List<Meal>();
-            LML15.Add(ml1);
+            //LML15.Add(ml1);
 
 
             List<Meal> LML16 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
 
             List<Meal> LML17 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
 
             List<Meal> LML18 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
 
             List<Meal> LML19 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
 
             List<Meal> LML20 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
 
             List<Meal> LML21 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
 
             List<Meal> LML22 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
 
             List<Meal> LML23 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
             List<Meal> LML24 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
             List<Meal> LML25 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
             List<Meal> LML26 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
             List<Meal> LML27 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
             List<Meal> LML28 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
             List<Meal> LML29 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
             List<Meal> LML30 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
             List<Meal> LML31 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
             List<Meal> LML32 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
             List<Meal> LML33 = new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
             List<Meal> LML34= new List<Meal>();
-            LML1.Add(ml1);
+            //LML1.Add(ml1);
 
             
 
