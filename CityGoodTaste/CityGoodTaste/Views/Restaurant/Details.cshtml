@@ -246,7 +246,7 @@
                                     }
                                     <div id=@colID class="panel-collapse collapse @isActive">
                                         <div class="panel-body">
-                                            <img class="img-responsive Center-Image-Width" src=@Event.Photo alt="Image">
+                                            <img class="img-responsive Center-Image-Width" src=@Event.PhotoSmall alt="Image">
                                             <p class="WordBreak">
                                                 Типы события:
                                                 @foreach (var EventType in @Event.EventTypes)
@@ -392,6 +392,10 @@
                     <div class="input-group">
                         @{
                             DateTime dt = DateTime.Now.Date;
+                            if (ViewData["REdate"]!=null)
+                            {
+                                dt = new DateTime(Convert.ToInt64(ViewData["REdate"]));
+                            }
                         }
                         <input type="text" id="datepicker" value=@dt class="form-control">
                         <span class="input-group-addon">
@@ -407,6 +411,10 @@
                     <div class="input-group clockpicker ">
                         @{
                             var dtt = DateTime.Now.ToShortTimeString();
+                            if (ViewData["REdate"] != null)
+                            {
+                                dtt = new DateTime(Convert.ToInt64(ViewData["REdate"])).ToShortTimeString();
+                            }
                         }
                         <input id="timePicker" type="text" class="form-control" value=@dtt>
                         <span class="input-group-addon">

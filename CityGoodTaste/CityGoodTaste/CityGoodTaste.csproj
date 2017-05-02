@@ -203,6 +203,10 @@
     <Compile Include="Migrations\201704200043589_20042017343.Designer.cs">
       <DependentUpon>201704200043589_20042017343.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705022059342_02052017.cs" />
+    <Compile Include="Migrations\201705022059342_02052017.Designer.cs">
+      <DependentUpon>201705022059342_02052017.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationModels\Administration.cs" />
@@ -3382,6 +3386,7 @@
     <Content Include="Views\Administration\Edit.cshtml" />
     <Content Include="Views\Administration\Index.cshtml" />
     <Content Include="Views\Administration\_SchemaAndInfoPartial.cshtml" />
+    <Content Include="Views\Restaurant\EventDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3396,6 +3401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704200043589_20042017343.resx">
       <DependentUpon>201704200043589_20042017343.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705022059342_02052017.resx">
+      <DependentUpon>201705022059342_02052017.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

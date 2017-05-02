@@ -1,0 +1,51 @@
+﻿@model CityGoodTaste.Models.RestaurantEvent
+
+@{
+    ViewBag.Title = "EventDetails";
+}
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+
+
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <hr />
+        <a href='@Url.Action("Details", "Restaurant", new { id = @Model.Restaurant.Id, idEvent = @Model.Id })'>
+            <img class="img-responsive Center-Image-Width" src=@Model.PhotoBig alt="Image">
+        </a>
+        <p >
+            <span style="font-weight:bold">Типы события:</span>
+            
+            @foreach (var EventType in @Model.EventTypes)
+            {
+                <span>@EventType.Icon</span>
+                <span>@EventType.Name</span>
+                if (@EventType == @Model.EventTypes.Last())
+                {<span>.</span> }
+                else
+                {<span>, </span> }
+            }
+        </p>
+        <p>
+            <span style="font-weight:bold">Дата: </span>
+            <span>
+                @Model.StartDate
+                - @Model.EndDate
+            </span>
+        </p>
+        <p class="WordBreak">
+            <span style="font-weight:bold">Описание:</span>
+             <br />
+            @Model.Description
+        </p>
+        <div>
+            <a style="width:100%!important; font-size:18px" href='@Url.Action("Details", "Restaurant", new { id = @Model.Restaurant.Id, idEvent = @Model.Id })' class="btn btn-danger">Зарезервировать</a>
+        </div>
+    </div>
+    <div class="col-md-2">
+    </div>
+    
+</div>
+<br />
+

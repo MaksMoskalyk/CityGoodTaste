@@ -55,9 +55,9 @@ namespace CityGoodTaste.Controllers
             var RestaurantEvent = manager.GetListRestaurantEvents();
             return View(RestaurantEvent);
         }
-
+        
         // GET: Restaurant/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> EventDetails(int? id)
         {
             if (id == null)
             {
@@ -65,13 +65,36 @@ namespace CityGoodTaste.Controllers
             }
             DataManagerCreator factory = new DefaultDataManagerCreator();
             IBaseDataManager manager = factory.GetBaseDataManager();
-            Restaurant Rest =  manager.GetRestaurant(id);
+            RestaurantEvent RE = manager.GetListRestaurantEvents().Where(re=>re.Id==id).FirstOrDefault();
+
+            if (RE == null)
+            {
+                return HttpNotFound();
+            }
+            return View(RE);
+
+        }
+        // GET: Restaurant/Details/5
+        public async Task<ActionResult> Details(int? id, int? idEvent)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DataManagerCreator factory = new DefaultDataManagerCreator();
+            IBaseDataManager manager = factory.GetBaseDataManager();
+            Restaurant Rest = manager.GetRestaurant(id);
             ViewBag.UserId = manager.GetCurrectUserId();
             TempData["RestId"] = id;
             ViewData["foodRank"] = manager.GetFoodRank(id).ToString();
             ViewData["serviceRank"] = manager.GetServiceRank(id).ToString();
             ViewData["ambienceRank"] = manager.GetAmbienceRank(id).ToString();
             ViewData["restRank"] = manager.GetRestaurantRank(id).ToString();
+            if(idEvent!=null)
+            {
+                RestaurantEvent RE = manager.GetListRestaurantEvents().Where(re => re.Id == id).FirstOrDefault();
+                ViewData["REdate"] = RE.StartDate.Ticks.ToString();
+            }
             if (Rest == null)
             {
                 return HttpNotFound();
@@ -79,7 +102,6 @@ namespace CityGoodTaste.Controllers
             return View(Rest);
 
         }
-
         [AjaxOnly]
         public ActionResult _ReservedTablesPartial(RestaurantSchema model)
         {

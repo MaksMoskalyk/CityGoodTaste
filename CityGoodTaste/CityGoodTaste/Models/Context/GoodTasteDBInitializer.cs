@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace CityGoodTaste.Models
 {
-    public class GoodTasteDBInitializer :CreateDatabaseIfNotExists<GoodTasteContext>
+    public class GoodTasteDBInitializer :DropCreateDatabaseAlways<GoodTasteContext>
     {
         protected override void Seed(GoodTasteContext context)
         {
@@ -251,39 +251,7 @@ namespace CityGoodTaste.Models
             List<EventType> let4 = new List<EventType>();
             let4.Add(et4);
 
-            RestaurantEvent re1 = new RestaurantEvent()
-            {
-                Name = "Jazzforacat 22/04/2017",
-                Description = "КJazzforacat - акустический сайд-проект вокалиста MartoviOrchestra Асафатова Сергея и Димы Кошельника. Это качественная музыка,сильные тексты и уникальный в своем роде музыкальный продукт: только вокал, гитара и кларнет.",
-                StartDate = new DateTime(2017, 4, 22, 20, 0, 0),
-                EndDate = new DateTime(2017, 4, 23, 0, 0, 0),
-                Restaurant = r,
-                EventTypes = let1,
-                Photo = "/Img/Events/jazzforacat.jpg"
-            };
-            RestaurantEvent re2 = new RestaurantEvent()
-            {
-                Name = "Понедельник - UNIT DAY",
-                Description = "Первое правило клуба - всем рассказывать про клуб."+
-"\nВторое правило клуба - да,и бабуле тоже."+
-"\nВ понедельник клуб дает возможность тебе заглянуть по ту сторону:" +
-"\n-стать членом команды UNIT" +
-"\n- побыть в роли официанта" +
-"\n- петь песни под гитару" +
-"\n- танцевать возле диджея" +
-"\n-попробовать тайный перечень алкоголя со скидкой - 50 %" +
-"\n-усадить всех официантов, барменов, позвать поваров и заставить играть с тобой в игру" +
-"Это твоя свобода.Приходи к нам в клуб и получи допуск к понедельничному самоуправству."+
-"\nUNIT Men`s Life CAFE" +
-"\nТираспольская,22" +
-"\nЕсли не веришь - звони: 048 - 729 - 90 - 90" +
-"\nПОМНИ ПЕРВОЕ И ВТОРОЕ ПРАВИЛО КЛУБА.",
-                StartDate = new DateTime(2017, 4, 24, 20, 0, 0),
-                EndDate = new DateTime(2017, 4, 25, 0, 0, 0),
-                Restaurant = r,
-                EventTypes = let2,
-                Photo = "/Img/Events/mondayunit.jpg"
-            };
+            
             RestaurantEvent re3 = new RestaurantEvent()
             {
                 Name = "Old School Rock четверг с KIFA",
@@ -292,7 +260,8 @@ namespace CityGoodTaste.Models
                 EndDate = new DateTime(2017, 4, 28, 0, 0, 0),
                 Restaurant = r,
                 EventTypes = let1,
-                Photo = "/Img/Events/rock140417.jpg"
+                PhotoSmall = "/Img/Events/s_oldschoolrock.jpg",
+                PhotoBig = "/Img/Events/b_oldschoolrock.jpg"
             };
             RestaurantEvent re4 = new RestaurantEvent()
             {
@@ -305,7 +274,8 @@ namespace CityGoodTaste.Models
                 EndDate = new DateTime(2017, 4, 29, 0, 0, 0),
                 Restaurant = r,
                 EventTypes = let1,
-                Photo = "/Img/Events/goldway.jpg"
+                PhotoSmall = "/Img/Events/s_goldway.jpg",
+                PhotoBig = "/Img/Events/b_goldway.jpg"
             };
             RestaurantEvent re5 = new RestaurantEvent()
             {
@@ -317,11 +287,9 @@ namespace CityGoodTaste.Models
                 EndDate = new DateTime(2017, 4, 30, 0, 0, 0),
                 Restaurant = r,
                 EventTypes = let1,
-                Photo = "/Img/Events/patrochiny.jpg"
+                PhotoSmall = "/Img/Events/s_patrochiny.jpg",
+                PhotoBig = "/Img/Events/b_patrochiny.jpg"
             };
-
-            context.RestaurantEvent.Add(re1);
-            context.RestaurantEvent.Add(re2);
             context.RestaurantEvent.Add(re3);
             context.RestaurantEvent.Add(re4);
             context.RestaurantEvent.Add(re5);

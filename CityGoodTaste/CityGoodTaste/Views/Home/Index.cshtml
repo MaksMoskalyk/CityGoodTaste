@@ -29,9 +29,9 @@
                 if (item == ListRestaurantEvents.First())
                 { isActive = "active"; }
                 <div class="item customCarouselItem @isActive">
-                    <img class="img-responsive Center-Image-Width" src=@item.Photo alt="Image">
+                    <img class="img-responsive Center-Image-Width" src=@item.PhotoSmall alt="Image">
                     <div class="carousel-caption customCarouselCaption">
-                        <a href='@Url.Action("Details", "Restaurant", new { id = item.Restaurant.Id })'>
+                        <a href='@Url.Action("EventDetails", "Restaurant", new { id = item.Id })'>
                             <h3 style="font-size:36px">@Html.DisplayFor(modelItem => item.Name)</h3>
                         </a>
                     </div>

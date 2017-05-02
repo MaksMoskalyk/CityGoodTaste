@@ -37,8 +37,9 @@ namespace CityGoodTaste.Models
         [Required]
         public DateTime EndDate { get; set; }
 
-        public string Photo { get; set; }
+        public string PhotoSmall { get; set; }
 
+        public string PhotoBig { get; set; }
 
         public virtual Restaurant Restaurant { get; set; }
 
