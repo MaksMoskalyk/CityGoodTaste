@@ -1,38 +1,112 @@
-﻿@model IEnumerable<CityGoodTaste.Models.RestaurantEvent>
+﻿@model CityGoodTaste.Models.EventSearchViewModel
 
-<div class="row">
-    @{ if (Model.Count() > 0)
-        {
-    
-    foreach (var item in Model)
-    {
-        <div class="col-sm-4 " style="text-align:left; padding-right:0; ">
-            <div class="panel panel-success">
-                <div class="panel-heading panelHeadingCustom">
-                    <a href='@Url.Action("EventDetails", "Restaurant", new { id = item.Id })' style="color:black; text-decoration:none">
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </a>
-                </div>
-                <div class="thumbs">
-                    <a href='@Url.Action("EventDetails", "Restaurant", new { id = item.Id })'>
-                        <img src=@item.PhotoSmall class="img-responsive" style="width:100%; height:200px" alt="Image" />
-                    </a>
-                    <div class="caption">
-                        <span>@item.Restaurant.Name</span>
+<div class="col-sm-2" style="padding-right:0;">
+
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeadingCustom">Типы:</div>
+        <div class="panel-body" style="padding-left:10px;">
+            @for (int i = 0; i < Model.Types.Count(); i++)
+            {
+                if (Model.Types[i].Count > 0 && Model.Types[i].IsSelected)
+                {
+                    <div class="checkbox">
+                        <input type="checkbox" value=@Model.Types[i].Category.Id id=@("eventType" + Model.Types[i].Category.Id) class="EventTypesCheck" name="EventTypesCheck" checked />
+                        <label for=@("eventType" + Model.Types[i].Category.Id)>@Model.Types[i].Category.Name</label>
                     </div>
-                </div>
-                <div class="panel-footer panelFooterCustom">
-                    <span class="glyphicon glyphicon-time"></span> Начала:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(modelItem => item.StartDate)<br />
-                    <span class="glyphicon glyphicon-time"></span> Завершение:&nbsp;@Html.DisplayFor(modelItem => item.EndDate)<br />
+                }
+                else if (Model.Types[i].Count > 0)
+                {
+                    <div class="checkbox">
+                        <input type="checkbox" value=@Model.Types[i].Category.Id id=@("eventType" + Model.Types[i].Category.Id) class="EventTypesCheck" name="EventTypesCheck" unchecked />
+                        <label for=@("eventType" + Model.Types[i].Category.Id)>@Model.Types[i].Category.Name (@Model.Types[i].Count)</label>
+                    </div>
+                }
+                else
+                {
+                    <div class="checkbox">
+                        <input disabled="disabled" type="checkbox" value=@Model.Types[i].Category.Id id=@("eventType" + Model.Types[i].Category.Id) class="EventTypesCheck" name="EventTypesCheck" unchecked />
+                        <label for=@("eventType" + Model.Types[i].Category.Id)>@Model.Types[i].Category.Name (@Model.Types[i].Count)</label>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeadingCustom">Дата:</div>
+        <div class="panel-body" style="padding-left:10px;">
+            <div id="datepickerContainer" class="form-group center-block">
+                <div class="input-group">
+                    @{
+                        DateTime dtFrom = DateTime.Now.Date;
+                    }
+                    <input type="text" id="from" name="from" value=@dtFrom class="form-control">
+                    <span class="input-group-addon">
+                        От
+                    </span>
                 </div>
             </div>
+            <div id="datepickerContainer" class="form-group center-block">
+                <div class="input-group">
+                    @{
+                        DateTime dtTo = DateTime.Now.AddYears(1).Date;
+                    }
+                    <input type="text" id="to" name="to" value=@dtTo class="form-control">
+                    <span class="input-group-addon">
+                        До
+                    </span>
+                </div>
+            </div>
+            <button type="submit" id="sendData" class="btn btn-danger" style="width:100%">Искать</button>
         </div>
-        }
-     } 
-        else
-    {
-            <h1>Событий заданым критерия не было найденно</h1>
-    }
-    }
-    
+
+    </div>
 </div>
+
+<div class="col-sm-10">
+    <div class="container text-center">
+        @{
+            if (Model.IsSelectedAnyCategory)
+            {
+                <div style="text-align:left;">
+                    @for (int i = 0; i < Model.Types.Count(); i++)
+                    {
+                        if (Model.Types[i].Count > 0 && Model.Types[i].IsSelected)
+                        {
+                            <label class="label-success" style="padding:5px; border-radius:5px; vertical-align:central"><span>@Model.Types[i].Category.Name</span> <button class="btn btn-danger" onclick="DeselectET('eventType' + 'item.Id')" style="padding-left:6px; padding-bottom:1px; padding-right:6px; padding-top:1px; border-radius:10px">X</button></label>
+                        }
+                    }
+                    <button class="btn btn-danger" onclick="DeselectET('eventType' + 'item.Id')">Сбросить</button>
+                </div>
+                <br />
+            }
+        }
+        <div class="row">
+            @foreach (var item in Model.Events)
+            {
+                <div class="col-sm-4 " style="text-align:left; padding-right:0; ">
+                    <div class="panel panel-success">
+                        <div class="panel-heading panelHeadingCustom">
+                            <a href='@Url.Action("EventDetails", "Restaurant", new { id = item.Id })' style="color:black; text-decoration:none">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </div>
+                        <div class="thumbs">
+                            <a href='@Url.Action("EventDetails", "Restaurant", new { id = item.Id })'>
+                                <img src=@item.PhotoSmall class="img-responsive" style="width:100%; height:200px" alt="Image" />
+                            </a>
+                            <div class="caption">
+                                <span>@item.Restaurant.Name</span>
+                            </div>
+                        </div>
+                        <div class="panel-footer panelFooterCustom">
+                            <span class="glyphicon glyphicon-time"></span> Начала:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(modelItem => item.StartDate)<br />
+                            <span class="glyphicon glyphicon-time"></span> Завершение:&nbsp;@Html.DisplayFor(modelItem => item.EndDate)<br />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

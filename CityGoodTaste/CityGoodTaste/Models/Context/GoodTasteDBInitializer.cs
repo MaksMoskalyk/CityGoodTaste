@@ -242,11 +242,9 @@ namespace CityGoodTaste.Models
 
             List<EventType> let2 = new List<EventType>();
             let2.Add(et2);
-            let2.Add(et11);
             let2.Add(et10);
-            let2.Add(et9);
             List<EventType> let3 = new List<EventType>();
-            let3.Add(et3);
+            let3.Add(et9);
 
             List<EventType> let4 = new List<EventType>();
             let4.Add(et4);
@@ -273,7 +271,7 @@ namespace CityGoodTaste.Models
                 StartDate = new DateTime(2017, 4, 28, 20, 0, 0),
                 EndDate = new DateTime(2017, 4, 29, 0, 0, 0),
                 Restaurant = r,
-                EventTypes = let1,
+                EventTypes = let2,
                 PhotoSmall = "/Img/Events/s_goldway.jpg",
                 PhotoBig = "/Img/Events/b_goldway.jpg"
             };
@@ -286,7 +284,7 @@ namespace CityGoodTaste.Models
                 StartDate = new DateTime(2017, 4, 29, 20, 0, 0),
                 EndDate = new DateTime(2017, 4, 30, 0, 0, 0),
                 Restaurant = r,
-                EventTypes = let1,
+                EventTypes = let3,
                 PhotoSmall = "/Img/Events/s_patrochiny.jpg",
                 PhotoBig = "/Img/Events/b_patrochiny.jpg"
             };

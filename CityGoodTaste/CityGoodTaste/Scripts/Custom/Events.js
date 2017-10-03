@@ -5,8 +5,12 @@
     SetCheckboxClickHandler();
 
     SetDatepickers();
-})
 
+})
+function DeselectET(id) {
+    var t = document.getElementById(id);
+    t.click();
+}
 
 function SetEventsSearchAutocomplete() {
     $("#searchTextEvents").autocomplete({

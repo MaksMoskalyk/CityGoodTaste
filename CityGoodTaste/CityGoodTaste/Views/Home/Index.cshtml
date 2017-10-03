@@ -7,7 +7,7 @@
 <div>
     @{
         CityGoodTaste.BusinessLayer.DataManagerCreator factory = new CityGoodTaste.BusinessLayer.DefaultDataManagerCreator();
-        CityGoodTaste.BusinessLayer.IBaseDataManager manager = factory.GetBaseDataManager();
+        CityGoodTaste.BusinessLayer.IRestaurantDataManager manager = factory.GetRestaurantDataManager();
         var ListRestaurantEvents = manager.GetTopListRestaurantEvents();
     }
 

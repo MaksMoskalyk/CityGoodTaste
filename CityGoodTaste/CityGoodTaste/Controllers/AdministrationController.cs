@@ -120,6 +120,7 @@ namespace CityGoodTaste.Controllers
 
             DataManagerCreator factory = new DefaultDataManagerCreator();
             IBaseDataManager manager = factory.GetBaseDataManager();
+            IRestaurantDataManager RestaurantDataManage = factory.GetRestaurantDataManager();
             string userId =manager.GetCurrectUserId();
 
             List<int> tablesIds = new List<int>();
@@ -140,7 +141,7 @@ namespace CityGoodTaste.Controllers
 
             adminmanager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), tablesIds, d, user, name, phone);
 
-            return PartialView("~/Views/Administration/_SchemaAndInfoPartial.cshtml", manager.GetRestaurantSchema(Convert.ToInt32(restId)));
+            return PartialView("~/Views/Administration/_SchemaAndInfoPartial.cshtml", RestaurantDataManage.GetRestaurantSchema(Convert.ToInt32(restId)));
 
         }
 
@@ -157,12 +158,13 @@ namespace CityGoodTaste.Controllers
             IBaseDataManager manager = factory.GetBaseDataManager();
             IAdministrationDataManager adminmanager = factory.GetAdministrationDataManager();
 
+            IRestaurantDataManager RestaurantDataManage = factory.GetRestaurantDataManager();
             string reservId = Request.Form["reservnumber"];
             DateTime d = DateTime.Parse(Request.Form["date"] + " " + Request.Form["time"]);
 
             adminmanager.ConfirmReservByAdministration(Convert.ToInt32(reservId));
 
-            return PartialView("~/Views/Administration/_SchemaAndInfoPartial.cshtml", manager.GetRestaurantSchema(Convert.ToInt32(restId)));
+            return PartialView("~/Views/Administration/_SchemaAndInfoPartial.cshtml", RestaurantDataManage.GetRestaurantSchema(Convert.ToInt32(restId)));
         }
 
         [AjaxOnly]
@@ -172,8 +174,10 @@ namespace CityGoodTaste.Controllers
             DataManagerCreator factory = new DefaultDataManagerCreator();
             IBaseDataManager manager = factory.GetBaseDataManager();
             IAdministrationDataManager adminmanager = factory.GetAdministrationDataManager();
+
+            IRestaurantDataManager RestaurantDataManage = factory.GetRestaurantDataManager();
             adminmanager.RemoveReserv(reservId);
-            return PartialView("~/Views/Administration/_SchemaAndInfoPartial.cshtml", manager.GetRestaurantSchema(Convert.ToInt32(restId)));
+            return PartialView("~/Views/Administration/_SchemaAndInfoPartial.cshtml", RestaurantDataManage.GetRestaurantSchema(Convert.ToInt32(restId)));
         }
 
 

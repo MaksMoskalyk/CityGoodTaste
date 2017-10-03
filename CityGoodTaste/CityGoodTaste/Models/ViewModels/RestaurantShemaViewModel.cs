@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CityGoodTaste.Models.ViewModels
+namespace CityGoodTaste.Models
 {
     public class RestaurantShemaViewModel
     {

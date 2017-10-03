@@ -133,7 +133,12 @@ footer {
 }
 
 .WordBreak {
-    word-break: break-all;
+    /*word-break: break-all;*/
+    hyphens:auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 }
 .DivImg{
    background-repeat     : no-repeat !important;
