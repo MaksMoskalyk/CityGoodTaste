@@ -10,6 +10,8 @@ namespace CityGoodTaste.Models
         public bool IsSelectedAnyCategory { set; get; }
         public List<RestaurantEvent> Events { set; get; }
         public List<SearchCategory<EventType>> Types { set; get; }
+        public DateTime from { set; get; }
+        public DateTime to { set; get; }
     }
 
 }

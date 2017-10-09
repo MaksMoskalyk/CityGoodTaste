@@ -1,9 +1,12 @@
-﻿@model IEnumerable<CityGoodTaste.Models.Restaurant>
+﻿@model CityGoodTaste.Models.RestaurantSearchViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Search restaurants";
 }
+
 <script src="~/Scripts/Custom/Restaurants.js"></script>
+
+
 @using (Ajax.BeginForm("RestaurantsSearch", new { id = "RestaurantsForm" }, new AjaxOptions { UpdateTargetId = "RestaurantsList", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }))
 {
     <div class="input-group searchBlock">
@@ -13,107 +16,117 @@
         </div>
     </div>
 
-    <div>
+    <div id="RestaurantsList">
         <div id="searchFiltersBlock" class="col-sm-2" style="padding-right:0;">
-            <div class="panel-group">
-                <div class="panel panel-default">
-                    <div class="panel-heading panelHeadingCustom">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapseNeighborhoods">Районы города:</a>
-                        </h4>
-                    </div>
-                    <div id="collapseNeighborhoods" class="panel-collapse collapse in filtersPanel" style="padding-left:10px;">
-                        @{
-                            var manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
-                            var Neighborhoods = manager.GetAllNeighborhoods();
-                        }
-
-                        @foreach (var item in Neighborhoods)
+            <div class="panel panel-default">
+                <div class="panel-heading panelHeadingCustom">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseNeighborhoods">Районы города:</a>
+                    </h4>
+                </div>
+                <div id="collapseNeighborhoods" class="panel-collapse collapse in filtersPanel" style="padding-left:10px;">
+                    @for (int i = 0; i < Model.Neighborhoods.Count(); i++)
+                    {
+                        if (Model.Neighborhoods[i].Count > 0)
                         {
                             <div class="checkbox">
-                                <input type="checkbox" value=@item.Id id=@("Neighborhood" + item.Id) class="NeighborhoodsCheck" name="NeighborhoodsCheck" unchecked />
-                                <label for=@("Neighborhood" + item.Id)>@item.Name</label>
+                                <input type="checkbox" onclick="checkElChB()" value=@Model.Neighborhoods[i].Category.Id id=@("Neighborhoods" + Model.Neighborhoods[i].Category.Id) class="NeighborhoodsCheck" name="NeighborhoodsCheck" unchecked />
+                                <label for=@("Neighborhoods" + Model.Neighborhoods[i].Category.Id)>@Model.Neighborhoods[i].Category.Name (@Model.Neighborhoods[i].Count)</label>
                             </div>
                         }
-                    </div>
-                </div>
-            </div>
-            <div class="panel-group">
-                <div class="panel panel-default">
-                    <div class="panel-heading panelHeadingCustom">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse2">Сервис:</a>
-                        </h4>
-                    </div>
-                    <div id="collapse2" class="panel-collapse collapse in filtersPanel" style="padding-left:10px;">
-                        @{
-                             manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
-                            var Features = manager.GetAllRestaurantFeatures();
-                        }
-
-                        @foreach (var item in Features)
+                        else
                         {
                             <div class="checkbox">
-                                <input type="checkbox" value=@item.Id id=@("feature" + item.Id) class="FeaturesCheck" name="FeaturesCheck" unchecked />
-                                <label for=@("feature" + item.Id)>@item.Name</label>
+                                <input disabled="disabled" type="checkbox" value=@Model.Neighborhoods[i].Category.Id id=@("Neighborhoods" + Model.Neighborhoods[i].Category.Id) class="NeighborhoodsCheck" name="NeighborhoodsCheck" unchecked />
+                                <label for=@("Neighborhoods" + Model.Neighborhoods[i].Category.Id)>@Model.Neighborhoods[i].Category.Name (@Model.Neighborhoods[i].Count)</label>
                             </div>
                         }
-                    </div>
+                    }
                 </div>
             </div>
-           
-            <div class="panel-group">
-                <div class="panel panel-default">
-                    <div class="panel-heading panelHeadingCustom">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse1">Кухня:</a>
-                        </h4>
-                    </div>
-                    <div id="collapse1" class="panel-collapse collapse filtersPanel" style="padding-left:10px;">
-                        @{
-                            manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
-                            var Cuisines = manager.GetAllCuisines();
-                        }
-                        @foreach (var item in Cuisines)
+            <div class="panel panel-default">
+                <div class="panel-heading panelHeadingCustom">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse2">Сервис:</a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse in filtersPanel" style="padding-left:10px;">
+                    @for (int i = 0; i < Model.RestaurantFeatures.Count(); i++)
+                    {
+                        if (Model.RestaurantFeatures[i].Count > 0)
                         {
                             <div class="checkbox">
-                                <input type="checkbox" value=@item.Id id=@("cuisine" + item.Id) class="CuisinesCheck" name="CuisinesCheck" unchecked />
-                                <label for=@("cuisine" + item.Id)>@item.Name</label>
+                                <input type="checkbox" onclick="checkElChB()" value=@Model.RestaurantFeatures[i].Category.Id id=@("RestaurantFeatures" + Model.RestaurantFeatures[i].Category.Id) class="RestaurantFeaturesCheck" name="RestaurantFeaturesCheck" unchecked />
+                                <label for=@("RestaurantFeatures" + Model.RestaurantFeatures[i].Category.Id)>@Model.RestaurantFeatures[i].Category.Name (@Model.RestaurantFeatures[i].Count)</label>
                             </div>
                         }
-                    </div>
-                </div>
-            </div>
-            
-            <div class="panel-group">
-                <div class="panel panel-default">
-                    <div class="panel-heading panelHeadingCustom">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse3">Категории меню:</a>
-                        </h4>
-                    </div>
-                    <div id="collapse3" class="panel-collapse collapse filtersPanel" style="padding-left:10px;">
-                        @{
-                            manager = new CityGoodTaste.BusinessLayer.RestaurantDataManager();
-                            var MealGroups = manager.GetAllMealGroups();
-                        }
-
-                        @foreach (var item in MealGroups)
+                        else
                         {
                             <div class="checkbox">
-                                <input type="checkbox" value=@item.Id id=@("mealGroup" + item.Id) class="MealGroups" name="MealGroups" unchecked />
-                                <label for=@("mealGroup" + item.Id)>@item.Name</label>
+                                <input disabled="disabled" type="checkbox" value=@Model.RestaurantFeatures[i].Category.Id id=@("RestaurantFeatures" + Model.RestaurantFeatures[i].Category.Id) class="RestaurantFeaturesCheck" name="RestaurantFeaturesCheck" unchecked />
+                                <label for=@("RestaurantFeatures" + Model.RestaurantFeatures[i].Category.Id)>@Model.RestaurantFeatures[i].Category.Name (@Model.RestaurantFeatures[i].Count)</label>
                             </div>
                         }
-                    </div>
+                    }
                 </div>
             </div>
-
+            <div class="panel panel-default">
+                <div class="panel-heading panelHeadingCustom">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1">Кухня:</a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse filtersPanel" style="padding-left:10px;">
+                    @for (int i = 0; i < Model.Cuisines.Count(); i++)
+                    {
+                        if (Model.Cuisines[i].Count > 0)
+                        {
+                            <div class="checkbox">
+                                <input type="checkbox" onclick="checkElChB()" value=@Model.Cuisines[i].Category.Id id=@("Cuisines" + Model.Cuisines[i].Category.Id) class="CuisinesCheck" name="CuisinesCheck" unchecked />
+                                <label for=@("Cuisines" + Model.Cuisines[i].Category.Id)>@Model.Cuisines[i].Category.Name (@Model.Cuisines[i].Count)</label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="checkbox">
+                                <input disabled="disabled" type="checkbox" value=@Model.Cuisines[i].Category.Id id=@("Cuisines" + Model.Cuisines[i].Category.Id) class="CuisinesCheck" name="CuisinesCheck" unchecked />
+                                <label for=@("Cuisines" + Model.Cuisines[i].Category.Id)>@Model.Cuisines[i].Category.Name (@Model.Cuisines[i].Count)</label>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading panelHeadingCustom">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse3">Категории меню:</a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse filtersPanel" style="padding-left:10px;">
+                    @for (int i = 0; i < Model.MealGroups.Count(); i++)
+                    {
+                        if (Model.MealGroups[i].Count > 0)
+                        {
+                            <div class="checkbox">
+                                <input type="checkbox" onclick="checkElChB()" value=@Model.MealGroups[i].Category.Id id=@("MealGroups" + Model.MealGroups[i].Category.Id) class="MealGroupsCheck" name="MealGroupsCheck" unchecked />
+                                <label for=@("MealGroups" + Model.MealGroups[i].Category.Id)>@Model.MealGroups[i].Category.Name (@Model.MealGroups[i].Count)</label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="checkbox">
+                                <input disabled="disabled" type="checkbox" value=@Model.MealGroups[i].Category.Id id=@("MealGroups" + Model.MealGroups[i].Category.Id) class="MealGroupsCheck" name="MealGroupsCheck" unchecked />
+                                <label for=@("MealGroups" + Model.MealGroups[i].Category.Id)>@Model.MealGroups[i].Category.Name (@Model.MealGroups[i].Count)</label>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
         </div>
         <div class="col-sm-10">
-            <div class="container text-center" id="RestaurantsList">
+            <div class="container text-center" >
                 <div class="row NoMargin">
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Restaurants)
                     {
                         <div class="col-sm-4 " style="text-align:left; padding-right:0; ">
                             <div class="panel panel-success">

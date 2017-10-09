@@ -9,9 +9,11 @@ using System.Web;
 using System.Web.Mvc;
 using CityGoodTaste.Models;
 using CityGoodTaste.BusinessLayer;
+using CityGoodTaste.CustomFilters;
 
 namespace CityGoodTaste.Controllers
 {
+    [Culture]
     public class AdministrationController : Controller
     {
         private GoodTasteContext db = new GoodTasteContext();
@@ -22,6 +24,7 @@ namespace CityGoodTaste.Controllers
             DataManagerCreator creator = new DefaultDataManagerCreator();
             IAdministrationDataManager manager = creator.GetAdministrationDataManager();
             Administration model = manager.GetAdministration(1);
+            TempData["RestId"] = model.Restaurants.FirstOrDefault().Id;
             if (model == null)
             {
                 return HttpNotFound();
@@ -29,86 +32,6 @@ namespace CityGoodTaste.Controllers
             return View(model);
         }
 
-
-        // GET: Administrations/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Administrations/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id")] Administration administration)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Administrations.Add(administration);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            return View(administration);
-        }
-
-        // GET: Administrations/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Administration administration = await db.Administrations.FindAsync(id);
-            if (administration == null)
-            {
-                return HttpNotFound();
-            }
-            return View(administration);
-        }
-
-        // POST: Administrations/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id")] Administration administration)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(administration).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(administration);
-        }
-
-        // GET: Administrations/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Administration administration = await db.Administrations.FindAsync(id);
-            if (administration == null)
-            {
-                return HttpNotFound();
-            }
-            return View(administration);
-        }
-
-        // POST: Administrations/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            Administration administration = await db.Administrations.FindAsync(id);
-            db.Administrations.Remove(administration);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
 
         [AjaxOnly]
         public ActionResult ConfirmReservation(string restId, string schemaId)
@@ -133,7 +56,10 @@ namespace CityGoodTaste.Controllers
             }
             string name = Request.Form["name"];
             string phone = Request.Form["phone"];
-            DateTime d = DateTime.Parse(Request.Form["date"] + " " + Request.Form["time"]);
+
+            string date = Request.Form["date"];
+            string time = Request.Form["time"];
+            DateTime d = DateTime.Parse(date + " " + time);
 
             IAdministrationDataManager adminmanager = factory.GetAdministrationDataManager();
 
@@ -180,6 +106,27 @@ namespace CityGoodTaste.Controllers
             return PartialView("~/Views/Administration/_SchemaAndInfoPartial.cshtml", RestaurantDataManage.GetRestaurantSchema(Convert.ToInt32(restId)));
         }
 
+        [AjaxOnly]
+        public ActionResult GetSchemaPartail(string reservdate)
+        {
+            int restId = Convert.ToInt32(TempData["RestId"]);
+            DataManagerCreator factory = new DefaultDataManagerCreator();
+            IBaseDataManager manager = factory.GetBaseDataManager();
+            RestaurantSchema Schema = manager.GetRestaurantSchema(restId);
+            for (int i = 0; i < Schema.Tables.Count(); i++)
+            {
+                for (int j = 0; j < Schema.Tables[i].TableReservation.Count(); j++)
+                {
+                    var reserv = Schema.Tables[i].TableReservation[j];
+                    if (reservdate != reserv.Date.Date.ToString("dd.MM.yyyy"))
+                    {
+                        Schema.Tables[i].TableReservation.Remove(reserv);
+                    }
+                }
+            }
+            TempData["RestId"] = restId;
+            return PartialView("~/Views/Administration/_SchemaAndInfoPartial.cshtml", Schema);
+        }
 
         protected override void Dispose(bool disposing)
         {

@@ -23,13 +23,13 @@ namespace CityGoodTaste.Controllers
             DataManagerCreator factory = new DefaultDataManagerCreator();
             IRestaurantDataManager manager = factory.GetRestaurantDataManager();
             IRestaurantDataManager rest_manager = factory.GetRestaurantDataManager();
-            List<Restaurant> Restaurants = rest_manager.GetFoundRestaurants(searchText);
-            if (Restaurants.Count > 1)
+            var Restaurants = rest_manager.Restaurants();
+            if (Restaurants.Restaurants.Count > 1)
                 return View(Restaurants);
-            else if (Restaurants.Count == 1)
-                return View("~/Views/Restaurant/Details.cshtml", manager.GetRestaurant(Restaurants[0].Id));
+            else if (Restaurants.Restaurants.Count == 1)
+                return View("~/Views/Restaurant/Details.cshtml", manager.GetRestaurant(Restaurants.Restaurants[0].Id));
             else
-                return View(rest_manager.GetListRestaurants());
+                return View(rest_manager.Restaurants());
         }
 
         // POST: Restaurant/Restaurants
@@ -85,9 +85,20 @@ namespace CityGoodTaste.Controllers
             IRestaurantDataManager manager = factory.GetRestaurantDataManager();
             IBaseDataManager BaseDataManager = factory.GetBaseDataManager();
             ViewBag.UserId = BaseDataManager.GetCurrectUserId();
-            Restaurant Rest = manager.GetRestaurant(id);
-
+            Restaurant Rest = new Restaurant();
+            try
+            {
+                Rest = manager.GetRestaurant(id);
+            }
+            catch
+            {
+                id = 1;
+                Rest = manager.GetRestaurant(id);
+            }
             TempData["RestId"] = id;
+            TempData["ReservDate"] = DateTime.Now.Date;
+            ViewData["ReservDate"] = DateTime.Now.Date;
+            ViewData["ReservDateStr"] = DateTime.Now.Date.ToString("dd.MM.yyyy");
             ViewData["foodRank"] = manager.GetFoodRank(id).ToString();
             ViewData["serviceRank"] = manager.GetServiceRank(id).ToString();
             ViewData["ambienceRank"] = manager.GetAmbienceRank(id).ToString();
@@ -101,6 +112,19 @@ namespace CityGoodTaste.Controllers
             {
                 return HttpNotFound();
             }
+
+            for (int i = 0; i < Rest.RestaurantSchemas.FirstOrDefault().Tables.Count(); i++)
+            {
+                for (int j = 0; j < Rest.RestaurantSchemas.FirstOrDefault().Tables[i].TableReservation.Count(); j++)
+                {
+                    var reserv = Rest.RestaurantSchemas.FirstOrDefault().Tables[i].TableReservation[j];
+                    if (DateTime.Now.Date.ToString("dd.MM.yyyy") != reserv.Date.Date.ToString("dd.MM.yyyy"))
+                    {
+                        Rest.RestaurantSchemas.FirstOrDefault().Tables[i].TableReservation.Remove(reserv);
+                    }
+                }
+            }
+
             return View(Rest);
 
         }
@@ -108,24 +132,27 @@ namespace CityGoodTaste.Controllers
         public ActionResult _ReservedTablesPartial(RestaurantSchema model)
         {
             DataManagerCreator factory = new DefaultDataManagerCreator();
-            IRestaurantDataManager manager = factory.GetRestaurantDataManager();
+            IBaseDataManager manager = factory.GetBaseDataManager();
             var addReservs = (from x in model.Tables
-                              from r in x.TableReservation
-                              where r.Reserved == true && r.ReservedAndConfirmed == false && r.Id == 0
-                              select r).ToList();
-            IBaseDataManager BaseDataManager = factory.GetBaseDataManager();
-            string userId = BaseDataManager.GetCurrectUserId();
+                          from r in x.TableReservation
+                          where r.Reserved == true && r.ReservedAndConfirmed == false && r.Id==0
+                          select r).ToList();
+            string userId = manager.GetCurrectUserId();
+            DateTime reservDateFromTemp = Convert.ToDateTime(TempData["ReservDate"]);
             foreach (var item in addReservs)
             {
-                item.User = BaseDataManager.GetUser(userId);
+                item.User = manager.GetUser(userId);
+                item.Date = reservDateFromTemp;
             }
+            TempData["ReservDate"] = reservDateFromTemp;
+            ViewData["ReservDate"] = reservDateFromTemp;
             manager.ReservTables(addReservs);
 
             var removeReserv = (from x in model.Tables
-                                from r in x.TableReservation
-                                where r.Reserved == false && r.ReservedAndConfirmed == false && r.Id > 0
-                                select r).ToList();
-            manager.RemoveReserv(removeReserv);
+                            from r in x.TableReservation
+                            where r.Reserved == false && r.ReservedAndConfirmed == false && r.Id>0
+                            select r).ToList();
+            manager.RemoveReserv(removeReserv);        
 
             Restaurant Rest = manager.GetRestaurant(model.Restaurant.Id);
             ViewBag.UserId = userId;
@@ -137,9 +164,8 @@ namespace CityGoodTaste.Controllers
         public ActionResult ConfirmReservation(Restaurant model)
         {
             DataManagerCreator factory = new DefaultDataManagerCreator();
-            IRestaurantDataManager manager = factory.GetRestaurantDataManager();
-            IBaseDataManager BaseDataManager = factory.GetBaseDataManager();
-            string userId = BaseDataManager.GetCurrectUserId();
+            IBaseDataManager manager = factory.GetBaseDataManager();
+            string userId = manager.GetCurrectUserId();
             var schemaId = Request.Form["item.Id"];
 
 
@@ -156,13 +182,12 @@ namespace CityGoodTaste.Controllers
         public ActionResult MakeReview()
         {
             DataManagerCreator factory = new DefaultDataManagerCreator();
-            IRestaurantDataManager manager = factory.GetRestaurantDataManager();
+            IBaseDataManager manager = factory.GetBaseDataManager();
             string text = Request.Form["reviewText"];
-            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            if(string.IsNullOrEmpty(text)||string.IsNullOrWhiteSpace(text))
                 return Json(new { success = false, responseText = "The attached file is not supported." }, JsonRequestBehavior.AllowGet);
-            IBaseDataManager BaseDataManager = factory.GetBaseDataManager();
-            string userId = BaseDataManager.GetCurrectUserId();
-            int restId = Convert.ToInt32(TempData["RestId"]);
+            string userId =  manager.GetCurrectUserId();
+            int restId=Convert.ToInt32(TempData["RestId"]);
             int foodRank = Convert.ToInt32(Request.Form["ratingA"]);
             int serviceRank = Convert.ToInt32(Request.Form["ratingB"]);
             int ambienceRank = Convert.ToInt32(Request.Form["ratingC"]);
@@ -181,7 +206,7 @@ namespace CityGoodTaste.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             DataManagerCreator factory = new DefaultDataManagerCreator();
-            IRestaurantDataManager manager = factory.GetRestaurantDataManager();
+            IBaseDataManager manager = factory.GetBaseDataManager();
             RestaurantSchema Schema = manager.GetRestaurantSchema(id);
             RestaurantShemaViewModel schema = manager.GetRestaurantViewModelSchema(id);
 
@@ -277,17 +302,14 @@ namespace CityGoodTaste.Controllers
         [AjaxOnly]
         public ActionResult ConfirmReserv(string restId, string schemaId, string date, string time, string name, string phone)
         {
-
-
             if (restId == null || schemaId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             DataManagerCreator factory = new DefaultDataManagerCreator();
-            IRestaurantDataManager manager = factory.GetRestaurantDataManager();
-            IBaseDataManager BaseDataManager = factory.GetBaseDataManager();
-            string userId = BaseDataManager.GetCurrectUserId();
+            IBaseDataManager manager = factory.GetBaseDataManager();
+            string userId =manager.GetCurrectUserId();
 
             List<int> tablesIds = new List<int>();
             foreach (string key in Request.Form.AllKeys)
@@ -298,7 +320,8 @@ namespace CityGoodTaste.Controllers
                 }
             }
             DateTime d = DateTime.Parse(date + " " + time);
-            manager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), userId, tablesIds, d, name, phone);
+            TempData["ReservDate"] = d;
+            manager.ConfirmReservTables(Convert.ToInt32(restId), Convert.ToInt32(schemaId), userId, tablesIds, d , name, phone);
 
 
             //if (model == null)
@@ -307,7 +330,9 @@ namespace CityGoodTaste.Controllers
             //}
             //return PartialView(model);
 
-            return null;
+            RestaurantSchema Schema = manager.GetRestaurantSchema(Convert.ToInt32(restId));
+            TempData["RestId"] = restId;
+            return PartialView("_SchemaReservedTablesPartial", Schema);
         }
 
         // GET: Restaurant/SchemaReservedTables
@@ -318,18 +343,17 @@ namespace CityGoodTaste.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             DataManagerCreator factory = new DefaultDataManagerCreator();
-            IRestaurantDataManager manager = factory.GetRestaurantDataManager();
+            IBaseDataManager manager = factory.GetBaseDataManager();
             RestaurantSchema Schema = manager.GetRestaurantSchema(id);
-            RestaurantShemaViewModel schema = manager.GetRestaurantViewModelSchema(id);
 
             if (Schema == null)
             {
                 return HttpNotFound();
             }
-
+            
             return PartialView(Schema);
         }
-
+        
         [AjaxOnly]
         public async Task<ActionResult> EventsSearch(string searchText)
         {
@@ -343,68 +367,33 @@ namespace CityGoodTaste.Controllers
                 string to = Request.Form["to"];
                 DateTime dtto = Convert.ToDateTime(to);
                 var RestaurantEvent = manager.SearchEvents(searchText, CheckEl, dtfrom, dtto);
-
-                //if (false)
-                //{
-                   
-                //    RestaurantEvent = RestaurantEvent.Where(d => d.StartDate >= dtfrom && d.StartDate <= dtto).Distinct().ToList();
-                //}
-
-
-                //if (CheckEl != null)
-                //{
-                //    string[] el = CheckEl.Split(',');
-                //    List<int> idEl = new List<int>();
-                //    for (int i = 0; i < el.Count(); i++)
-                //    {
-                //        idEl.Add(int.Parse(el[i].Trim()));
-                //    }
-
-                //    var re = manager.GetEventTypes(idEl).ToList();
-
-                //    List<string> Names = new List<string>();
-                //    for (int i = 0; i < re.Count(); i++)
-                //    {
-                //        Names.Add(re[i].Name);
-                //    }
-                //    Names = Names.Distinct().ToList();
-                //    ViewData["ET_Check"] = Names;
-                //}
-                //else
-                //{
-                //    ViewData["ET_Check"] = new List<string>();
-                //}
                 return PartialView(RestaurantEvent);
 
             }
             catch
             {
-                return PartialView(new List<RestaurantEvent>());
+                return PartialView(new EventSearchViewModel());
             }
         }
 
         [AjaxOnly]
         public async Task<ActionResult> RestaurantsSearch(string searchText)
-        {
-            string CuisinesCheck = Request.Form["CuisinesCheck"];
-            string FeaturesCheck = Request.Form["FeaturesCheck"];
-            string MealGroups = Request.Form["MealGroups"];
-            string Neighborhoods = Request.Form["NeighborhoodsCheck"];
-            DataManagerCreator factory = new DefaultDataManagerCreator();
-            IRestaurantDataManager manager = factory.GetRestaurantDataManager();
+        {     
             try
             {
-                var Restaurants = manager.SearchRestaurants(searchText, CuisinesCheck, FeaturesCheck, MealGroups, Neighborhoods);
+                string CuisinesCheck = Request.Form["CuisinesCheck"];
+                string FeaturesCheck = Request.Form["RestaurantFeaturesCheck"];
+                string MealGroups = Request.Form["MealGroupsCheck"];
+                string Neighborhoods = Request.Form["NeighborhoodsCheck"];
 
-                if (Restaurants.Count > 0)
-                {
-                    Restaurants = Restaurants.Distinct().ToList();
-                }
+                DataManagerCreator factory = new DefaultDataManagerCreator();
+                IRestaurantDataManager manager = factory.GetRestaurantDataManager();
+                var Restaurants = manager.SearchRestaurants(searchText, CuisinesCheck, FeaturesCheck, MealGroups, Neighborhoods);
                 return PartialView(Restaurants);
             }
             catch
             {
-                return PartialView(new List<Restaurant>());
+                return PartialView(new RestaurantSearchViewModel());
             }
         }
 
@@ -483,6 +472,33 @@ namespace CityGoodTaste.Controllers
                 EventsNames = context.Restaurants.Where(r => r.Name.Contains(term)).Select(r => r.Name).ToList();
             }
             return Json(EventsNames, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        [AjaxOnly]
+        public ActionResult GetSchemaPartail(string reservdate)
+        {
+            int restId = Convert.ToInt32(TempData["RestId"]);
+            ViewData["ReservDateStr"] = reservdate;
+            ViewData["ReservDate"] = DateTime.Parse(reservdate.Replace('.','/'));
+            TempData["ReservDate"] = DateTime.Parse(reservdate.Replace('.', '/'));
+            DataManagerCreator factory = new DefaultDataManagerCreator();
+            IBaseDataManager manager = factory.GetBaseDataManager();
+            RestaurantSchema Schema = manager.GetRestaurantSchema(restId);
+            for(int i=0; i < Schema.Tables.Count(); i++)
+            {
+                for (int j = 0; j < Schema.Tables[i].TableReservation.Count(); j++)
+                {
+                    var reserv = Schema.Tables[i].TableReservation[j];
+                    if (reservdate != reserv.Date.Date.ToString("dd.MM.yyyy"))
+                    {
+                        Schema.Tables[i].TableReservation.Remove(reserv);
+                    }
+                }
+            }
+            TempData["RestId"] = restId;
+            return PartialView("_SchemaReservedTablesPartial", Schema);
         }
 
     }

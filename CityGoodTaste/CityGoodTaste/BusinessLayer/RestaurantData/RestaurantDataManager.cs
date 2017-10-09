@@ -62,12 +62,12 @@ namespace CityGoodTaste.BusinessLayer
                 {
                     List<RestaurantEvent> EventList = context.RestaurantEvent.Include(t => t.Restaurant)
                         .Include(t => t.EventTypes).ToList();
-                    List<EventType> EventTypes = context.EventTypes.Include(t => t.RestaurantEvents).Where(t=> t.RestaurantEvents.Count>0).OrderBy(t=>t.Name).ToList();
+                    List<EventType> EventTypes = context.EventTypes.Include(t => t.RestaurantEvents).OrderBy(t => t.Name).ToList();
                     List<SearchCategory<EventType>> EventTypesInfo = new List<SearchCategory<EventType>>();
 
-                    for (int i =0;i<EventTypes.Count; i++)
+                    for (int i = 0; i < EventTypes.Count; i++)
                     {
-                        EventTypesInfo.Add(new SearchCategory<EventType>() { Category = EventTypes[i],IsSelected=false,Count= GetEventCountByType(EventTypes[i].Id) });
+                        EventTypesInfo.Add(new SearchCategory<EventType>() { Category = EventTypes[i], IsSelected = false, Count = GetEventCountByType(EventTypes[i].Id) });
                     }
                     EventSearchViewModel result = new Models.EventSearchViewModel();
                     result.Events = EventList;
@@ -95,6 +95,48 @@ namespace CityGoodTaste.BusinessLayer
             }
         }
 
+        private List<RestaurantEvent> GetEventsByTypeText(string searchText, List<int> id, GoodTasteContext context)
+        {
+            List<RestaurantEvent> ELName = GetEventsByName(searchText, context);
+            List<RestaurantEvent> ELType = GetEventsByType(id, context);
+            return ELName.Intersect(ELName).ToList();
+        }
+        private List<RestaurantEvent> GetEventsByName(string searchText, GoodTasteContext context)
+        {
+            List<RestaurantEvent> EventList = context.RestaurantEvent.Include(t => t.Restaurant)
+                                 .Include(t => t.EventTypes)
+                                 .Where(t => t.Name.Contains(searchText))
+                                 .ToList();
+            return EventList;
+        }
+        private List<RestaurantEvent> GetEventsByType(List<int> id, GoodTasteContext context)
+        {
+            List<RestaurantEvent> EventList = new List<RestaurantEvent>();
+            foreach (int i in id)
+            {
+                var temp = context.RestaurantEvent.Include(t => t.Restaurant).Include(t => t.EventTypes)
+                              .Where(t => t.EventTypes.Contains(context.EventTypes.Where(e => e.Id == i).FirstOrDefault()))
+                              .ToList();
+                if (EventList.Count > 0)
+                {
+                    EventList = EventList.Intersect(temp).ToList();
+                }
+                else
+                {
+                    EventList = temp;
+                }
+            }
+
+            return EventList;
+        }
+        private List<RestaurantEvent> GetEventsByDate(DateTime from, DateTime to, GoodTasteContext context)
+        {
+            List<RestaurantEvent> EventList = context.RestaurantEvent.Include(t => t.Restaurant)
+                                 .Include(t => t.EventTypes)
+                                 .Where(t => t.StartDate >= from && t.StartDate <= to)
+                                 .ToList();
+            return EventList;
+        }
         public EventSearchViewModel SearchEvents(string searchText, string CheckEl, DateTime from, DateTime to)
         {
             using (GoodTasteContext context = new GoodTasteContext())
@@ -102,11 +144,10 @@ namespace CityGoodTaste.BusinessLayer
                 try
                 {
                     EventSearchViewModel result = new EventSearchViewModel();
-                    List<RestaurantEvent> EventList = new List<RestaurantEvent> ();
+                    List<RestaurantEvent> EventList = new List<RestaurantEvent>();
                     List<EventType> EventTypes = new List<EventType>();
                     List<SearchCategory<EventType>> EventTypesInfo = new List<SearchCategory<EventType>>();
                     bool IsSelectedAnyCategory = false;
-
                     if (CheckEl != null)
                     {
                         IsSelectedAnyCategory = true;
@@ -116,79 +157,71 @@ namespace CityGoodTaste.BusinessLayer
                         {
                             idEl.Add(int.Parse(el[i].Trim()));
                         }
-
-
                         List<EventType> SelEventTypes = GetEventTypes(idEl);
-
-                        var re = SelEventTypes.Select(t => t.RestaurantEvents).ToList();
-
                         List<int> id = new List<int>();
-                        for (int i = 0; i < re.Count(); i++)
+                        for (int i = 0; i < SelEventTypes.Count(); i++)
                         {
-                            for (int j = 0; j < re[i].ToList().Count(); j++)
-                            {
-                                id.Add(re[i].ToList()[j].Id);
-                            }
+                            id.Add(SelEventTypes[i].Id);
                         }
-                        id = id.Distinct().ToList();
                         if (searchText == null || searchText == "")
                         {
-                            EventList = context.RestaurantEvent.Include(t => t.Restaurant)
-                              .Include(t => t.EventTypes).Where(t => id.Contains(t.Id)).ToList();
+                            EventList = GetEventsByType(id, context);
                         }
                         else
                         {
-                            EventList = context.RestaurantEvent.Include(t => t.Restaurant)
-                             .Include(t => t.EventTypes).Where(t => id.Contains(t.Id))
-                             .Where(t => t.Name.Contains(searchText)).ToList();
+                            EventList = GetEventsByTypeText(searchText, id, context);
                         }
-
-                        EventTypes = context.EventTypes.Include(t => t.RestaurantEvents).Where(t => t.RestaurantEvents.Count > 0).OrderBy(t => t.Name).ToList();
+                        EventList = EventList.Intersect(GetEventsByDate(from, to, context)).ToList();
+                        EventTypes = context.EventTypes.Include(t => t.RestaurantEvents).OrderBy(t => t.Name).ToList();
                         for (int i = 0; i < EventTypes.Count; i++)
                         {
                             bool IsSelected = idEl.Contains(EventTypes[i].Id);
                             int Count = EventList.Where(t => t.EventTypes.Contains(EventTypes[i])).ToList().Count();
-                            EventTypesInfo.Add(new SearchCategory<EventType>() { Category = EventTypes[i],
+                            EventTypesInfo.Add(new SearchCategory<EventType>()
+                            {
+                                Category = EventTypes[i],
                                 IsSelected = IsSelected,
                                 Count = Count
                             });
-                            
                         }
                     }
                     else
                     {
                         if (searchText.Length > 0)
                         {
-                            EventList = context.RestaurantEvent.Include(t => t.Restaurant)
-                                 .Include(t => t.EventTypes).Where(t => t.Name.Contains(searchText)).ToList();
+                            EventList = GetEventsByName(searchText, context);
                         }
                         else
                         {
                             EventList = context.RestaurantEvent.Include(t => t.Restaurant)
                                  .Include(t => t.EventTypes).ToList();
                         }
-                        EventTypes = context.EventTypes.Include(t => t.RestaurantEvents).Where(t => t.RestaurantEvents.Count > 0).OrderBy(t => t.Name).ToList();
+                        EventList = EventList.Intersect(GetEventsByDate(from, to, context)).ToList();
+                        EventTypes = context.EventTypes.Include(t => t.RestaurantEvents).OrderBy(t => t.Name).ToList();
                         for (int i = 0; i < EventTypes.Count; i++)
                         {
-                            EventTypesInfo.Add(new SearchCategory<EventType>() { Category = EventTypes[i], IsSelected = false, Count = GetEventCountByType(EventTypes[i].Id) });
+                            EventTypesInfo.Add(new SearchCategory<EventType>()
+                            {
+                                Category = EventTypes[i],
+                                IsSelected = false,
+                                Count = EventList.Where(t => t.EventTypes.Contains(EventTypes[i])).ToList().Count()
+                            });
                         }
                     }
-
                     result.Events = EventList;
                     result.Types = EventTypesInfo;
                     result.IsSelectedAnyCategory = IsSelectedAnyCategory;
+                    result.from = from;
+                    result.to = to;
                     return result;
                 }
                 catch
                 {
-
                     throw new Exception("Events not found");
                 }
             }
 
         }
-
-
 
         public List<RestaurantEvent> GetTopListRestaurantEvents()
         {
@@ -469,18 +502,20 @@ namespace CityGoodTaste.BusinessLayer
             using (GoodTasteContext context = new GoodTasteContext())
             {
                 var temp = context.RestaurantEvent.Include(t => t.EventTypes).Where(e => e.EventTypes.Select(x => x.Id).ToList().Contains(id)).ToList();
-                return temp.Count>=0? temp.Count:0;
+                return temp.Count >= 0 ? temp.Count : 0;
             }
         }
-        public List<Restaurant> GetListRestaurants()
+        
+        public List<Restaurant> GetAllRestaurants()
         {
             using (GoodTasteContext context = new GoodTasteContext())
             {
                 try
                 {
-                    List<Restaurant> result = context.Restaurants.Include(t => t.Likes).Include(t => t.City).
-                        Include(t => t.RestaurantFeatures).Include(t => t.Reviews).Include(t => t.WorkHours).
-                        Include(t => t.Cuisines).Include(t => t.Likes).Include(t => t.RestaurantFeatures).Include(t => t.RestaurantGroup).ToList();
+                    List<Restaurant> result = context.Restaurants.Include(t => t.Likes).Include(t => t.City).Include(t => t.City.Country).
+                        Include(t => t.RestaurantFeatures).Include(t => t.Reviews).Include(t => t.WorkHours).Include(t=> t.Neighborhood).
+                        Include(t => t.Cuisines).Include(t => t.Likes).Include(t => t.RestaurantFeatures).Include(t => t.RestaurantGroup)
+                        .ToList();
                     return result;
                 }
                 catch
@@ -488,9 +523,26 @@ namespace CityGoodTaste.BusinessLayer
                     throw new Exception("Restaurants not found");
                 }
             }
-
         }
-        public List<Restaurant> GetFoundRestaurants(string searchTerm)
+        public List<Restaurant> GetRestaurantsByID(List<int> IDs)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<Restaurant> result = context.Restaurants.Include(t => t.Likes).Include(t => t.City).Include(t => t.City.Country).
+                        Include(t => t.RestaurantFeatures).Include(t => t.Reviews).Include(t => t.WorkHours).Include(t => t.Neighborhood).
+                        Include(t => t.Cuisines).Include(t => t.Likes).Include(t => t.RestaurantFeatures).Include(t => t.RestaurantGroup)
+                        .Where(r => IDs.Contains(r.Id)).ToList();
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Restaurants not found");
+                }
+            }
+        }
+        public List<Restaurant> GetRestaurantsByName(string name)
         {
             using (GoodTasteContext context = new GoodTasteContext())
             {
@@ -499,7 +551,7 @@ namespace CityGoodTaste.BusinessLayer
                     List<Restaurant> result = context.Restaurants.Include(t => t.Likes).Include(t => t.City).Include(t => t.City.Country).
                         Include(t => t.RestaurantFeatures).Include(t => t.Reviews).Include(t => t.WorkHours).
                         Include(t => t.Cuisines).Include(t => t.Likes).Include(t => t.RestaurantFeatures).Include(t => t.RestaurantGroup)
-                        .Where(r => r.Name.Contains(searchTerm)).ToList();
+                        .Where(r => r.Name.Contains(name)).ToList();
                     return result;
                 }
                 catch
@@ -508,116 +560,342 @@ namespace CityGoodTaste.BusinessLayer
                 }
             }
         }
-        public List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups, string Neighborhoods)
+
+        public List<int> GetRestaurantsIDByName(string name)
         {
             using (GoodTasteContext context = new GoodTasteContext())
             {
                 try
                 {
-                    List<Restaurant> result;
-                    List<int> idRC = new List<int>();
-                    List<int> idRF = new List<int>();
-                    List<int> idRMG = new List<int>();
-                    List<int> idNB = new List<int>();
-                    if (CuisinesCheck != null)
-                    {
-                        string[] el = CuisinesCheck.Split(',');
-                        List<int> idEl = new List<int>();
-                        for (int i = 0; i < el.Count(); i++)
-                        {
-                            idEl.Add(int.Parse(el[i].Trim()));
-                        }
-                        idRC = GetRestaurantsByCuisines(idEl);
-                    }
-                    if (FeaturesCheck != null)
-                    {
-                        string[] el = FeaturesCheck.Split(',');
-                        List<int> idEl = new List<int>();
-                        for (int i = 0; i < el.Count(); i++)
-                        {
-                            idEl.Add(int.Parse(el[i].Trim()));
-                        }
-                        idRF = GetRestaurantsByFeatures(idEl);
-                    }
-                    if (MealGroups != null)
-                    {
-                        string[] el = MealGroups.Split(',');
-                        List<int> idEl = new List<int>();
-                        for (int i = 0; i < el.Count(); i++)
-                        {
-                            idEl.Add(int.Parse(el[i].Trim()));
-                        }
-                        idRMG = GetRestaurantsByMealGroups(idEl);
-                    }
-                    if (Neighborhoods != null)
-                    {
-                        string[] el = Neighborhoods.Split(',');
-                        List<int> idEl = new List<int>();
-                        for (int i = 0; i < el.Count(); i++)
-                        {
-                            idEl.Add(int.Parse(el[i].Trim()));
-                        }
-                        idNB = GetRestaurantsByNeighborhoods(idEl);
-                    }
-                    if (idRC.Count > 0 || idRF.Count > 0 || idRMG.Count > 0 || idNB.Count > 0)
-                    {
-                        List<int> id = idRC;
-                        if (id.Count > 0 && idRF.Count > 0)
-                            id = id.Intersect(idRF).ToList();
-                        else if (idRF.Count > 0)
-                            id = idRF;
-
-                        if (id.Count > 0 && idRMG.Count > 0)
-                            id = id.Intersect(idRMG).ToList();
-                        else if (idRMG.Count > 0)
-                            id = idRMG;
-                        if (id.Count > 0 && idNB.Count > 0)
-                            id = id.Intersect(idNB).ToList();
-                        else if (idNB.Count > 0)
-                            id = idNB;
-
-                        if (searchText == null)
-                        {
-                            result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
-                           Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).
-                           Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
-                           Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
-                           Include(r => r.WorkHours).Where(t => id.Contains(t.Id)).ToList();
-                        }
-                        else
-                        {
-                            result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
-                           Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).
-                           Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
-                           Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
-                           Include(r => r.WorkHours).Where(t => id.Contains(t.Id))
-                           .Where(t => t.Name.Contains(searchText)).ToList();
-                        }
-                    }
-                    else if (searchText.Length > 0)
-                    {
-                        result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
-                            Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).
-                            Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
-                            Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
-                            Include(r => r.WorkHours).Where(t => t.Name.Contains(searchText)).ToList();
-                    }
-                    else
-                    {
-                        result = context.Restaurants.Include(r => r.City).Include(r => r.Cuisines).
-                            Include(r => r.Likes).Include(r => r.Map).Include(r => r.Menu).
-                            Include(r => r.RestaurantEvent).Include(r => r.RestaurantFeatures).Include(r => r.RestaurantGroup).
-                            Include(r => r.RestaurantSchemas).Include(r => r.Reviews).Include(r => r.SpecialWorkHours).
-                            Include(r => r.WorkHours).ToList();
-                    }
+                    List<int> result = context.Restaurants.Where(r => r.Name.Contains(name)).Select(t=> t.Id).ToList();
                     return result;
                 }
                 catch
                 {
-
                     throw new Exception("Restaurants not found");
                 }
             }
+        }
+        private List<int> ParseStringForId(string CheckEl)
+        {
+            string[] el = CheckEl.Split(',');
+            List<int> idEl = new List<int>();
+            for (int i = 0; i < el.Count(); i++)
+            {
+                idEl.Add(int.Parse(el[i].Trim()));
+            }
+            return idEl;
+        }
+        public List<int> GetRestaurantsIDByNeighborhoods(List<int> idEl)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<int> id = new List<int>();
+                    var rest = context.Neighborhoods.Include(t => t.Restaurants)
+                               .Where(x => idEl.Contains(x.Id)).Select(t => t.Restaurants).ToList();
+                    for (int i = 0; i < rest.Count(); i++)
+                    {
+                        List<int> temp = new List<int>();
+                        for (int j = 0; j < rest[i].ToList().Count(); j++)
+                        {
+                            temp.Add(rest[i].ToList()[j].Id);
+                        }
+                        if (id.Count > 0)
+                            id = id.Intersect(temp).ToList();
+                        else
+                            id = temp;
+                    }
+
+                    return id;
+                }
+                catch
+                {
+                    throw new Exception("Restaurants not found");
+                }
+            }
+        }
+        public List<int> GetRestaurantsIDByFeatures(List<int> idEl)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<int> id = new List<int>();
+                    var rest = context.RestaurantFeatures.Include(t => t.Restaurants)
+                               .Where(x => idEl.Contains(x.Id)).Select(t => t.Restaurants).ToList();
+
+                    for (int i = 0; i < rest.Count(); i++)
+                    {
+                        List<int> temp = new List<int>();
+                        for (int j = 0; j < rest[i].ToList().Count(); j++)
+                        {
+                            temp.Add(rest[i].ToList()[j].Id);
+                        }
+                        if (id.Count > 0)
+                            id = id.Intersect(temp).ToList();
+                        else
+                            id = temp;
+                    }
+                    return id;
+                }
+                catch
+                {
+                    throw new Exception("Restaurants not found");
+                }
+            }
+        }
+        public List<int> GetRestaurantsIDByCuisines(List<int> idEl)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<int> id = new List<int>();
+                    var rest = context.Cuisines.Include(t => t.Restaurants)
+                               .Where(x => idEl.Contains(x.Id)).Select(t => t.Restaurants).ToList();
+
+                    for (int i = 0; i < rest.Count(); i++)
+                    {
+                        List<int> temp = new List<int>();
+                        for (int j = 0; j < rest[i].ToList().Count(); j++)
+                        {
+                            temp.Add(rest[i].ToList()[j].Id);
+                        }
+                        if (id.Count > 0)
+                            id = id.Intersect(temp).ToList();
+                        else
+                            id = temp;
+                    }
+
+                    return id;
+                }
+                catch
+                {
+                    throw new Exception("Restaurants not found");
+                }
+            }
+        }
+        
+        public List<int> GetRestaurantsIDByMealGroups(List<int> idEl)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<int> id = new List<int>();
+                    List<Restaurant> Restaurants = context.Restaurants.Include(t => t.Menu
+                        .Select(m => m.MealGroups)).ToList();
+                    foreach (var Restaurant in Restaurants)
+                    {
+                        foreach (var menu in Restaurant.Menu)
+                        {
+                            List<int> temp = new List<int>();
+                            foreach (var mg in menu.MealGroups)
+                            {
+                                if (idEl.Contains(mg.Id))
+                                {
+                                    temp.Add(Restaurant.Id);
+                                }
+                            }
+                            if (temp.Count == idEl.Count)
+                                id.Add(Restaurant.Id);
+                        }
+                    }
+
+                    return id;
+                }
+                catch
+                {
+                    throw new Exception("Restaurants not found");
+                }
+            }
+        }
+        public RestaurantSearchViewModel SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups, string Neighborhoods)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    RestaurantSearchViewModel result = new RestaurantSearchViewModel();
+                    List<Restaurant> RestaurantsList = new List<Restaurant>();
+                    List<int> idRest = new List<int>();
+                    List<int> idNB = new List<int>();
+                    List<int> idRF = new List<int>();
+                    List<int> idRC = new List<int>();
+                    List<int> idRMG = new List<int>();
+                    bool IsSelectedAnyCategory = false;
+                    if (Neighborhoods != null)
+                    {
+                        idNB = ParseStringForId(Neighborhoods);
+                        idRest = GetRestaurantsIDByNeighborhoods(idNB);
+                        IsSelectedAnyCategory = true;
+                    }
+                    if (FeaturesCheck != null)
+                    {
+                        idRF = ParseStringForId(FeaturesCheck);
+                        List<int> IDs = GetRestaurantsIDByFeatures(idRF);
+                        idRest = idRest.Count > 0 ? idRest.Intersect(IDs).ToList() : IDs;
+                        IsSelectedAnyCategory = true;
+                    }
+
+                    if (CuisinesCheck != null)
+                    {
+                        idRC = ParseStringForId(CuisinesCheck);
+                        List<int> IDs = GetRestaurantsIDByCuisines(idRC);
+                        idRest = idRest.Count > 0 ? idRest.Intersect(IDs).ToList() : IDs;
+                        IsSelectedAnyCategory = true;
+                    }
+
+                    if (MealGroups != null)
+                    {
+                        idRMG = ParseStringForId(MealGroups);
+                        List<int> IDs = GetRestaurantsIDByMealGroups(idRMG);
+                        idRest = idRest.Count > 0 ? idRest.Intersect(IDs).ToList() : IDs;
+                        IsSelectedAnyCategory = true;
+                    }
+                    if (searchText.Length > 0)
+                    {
+                        List<int> IDs = GetRestaurantsIDByName(searchText);
+                        idRest = idRest.Count > 0 ? idRest.Intersect(IDs).ToList() : IDs;
+                        IsSelectedAnyCategory = true;
+                    }
+                    if (idRest.Count == 0)
+                    {
+                        RestaurantsList = GetAllRestaurants();
+                    }
+                    else
+                    {
+                        RestaurantsList = GetRestaurantsByID(idRest);
+                    }
+                    result.Restaurants = RestaurantsList;
+                    result.MealGroups = GetMealGroupsForView(context, RestaurantsList, idRMG);
+                    result.Neighborhoods = GetNeighborhoodsForView(context, RestaurantsList, idNB);
+                    result.RestaurantFeatures = GetRestaurantFeaturesForView(context, RestaurantsList, idRF);
+                    result.Cuisines = GetCuisinesForView(context, RestaurantsList, idRC);
+                    result.IsSelectedAnyCategory = IsSelectedAnyCategory;
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Restaurants not found");
+                }
+            }
+        }
+        public RestaurantSearchViewModel Restaurants()
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    RestaurantSearchViewModel result = new RestaurantSearchViewModel();
+                    List<Restaurant> RestaurantsList = GetAllRestaurants();
+                    result.Restaurants = RestaurantsList;
+                    result.MealGroups = GetMealGroupsForView(context, RestaurantsList, new List<int>());
+                    result.Neighborhoods = GetNeighborhoodsForView(context, RestaurantsList, new List<int>());
+                    result.RestaurantFeatures = GetRestaurantFeaturesForView(context, RestaurantsList, new List<int>());
+                    result.Cuisines = GetCuisinesForView(context, RestaurantsList, new List<int>());
+                    result.IsSelectedAnyCategory = false;
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Restaurants not found");
+                }
+            }
+        }
+
+        public List<SearchCategory<MealGroup>> GetMealGroupsForView(GoodTasteContext context, List<Restaurant> RestaurantsList, List<int> idEl)
+        {
+            List<SearchCategory<MealGroup>> MealGroupsList = new List<SearchCategory<MealGroup>>();
+            var tempMealGroups = context.MealGroups.OrderBy(t => t.Name).ToList();
+            foreach (var tempMealGroup in tempMealGroups)
+            {
+                bool IsSelected = idEl.Count > 0 ? idEl.Contains(tempMealGroup.Id) : false;
+                MealGroupsList.Add(new SearchCategory<MealGroup>()
+                {
+                    Category = tempMealGroup,
+                    IsSelected = IsSelected,
+                    Count = RestaurantsList.Count
+                    //Count = GetRestaurantsIDByMealGroups(idEl).Count
+                });
+            }
+            return MealGroupsList;
+        }
+        public List<SearchCategory<Neighborhood>> GetNeighborhoodsForView(GoodTasteContext context, List<Restaurant> RestaurantsList, List<int> idEl)
+        {
+            List<SearchCategory<Neighborhood>> NeighborhoodsList = new List<SearchCategory<Neighborhood>>();
+            var NeighborhoodsTemp = context.Neighborhoods.Include(t => t.Restaurants).OrderBy(t => t.Name).ToList();
+            foreach (var Neighborhood in NeighborhoodsTemp)
+            {
+                bool IsSelected = idEl.Count > 0 ? idEl.Contains(Neighborhood.Id) : false ;
+                NeighborhoodsList.Add(new SearchCategory<Neighborhood>()
+                {
+                    Category = Neighborhood,
+                    IsSelected = IsSelected,
+                    Count = RestaurantsList.Where(t => t.Neighborhood.Id == Neighborhood.Id).ToList().Count()
+                });
+            }
+            return NeighborhoodsList;
+        }
+        private int getCountRest(List<Restaurant> RestaurantsList, RestaurantFeature Feature)
+        {
+            int count = 0;
+            foreach(var rest in RestaurantsList)
+            {
+                foreach (var Feat in rest.RestaurantFeatures)
+                {
+                    if (Feat.Id== Feature.Id)
+                        count++;
+                }
+            }
+            return count;
+        }
+        private int getCountRest(List<Restaurant> RestaurantsList, Cuisine Cuisine)
+        {
+            int count = 0;
+            foreach (var rest in RestaurantsList)
+            {
+                foreach (var Csns in rest.Cuisines)
+                {
+                    if (Csns.Id == Cuisine.Id)
+                        count++;
+                }
+            }
+            return count;
+        }
+        public List<SearchCategory<RestaurantFeature>> GetRestaurantFeaturesForView(GoodTasteContext context, List<Restaurant> RestaurantsList, List<int> idEl)
+        {
+            List<SearchCategory<RestaurantFeature>> RestaurantFeaturesList = new List<SearchCategory<RestaurantFeature>>();
+            var RestaurantFeaturesTemp = context.RestaurantFeatures.Include(t => t.Restaurants).OrderBy(t => t.Name).ToList();
+            foreach (var Feature in RestaurantFeaturesTemp)
+            {
+                bool IsSelected = idEl.Count > 0 ? idEl.Contains(Feature.Id) : false;
+                RestaurantFeaturesList.Add(new SearchCategory<RestaurantFeature>()
+                {
+                    Category = Feature,
+                    IsSelected = IsSelected,
+                    Count = getCountRest(RestaurantsList, Feature)
+            });
+            }
+            return RestaurantFeaturesList;
+        }
+        public List<SearchCategory<Cuisine>> GetCuisinesForView(GoodTasteContext context, List<Restaurant> RestaurantsList, List<int> idEl)
+        {
+            List<SearchCategory<Cuisine>> CuisinesList = new List<SearchCategory<Cuisine>>();
+            var CuisinesTemp = context.Cuisines.Include(t => t.Restaurants).OrderBy(t => t.Name).ToList();
+            foreach (var Cuisine in CuisinesTemp)
+            {
+                bool IsSelected = idEl.Count > 0 ? idEl.Contains(Cuisine.Id) : false;
+                CuisinesList.Add(new SearchCategory<Cuisine>()
+                {
+                    Category = Cuisine,
+                    IsSelected = IsSelected,
+                    Count = getCountRest(RestaurantsList, Cuisine)
+                });
+            }
+            return CuisinesList;
         }
         public void MakeReview(string userId, int restId, string text, int foodRank, int ambienceRank, int serviceRank)
         {
@@ -653,102 +931,7 @@ namespace CityGoodTaste.BusinessLayer
                 context.SaveChanges();
             }
         }
-        private List<int> GetRestaurantsByCuisines(List<int> idEl)
-        {
-            using (GoodTasteContext context = new GoodTasteContext())
-            {
-                List<int> id = new List<int>();
-                var rest = context.Cuisines.Include(t => t.Restaurants)
-                           .Where(x => idEl.Contains(x.Id)).Select(t => t.Restaurants).ToList();
 
-                for (int i = 0; i < rest.Count(); i++)
-                {
-                    List<int> temp = new List<int>();
-                    for (int j = 0; j < rest[i].ToList().Count(); j++)
-                    {
-                        temp.Add(rest[i].ToList()[j].Id);
-                    }
-                    if (id.Count > 0)
-                        id = id.Intersect(temp).ToList();
-                    else
-                        id = temp;
-                }
-                return id;
-            }
-        }
-        private List<int> GetRestaurantsByFeatures(List<int> idEl)
-        {
-            using (GoodTasteContext context = new GoodTasteContext())
-            {
-
-                List<int> id = new List<int>();
-                var rest = context.RestaurantFeatures.Include(t => t.Restaurants)
-                           .Where(x => idEl.Contains(x.Id)).Select(t => t.Restaurants).ToList();
-
-                for (int i = 0; i < rest.Count(); i++)
-                {
-                    List<int> temp = new List<int>();
-                    for (int j = 0; j < rest[i].ToList().Count(); j++)
-                    {
-                        temp.Add(rest[i].ToList()[j].Id);
-                    }
-                    if (id.Count > 0)
-                        id = id.Intersect(temp).ToList();
-                    else
-                        id = temp;
-                }
-                return id;
-            }
-        }
-        private List<int> GetRestaurantsByMealGroups(List<int> idEl)
-        {
-            using (GoodTasteContext context = new GoodTasteContext())
-            {
-                List<int> id = new List<int>();
-                List<Restaurant> Restaurants = context.Restaurants.Include(t => t.Menu
-                    .Select(m => m.MealGroups)).ToList();
-                foreach (var Restaurant in Restaurants)
-                {
-                    foreach (var menu in Restaurant.Menu)
-                    {
-                        List<int> temp = new List<int>();
-                        foreach (var mg in menu.MealGroups)
-                        {
-                            if (idEl.Contains(mg.Id))
-                            {
-                                temp.Add(Restaurant.Id);
-                            }
-                        }
-                        if (temp.Count == idEl.Count)
-                            id.Add(Restaurant.Id);
-                    }
-                }
-                return id;
-            }
-        }
-        private List<int> GetRestaurantsByNeighborhoods(List<int> idEl)
-        {
-            using (GoodTasteContext context = new GoodTasteContext())
-            {
-
-                List<int> id = new List<int>();
-                var rest = context.Neighborhoods.Include(t => t.Restaurants)
-                           .Where(x => idEl.Contains(x.Id)).Select(t => t.Restaurants).ToList();
-                for (int i = 0; i < rest.Count(); i++)
-                {
-                    List<int> temp = new List<int>();
-                    for (int j = 0; j < rest[i].ToList().Count(); j++)
-                    {
-                        temp.Add(rest[i].ToList()[j].Id);
-                    }
-                    if (id.Count > 0)
-                        id = id.Intersect(temp).ToList();
-                    else
-                        id = temp;
-                }
-                return id;
-            }
-        }
         public List<EventType> GetAllEventTypes()
         {
             using (GoodTasteContext context = new GoodTasteContext())
@@ -827,5 +1010,42 @@ namespace CityGoodTaste.BusinessLayer
                 }
             }
         }
+        public List<Restaurant> GetFoundRestaurants(string searchTerm)
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<Restaurant> result = context.Restaurants.Include(t => t.Likes).Include(t => t.City).Include(t => t.City.Country).
+                        Include(t => t.RestaurantFeatures).Include(t => t.Reviews).Include(t => t.WorkHours).
+                        Include(t => t.Cuisines).Include(t => t.Likes).Include(t => t.RestaurantFeatures).Include(t => t.RestaurantGroup)
+                        .Where(r => r.Name.Contains(searchTerm)).ToList();
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Restaurants not found");
+                }
+            }
+        }
+        public List<Restaurant> GetListRestaurants()
+        {
+            using (GoodTasteContext context = new GoodTasteContext())
+            {
+                try
+                {
+                    List<Restaurant> result = context.Restaurants.Include(t => t.Likes).Include(t => t.City).Include(t => t.City.Country).
+                        Include(t => t.RestaurantFeatures).Include(t => t.Reviews).Include(t => t.WorkHours).
+                        Include(t => t.Cuisines).Include(t => t.Likes).Include(t => t.RestaurantFeatures).Include(t => t.RestaurantGroup)
+                        .ToList();
+                    return result;
+                }
+                catch
+                {
+                    throw new Exception("Restaurants not found");
+                }
+            }
+        }
+       
     }
 }

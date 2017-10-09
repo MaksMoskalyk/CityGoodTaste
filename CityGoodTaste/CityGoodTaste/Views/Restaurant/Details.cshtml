@@ -5,13 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="~/Content/css/Default/clockpicker.css" rel="stylesheet" />
+<script src="~/Scripts/Default/clockpicker.js"></script>
+
+<script src="~/Scripts/Custom/Details.js"></script>
 <script src="~/Scripts/Custom/Localization/datepicker-RUS.js"></script>
 
+
 @*@{
-    string language = @CityGoodTaste.Controllers.HomeController.getCulture();
-    string path = "../../../Scripts/Custom/Localization/datepicker-" + language + ".js";
-    <script src=@path></script>
-}*@
+        string language = @CityGoodTaste.Controllers.HomeController.getCulture();
+        string path = "../../../Scripts/Custom/Localization/datepicker-" + language + ".js";
+        <script src=@path></script>
+    }*@
 
 @*<link href="~/Content/icons/SchemaIcons/Table/style.css" rel="stylesheet" />
     <script src="~/Content/icons/SchemaIcons/Table/svgxuse.js"></script>
@@ -81,9 +86,9 @@
                             <p><span class="deteilsTag">Сервисы:</span></p>
                             <div class="row">
                                 @*@for (int i = 0; i < Model.RestaurantFeatures.Count; i++)
-                                {
-                                    <div class="col-sm-4">@Model.RestaurantFeatures.ElementAt(i).Name</div>
-                                }*@
+                                    {
+                                        <div class="col-sm-4">@Model.RestaurantFeatures.ElementAt(i).Name</div>
+                                    }*@
                                 <div class="col-sm-4"><span class="oi" data-glyph="wifi"></span> Wi-Fi</div>
                                 <div class="col-sm-4"><span class="oi" data-glyph="musical-note"></span> Живая музыка</div>
                                 <div class="col-sm-4"><span class="oi" data-glyph="sun"></span> Летняя площадка</div>
@@ -192,8 +197,8 @@
                                                                 {
                                                                     <tr>
                                                                         @*<td style="width:110px">
-                                                                            <img class="img-thumbnail" src=@Meal.Photo alt="Image">
-                                                                        </td>*@
+                                                                                <img class="img-thumbnail" src=@Meal.Photo alt="Image">
+                                                                            </td>*@
                                                                         <td style="text-align:left">
                                                                             <p style="font-size:large; margin:0;">@Meal.Name</p>
                                                                             <p>@Meal.Description</p>
@@ -270,111 +275,111 @@
                         </div>
                     </div>
                     <div id="reviews" class="tab-pane fade">
-                                <div>
-                                    <table style="border-spacing: 5px 5px; border-collapse:unset; width:100%;">
-                                        <tr>
-                                            <td class="well" style="width:100%; border-radius:3px; padding-left:10%; padding-top:0; padding-bottom:0; vertical-align:top; background-color:#fefefe;  border:1px solid #ffe9e9">
-                                                <div class="row">
-                                                    <div class="col-sm-10">
-                                                        <table>
-                                                            <tr>
-                                                                <td><span style="color:#494949;">Кухня:</span>&nbsp;&nbsp;<span style="color:#5c5c5c">@ViewData["foodRank"]/10&nbsp;&nbsp;|</span>&nbsp;&nbsp;</td>
-                                                                <td><span style="color:#494949;">Сервис:</span>&nbsp;&nbsp;<span style="color:#5c5c5c">@ViewData["serviceRank"]/10&nbsp;&nbsp;|</span>&nbsp;&nbsp;</td>
-                                                                <td><span style="color:#494949;">Атмосфера:</span>&nbsp;&nbsp;<span style="color:#5c5c5c">@ViewData["ambienceRank"]/10</span></td>
-                                                                <td style="padding-left:100px"><span style="color:#494949; font-weight:bold">Рейтинг:</span>&nbsp;&nbsp;</td>
-                                                                <td>
-                                                                    <fieldset id="rankField" class="rating">
-                                                                        <input type="radio" id="r5" name="rating" value="5" /><label class="full" for="r5" title="Awesome - 5 stars"></label>
-                                                                        <input type="radio" id="r45" name="rating" value="4 and a half" /><label class="half" for="r45" title="Pretty good - 4.5 stars"></label>
-                                                                        <input type="radio" id="r4" name="rating" value="4" /><label class="full" for="r4" title="Pretty good - 4 stars"></label>
-                                                                        <input type="radio" id="r35" name="rating" value="3 and a half" /><label class="half" for="r35" title="Meh - 3.5 stars"></label>
-                                                                        <input type="radio" id="r3" name="rating" value="3" /><label class="full" for="r3" title="Meh - 3 stars"></label>
-                                                                        <input type="radio" id="r25" name="rating" value="2 and a half" /><label class="half" for="r25" title="Kinda bad - 2.5 stars"></label>
-                                                                        <input type="radio" id="r2" name="rating" value="2" /><label class="full" for="r2" title="Kinda bad - 2 stars"></label>
-                                                                        <input type="radio" id="r15" name="rating" value="1 and a half" /><label class="half" for="r15" title="Meh - 1.5 stars"></label>
-                                                                        <input type="radio" id="r1" name="rating" value="1" /><label class="full" for="r1" title="Sucks big time - 1 star"></label>
-                                                                        <input type="radio" id="r05" name="rating" value="half" /><label class="half" for="r05" title="Sucks big time - 0.5 stars"></label>
-                                                                    </fieldset>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>                                    
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                    @Html.Partial("_ReviewsPartial", Model)
-                    @using (Ajax.BeginForm("MakeReview", new { id = "ReviewForm" }, new AjaxOptions { UpdateTargetId = "reviewsContent", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnSuccess = "reviewAddedSuccess", OnFailure = "reviewAddedFailure" }))
-                    {
                         <div>
-                            <table style="border-spacing: 5px 5px; border-collapse:unset; width:100%">
+                            <table style="border-spacing: 5px 5px; border-collapse:unset; width:100%;">
                                 <tr>
-                                    <td class="well" style="width:100%; border-radius:5px;padding:10px; vertical-align:top;  background-color:#fefefe">
-                                        <div class="form-group">
-                                            <textarea id="revText" style="width:100%" name="reviewText" cols="40" rows="5"></textarea>
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        Атмосфера:
-                                                    </td>
-                                                    <td>
-                                                        <fieldset class="rating C">
-                                                            <input type="radio" id="star5-c" name="ratingC" value="10" /><label class="full" for="star5-c" title="Awesome - 5 stars"></label>
-                                                            <input type="radio" id="star4half-c" name="ratingC" value="9" /><label class="half" for="star4half-c" title="Pretty good - 4.5 stars"></label>
-                                                            <input type="radio" id="star4-c" name="ratingC" value="8" /><label class="full" for="star4-c" title="Pretty good - 4 stars"></label>
-                                                            <input type="radio" id="star3half-c" name="ratingC" value="7" /><label class="half" for="star3half-c" title="Meh - 3.5 stars"></label>
-                                                            <input type="radio" id="star3-c" name="ratingC" value="6" /><label class="full" for="star3-c" title="Meh - 3 stars"></label>
-                                                            <input type="radio" id="star2half-c" name="ratingC" value="5" /><label class="half" for="star2half-c" title="Kinda bad - 2.5 stars"></label>
-                                                            <input type="radio" id="star2-c" name="ratingC" value="4" /><label class="full" for="star2-c" title="Kinda bad - 2 stars"></label>
-                                                            <input type="radio" id="star1half-c" name="ratingC" value="3" /><label class="half" for="star1half-c" title="Meh - 1.5 stars"></label>
-                                                            <input type="radio" id="star1-c" name="ratingC" value="2" /><label class="full" for="star1-c" title="Sucks big time - 1 star"></label>
-                                                            <input type="radio" id="starhalf-c" name="ratingC" value="1" /><label class="half" for="starhalf-c" title="Sucks big time - 0.5 stars"></label>
-                                                        </fieldset>
-                                                    </td>
-                                                    <td style="padding-left:50px">
-                                                        Кухня:
-                                                    </td>
-                                                    <td>
-                                                        <fieldset class="rating A">
-                                                            <input type="radio" id="star5-a" name="ratingA" value="10" /><label class="full" for="star5-a" title="Awesome - 5 stars"></label>
-                                                            <input type="radio" id="star4half-a" name="ratingA" value="9" /><label class="half" for="star4half-a" title="Pretty good - 4.5 stars"></label>
-                                                            <input type="radio" id="star4-a" name="ratingA" value="8" /><label class="full" for="star4-a" title="Pretty good - 4 stars"></label>
-                                                            <input type="radio" id="star3half-a" name="ratingA" value="7" /><label class="half" for="star3half-a" title="Meh - 3.5 stars"></label>
-                                                            <input type="radio" id="star3-a" name="ratingA" value="6" /><label class="full" for="star3-a" title="Meh - 3 stars"></label>
-                                                            <input type="radio" id="star2half-a" name="ratingA" value="5" /><label class="half" for="star2half-a" title="Kinda bad - 2.5 stars"></label>
-                                                            <input type="radio" id="star2-a" name="ratingA" value="4" /><label class="full" for="star2-a" title="Kinda bad - 2 stars"></label>
-                                                            <input type="radio" id="star1half-a" name="ratingA" value="3" /><label class="half" for="star1half-a" title="Meh - 1.5 stars"></label>
-                                                            <input type="radio" id="star1-a" name="ratingA" value="2" /><label class="full" for="star1-a" title="Sucks big time - 1 star"></label>
-                                                            <input type="radio" id="starhalf-a" name="ratingA" value="1" /><label class="half" for="starhalf-a" title="Sucks big time - 0.5 stars"></label>
-                                                        </fieldset>
-                                                    </td>
-                                                    <td style="padding-left:50px">
-                                                        Сервис:
-                                                    </td>
-                                                    <td>
-                                                        <fieldset class="rating B">
-                                                            <input type="radio" id="star5-b" name="ratingB" value="10" /><label class="full" for="star5-b" title="Awesome - 5 stars"></label>
-                                                            <input type="radio" id="star4half-b" name="ratingB" value="9" /><label class="half" for="star4half-b" title="Pretty good - 4.5 stars"></label>
-                                                            <input type="radio" id="star4-b" name="ratingB" value="8" /><label class="full" for="star4-b" title="Pretty good - 4 stars"></label>
-                                                            <input type="radio" id="star3half-b" name="ratingB" value="7" /><label class="half" for="star3half-b" title="Meh - 3.5 stars"></label>
-                                                            <input type="radio" id="star3-b" name="ratingB" value="6" /><label class="full" for="star3-b" title="Meh - 3 stars"></label>
-                                                            <input type="radio" id="star2half-b" name="ratingB" value="5" /><label class="half" for="star2half-b" title="Kinda bad - 2.5 stars"></label>
-                                                            <input type="radio" id="star2-b" name="ratingB" value="4" /><label class="full" for="star2-b" title="Kinda bad - 2 stars"></label>
-                                                            <input type="radio" id="star1half-b" name="ratingB" value="3" /><label class="half" for="star1half-b" title="Meh - 1.5 stars"></label>
-                                                            <input type="radio" id="star1-b" name="ratingB" value="2" /><label class="full" for="star1-b" title="Sucks big time - 1 star"></label>
-                                                            <input type="radio" id="starhalf-b" name="ratingB" value="1" /><label class="half" for="starhalf-b" title="Sucks big time - 0.5 stars"></label>
-                                                        </fieldset>
-                                                    </td>
-                                                </tr>
-                                            </table>                                            
-                                            <button id="makeReviewBt" type="submit" class="btn btn-success btn-block">Оставить отзыв</button>
+                                    <td class="well" style="width:100%; border-radius:3px; padding-left:10%; padding-top:0; padding-bottom:0; vertical-align:top; background-color:#fefefe;  border:1px solid #ffe9e9">
+                                        <div class="row">
+                                            <div class="col-sm-10">
+                                                <table>
+                                                    <tr>
+                                                        <td><span style="color:#494949;">Кухня:</span>&nbsp;&nbsp;<span style="color:#5c5c5c">@ViewData["foodRank"]/10&nbsp;&nbsp;|</span>&nbsp;&nbsp;</td>
+                                                        <td><span style="color:#494949;">Сервис:</span>&nbsp;&nbsp;<span style="color:#5c5c5c">@ViewData["serviceRank"]/10&nbsp;&nbsp;|</span>&nbsp;&nbsp;</td>
+                                                        <td><span style="color:#494949;">Атмосфера:</span>&nbsp;&nbsp;<span style="color:#5c5c5c">@ViewData["ambienceRank"]/10</span></td>
+                                                        <td style="padding-left:100px"><span style="color:#494949; font-weight:bold">Рейтинг:</span>&nbsp;&nbsp;</td>
+                                                        <td>
+                                                            <fieldset id="rankField" class="rating">
+                                                                <input type="radio" id="r5" name="rating" value="5" /><label class="full" for="r5" title="Awesome - 5 stars"></label>
+                                                                <input type="radio" id="r45" name="rating" value="4 and a half" /><label class="half" for="r45" title="Pretty good - 4.5 stars"></label>
+                                                                <input type="radio" id="r4" name="rating" value="4" /><label class="full" for="r4" title="Pretty good - 4 stars"></label>
+                                                                <input type="radio" id="r35" name="rating" value="3 and a half" /><label class="half" for="r35" title="Meh - 3.5 stars"></label>
+                                                                <input type="radio" id="r3" name="rating" value="3" /><label class="full" for="r3" title="Meh - 3 stars"></label>
+                                                                <input type="radio" id="r25" name="rating" value="2 and a half" /><label class="half" for="r25" title="Kinda bad - 2.5 stars"></label>
+                                                                <input type="radio" id="r2" name="rating" value="2" /><label class="full" for="r2" title="Kinda bad - 2 stars"></label>
+                                                                <input type="radio" id="r15" name="rating" value="1 and a half" /><label class="half" for="r15" title="Meh - 1.5 stars"></label>
+                                                                <input type="radio" id="r1" name="rating" value="1" /><label class="full" for="r1" title="Sucks big time - 1 star"></label>
+                                                                <input type="radio" id="r05" name="rating" value="half" /><label class="half" for="r05" title="Sucks big time - 0.5 stars"></label>
+                                                            </fieldset>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
                             </table>
                         </div>
-                    }
+                        @Html.Partial("_ReviewsPartial", Model)
+                        @using (Ajax.BeginForm("MakeReview", new { id = "ReviewForm" }, new AjaxOptions { UpdateTargetId = "reviewsContent", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnSuccess = "reviewAddedSuccess", OnFailure = "reviewAddedFailure" }))
+                        {
+                            <div>
+                                <table style="border-spacing: 5px 5px; border-collapse:unset; width:100%">
+                                    <tr>
+                                        <td class="well" style="width:100%; border-radius:5px;padding:10px; vertical-align:top;  background-color:#fefefe">
+                                            <div class="form-group">
+                                                <textarea id="revText" style="width:100%" name="reviewText" cols="40" rows="5"></textarea>
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            Атмосфера:
+                                                        </td>
+                                                        <td>
+                                                            <fieldset class="rating C">
+                                                                <input type="radio" id="star5-c" name="ratingC" value="10" /><label class="full" for="star5-c" title="Awesome - 5 stars"></label>
+                                                                <input type="radio" id="star4half-c" name="ratingC" value="9" /><label class="half" for="star4half-c" title="Pretty good - 4.5 stars"></label>
+                                                                <input type="radio" id="star4-c" name="ratingC" value="8" /><label class="full" for="star4-c" title="Pretty good - 4 stars"></label>
+                                                                <input type="radio" id="star3half-c" name="ratingC" value="7" /><label class="half" for="star3half-c" title="Meh - 3.5 stars"></label>
+                                                                <input type="radio" id="star3-c" name="ratingC" value="6" /><label class="full" for="star3-c" title="Meh - 3 stars"></label>
+                                                                <input type="radio" id="star2half-c" name="ratingC" value="5" /><label class="half" for="star2half-c" title="Kinda bad - 2.5 stars"></label>
+                                                                <input type="radio" id="star2-c" name="ratingC" value="4" /><label class="full" for="star2-c" title="Kinda bad - 2 stars"></label>
+                                                                <input type="radio" id="star1half-c" name="ratingC" value="3" /><label class="half" for="star1half-c" title="Meh - 1.5 stars"></label>
+                                                                <input type="radio" id="star1-c" name="ratingC" value="2" /><label class="full" for="star1-c" title="Sucks big time - 1 star"></label>
+                                                                <input type="radio" id="starhalf-c" name="ratingC" value="1" /><label class="half" for="starhalf-c" title="Sucks big time - 0.5 stars"></label>
+                                                            </fieldset>
+                                                        </td>
+                                                        <td style="padding-left:50px">
+                                                            Кухня:
+                                                        </td>
+                                                        <td>
+                                                            <fieldset class="rating A">
+                                                                <input type="radio" id="star5-a" name="ratingA" value="10" /><label class="full" for="star5-a" title="Awesome - 5 stars"></label>
+                                                                <input type="radio" id="star4half-a" name="ratingA" value="9" /><label class="half" for="star4half-a" title="Pretty good - 4.5 stars"></label>
+                                                                <input type="radio" id="star4-a" name="ratingA" value="8" /><label class="full" for="star4-a" title="Pretty good - 4 stars"></label>
+                                                                <input type="radio" id="star3half-a" name="ratingA" value="7" /><label class="half" for="star3half-a" title="Meh - 3.5 stars"></label>
+                                                                <input type="radio" id="star3-a" name="ratingA" value="6" /><label class="full" for="star3-a" title="Meh - 3 stars"></label>
+                                                                <input type="radio" id="star2half-a" name="ratingA" value="5" /><label class="half" for="star2half-a" title="Kinda bad - 2.5 stars"></label>
+                                                                <input type="radio" id="star2-a" name="ratingA" value="4" /><label class="full" for="star2-a" title="Kinda bad - 2 stars"></label>
+                                                                <input type="radio" id="star1half-a" name="ratingA" value="3" /><label class="half" for="star1half-a" title="Meh - 1.5 stars"></label>
+                                                                <input type="radio" id="star1-a" name="ratingA" value="2" /><label class="full" for="star1-a" title="Sucks big time - 1 star"></label>
+                                                                <input type="radio" id="starhalf-a" name="ratingA" value="1" /><label class="half" for="starhalf-a" title="Sucks big time - 0.5 stars"></label>
+                                                            </fieldset>
+                                                        </td>
+                                                        <td style="padding-left:50px">
+                                                            Сервис:
+                                                        </td>
+                                                        <td>
+                                                            <fieldset class="rating B">
+                                                                <input type="radio" id="star5-b" name="ratingB" value="10" /><label class="full" for="star5-b" title="Awesome - 5 stars"></label>
+                                                                <input type="radio" id="star4half-b" name="ratingB" value="9" /><label class="half" for="star4half-b" title="Pretty good - 4.5 stars"></label>
+                                                                <input type="radio" id="star4-b" name="ratingB" value="8" /><label class="full" for="star4-b" title="Pretty good - 4 stars"></label>
+                                                                <input type="radio" id="star3half-b" name="ratingB" value="7" /><label class="half" for="star3half-b" title="Meh - 3.5 stars"></label>
+                                                                <input type="radio" id="star3-b" name="ratingB" value="6" /><label class="full" for="star3-b" title="Meh - 3 stars"></label>
+                                                                <input type="radio" id="star2half-b" name="ratingB" value="5" /><label class="half" for="star2half-b" title="Kinda bad - 2.5 stars"></label>
+                                                                <input type="radio" id="star2-b" name="ratingB" value="4" /><label class="full" for="star2-b" title="Kinda bad - 2 stars"></label>
+                                                                <input type="radio" id="star1half-b" name="ratingB" value="3" /><label class="half" for="star1half-b" title="Meh - 1.5 stars"></label>
+                                                                <input type="radio" id="star1-b" name="ratingB" value="2" /><label class="full" for="star1-b" title="Sucks big time - 1 star"></label>
+                                                                <input type="radio" id="starhalf-b" name="ratingB" value="1" /><label class="half" for="starhalf-b" title="Sucks big time - 0.5 stars"></label>
+                                                            </fieldset>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <button id="makeReviewBt" type="submit" class="btn btn-success btn-block">Оставить отзыв</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -392,12 +397,12 @@
                     <div class="input-group">
                         @{
                             DateTime dt = DateTime.Now.Date;
-                            if (ViewData["REdate"]!=null)
+                            if (ViewData["REdate"] != null)
                             {
                                 dt = new DateTime(Convert.ToInt64(ViewData["REdate"]));
                             }
                         }
-                        <input type="text" id="datepicker" value=@dt class="form-control">
+                        <input type="text" id="datepicker" value=@dt.Date.ToString("dd.MM.yyyy") class="form-control">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -427,7 +432,7 @@
             <div class="panel-body">
                 <p style="font-weight:bold">ВЫБРАТЬ СТОЛИК</p>
                 <div class="center-block row">
-                    <a data-toggle="modal" data-target="#SchemaModal" href="#">
+                    <a id="schemamodallink" data-toggle="modal" data-target="#SchemaModal" href="#">
                         <img src="~/Img/Schema.png" alt="img" class="img-responsive col-sm-12" />
                     </a>
                 </div>
@@ -454,9 +459,9 @@
 </div>
 
 <div class="modal modal-lg fade" id="SchemaModal" role="dialog">
-    <div class="modal-dialog">
+    <div id="schemaContainer" class="modal-dialog">
         <!-- Modal content-->
-        @Html.Action("SchemaReservedTables", "Restaurant", new { id = Model.Id })
+        @Html.Partial("_SchemaReservedTablesPartial", Model.RestaurantSchemas.FirstOrDefault());      
     </div>
 </div>
 
@@ -464,7 +469,7 @@
 <div class="modal fade" id="ConfirmModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
-        @using (Ajax.BeginForm("ConfirmReserv", null, new AjaxOptions { UpdateTargetId = "reseredTables"}, new { id = "confirmForm" }))
+        @using (Ajax.BeginForm("ConfirmReserv", null, new AjaxOptions { UpdateTargetId = "schemaContainer", OnSuccess= "clearReseredTables" }, new { id = "confirmForm" }))
         {
             <div class="modal-content" style="width:400px">
                 <div class="modal-header" style="background-color:#333333; color:white">
@@ -472,6 +477,7 @@
                     Подтвердить резерв
                 </div>
                 <div id="confirmReservModalBody" class="modal-body" style="padding:40px 50px;">
+                    <p><span style="font-weight:bold">Дата: </span><span id="confresdate"></span> <span id="confrestime"></span></p>
                 </div>
                 <div class="modal-footer">
                     <button id="sumbitReservBt" type="submit" class="btn btn-success btn-default pull-left">
@@ -516,7 +522,7 @@
                 <span id="successHeader" style="color:white">Запрос отправлен</span>
                 <button id="closeModalSuccess" type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div id="confirmReservModalBody" class="modal-body" style="padding:10px 10px;">
+            <div class="modal-body" style="padding:10px 10px;">
                 <p id="successMsg">Спасибо за выбор, менеджер ресторана свяжется с вами для подтверждения резерва.</p>
             </div>
             <div class="modal-footer">
@@ -526,9 +532,10 @@
     </div>
 </div>
 
+
+
 <script>
     window.myFunction = new SetRestRankStarts(@Html.Raw(Json.Encode(ViewData["restRank"])));
-
 
     $('#reservBt').click(function () {
         var withProperty = [],
@@ -554,9 +561,9 @@
             $('#errorModalLink').click();
             return;
         }
-
-        $('#confirmReservModalBody').empty();
-        $('#confirmReservModalBody').append("<p><span style=\"font-weight:bold\">Дата: </span>"+date+" "+time+"</p>");
+        $('#confresdate').text(date);
+        $('#confrestime').text(time);
+        $('#tablesUl').remove();
         $('#confirmReservModalBody').append("<ul id=\"tablesUl\"><span style=\"font-weight:bold\">Столы:</span></ul>");
         for (i = 0; i < els.length; i++) {
             if (els[i].hasAttribute('tableid')) {
@@ -571,7 +578,8 @@
                 schemaId = els[i].getAttribute('schemaId');
             }
         }
-        $('#confirmReservModalBody').append("<div><p><span style=\"font-weight:bold\">Имя: </span>"+name+"</p><p><span style=\"font-weight:bold\">Телефон: </span>"+phone+"</p></div>");
+        $('#confreservcontactname').remove();
+        $('#confirmReservModalBody').append("<div id=\"confreservcontactname\"><p><span style=\"font-weight:bold\">Имя: </span>"+name+"</p><p><span style=\"font-weight:bold\">Телефон: </span>"+phone+"</p></div>");
         $('#confirmForm').attr('action', '/Restaurant/ConfirmReserv?restId='+restId+'&schemaId=' + schemaId+'&date=' + date+'&time=' + time+'&name=' + name+'&phone=' + phone);
     });
 </script>

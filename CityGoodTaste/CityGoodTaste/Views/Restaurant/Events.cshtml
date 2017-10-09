@@ -1,16 +1,16 @@
 ﻿@model CityGoodTaste.Models.EventSearchViewModel
 
 @{
-    ViewBag.Title = "Events";
+    ViewBag.Title = "Search events";
 }
-
-<script src="~/Scripts/Custom/Events.js"></script>
+<script src="../../../Scripts/Custom/Events.js"></script>
 <script src="~/Scripts/Custom/Localization/datepicker-RUS.js"></script>
 
+
 @*@{
-    string language = @CityGoodTaste.Controllers.HomeController.getCulture();
-    string path = "../../../Scripts/Custom/Localization/datepicker-" + language + ".js";
-    <script src=@path></script>
+        string language = @CityGoodTaste.Controllers.HomeController.getCulture();
+        string path = "../../../Scripts/Custom/Localization/datepicker-" + language + ".js";
+        <script src=@path></script>
 }*@
 @using (Ajax.BeginForm("EventsSearch", new { id = "EventsForm" }, new AjaxOptions { UpdateTargetId = "EventsList", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }))
 {
@@ -23,18 +23,18 @@
 
     <div id="EventsList">
         <div class="col-sm-2" style="padding-right:0;">
-            
+
             <div class="panel panel-default">
                 <div class="panel-heading panelHeadingCustom">Типы:</div>
                 <div class="panel-body" style="padding-left:10px;">
-                    @for (int i=0;i< Model.Types.Count();i++)
+                    @for (int i = 0; i < Model.Types.Count(); i++)
                     {
-                            if (Model.Types[i].Count>0)
-                            {
-                                <div class="checkbox">
-                                <input type="checkbox" value=@Model.Types[i].Category.Id id=@("eventType" + Model.Types[i].Category.Id) class="EventTypesCheck" name="EventTypesCheck" unchecked />
+                        if (Model.Types[i].Count > 0)
+                        {
+                            <div class="checkbox">
+                                <input type="checkbox" onclick="checkElChB()" value=@Model.Types[i].Category.Id id=@("eventType" + Model.Types[i].Category.Id) class="EventTypesCheck" name="EventTypesCheck" unchecked />
                                 <label for=@("eventType" + Model.Types[i].Category.Id)>@Model.Types[i].Category.Name (@Model.Types[i].Count)</label>
-                                </div>
+                            </div>
                         }
                         else
                         {
@@ -73,12 +73,12 @@
                     </div>
                     <button type="submit" id="sendData" class="btn btn-danger" style="width:100%">Искать</button>
                 </div>
-                
+
             </div>
         </div>
-       
+
         <div class="col-sm-10">
-            <div class="container text-center" >
+            <div class="container text-center">
                 <div class="row">
                     @foreach (var item in Model.Events)
                     {
@@ -108,4 +108,4 @@
             </div>
         </div>
     </div>
-}
+                                }

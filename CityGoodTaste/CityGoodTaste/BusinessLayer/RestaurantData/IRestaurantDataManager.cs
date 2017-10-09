@@ -15,6 +15,7 @@ namespace CityGoodTaste.BusinessLayer
         double GetRestaurantRank(int? restId);
         void RemoveReserv(List<TableReservation> reservs);
 
+        RestaurantSearchViewModel Restaurants();
         Restaurant GetRestaurant(int? id);
         List<EventType> GetEventTypes(List<int> idEl);
         List<Table> GetListTables(List<int> ids);
@@ -26,7 +27,7 @@ namespace CityGoodTaste.BusinessLayer
         void ReservTables(List<TableReservation> reservs);
         List<Restaurant> GetListRestaurants();
         List<Restaurant> GetFoundRestaurants(string searchTerm);
-        List<Restaurant> SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups, string Neighborhoods);
+        RestaurantSearchViewModel SearchRestaurants(string searchText, string CuisinesCheck, string FeaturesCheck, string MealGroups, string Neighborhoods);
         void MakeReview(string userId, int restId, string text, int foodRank, int ambienceRank, int serviceRank);
         List<EventType> GetAllEventTypes();
         List<RestaurantFeature> GetAllRestaurantFeatures();

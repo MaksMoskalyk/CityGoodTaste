@@ -11,6 +11,17 @@
     //MyMap();
 })
 
+var SetRestRankStarts = function (restRank) {
+    if (restRank == '0')
+        return;
+    restRank = restRank.replace(',', '');
+    restRank = restRank.replace('.', '');
+    $('#r' + restRank).attr('checked', true);
+};
+
+function clearReseredTables() {
+    $('#reseredTables').empty();
+}
 
 function SetDatepicker() {
     $("#datepicker").datepicker({
@@ -20,6 +31,19 @@ function SetDatepicker() {
         showButtonPanel: true,
         minDate: 0,
         maxDate: "+1M +10D",
+        onSelect: function (date) {
+            $.ajax({
+                url: '/Restaurant/GetSchemaPartail',
+                dataType:'html',
+                data:{reservdate:date},
+                success: function (data) {
+                    $('#schemaContainer').html(data);
+                },
+                error: function (xhr, status, p3) {
+
+                }
+            });
+        }
     });
 }
 

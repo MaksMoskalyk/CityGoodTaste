@@ -3297,6 +3297,7 @@
     <Content Include="Img\UnitMain.jpg" />
     <Content Include="Scripts\Custom\Account\LogIn.js" />
     <Content Include="Scripts\Custom\Account\ManageAccount.js" />
+    <Content Include="Scripts\Custom\AdministrationIndex.js" />
     <Content Include="Scripts\Custom\Details.js" />
     <Content Include="Scripts\Custom\Events.js" />
     <Content Include="Scripts\Custom\Localization\datepicker-ENG.js" />
@@ -3374,7 +3375,7 @@
     <Content Include="Views\Home\SmartAssistant.cshtml" />
     <Content Include="Views\Restaurant\Events.cshtml" />
     <Content Include="Views\Restaurant\_ReservedTablesPartial.cshtml" />
-    <Content Include="Views\Restaurant\SchemaReservedTables.cshtml" />
+    <Content Include="Views\Restaurant\_SchemaReservedTablesPartial.cshtml" />
     <Content Include="Views\ForBetterTimes.cshtml" />
     <Content Include="Views\Restaurant\EventsSearch.cshtml" />
     <Content Include="Views\Restaurant\RestaurantsSearch.cshtml" />

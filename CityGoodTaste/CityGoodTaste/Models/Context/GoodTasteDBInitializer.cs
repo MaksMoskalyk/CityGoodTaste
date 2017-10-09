@@ -31,11 +31,6 @@ namespace CityGoodTaste.Models
             context.Neighborhoods.Add(n2);
             context.Neighborhoods.Add(n3);
             context.Neighborhoods.Add(n4);
-            ct.Neighborhoods = new List<Neighborhood>();
-            ct.Neighborhoods.Add(n1);
-            ct.Neighborhoods.Add(n2);
-            ct.Neighborhoods.Add(n3);
-            ct.Neighborhoods.Add(n4);
 
             var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
             var user = new ApplicationUser { Email = "somemail2@mail.ru", UserName = "user", Name="Артур" };
@@ -254,8 +249,8 @@ namespace CityGoodTaste.Models
             {
                 Name = "Old School Rock четверг с KIFA",
                 Description = "Когда у человека есть вкус, есть чувство стиля, в народе все,что бы он не делал, называют \"фирмА\". Вкус и стиль потерять невозможно, это или есть, или нет. У Кифы есть всё, поэтому что бы она не делала: выбирала ли одежду, подбирала ли музыку, кушала ли или просто шла по улочкам Одессы- она делает это обворожительно и очень стильно. Вашему вниманию Acoustic Old School of Rock от удивительной группы KIFA!\n Проводите каждый четверг стильно и со вкусом!",
-                StartDate = new DateTime(2017, 4, 27, 20, 0, 0),
-                EndDate = new DateTime(2017, 4, 28, 0, 0, 0),
+                StartDate = new DateTime(2017, 10, 27, 20, 0, 0),
+                EndDate = new DateTime(2017, 10, 28, 0, 0, 0),
                 Restaurant = r,
                 EventTypes = let1,
                 PhotoSmall = "/Img/Events/s_oldschoolrock.jpg",
@@ -268,8 +263,8 @@ namespace CityGoodTaste.Models
 "\n«GOLDWAY» -молодой кавер - проект из города - героя Одессы. Группа была образована в мае 2016 года, в своём репертуаре имеет хиты супер - широкого спектра!" +
 "\nОни готовы завести вас так, чтобы вы визжали и танцевали с нами, как будто любимый плей - лист приехал в ваш город)))" +
 "\nВ программе вечера - Gotye, Bruno Mars, 30 Seconds To Mars, Coldplay, One Republic, Бумбокс и др. не менее известные кавера!",
-                StartDate = new DateTime(2017, 4, 28, 20, 0, 0),
-                EndDate = new DateTime(2017, 4, 29, 0, 0, 0),
+                StartDate = new DateTime(2017, 10, 28, 20, 0, 0),
+                EndDate = new DateTime(2017, 10, 29, 0, 0, 0),
                 Restaurant = r,
                 EventTypes = let2,
                 PhotoSmall = "/Img/Events/s_goldway.jpg",
@@ -281,8 +276,8 @@ namespace CityGoodTaste.Models
                 Description = "Устали от рутины и серых будней? Тогда эта группа точно была создана для вас!)"+
 "\nВ 2010 году ребята собрались для того, чтобы творить: творить музыку и беспредел!) Группа, которая поражает своей энергетикой и позитивом. Очаровательные улыбки, блестящие глаза и яркие эмоции -как раз то, чего так не хватает в наших хмурых буднях." +
 "\n29 апреля в UNIT будет по - настоящему весело!) Особенно потому, что группа приезжает с новым альбомом.Приходите оценить и расслабиться!) Почувствуйте энергию украинской музыки!",
-                StartDate = new DateTime(2017, 4, 29, 20, 0, 0),
-                EndDate = new DateTime(2017, 4, 30, 0, 0, 0),
+                StartDate = new DateTime(2017, 10, 29, 20, 0, 0),
+                EndDate = new DateTime(2017, 10, 30, 0, 0, 0),
                 Restaurant = r,
                 EventTypes = let3,
                 PhotoSmall = "/Img/Events/s_patrochiny.jpg",

@@ -15,14 +15,16 @@
 <div style="float: left;">
     @for (int i = 0; i < Model.RestaurantSchemas.FirstOrDefault().Tables.ToList().Count; i++)
     {
+
         CityGoodTaste.Models.TableReservation reserv = Model.RestaurantSchemas.FirstOrDefault()
-            .Tables.ToList()[i].TableReservation.Where(x => x.Date.Date == DateTime.Now.Date).FirstOrDefault();
+            .Tables.ToList()[i].TableReservation.Where(x => x.Date.Date.ToString("dd.MM.yyyy") == Convert.ToDateTime(ViewData["ReservDate"]).Date.ToString("dd.MM.yyyy")).FirstOrDefault();
 
         if (reserv == null)
         {
             continue;
         }
-        if(reserv.User==null) { continue; }
+
+        if (reserv.User == null) { continue; }
         if (reserv.Reserved == true && reserv.User.Id == ViewBag.UserId)
         {
             if (flag == false)
@@ -31,12 +33,15 @@
                 flag = true;
             }
 
-            <span style="margin-right:1em"> @Html.HiddenFor(m => Model.RestaurantSchemas.FirstOrDefault().Tables.ToList()[i].Id, 
-                                            new { tableId = Model.RestaurantSchemas.FirstOrDefault().Tables.ToList()[i].Id,
-                                                  seats = Model.RestaurantSchemas.FirstOrDefault().Tables.ToList()[i].Seats
+            <span style="margin-right:1em">
+                @Html.HiddenFor(m => Model.RestaurantSchemas.FirstOrDefault().Tables.ToList()[i].Id,
+                                            new
+                                            {
+                                                tableId = Model.RestaurantSchemas.FirstOrDefault().Tables.ToList()[i].Id,
+                                                seats = Model.RestaurantSchemas.FirstOrDefault().Tables.ToList()[i].Seats
                                             })
-                № @reserv.Table.Id (<span class="glyphicon glyphicon-user">@reserv.Table.Seats</span>)</span>
+                № @reserv.Table.Id (<span class="glyphicon glyphicon-user">@reserv.Table.Seats</span>)
+            </span>
         }
     }
-
 </div>

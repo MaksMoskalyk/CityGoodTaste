@@ -2,7 +2,7 @@
 
     SetRestaurantsSearchAutocomplete();
 
-    SetCheckboxClickHandler();
+    //SetCheckboxClickHandler();
 
     PrevenUserClickRestRank();
 
@@ -10,6 +10,23 @@
 
 })
 
+function DeselectRest(id) {
+    var t = document.getElementById(id);
+    t.click();
+}
+function DeselectRestAll() {
+    var checkedEls = document.querySelectorAll('input[type=checkbox]:checked');
+    for (i in checkedEls) {
+        checkedEls[i].checked = false;
+    }
+    var t = document.getElementById("sendData");
+    t.click();
+
+}
+function checkElChB() {
+    var t = document.getElementById("sendData");
+    t.click();
+}
 function PrevenUserClickRestRank() {
     $('#rankField input:radio').click(function () {
         return false;
@@ -44,14 +61,6 @@ function SetCheckboxClickHandler() {
     });
 }
 
-var SetRestRankStarts = function (restRank) {
-
-    if (restRank == '0')
-        return;
-    restRank = restRank.replace(',', '');
-    restRank = restRank.replace('.', '');
-    $('#r' + restRank).attr('checked', true);
-};
 
 function reviewAddedSuccess() {
     $('input:radio').removeAttr('checked');

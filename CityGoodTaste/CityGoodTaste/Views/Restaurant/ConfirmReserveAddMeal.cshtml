@@ -1,10 +1,11 @@
 ﻿@model CityGoodTaste.Models.OrderFood
 
+
 <div>
     @{
         int SUM = 0;
     }
-    @for(int i =0; i< Model.meal.Count ;i++)
+    @for (int i = 0; i < Model.meal.Count; i++)
     {
         <span>@Model.meal[i].Name @Model.count[i] x @Model.meal[i].Price @Model.currency</span>
         <button type="submit" class="btn btn-default btn-sm">

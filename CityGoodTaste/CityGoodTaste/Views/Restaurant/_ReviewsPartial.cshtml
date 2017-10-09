@@ -1,5 +1,7 @@
 ﻿@using CityGoodTaste.Models;
+
 @model CityGoodTaste.Models.Restaurant
+
 
 <div id="reviewsContent">
     @foreach (var item in Model.Reviews)
@@ -29,7 +31,4 @@
 
 <script type="text/javascript">
     @*var flag = @Html.Raw(Json.Encode(ViewData["NewReviewAdded"]));*@
-
-
 </script>
-

@@ -2,7 +2,6 @@
 
     SetEventsSearchAutocomplete();
 
-    SetCheckboxClickHandler();
 
     SetDatepickers();
 
@@ -11,19 +10,25 @@ function DeselectET(id) {
     var t = document.getElementById(id);
     t.click();
 }
-
+function DeselectETAll() {
+    var checkedEls = document.querySelectorAll('input[name=EventTypesCheck]:checked');
+    for (i in checkedEls) {
+        checkedEls[i].checked = false;
+    }
+    var t = document.getElementById("sendData");
+    t.click();
+    
+}
+function checkElChB() {
+    var t = document.getElementById("sendData");
+    t.click();
+}
 function SetEventsSearchAutocomplete() {
     $("#searchTextEvents").autocomplete({
         source: '/Restaurant/GetSearchDataEvents'
     });
 }
 
-function SetCheckboxClickHandler() {
-    $('.EventTypesCheck').click(function () {
-        var t = document.getElementById("sendData");
-        t.click();
-    });
-}
 
 function SetDatepickers() {
     $(function () {

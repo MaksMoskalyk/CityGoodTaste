@@ -8,6 +8,7 @@
     ViewBag.Title = "Войти";
 }
 
+
 <article class="authenticationBlock">
     <h3 class="centralHeader">@ViewBag.Title</h3>
 
@@ -46,13 +47,13 @@
                     </div>
 
                     @*<div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <div class="checkbox">
-                                <input value="true" type="checkbox" id="rememberMe" name="rememberMe" checked="@Model.RememberMe" />
-                                <label for="rememberMe">Запомни меня?</label>
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="checkbox">
+                                    <input value="true" type="checkbox" id="rememberMe" name="rememberMe" checked="@Model.RememberMe" />
+                                    <label for="rememberMe">Запомни меня?</label>
+                                </div>
                             </div>
-                        </div>
-                    </div>*@
+                        </div>*@
 
                     <div class="form-group">
                         <div class="col-md-12">
@@ -62,7 +63,7 @@
 
                     <p>
                         <span style="float:left">@Html.ActionLink("Регистрация", "Register")</span> <span style="float:right">@Html.ActionLink("Забыли пароль? ", "ForgotPassword")</span>
-                    </p>                   
+                    </p>
                 }
             </section>
         </div>

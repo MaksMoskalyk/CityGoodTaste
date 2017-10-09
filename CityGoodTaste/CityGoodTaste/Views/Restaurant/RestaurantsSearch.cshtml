@@ -1,30 +1,206 @@
-﻿@model IEnumerable<CityGoodTaste.Models.Restaurant>
+﻿@model CityGoodTaste.Models.RestaurantSearchViewModel
 
 
-<div class="row NoMargin">
-    @foreach (var item in Model)
+<div id="searchFiltersBlock" class="col-sm-2" style="padding-right:0;">
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeadingCustom">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapseNeighborhoods">Районы города:</a>
+            </h4>
+        </div>
+        <div id="collapseNeighborhoods" class="panel-collapse collapse in filtersPanel" style="padding-left:10px;">
+            @for (int i = 0; i < Model.Neighborhoods.Count(); i++)
             {
-        <div class="col-sm-4 " style="text-align:left; padding-right:0; ">
-            <div class="panel panel-success">
-                <div class="panel-heading panelHeadingCustom">
-                    <a href='@Url.Action("Details", "Restaurant", new { id = item.Id })' style="color:black; text-decoration:none">
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </a>
+                if (Model.Neighborhoods[i].Count > 0 && Model.Neighborhoods[i].IsSelected)
+                {
+                    <div class="checkbox">
+                        <input type="checkbox" onclick="checkElChB()" value=@Model.Neighborhoods[i].Category.Id id=@("Neighborhoods" + Model.Neighborhoods[i].Category.Id) class="NeighborhoodsCheck" name="NeighborhoodsCheck" checked />
+                        <label for=@("Neighborhoods" + Model.Neighborhoods[i].Category.Id)>@Model.Neighborhoods[i].Category.Name (@Model.Neighborhoods[i].Count)</label>
+                    </div>
+                }
+                else if (Model.Neighborhoods[i].Count > 0)
+                {
+                    <div class="checkbox">
+                        <input type="checkbox" onclick="checkElChB()" value=@Model.Neighborhoods[i].Category.Id id=@("Neighborhoods" + Model.Neighborhoods[i].Category.Id) class="NeighborhoodsCheck" name="NeighborhoodsCheck" unchecked />
+                        <label for=@("Neighborhoods" + Model.Neighborhoods[i].Category.Id)>@Model.Neighborhoods[i].Category.Name (@Model.Neighborhoods[i].Count)</label>
+                    </div>
+                }
+                else
+                {
+                    <div class="checkbox">
+                        <input disabled="disabled" type="checkbox" value=@Model.Neighborhoods[i].Category.Id id=@("Neighborhoods" + Model.Neighborhoods[i].Category.Id) class="NeighborhoodsCheck" name="NeighborhoodsCheck" unchecked />
+                        <label for=@("Neighborhoods" + Model.Neighborhoods[i].Category.Id)>@Model.Neighborhoods[i].Category.Name (@Model.Neighborhoods[i].Count)</label>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeadingCustom">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapse2">Сервис:</a>
+            </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse in filtersPanel" style="padding-left:10px;">
+            @for (int i = 0; i < Model.RestaurantFeatures.Count(); i++)
+            {
+                if (Model.RestaurantFeatures[i].Count > 0 && Model.RestaurantFeatures[i].IsSelected)
+                {
+                    <div class="checkbox">
+                        <input type="checkbox" onclick="checkElChB()" value=@Model.RestaurantFeatures[i].Category.Id id=@("RestaurantFeatures" + Model.RestaurantFeatures[i].Category.Id) class="RestaurantFeaturesCheck" name="RestaurantFeaturesCheck" checked />
+                        <label for=@("RestaurantFeatures" + Model.RestaurantFeatures[i].Category.Id)>@Model.RestaurantFeatures[i].Category.Name (@Model.RestaurantFeatures[i].Count)</label>
+                    </div>
+                }
+                else if (Model.RestaurantFeatures[i].Count > 0)
+                {
+                    <div class="checkbox">
+                        <input type="checkbox" onclick="checkElChB()" value=@Model.RestaurantFeatures[i].Category.Id id=@("RestaurantFeatures" + Model.RestaurantFeatures[i].Category.Id) class="RestaurantFeaturesCheck" name="RestaurantFeaturesCheck" unchecked />
+                        <label for=@("RestaurantFeatures" + Model.RestaurantFeatures[i].Category.Id)>@Model.RestaurantFeatures[i].Category.Name (@Model.RestaurantFeatures[i].Count)</label>
+                    </div>
+                }
+                else
+                {
+                    <div class="checkbox">
+                        <input disabled="disabled" type="checkbox" value=@Model.RestaurantFeatures[i].Category.Id id=@("RestaurantFeatures" + Model.RestaurantFeatures[i].Category.Id) class="RestaurantFeaturesCheck" name="RestaurantFeaturesCheck" unchecked />
+                        <label for=@("RestaurantFeatures" + Model.RestaurantFeatures[i].Category.Id)>@Model.RestaurantFeatures[i].Category.Name (@Model.RestaurantFeatures[i].Count)</label>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeadingCustom">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapse1">Кухня:</a>
+            </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse filtersPanel" style="padding-left:10px;">
+            @for (int i = 0; i < Model.Cuisines.Count(); i++)
+            {
+                if (Model.Cuisines[i].Count > 0 && Model.Cuisines[i].IsSelected)
+                {
+                    <div class="checkbox">
+                        <input type="checkbox" onclick="checkElChB()" value=@Model.Cuisines[i].Category.Id id=@("Cuisines" + Model.Cuisines[i].Category.Id) class="CuisinesCheck" name="CuisinesCheck" checked />
+                        <label for=@("Cuisines" + Model.Cuisines[i].Category.Id)>@Model.Cuisines[i].Category.Name (@Model.Cuisines[i].Count)</label>
+                    </div>
+                }
+                else if(Model.Cuisines[i].Count > 0)
+                {
+                    <div class="checkbox">
+                        <input type="checkbox" onclick="checkElChB()" value=@Model.Cuisines[i].Category.Id id=@("Cuisines" + Model.Cuisines[i].Category.Id) class="CuisinesCheck" name="CuisinesCheck" unchecked />
+                        <label for=@("Cuisines" + Model.Cuisines[i].Category.Id)>@Model.Cuisines[i].Category.Name (@Model.Cuisines[i].Count)</label>
+                    </div>
+                }
+                else
+                {
+                    <div class="checkbox">
+                        <input disabled="disabled" type="checkbox" value=@Model.Cuisines[i].Category.Id id=@("Cuisines" + Model.Cuisines[i].Category.Id) class="CuisinesCheck" name="CuisinesCheck" unchecked />
+                        <label for=@("Cuisines" + Model.Cuisines[i].Category.Id)>@Model.Cuisines[i].Category.Name (@Model.Cuisines[i].Count)</label>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeadingCustom">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapse3">Категории меню:</a>
+            </h4>
+        </div>
+        <div id="collapse3" class="panel-collapse collapse filtersPanel" style="padding-left:10px;">
+            @for (int i = 0; i < Model.MealGroups.Count(); i++)
+            {
+                if (Model.MealGroups[i].Count > 0 && Model.MealGroups[i].IsSelected)
+                {
+                    <div class="checkbox">
+                        <input type="checkbox" onclick="checkElChB()" value=@Model.MealGroups[i].Category.Id id=@("MealGroups" + Model.MealGroups[i].Category.Id) class="MealGroupsCheck" name="MealGroupsCheck" checked />
+                        <label for=@("MealGroups" + Model.MealGroups[i].Category.Id)>@Model.MealGroups[i].Category.Name (@Model.MealGroups[i].Count)</label>
+                    </div>
+                }
+                else if(Model.MealGroups[i].Count > 0)
+                {
+                    <div class="checkbox">
+                        <input type="checkbox" onclick="checkElChB()" value=@Model.MealGroups[i].Category.Id id=@("MealGroups" + Model.MealGroups[i].Category.Id) class="MealGroupsCheck" name="MealGroupsCheck" unchecked />
+                        <label for=@("MealGroups" + Model.MealGroups[i].Category.Id)>@Model.MealGroups[i].Category.Name (@Model.MealGroups[i].Count)</label>
+                    </div>
+                }
+                else
+                {
+                    <div class="checkbox">
+                        <input disabled="disabled" type="checkbox" value=@Model.MealGroups[i].Category.Id id=@("MealGroups" + Model.MealGroups[i].Category.Id) class="MealGroupsCheck" name="MealGroupsCheck" unchecked />
+                        <label for=@("MealGroups" + Model.MealGroups[i].Category.Id)>@Model.MealGroups[i].Category.Name (@Model.MealGroups[i].Count)</label>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-10">
+    <div class="container text-center">
+        @{
+            if (Model.IsSelectedAnyCategory)
+            {
+                <div style="text-align:left;">
+                    @for (int i = 0; i < Model.Neighborhoods.Count(); i++)
+                    {
+                        if (Model.Neighborhoods[i].Count > 0 && Model.Neighborhoods[i].IsSelected)
+                        {
+                            <label class="label-success" style="padding:5px; border-radius:5px; vertical-align:central"><span>@Model.Neighborhoods[i].Category.Name</span> <button class="btn btn-danger" onclick="DeselectRest('Neighborhoods' + @Model.Neighborhoods[i].Category.Id)" style="padding-left:6px; padding-bottom:1px; padding-right:6px; padding-top:1px; border-radius:10px">X</button></label>
+                        }
+                    }
+                    @for (int i = 0; i < Model.RestaurantFeatures.Count(); i++)
+                    {
+                        if (Model.RestaurantFeatures[i].Count > 0 && Model.RestaurantFeatures[i].IsSelected)
+                        {
+                            <label class="label-success" style="padding:5px; border-radius:5px; vertical-align:central"><span>@Model.RestaurantFeatures[i].Category.Name</span> <button class="btn btn-danger" onclick="DeselectRest('RestaurantFeatures' + @Model.RestaurantFeatures[i].Category.Id)" style="padding-left:6px; padding-bottom:1px; padding-right:6px; padding-top:1px; border-radius:10px">X</button></label>
+                        }
+                    }
+                    @for (int i = 0; i < Model.Cuisines.Count(); i++)
+                    {
+                        if (Model.Cuisines[i].Count > 0 && Model.Cuisines[i].IsSelected)
+                        {
+                            <label class="label-success" style="padding:5px; border-radius:5px; vertical-align:central"><span>@Model.Cuisines[i].Category.Name</span> <button class="btn btn-danger" onclick="DeselectRest('Cuisines' + @Model.Cuisines[i].Category.Id)" style="padding-left:6px; padding-bottom:1px; padding-right:6px; padding-top:1px; border-radius:10px">X</button></label>
+                        }
+                    }
+                    @for (int i = 0; i < Model.MealGroups.Count(); i++)
+                    {
+                        if (Model.MealGroups[i].Count > 0 && Model.MealGroups[i].IsSelected)
+                        {
+                            <label class="label-success" style="padding:5px; border-radius:5px; vertical-align:central"><span>@Model.MealGroups[i].Category.Name</span> <button class="btn btn-danger" onclick="DeselectRest('MealGroups' + @Model.MealGroups[i].Category.Id)" style="padding-left:6px; padding-bottom:1px; padding-right:6px; padding-top:1px; border-radius:10px">X</button></label>
+                        }
+                    }
+                    <button class="btn btn-danger" onclick="DeselectRestAll()">Сбросить</button>
                 </div>
-                <div class="thumbs">
-                    <a href='@Url.Action("Details", "Restaurant", new { id = item.Id })'>
-                        <img src=@item.Photo class="img-responsive" style="width:100%; height:200px" alt="Image" />
-                    </a>
-                    <div class="caption">
-                        <span style="float:left">Cредний чек: @item.AverageCheck ₴</span>
-                        <span style="float:right"><span class="glyphicon glyphicon-thumbs-up"> @item.Likes.Count</span></span>
+                <br />
+            }
+        }
+        <div class="row NoMargin">
+            @foreach (var item in Model.Restaurants)
+            {
+                <div class="col-sm-4 " style="text-align:left; padding-right:0; ">
+                    <div class="panel panel-success">
+                        <div class="panel-heading panelHeadingCustom">
+                            <a href='@Url.Action("Details", "Restaurant", new { id = item.Id })' style="color:black; text-decoration:none">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </div>
+                        <div class="thumbs">
+                            <a href='@Url.Action("Details", "Restaurant", new { id = item.Id })'>
+                                <img src=@item.Photo class="img-responsive" style="width:100%; height:200px" alt="Image" />
+                            </a>
+                            <div class="caption">
+                                <span style="float:left">Cредний чек: @item.AverageCheck ₴</span>
+                                <span style="float:right"><span class="glyphicon glyphicon-thumbs-up"> @item.Likes.Count</span></span>
+                            </div>
+                        </div>
+                        <div class="panel-footer panelFooterCustom">
+                            <span class="glyphicon glyphicon-map-marker"></span> @Html.DisplayFor(modelItem => item.Address)<br />
+                            <span class="glyphicon glyphicon-earphone"></span> @Html.DisplayFor(modelItem => item.PhoneNumber)<br />
+                        </div>
                     </div>
                 </div>
-                <div class="panel-footer panelFooterCustom">
-                    <span class="glyphicon glyphicon-map-marker"></span> @Html.DisplayFor(modelItem => item.Address)<br />
-                    <span class="glyphicon glyphicon-earphone"></span> @Html.DisplayFor(modelItem => item.PhoneNumber)<br />
-                </div>
-            </div>
+            }
         </div>
-    }
+    </div>
 </div>

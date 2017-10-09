@@ -2,16 +2,15 @@
 
 <style>
     a.list-group-item:hover,
-    a.list-group-item:focus{
-        border:3px solid #fcff00 !important;
-        font-weight:600;
+    a.list-group-item:focus {
+        border: 3px solid #fcff00 !important;
+        font-weight: 600;
     }
-
 </style>
 
 <div class="col-sm-6">@Html.Partial("~/Views/Restaurant/_SchemaPartial.cshtml", Model)</div>
 <div class="col-sm-3 text-center pull-right" style="border-top:none; padding:0;">
-    <ul id="nav" class="nav nav-tabs"  style="border-radius:5px">
+    <ul id="nav" class="nav nav-tabs" style="border-radius:5px">
         <li class="active"><a data-toggle="tab" href="#confirmedReservs">Подтвержденные</a></li>
         <li><a data-toggle="tab" href="#notConfirmedReservs">Неподтвержденные</a></li>
     </ul>
@@ -22,7 +21,7 @@
                 {
                     var reserv = table.TableReservation.FirstOrDefault();
                     if (reserv == null) { continue; };
-                    if (reserv.ReservedAndConfirmed == true && reserv.ConfirmedByAdministration==true)
+                    if (reserv.ReservedAndConfirmed == true && reserv.ConfirmedByAdministration == true)
                     {
                         string name = string.IsNullOrEmpty(reserv.ContactInfoName) ? reserv.User.Name : reserv.ContactInfoName;
                         name = string.IsNullOrEmpty(name) ? "Имя отсутстувет" : name;
@@ -36,7 +35,7 @@
                                 <div class="pull-right" style="padding-right:5px">
                                     <span style="font-weight:bold; font-size:15px; padding-right:5px; color:#5b5b5b" id="date@(reserv.Id)">@reserv.Date.Date.ToShortDateString()</span>
                                     <span style="font-weight:bold;  font-size:15px; padding-right:20px; color:#5b5b5b" id="time@(reserv.Id)">@reserv.Date.ToShortTimeString()</span>
-                                    <span reservId="@(reserv.Id)" tablespanId="@(reserv.Table.Id)" style="color:#cb3434" class="glyphicon glyphicon-remove"></span> 
+                                    <span reservId="@(reserv.Id)" tablespanId="@(reserv.Table.Id)" style="color:#cb3434" class="glyphicon glyphicon-remove"></span>
                                 </div>
                             </div>
 
@@ -67,13 +66,13 @@
                                     <span style="font-weight:600; color:#5b5b5b; font-size:15px"><span style="color:#bd0b0b;">#@reserv.Table.Id &nbsp;&nbsp;</span><span style="color:#4b9f3b;">резерв @reserv.Id</span></span>
                                 </div>
                                 <div class="pull-right" style="padding-right:5px">
-                                    <span style="font-weight:bold; font-size:15px; padding-right:5px; color:#5b5b5b" id="date@(reserv.Id)">@reserv.Date.Date.ToShortDateString()</span> 
-                                    <span style="font-weight:bold;  font-size:15px; padding-right:20px; color:#5b5b5b" id="time@(reserv.Id)">@reserv.Date.ToShortTimeString()</span> 
+                                    <span style="font-weight:bold; font-size:15px; padding-right:5px; color:#5b5b5b" id="date@(reserv.Id)">@reserv.Date.Date.ToShortDateString()</span>
+                                    <span style="font-weight:bold;  font-size:15px; padding-right:20px; color:#5b5b5b" id="time@(reserv.Id)">@reserv.Date.ToShortTimeString()</span>
                                     <span reservId="@(reserv.Id)" tablespanId="@(reserv.Table.Id)" style="color:#30a52b; padding-right:5px" class="glyphicon glyphicon-ok"></span>
-                                    <span reservId="@(reserv.Id)" tablespanId="@(reserv.Table.Id)" style="color:#cb3434" class="glyphicon glyphicon-remove"></span>                              
+                                    <span reservId="@(reserv.Id)" tablespanId="@(reserv.Table.Id)" style="color:#cb3434" class="glyphicon glyphicon-remove"></span>
                                 </div>
                             </div>
-                            
+
                             <div class="row" style="padding-top:3px; padding-bottom:3px; border:1px solid #eeeeee; background-color:white">
                                 <div class="center-block" style="text-align:center"><span id="name@(reserv.Id)" style="padding-right:10px">@name</span> <span id="phone@(reserv.Id)">@phone</span></div>
                             </div>
@@ -87,77 +86,101 @@
 
 
 <script>
-                $(document).ready(function () {
+    $(document).ready(function () {
 
-                    HighlightTableListClick();
+        HighlightTableListClick();
 
-                    RemoveReservationMinusClick();
+        RemoveReservationMinusClick();
 
-                    SelectTableForReservation();
+        SelectTableForReservation();
 
-                    ConfirmReservationClick();
+        ConfirmReservationClick();
+
+        SetDatepickerPartial();
+    });
+
+    function SetDatepickerPartial() {
+        $("#datepickerpartial").datepicker({
+            showAnim: "slideDown",
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            showButtonPanel: true,
+            minDate: 0,
+            maxDate: "+1M +10D",
+            onSelect: function (date) {
+                $.ajax({
+                    url: '/Administration/GetSchemaByDate/',
+                    type: 'GET',
+                    success: function (data) {
+
+                    },
+                    error: function (xhr, status, p3) {
+
+                    }
                 });
+            }
+        });
+    }
+
+    function RemoveReservationMinusClick() {
+        $('.glyphicon-remove').click(function () {
+            var reservId = $(this).attr('reservId');
+            var tableId = $(this).attr('tablespanId');
+            $('#reservNumber').val(reservId);
+            $('#tablNumber').val(tableId);
+            $('#unreservModalLink').click();
+        });
+    };
+
+    function ConfirmReservationClick() {
+        $('.glyphicon-ok').click(function () {
+            var reservId = $(this).attr('reservId');
+
+            $('#clientReservNumberModal').val(reservId);
+            $('#clientReservNameModal').val($('#name' + reservId).text());
+            $('#clientReservPhoneModal').val($('#phone' + reservId).text());
+            $('#clientReservDateModal').val($('#date' + reservId).text());
+            $('#clientReservTimeModal').val($('#time' + reservId).text());
 
 
-                function RemoveReservationMinusClick() {
-                    $('.glyphicon-remove').click(function () {
-                        var reservId = $(this).attr('reservId');
-                        var tableId = $(this).attr('tablespanId');
-                        $('#reservNumber').val(reservId);
-                        $('#tablNumber').val(tableId);
-                        $('#unreservModalLink').click();
-                    });
-                };
+            $('#confirmClientsReservModalLink').click();
+        });
+    };
 
-                function ConfirmReservationClick() {
-                    $('.glyphicon-ok').click(function () {
-                        var reservId = $(this).attr('reservId');
-                        
-                        $('#clientReservNumberModal').val(reservId);
-                        $('#clientReservNameModal').val($('#name' + reservId).text());
-                        $('#clientReservPhoneModal').val($('#phone' + reservId).text());
-                        $('#clientReservDateModal').val($('#date' + reservId).text());
-                        $('#clientReservTimeModal').val($('#time' + reservId).text());
+    function HighlightTableListClick() {
+        $("a[tablelistId]").click(function (event) {
+            UnCheckNewReservationCheckBox();
+            var tableId = $(this).attr('tablelistId');
+            $('td[selected]').css("background-color", '#fcfcfc');
+            $('td[selected]').removeAttr('selected');
+            $('td[tableid="' + tableId + '"]').css("background-color", '#fbff97');
+            $('td[tableid="' + tableId + '"]').attr("selected", "selected");
 
+        });
+    };
 
-                        $('#confirmClientsReservModalLink').click();
-                    });
-                };
+    function SelectTableForReservation() {
+        $('td').click(function (event) {
+            if ($('#checkboxNewReservs:checked').val() != 'on') return;
+            event.stopPropagation();
+            var id = event.target.id;
+            if (id.indexOf('.') > 0)
+                id = id.substring(id.indexOf('.') + 1);
 
-                function HighlightTableListClick() {
-                    $("a[tablelistId]").click(function (event) {
-                        UnCheckNewReservationCheckBox();
-                        var tableId = $(this).attr('tablelistId');
-                        $('td[selected]').css("background-color", '#fcfcfc');
-                        $('td[selected]').removeAttr('selected');
-                        $('td[tableid="' + tableId + '"]').css("background-color", '#fbff97');
-                        $('td[tableid="' + tableId + '"]').attr("selected", "selected");
-                        
-                    });
-                };
+            var reserved = document.getElementById(id).getAttribute('newReserved');
+            if (document.getElementById(id).getAttribute('reservedandconfirmed') == "True")
+                return;
 
-                function SelectTableForReservation() {
-                    $('td').click(function (event) {
-                        if ($('#checkboxNewReservs:checked').val() != 'on') return;
-                        event.stopPropagation();
-                        var id = event.target.id;
-                        if (id.indexOf('.') > 0)
-                            id = id.substring(id.indexOf('.') + 1);
-
-                        var reserved = document.getElementById(id).getAttribute('newReserved');
-                        if (document.getElementById(id).getAttribute('reservedandconfirmed') == "True")
-                            return;
-
-                        var tableId = document.getElementById('imgP.' + id).getAttribute('tableId');
-                        if (reserved == "True") {
-                            $('td[id="' + id + '"]').css("background-color", '#fcfcfc');
-                            document.getElementById(id).removeAttribute('newReserved');
-                            document.getElementById('newReserved.' + tableId).value = false;
-                        } else {
-                            $('td[id="' + id + '"]').css("background-color", '#9fff9b');
-                            document.getElementById(id).setAttribute('newReserved', 'True');
-                            document.getElementById('newReserved.' + tableId).value = true;
-                        }
-                    });
-                };
+            var tableId = document.getElementById('imgP.' + id).getAttribute('tableId');
+            if (reserved == "True") {
+                $('td[id="' + id + '"]').css("background-color", '#fcfcfc');
+                document.getElementById(id).removeAttribute('newReserved');
+                document.getElementById('newReserved.' + tableId).value = false;
+            } else {
+                $('td[id="' + id + '"]').css("background-color", '#9fff9b');
+                document.getElementById(id).setAttribute('newReserved', 'True');
+                document.getElementById('newReserved.' + tableId).value = true;
+            }
+        });
+    };
 </script>

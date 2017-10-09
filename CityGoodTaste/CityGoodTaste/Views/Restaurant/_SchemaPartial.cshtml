@@ -1,6 +1,6 @@
 ﻿@using CityGoodTaste.Models
-@model CityGoodTaste.Models.RestaurantSchema
 
+@model CityGoodTaste.Models.RestaurantSchema
 
 
 <div class="container-fluid">
@@ -26,7 +26,7 @@
 
                             if (Model.Tables.ToList()[i].TableReservation.Count == 0)
                             {
-                                Model.Tables.ToList()[i].TableReservation.Add(new TableReservation { Date = DateTime.Now, Reserved = false, ReservedAndConfirmed = false, Table = Model.Tables.ToList()[i] });
+                                Model.Tables.ToList()[i].TableReservation.Add(new TableReservation { Date = Convert.ToDateTime(@ViewData["ReservDate"]), Reserved = false, ReservedAndConfirmed = false, Table = Model.Tables.ToList()[i] });
                             }
 
                             @Html.HiddenFor(m => Model.Tables[i].TableReservation[0].Id)
@@ -60,11 +60,13 @@
                                 reserved="@Model.Tables.ToList()[i].TableReservation.ToList()[0].Reserved.ToString()"
                                 reservedandconfirmed="@Model.Tables.ToList()[i].TableReservation.ToList()[0].ReservedAndConfirmed.ToString()"
                                 seats="@Model.Tables.ToList()[i].Seats">
-                                <div style="position:relative; top:-3px; right:-19px"><span style="font-size:13px; font-weight:bold; color:#bd0b0b; position:absolute;">
-                                    <span style="font-weight:normal; color:#bd0b0b;">#</span>@Model.Tables.ToList()[i].Id</span>
+                                <div style="position:relative; top:-3px; right:-19px">
+                                    <span style="font-size:13px; font-weight:bold; color:#bd0b0b; position:absolute;">
+                                        <span style="font-weight:normal; color:#bd0b0b;">#</span>@Model.Tables.ToList()[i].Id
+                                    </span>
                                 </div>
-                                                              
-                                <div id="divP.@x@y" style="top:8px; position:relative" tableid="@Model.Tables.ToList()[i].Id">                                  
+
+                                <div id="divP.@x@y" style="top:8px; position:relative" tableid="@Model.Tables.ToList()[i].Id">
                                     <p id="P.@x@y" style="font-weight:bold; color:@(seatsColor)" tableid="@Model.Tables.ToList()[i].Id">
                                         @Model.Tables.ToList()[i].Seats
                                         <img id="imgP.@x@y" style="width:15px; height:15px" src="@(personPath)" tableid="@Model.Tables.ToList()[i].Id" />
@@ -87,6 +89,5 @@
         }
     </table>
 </div>
-
 
 <script src="~/Scripts/Custom/CreateSchema.js"></script>

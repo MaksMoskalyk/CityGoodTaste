@@ -10,14 +10,14 @@
                 if (Model.Types[i].Count > 0 && Model.Types[i].IsSelected)
                 {
                     <div class="checkbox">
-                        <input type="checkbox" value=@Model.Types[i].Category.Id id=@("eventType" + Model.Types[i].Category.Id) class="EventTypesCheck" name="EventTypesCheck" checked />
+                        <input type="checkbox" onclick="checkElChB()" value=@Model.Types[i].Category.Id id=@("eventType" + Model.Types[i].Category.Id) class="EventTypesCheck" name="EventTypesCheck" checked />
                         <label for=@("eventType" + Model.Types[i].Category.Id)>@Model.Types[i].Category.Name</label>
                     </div>
                 }
                 else if (Model.Types[i].Count > 0)
                 {
                     <div class="checkbox">
-                        <input type="checkbox" value=@Model.Types[i].Category.Id id=@("eventType" + Model.Types[i].Category.Id) class="EventTypesCheck" name="EventTypesCheck" unchecked />
+                        <input type="checkbox" onclick="checkElChB()" value=@Model.Types[i].Category.Id id=@("eventType" + Model.Types[i].Category.Id) class="EventTypesCheck" name="EventTypesCheck" unchecked />
                         <label for=@("eventType" + Model.Types[i].Category.Id)>@Model.Types[i].Category.Name (@Model.Types[i].Count)</label>
                     </div>
                 }
@@ -36,10 +36,7 @@
         <div class="panel-body" style="padding-left:10px;">
             <div id="datepickerContainer" class="form-group center-block">
                 <div class="input-group">
-                    @{
-                        DateTime dtFrom = DateTime.Now.Date;
-                    }
-                    <input type="text" id="from" name="from" value=@dtFrom class="form-control">
+                    <input type="text" id="from" name="from" value=@Model.from class="form-control">
                     <span class="input-group-addon">
                         От
                     </span>
@@ -47,10 +44,7 @@
             </div>
             <div id="datepickerContainer" class="form-group center-block">
                 <div class="input-group">
-                    @{
-                        DateTime dtTo = DateTime.Now.AddYears(1).Date;
-                    }
-                    <input type="text" id="to" name="to" value=@dtTo class="form-control">
+                    <input type="text" id="to" name="to" value=@Model.to class="form-control">
                     <span class="input-group-addon">
                         До
                     </span>
@@ -72,10 +66,11 @@
                     {
                         if (Model.Types[i].Count > 0 && Model.Types[i].IsSelected)
                         {
-                            <label class="label-success" style="padding:5px; border-radius:5px; vertical-align:central"><span>@Model.Types[i].Category.Name</span> <button class="btn btn-danger" onclick="DeselectET('eventType' + 'item.Id')" style="padding-left:6px; padding-bottom:1px; padding-right:6px; padding-top:1px; border-radius:10px">X</button></label>
+                            <label class="label-success" style="padding:5px; border-radius:5px; vertical-align:central"><span>@Model.Types[i].Category.Name</span> <button class="btn btn-danger" onclick="DeselectET('eventType' + @Model.Types[i].Category.Id)" style="padding-left:6px; padding-bottom:1px; padding-right:6px; padding-top:1px; border-radius:10px">X</button></label>
                         }
                     }
-                    <button class="btn btn-danger" onclick="DeselectET('eventType' + 'item.Id')">Сбросить</button>
+
+                    <button class="btn btn-danger" onclick="DeselectETAll()">Сбросить</button>
                 </div>
                 <br />
             }
@@ -108,5 +103,4 @@
         </div>
     </div>
 </div>
-
 

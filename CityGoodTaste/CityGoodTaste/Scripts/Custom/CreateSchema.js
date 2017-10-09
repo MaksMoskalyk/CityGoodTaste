@@ -1,8 +1,8 @@
 ﻿$('document').ready(
-
     createBorders()
-
 );
+
+
 
 
 function createBorders() {
