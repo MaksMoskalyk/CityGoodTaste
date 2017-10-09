@@ -1,4 +1,4 @@
-# CityGoodTaste
+# CityGoodTaste (The project is in development)
 # NAME OF PROJECT: City Good Taste
 # DESCRIPTION: ASP.NET MVC project for searching a restaurant / cafe for all sorts of criteria and reserving a table there, with the possibility to choose a table on the interactive map of the establishment.
 # TEAM: 3 members
