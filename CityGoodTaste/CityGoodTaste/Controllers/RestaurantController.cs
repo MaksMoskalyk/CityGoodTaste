@@ -105,7 +105,7 @@ namespace CityGoodTaste.Controllers
             ViewData["restRank"] = manager.GetRestaurantRank(id).ToString();
             if (idEvent != null)
             {
-                RestaurantEvent RE = manager.GetListRestaurantEvents().Where(re => re.Id == id).FirstOrDefault();
+                RestaurantEvent RE = manager.GetListRestaurantEvents().Where(re => re.Id == idEvent).FirstOrDefault();
                 ViewData["REdate"] = RE.StartDate.Ticks.ToString();
             }
             if (Rest == null)
